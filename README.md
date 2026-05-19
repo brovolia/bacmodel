@@ -21,47 +21,68 @@
 
 ## Introduction
 
-**nf-core/bacmodel** is a bioinformatics pipeline that ...
+**nf-core/bacmodel** is a bioinformatics pipeline for comprehensive functional annotation and metabolic modeling of bacterial genomes. The pipeline takes bacterial genome assemblies (FASTA format) and performs structural annotation using Prokka or Bakta, followed by functional characterization using specialized tools for macromolecular system detection (MacSyFinder), phenotype prediction (Traitar), and metabolic model reconstruction (CarveMe). It produces a complete picture of genomic potential, functional capabilities, and predicted metabolic pathways.
 
-<!-- TODO nf-core:
-   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
-   major pipeline sections and the types of output it produces. You're giving an overview to someone new
-   to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
--->
+![nf-core/bacmodel workflow](docs/images/bacmodel_workflow.png)
 
-<!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
-     workflows use the "tube map" design for that. See https://nf-co.re/docs/guidelines/graphic_design/workflow_diagrams#examples for examples.   -->
-<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
+The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It uses Docker/Singularity containers making installation trivial and results highly reproducible. The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementation of this pipeline uses one container per process which makes it much easier to maintain and update software dependencies. Where possible, these processes have been submitted to and installed from [nf-core/modules](https://github.com/nf-core/modules) in order to make them available to all nf-core pipelines, and to everyone within the Nextflow community!
+
+1. Genome annotation with [Prokka](https://github.com/tseemann/prokka) or [Bakta](https://github.com/oschwengers/bakta)
+2. Macromolecular system detection with [MacSyFinder](https://github.com/gem-pasteur/macsyfinder) (optional)
+3. Phenotype prediction with [Traitar](https://github.com/hzi-bifo/traitar) (optional)
+4. Metabolic model reconstruction with [CarveMe](https://github.com/cdanielmachado/carveme) (optional)
+5. Quality control and summary reports with [MultiQC](http://multiqc.info/)
 
 ## Usage
 
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
-
 First, prepare a samplesheet with your input data that looks as follows:
 
-`samplesheet.csv`:
+`samplesheet.tsv`:
 
-```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
+```tsv
+sample	fasta
+sample1	/path/to/genome1.fasta
+sample2	/path/to/genome2.fasta.gz
+sample3	https://example.com/genome3.fasta.gz
 ```
 
-Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
+Each row represents a bacterial genome assembly. The `fasta` column can contain:
 
--->
+- Local file paths (absolute or relative)
+- URLs to remote FASTA files
+- Gzipped or uncompressed FASTA format
 
 Now, you can run the pipeline using:
-
-<!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
 nextflow run nf-core/bacmodel \
    -profile <docker/singularity/.../institute> \
-   --input samplesheet.csv \
+   --input samplesheet.tsv \
+   --outdir <OUTDIR>
+```
+
+By default, the pipeline runs Prokka annotation. To use Bakta instead:
+
+```bash
+nextflow run nf-core/bacmodel \
+   -profile <docker/singularity/.../institute> \
+   --input samplesheet.tsv \
+   --annotation_tool bakta \
+   --outdir <OUTDIR>
+```
+
+To enable optional functional analysis tools:
+
+```bash
+nextflow run nf-core/bacmodel \
+   -profile <docker/singularity/.../institute> \
+   --input samplesheet.tsv \
+   --run_macsyfinder true \
+   --run_traitar true \
+   --run_carveme true \
    --outdir <OUTDIR>
 ```
 
@@ -78,11 +99,12 @@ For more details about the output files and reports, please refer to the
 
 ## Credits
 
-nf-core/bacmodel was originally written by Olga Brovkina.
+nf-core/bacmodel was originally written by Olga Brovkina at the Institute of Clinical Molecular Biology (IKMB), Kiel University.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
-<!-- TODO nf-core: If applicable, make list of people who have also contributed -->
+- The nf-core community for providing excellent tools and modules
+- The developers of Prokka, Bakta, MacSyFinder, Traitar, and CarveMe for their excellent software
 
 ## Contributions and Support
 

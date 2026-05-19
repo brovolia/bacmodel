@@ -1,19 +1,20 @@
 nextflow_pipeline {
 
-    name "Test pipeline - default (prokka annotation)"
+    name "Test pipeline - MacSyFinder"
     script "../main.nf"
     tag "pipeline"
+    tag "macsyfinder"
 
-    test("Params: test profile") {
+    test("Params: Prokka + MacSyFinder") {
 
         when {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.tsv"
                 
-                // Test with Prokka annotation only for speed
+                // Test MacSyFinder specifically
                 annotation_tool = 'prokka'
-                run_macsyfinder = false
+                run_macsyfinder = true
                 run_traitar = false
                 run_carveme = false
             }

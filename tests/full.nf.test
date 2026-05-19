@@ -1,21 +1,22 @@
 nextflow_pipeline {
 
-    name "Test pipeline - default (prokka annotation)"
+    name "Test pipeline - Full analysis"
     script "../main.nf"
     tag "pipeline"
+    tag "full"
 
-    test("Params: test profile") {
+    test("Params: Full analysis with all tools") {
 
         when {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.tsv"
                 
-                // Test with Prokka annotation only for speed
+                // Test with Prokka and all analysis tools
                 annotation_tool = 'prokka'
-                run_macsyfinder = false
-                run_traitar = false
-                run_carveme = false
+                run_macsyfinder = true
+                run_traitar = true
+                run_carveme = true
             }
         }
 

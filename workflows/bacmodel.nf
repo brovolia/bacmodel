@@ -6,6 +6,7 @@
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
 include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_bacmodel_pipeline'
+include { BACMODEL_ANALYSIS      } from '../subworkflows/local/bacmodel_analysis'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -20,6 +21,22 @@ workflow BACMODEL {
     main:
 
     ch_versions = channel.empty()
+
+    //
+    // Create channel from samplesheet
+    //
+    ch_genomes = ch_samplesheet
+        .splitCsv ( header:true, sep:'\t' )
+        .map { row ->
+            def meta = [id: row.sample]
+            [ meta, file(row.fasta, checkIfExists: true) ]
+        }
+
+    //
+    // Run functional annotation and analysis
+    //
+    BACMODEL_ANALYSIS(ch_genomes)
+    ch_versions = ch_versions.mix(BACMODEL_ANALYSIS.out.versions)
 
     //
     // Collate and save software versions
@@ -53,7 +70,6 @@ workflow BACMODEL {
 
     emit:
     versions       = ch_versions                 // channel: [ path(versions.yml) ]
-
 }
 
 /*

@@ -1,21 +1,22 @@
 nextflow_pipeline {
 
-    name "Test pipeline - default (prokka annotation)"
+    name "Test pipeline - CarveMe"
     script "../main.nf"
     tag "pipeline"
+    tag "carveme"
 
-    test("Params: test profile") {
+    test("Params: Prokka + CarveMe") {
 
         when {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.tsv"
                 
-                // Test with Prokka annotation only for speed
+                // Test CarveMe specifically
                 annotation_tool = 'prokka'
                 run_macsyfinder = false
                 run_traitar = false
-                run_carveme = false
+                run_carveme = true
             }
         }
 

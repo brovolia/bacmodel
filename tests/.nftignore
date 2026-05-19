@@ -1,2 +1,13 @@
 .DS_Store
 pipeline_info/*.{html,json,txt,yml}
+multiqc/multiqc_data/multiqc_data.json
+multiqc/multiqc_data/multiqc_sources.txt
+multiqc/multiqc_data/multiqc_software_versions.txt
+multiqc/multiqc_data/multiqc.log
+multiqc/multiqc_plots/{svg,pdf,png}/*.{svg,pdf,png}
+multiqc/multiqc_report.html
+annotation/prokka/*/*.{html,log,err,txt,tsv,tbl,sqn}
+annotation/bakta/*/*.{html,log,json,txt,tsv,svg,png}
+functional_annotation/macsyfinder/*/*.{log,txt}
+phenotype/traitar/*/*.{log,txt}
+metabolic_models/carveme/*/*.{log,txt}

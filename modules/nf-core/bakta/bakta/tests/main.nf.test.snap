@@ -1,0 +1,118 @@
+{
+    "Bakta - bacteroides_fragilis - genome.fasta": {
+        "content": [
+            {
+                "versions_bakta": [
+                    [
+                        "BAKTA_BAKTA",
+                        "bakta",
+                        "1.11.4"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-03-17T21:20:19.285606344",
+        "meta": {
+            "nf-test": "0.9.4",
+            "nextflow": "26.02.0"
+        }
+    },
+    "Bakta - stub": {
+        "content": [
+            {
+                "embl": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.embl:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "faa": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.faa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "ffn": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.ffn:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "fna": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.fna:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gbff": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.gbff:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "gff": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.gff3:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "hypotheticals_faa": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.hypotheticals.faa:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "hypotheticals_tsv": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.hypotheticals.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "tsv": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.tsv:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "txt": [
+                    [
+                        {
+                            "id": "stub"
+                        },
+                        "stub.txt:md5,d41d8cd98f00b204e9800998ecf8427e"
+                    ]
+                ],
+                "versions_bakta": [
+                    [
+                        "BAKTA_BAKTA",
+                        "bakta",
+                        "1.11.4"
+                    ]
+                ]
+            }
+        ],
+        "timestamp": "2026-03-17T21:20:30.005281737",
+        "meta": {
+            "nf-test": "0.9.4",
+            "nextflow": "26.02.0"
+        }
+    }
+}

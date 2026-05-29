@@ -24,7 +24,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Option 1: Prokka for annotation (preferred for speed)
     if (params.annotation_tool == 'prokka' || !params.annotation_tool) {
-        PROKKA(ch_genomes)
+        PROKKA(ch_genomes, [], [])
         ch_annotated_proteins = PROKKA.out.faa
         ch_annotated_gff = PROKKA.out.gff
         ch_versions = ch_versions.mix(PROKKA.out.versions)

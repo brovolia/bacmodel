@@ -25,9 +25,6 @@ process GAPSEQ_DOALL {
     def prefix = task.ext.prefix ?: "${meta.id}"
     def medium_arg = medium ? "-m $medium" : ''
     """
-    # Set HOME to work directory to avoid read-only filesystem issues
-    export HOME=\$PWD
-    
     gapseq \\
         doall \\
         -t Bacteria \\

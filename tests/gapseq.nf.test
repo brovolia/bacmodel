@@ -1,0 +1,42 @@
+nextflow_pipeline {
+
+    name "Test pipeline - Gapseq"
+    script "../main.nf"
+    tag "pipeline"
+    tag "gapseq"
+
+    test("Params: Prokka + Gapseq") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                input = "$projectDir/assets/samplesheet.tsv"
+                
+                // Test Gapseq specifically
+                annotation_tool = 'prokka'
+                run_macsyfinder = false
+                run_traitar = false
+                run_carveme = false
+                run_gapseq = true
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

@@ -1,0 +1,73 @@
+{
+    "Params: Prokka + Gapseq": {
+        "content": [
+            {
+                "BACMODEL_SUMMARY": {
+                    "pandas": "2.2.1",
+                    "python": "3.12.3"
+                },
+                "GAPSEQ_DOALL": {
+                    "gapseq": "2.0.0"
+                },
+                "PROKKA": {
+                    "prokka": "1.14.6"
+                },
+                "Workflow": {
+                    "nf-core/bacmodel": "v1.0.0dev"
+                }
+            },
+            [
+                "annotation",
+                "annotation/prokka",
+                "annotation/prokka/faecalibacterium_taiwanense",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.err",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.faa",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.ffn",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.fna",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.fsa",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gbk",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gff",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.log",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.sqn",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tbl",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tsv",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.txt",
+                "metabolic_models",
+                "metabolic_models/gapseq",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-Transporter-find_aligner.log",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-Transporter.tbl",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-Pathways.tbl",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-Reactions.tbl",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-find_aligner.log",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-draft.RDS",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense.RDS",
+                "pipeline_info",
+                "pipeline_info/nf_core_bacmodel_software_versions.yml",
+                "summary",
+                "summary/bacmodel_summary.tsv"
+            ],
+            [
+                "faecalibacterium_taiwanense.err:md5,e22435b4287449f69ac02bf70992007a",
+                "faecalibacterium_taiwanense.faa:md5,f87b47c5cb67d9f06b228ae5a5dd8894",
+                "faecalibacterium_taiwanense.ffn:md5,82e08ddb0a241f0848ce3afe1f2b5747",
+                "faecalibacterium_taiwanense.fna:md5,0508f1fe745351ca15f1fd2598a63ee8",
+                "faecalibacterium_taiwanense.fsa:md5,a0fa805662a42c7651a7b1f3fe90c267",
+                "faecalibacterium_taiwanense.gbk:md5,dd9bc16a220b7c0a34a54ebcc062c9b8",
+                "faecalibacterium_taiwanense.gff:md5,d188aff6ae0d3493d874e4e533f9d6d1",
+                "faecalibacterium_taiwanense.log:md5,ae03d706485a320b3b1683cf4e91766a",
+                "faecalibacterium_taiwanense.sqn:md5,510db08486268a884eb16d8d2583644e",
+                "faecalibacterium_taiwanense.tbl:md5,5bfcf452ea6c31c12723188bc2ad8b41",
+                "faecalibacterium_taiwanense.tsv:md5,b2464233e052a994067100d89af8ac55",
+                "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749",
+                "faecalibacterium_taiwanense-draft.RDS:md5,cd46990fe78c5616aab8d0107a4005fb",
+                "faecalibacterium_taiwanense.RDS:md5,7a745d24d53cc0f05947348a87abccf4",
+                "bacmodel_summary.tsv:md5,5676988c8c75dfeaf79d77e8d2a39cd4"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "25.10.0"
+        },
+        "timestamp": "2026-06-04T14:06:36.161645195"
+    }
+}

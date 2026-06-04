@@ -23,14 +23,9 @@ workflow BACMODEL {
     ch_versions = channel.empty()
 
     //
-    // Create channel from samplesheet
+    // Create channel from samplesheet (already formatted by PIPELINE_INITIALISATION)
     //
     ch_genomes = ch_samplesheet
-        .splitCsv ( header:true, sep:'\t' )
-        .map { row ->
-            def meta = [id: row.sample]
-            [ meta, file(row.fasta, checkIfExists: true) ]
-        }
 
     //
     // Run functional annotation and analysis
@@ -45,11 +40,14 @@ workflow BACMODEL {
         .distinct()
         .branch { entry ->
             versions_file: entry instanceof Path
-            versions_tuple: true
+            versions_tuple: !(entry instanceof Path)
         }
 
     def topic_versions_string = topic_versions.versions_tuple
-        .map { process, tool, version ->
+        .map { entry ->
+            def process = entry[0]
+            def tool = entry[1]
+            def version = entry[2]
             [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]
         }
         .groupTuple(by:0)

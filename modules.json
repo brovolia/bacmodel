@@ -20,6 +20,11 @@
                         "git_sha": "3326d8229aae457d374efecfd479f3120d589f17",
                         "installed_by": ["modules"]
                     },
+                    "gapseq/doall": {
+                        "branch": "master",
+                        "git_sha": "258c852e70261dca1ff2600f4c58fef6ab939128",
+                        "installed_by": ["modules"]
+                    },
                     "macsyfinder/download": {
                         "branch": "master",
                         "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",

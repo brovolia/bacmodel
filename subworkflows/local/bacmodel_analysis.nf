@@ -24,6 +24,12 @@ workflow BACMODEL_ANALYSIS {
     ch_versions = ch_versions.mix(BACMODEL_FUNCTIONAL_ANNOTATION.out.versions)
 
     emit:
-    annotation_results = BACMODEL_FUNCTIONAL_ANNOTATION.out
-    versions            = ch_versions
+    proteins    = BACMODEL_FUNCTIONAL_ANNOTATION.out.proteins
+    gff         = BACMODEL_FUNCTIONAL_ANNOTATION.out.gff
+    macsyfinder = BACMODEL_FUNCTIONAL_ANNOTATION.out.macsyfinder
+    traitar     = BACMODEL_FUNCTIONAL_ANNOTATION.out.traitar
+    carveme     = BACMODEL_FUNCTIONAL_ANNOTATION.out.carveme
+    gapseq      = BACMODEL_FUNCTIONAL_ANNOTATION.out.gapseq
+    summary     = BACMODEL_FUNCTIONAL_ANNOTATION.out.summary
+    versions    = ch_versions
 }

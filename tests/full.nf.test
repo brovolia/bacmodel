@@ -16,7 +16,9 @@ nextflow_pipeline {
                 annotation_tool = 'prokka'
                 run_macsyfinder = true
                 run_traitar = true
+                pfamdb_download = true
                 run_carveme = true
+                run_gapseq = true
             }
         }
 
@@ -29,11 +31,13 @@ nextflow_pipeline {
                 { assert workflow.success},
                 { assert snapshot(
                     // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
-                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_mqc_versions.yml"),
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
                     // All stable path name, with a relative path
                     stable_name,
                     // All files with stable contents
-                    stable_path
+                    stable_path,
+                    // Summary table with all tools
+                    path("$outputDir/summary/bacmodel_summary.tsv")
                 ).match() }
             )
         }

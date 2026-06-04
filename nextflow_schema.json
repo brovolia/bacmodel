@@ -180,5 +180,46 @@
         {
             "$ref": "#/$defs/generic_options"
         }
-    ]
+    ],
+    "properties": {
+        "annotation_tool": {
+            "type": "string",
+            "default": "prokka"
+        },
+        "baktadb": {
+            "type": "string"
+        },
+        "baktadb_download": {
+            "type": "boolean"
+        },
+        "baktadb_download_args": {
+            "type": "string",
+            "default": "--type light"
+        },
+        "pfamdb": {
+            "type": "string"
+        },
+        "pfamdb_download": {
+            "type": "boolean"
+        },
+        "run_macsyfinder": {
+            "type": "boolean",
+            "default": true
+        },
+        "run_traitar": {
+            "type": "boolean",
+            "default": true
+        },
+        "run_carveme": {
+            "type": "boolean",
+            "default": true
+        },
+        "run_gapseq": {
+            "type": "boolean"
+        },
+        "macsyfinder_models": {
+            "type": "string",
+            "default": "TXSS"
+        }
+    }
 }

@@ -7,7 +7,7 @@ keywords:
   - metabolic modeling
   - systems biology
 components:
-  - bacmodel_annotation
+  - bacmodel_functional_annotation
 input:
   - ch_samplesheet:
       type: channel

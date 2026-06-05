@@ -1,12 +1,15 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "utils_nfcore_bacmodel_pipeline"
+name: "pipeline_initialisation"
 description: Subworkflow with functionality specific to the nf-core/bacmodel pipeline
 keywords:
   - utility
   - pipeline
   - initialisation
   - validation
-components: []
+components:
+  - utils_nfschema_plugin
+  - utils_nfcore_pipeline
+  - utils_nextflow_pipeline
 input:
   - version:
       type: boolean

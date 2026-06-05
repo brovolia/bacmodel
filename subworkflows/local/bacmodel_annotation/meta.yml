@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
-name: "bacmodel_annotation"
+name: "bacmodel_functional_annotation"
 description: Bacterial genome annotation and functional modeling subworkflow
 keywords:
   - bacteria
@@ -7,15 +7,15 @@ keywords:
   - functional analysis
   - metabolic reconstruction
 components:
-  - nf-core/prokka
-  - nf-core/bakta/baktadbdownload
-  - nf-core/bakta/bakta
-  - nf-core/hmmer/hmmsearch
-  - nf-core/pfamdb/download
-  - nf-core/macsyfinder/search
-  - nf-core/traitar/phenolyze
-  - nf-core/carveme
-  - nf-core/gapseq/doall
+  - prokka
+  - bakta/bakta
+  - bakta/baktadbdownload
+  - macsyfinder/search
+  - macsyfinder/download
+  - traitar/run
+  - traitar/pfamget
+  - carveme/carve
+  - gapseq/doall
   - bacmodel_summary
 input:
   - ch_samplesheet:

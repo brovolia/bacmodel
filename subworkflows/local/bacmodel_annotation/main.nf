@@ -7,16 +7,16 @@
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
 
-include { PROKKA                  } from '../../modules/nf-core/prokka/main'
-include { BAKTA_BAKTA             } from '../../modules/nf-core/bakta/bakta/main'
-include { BAKTA_BAKTADBDOWNLOAD   } from '../../modules/nf-core/bakta/baktadbdownload/main'
-include { MACSYFINDER_SEARCH      } from '../../modules/nf-core/macsyfinder/search/main'
-include { MACSYFINDER_DOWNLOAD    } from '../../modules/nf-core/macsyfinder/download/main'
-include { TRAITAR                 } from '../../modules/nf-core/traitar/run/main'
-include { TRAITAR_PFAMGET         } from '../../modules/nf-core/traitar/pfamget/main'
-include { CARVEME_CARVE           } from '../../modules/nf-core/carveme/carve/main'
-include { GAPSEQ_DOALL            } from '../../modules/nf-core/gapseq/doall/main'
-include { BACMODEL_SUMMARY        } from '../../modules/local/bacmodel_summary/main'
+include { PROKKA                  } from '../../../modules/nf-core/prokka/main'
+include { BAKTA_BAKTA             } from '../../../modules/nf-core/bakta/bakta/main'
+include { BAKTA_BAKTADBDOWNLOAD   } from '../../../modules/nf-core/bakta/baktadbdownload/main'
+include { MACSYFINDER_SEARCH      } from '../../../modules/nf-core/macsyfinder/search/main'
+include { MACSYFINDER_DOWNLOAD    } from '../../../modules/nf-core/macsyfinder/download/main'
+include { TRAITAR                 } from '../../../modules/nf-core/traitar/run/main'
+include { TRAITAR_PFAMGET         } from '../../../modules/nf-core/traitar/pfamget/main'
+include { CARVEME_CARVE           } from '../../../modules/nf-core/carveme/carve/main'
+include { GAPSEQ_DOALL            } from '../../../modules/nf-core/gapseq/doall/main'
+include { BACMODEL_SUMMARY        } from '../../../modules/local/bacmodel_summary/main'
 
 workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 

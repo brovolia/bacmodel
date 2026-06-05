@@ -8,14 +8,14 @@ keywords:
   - metabolic reconstruction
 components:
   - prokka
-  - bakta/bakta
-  - bakta/baktadbdownload
-  - macsyfinder/search
-  - macsyfinder/download
-  - traitar/run
-  - traitar/pfamget
-  - carveme/carve
-  - gapseq/doall
+  - bakta_bakta
+  - bakta_baktadbdownload
+  - macsyfinder_search
+  - macsyfinder_download
+  - traitar
+  - traitar_pfamget
+  - carveme_carve
+  - gapseq_doall
   - bacmodel_summary
 input:
   - ch_samplesheet:

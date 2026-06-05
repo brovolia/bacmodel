@@ -1,0 +1,4 @@
+# macsyfinder 2.1.6  (using MacSyLib 1.0.4 )
+# models : TXSS-1.1.4
+# /usr/local/bin/macsyfinder --sequence-db faecalibacterium_taiwanense.faa --models-dir models --models TXSS --out-dir faecalibacterium_taiwanense --worker 4 --db-type unordered
+# No Likely Systems found

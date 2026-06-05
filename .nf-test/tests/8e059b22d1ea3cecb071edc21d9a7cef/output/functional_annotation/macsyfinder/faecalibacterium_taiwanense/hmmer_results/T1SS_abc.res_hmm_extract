@@ -1,0 +1,17 @@
+# gene: T1SS_abc extract from faecalibacterium_taiwanense/hmmer_results/T1SS_abc.search_hmm.out hmm output
+# profile length= 501
+# i_evalue threshold= 0.001
+# coverage threshold= 0.500
+# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
+DHCEFBOC_00120	faecalibacterium_taiwanense	116	576	T1SS_abc	2.800e-55	185.100	0.928	0.807	60	524
+DHCEFBOC_00121	faecalibacterium_taiwanense	117	556	T1SS_abc	2.500e-62	208.400	0.924	0.838	72	537
+DHCEFBOC_01211	faecalibacterium_taiwanense	1191	596	T1SS_abc	1.900e-97	324.200	0.932	0.794	77	549
+DHCEFBOC_01773	faecalibacterium_taiwanense	1739	589	T1SS_abc	4.500e-64	214.100	0.998	0.864	28	536
+DHCEFBOC_01774	faecalibacterium_taiwanense	1740	575	T1SS_abc	6.600e-71	236.700	0.774	0.670	142	526
+DHCEFBOC_01884	faecalibacterium_taiwanense	1847	591	T1SS_abc	1.200e-78	262.300	0.936	0.800	72	544
+DHCEFBOC_01885	faecalibacterium_taiwanense	1848	579	T1SS_abc	7.500e-61	203.500	0.980	0.864	28	527
+DHCEFBOC_02070	faecalibacterium_taiwanense	2022	776	T1SS_abc	3.700e-107	356.300	0.998	0.649	201	704
+DHCEFBOC_02110	faecalibacterium_taiwanense	2056	768	T1SS_abc	6.200e-65	217.000	0.926	0.618	235	709
+DHCEFBOC_02111	faecalibacterium_taiwanense	2057	603	T1SS_abc	9.600e-81	269.100	0.932	0.786	83	556
+DHCEFBOC_02245	faecalibacterium_taiwanense	2191	583	T1SS_abc	2.600e-72	241.300	0.988	0.859	28	528
+DHCEFBOC_02246	faecalibacterium_taiwanense	2192	639	T1SS_abc	1.300e-15	54.300	0.589	0.484	52	360

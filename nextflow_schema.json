@@ -168,6 +168,93 @@
                     "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
                 }
             }
+        },
+        "annotation_options": {
+            "title": "Annotation options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Options for genome annotation",
+            "properties": {
+                "annotation_tool": {
+                    "type": "string",
+                    "default": "prokka",
+                    "description": "Tool to use for genome annotation",
+                    "enum": ["prokka", "bakta"],
+                    "fa_icon": "fas fa-tools"
+                },
+                "baktadb": {
+                    "type": "string",
+                    "description": "Path to Bakta database (required if annotation_tool='bakta')",
+                    "fa_icon": "fas fa-database"
+                },
+                "baktadb_download": {
+                    "type": "boolean",
+                    "description": "Download Bakta database automatically",
+                    "fa_icon": "fas fa-download"
+                },
+                "baktadb_download_args": {
+                    "type": "string",
+                    "default": "--type light",
+                    "description": "Arguments for Bakta database download",
+                    "fa_icon": "fas fa-cog"
+                }
+            }
+        },
+        "database_options": {
+            "title": "Database options",
+            "type": "object",
+            "fa_icon": "fas fa-database",
+            "description": "Options for required databases",
+            "properties": {
+                "pfamdb": {
+                    "type": "string",
+                    "description": "Path to Pfam database (required if run_traitar=true)",
+                    "fa_icon": "fas fa-folder"
+                },
+                "pfamdb_download": {
+                    "type": "boolean",
+                    "description": "Download Pfam database automatically",
+                    "fa_icon": "fas fa-download"
+                }
+            }
+        },
+        "analysis_options": {
+            "title": "Analysis options",
+            "type": "object",
+            "fa_icon": "fas fa-microscope",
+            "description": "Options for functional annotation and metabolic modeling tools",
+            "properties": {
+                "run_macsyfinder": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run MacSyFinder for macromolecular systems detection",
+                    "fa_icon": "fas fa-search"
+                },
+                "macsyfinder_models": {
+                    "type": "string",
+                    "default": "TXSS",
+                    "description": "MacSyFinder models to use (TXSS for Type III/IV/VI secretion systems)",
+                    "fa_icon": "fas fa-cogs"
+                },
+                "run_traitar": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run TRAITAR for phenotype prediction",
+                    "fa_icon": "fas fa-flask"
+                },
+                "run_carveme": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Run CarveMe for genome-scale metabolic reconstruction",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "run_gapseq": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Run Gapseq for pathway analysis and metabolic modeling",
+                    "fa_icon": "fas fa-share-alt"
+                }
+            }
         }
     },
     "allOf": [
@@ -175,51 +262,19 @@
             "$ref": "#/$defs/input_output_options"
         },
         {
+            "$ref": "#/$defs/annotation_options"
+        },
+        {
+            "$ref": "#/$defs/database_options"
+        },
+        {
+            "$ref": "#/$defs/analysis_options"
+        },
+        {
             "$ref": "#/$defs/institutional_config_options"
         },
         {
             "$ref": "#/$defs/generic_options"
         }
-    ],
-    "properties": {
-        "annotation_tool": {
-            "type": "string",
-            "default": "prokka"
-        },
-        "baktadb": {
-            "type": "string"
-        },
-        "baktadb_download": {
-            "type": "boolean"
-        },
-        "baktadb_download_args": {
-            "type": "string",
-            "default": "--type light"
-        },
-        "pfamdb": {
-            "type": "string"
-        },
-        "pfamdb_download": {
-            "type": "boolean"
-        },
-        "run_macsyfinder": {
-            "type": "boolean",
-            "default": true
-        },
-        "run_traitar": {
-            "type": "boolean",
-            "default": true
-        },
-        "run_carveme": {
-            "type": "boolean",
-            "default": true
-        },
-        "run_gapseq": {
-            "type": "boolean"
-        },
-        "macsyfinder_models": {
-            "type": "string",
-            "default": "TXSS"
-        }
-    }
+    ]
 }

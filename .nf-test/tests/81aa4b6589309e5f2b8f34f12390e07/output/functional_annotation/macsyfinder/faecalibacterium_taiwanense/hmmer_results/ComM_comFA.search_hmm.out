@@ -1,0 +1,136 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.4 (Aug 2023); http://hmmer.org/
+# Copyright (C) 2023 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /work_ikmb/sukmb662/nf-core-bacmodel/.nf-test/tests/81aa4b6589309e5f2b8f34f12390e07/work/c9/363fe9c412e3fae98cb2371e6a3346/models/TXSS/profiles/ComM_comFA.hmm
+# target sequence database:        faecalibacterium_taiwanense.faa
+# output directed to file:         faecalibacterium_taiwanense/hmmer_results/ComM_comFA.search_hmm.out
+# model-specific thresholding:     GA cutoffs
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       ComFA  [M=326]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence       Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------       -----------
+    3.3e-19   66.2   0.0      2e-14   50.5   0.0    2.2  1  DHCEFBOC_00758  Primosomal protein N'
+    4.5e-16   55.9   0.0    2.6e-12   43.5   0.0    2.9  1  DHCEFBOC_01978  ATP-dependent DNA helicase RecG
+      9e-13   45.0   0.0    4.8e-10   36.1   0.0    2.2  1  DHCEFBOC_01612  Transcription-repair-coupling factor
+      1e-11   41.6   0.6    4.7e-09   32.8   0.5    2.5  1  DHCEFBOC_00935  UvrABC system protein B
+    7.1e-08   28.9   0.3    1.4e-07   27.9   0.3    1.5  1  DHCEFBOC_02182  ATP-dependent RNA helicase CshA
+
+
+Domain annotation for each sequence (and alignments):
+>> DHCEFBOC_00758  Primosomal protein N'
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   50.5   0.0     4e-17     2e-14       6     222 ..     211     444 ..     209     469 .. 0.76
+
+  Alignments for each domain:
+  == domain 1  score: 50.5 bits;  conditional E-value: 4e-17
+           ComFA   6 eLtpqqekvseklveavkkq..kellvhavtGaGktemlfqvvayvlekgervalasPrvdvvlelykrlkkafetveisllhg.....e..... 88 
+                     +Lt+ q+ + ++l+  ++    ++ l++ vtG+Gkt ++ + +a  le+g r  +  P +     ++ rlk++f    +++ h+     e     
+  DHCEFBOC_00758 211 TLTQAQQAAYDALLPKLEDDapHSALLYGVTGSGKTLVFLKLIARCLEQGRRALVLVPEISLTPQMILRLKSQF-GRRVAVQHSalnhtErllqw 304
+                     69999********999987622567*************************************************.44444443311101211111 PP
+
+           ComFA  89 .seekfrtplviatthqLlkfkqafDllivDevDafPfvdnkvLa...hav.kqakkeegaliyl.tatstkelkkkvrlgelkklklparfhgk 177
+                        +  ++++v+ t   ++   ++  l+i+De     + +++  +   h v  q   e+gal+ l  at+++e   ++++g+ + ++l++r+ g+
+  DHCEFBOC_00758 305 qMIQDGGADIVVGTRSAIFSPLENIGLIIIDEEQEHTYRSESAPRysaHEVaRQRAAENGALLLLaSATPSTESFYAAQHGRTQLVRLTQRYGGN 399
+                     034555699*****************************88765431113231233445666665527999999999******************* PP
+
+           ComFA 178 pLvvPkflwlgnlkkkLkkgklpkklkrqikkqlksqlpllifvp 222
+                     pL+  + + +    +  +   ++ +l++ i+++l++  ++++ ++
+  DHCEFBOC_00758 400 PLPTVQIVDMRAELAAGNPREISLSLEDAIRRNLDAGKQTILLLN 444
+                     **9988766544444445567999999999999988777766654 PP
+
+>> DHCEFBOC_01978  ATP-dependent DNA helicase RecG
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   43.5   0.0   5.2e-15   2.6e-12     230     310 ..     496     577 ..     449     584 .. 0.80
+
+  Alignments for each domain:
+  == domain 1  score: 43.5 bits;  conditional E-value: 5.2e-15
+           ComFA 230 laeilkkllpaekiefvsse..dedrlekveafregeldilvtttiLerGvtfpkvdvlvveaehrlftessLiqiaGrvGrs 310
+                       +i k llp+ +++ ++ +   +++ + +e f++g+ld lv+tt++e Gv +p+  v+v+e  +  +  s+L q+ GrvGr 
+  DHCEFBOC_01978 496 YEDIAKALLPERRVGLMHGKlkPKEKAAVMEDFKAGRLDALVSTTVIEVGVDVPNASVMVIENAE-RYGLSALHQLRGRVGRG 577
+                     45667889**********972246778889*******************************8554.5***************6 PP
+
+>> DHCEFBOC_01612  Transcription-repair-coupling factor
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   36.1   0.0   9.8e-13   4.8e-10     204     314 ..     811     922 ..     806     932 .. 0.85
+
+  Alignments for each domain:
+  == domain 1  score: 36.1 bits;  conditional E-value: 9.8e-13
+           ComFA 204 krqikkqlksqlpllifvpeiklleklaeilkkllpaekiefvsse.dedrlekv.eafregeldilvtttiLerGvtfpkvdvlvveaehrlft 296
+                      + +kk+l    +++   + +  +e  a  ++kl+p  +i++ + + +e+ l+ v +++ +ge+dilv tt++e G+ +++ ++l++e  +r   
+  DHCEFBOC_01612 811 AEAMKKELARGGQVYYLHNRVDNIEACAAHVSKLVPGARIGIAHGKmTEEELNPVwQHLLNGEIDILVCTTLIETGIDVRNCNTLIIEDADR-MG 904
+                     56777888888889999999************************983456677774789****************************87665.57 PP
+
+           ComFA 297 essLiqiaGrvGrsldrp 314
+                      + L qi GrvGrs  ++
+  DHCEFBOC_01612 905 LAQLYQIRGRVGRSGRKA 922
+                     789**********97665 PP
+
+>> DHCEFBOC_00935  UvrABC system protein B
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   32.8   0.5   9.6e-12   4.7e-09     205     312 ..     437     547 ..     431     558 .. 0.84
+
+  Alignments for each domain:
+  == domain 1  score: 32.8 bits;  conditional E-value: 9.6e-12
+           ComFA 205 rqikkqlksqlpllifvpeiklleklaeilkkllpaekiefvsse..dedrlekveafregeldilvtttiLerGvtfpkvd.vlvveaehrlf. 295
+                      +i+++++ + ++l+     k+ e l+++l ++   +k+++++ e  + +r+e ++ +r g +d++v   +L  G+ +p+v  v +++a+++ f 
+  DHCEFBOC_00935 437 GEINTRIQRHERVLVTTLTKKMAEDLTDYLTEQ--GIKVKYMHHEvdTFERMEIIKDLRLGSIDVVVGINLLREGLDLPEVSlVAILDADKEGFl 529
+                     578899999999***99999*************..888888876532678*******************************94568899998663 PP
+
+           ComFA 296 .tessLiqiaGrvGrsld 312
+                      +e+sLiq  Gr+ r+ +
+  DHCEFBOC_00935 530 rSETSLIQTIGRAARNAE 547
+                     3678********999865 PP
+
+>> DHCEFBOC_02182  ATP-dependent RNA helicase CshA
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   27.9   0.3   2.9e-10   1.4e-07      17     313 ..      30     337 ..      21     347 .. 0.62
+
+  Alignments for each domain:
+  == domain 1  score: 27.9 bits;  conditional E-value: 2.9e-10
+           ComFA  17 klveavkkqkellvhavtGaGkteml.fqvvayvl..ekgervalasPrvdvvlelykrlkk..afe.tveisllhgeseekf...r....tplv 98 
+                     k + ++    +++  a tG+Gkt  +  +v + +l  +k  + ++ +P  +    + + l++   f+ +v+++ ++g+ + ++   r     ++v
+  DHCEFBOC_02182  30 KTIPVMMAGYDVIAKAPTGTGKTCAFgIPVAEHILpeNKYPQAVIMAPTRELAQQIAQELEEltYFMpEVQVACVYGGANMEKqakRlaegCQIV 124
+                     45555555566777888888888766234444555323444677778888888888777765222332678888887654322011121247899 PP
+
+           ComFA  99 iatthqLlkfkqafDllivDevDafPfvdnkvLahavkqakkeegaliyltatstkel.kkkvrlgelkklklparfhgkpLvvPkflwlgnlkk 192
+                     +at  +L+ ++++  + i          ++++L++   + +++      + a  + ++ +  ++ + ++   l +   ++  v Pk   + ++ +
+  DHCEFBOC_02182 125 VATPGRLMDHYKHHSIDISHVTQIVLDEADEMLNMGFYKDVRH--IIEMMKARKSLSMfSATISREVMDIGWLYQHNAEEITVQPKEESQPKITQ 217
+                     9999999998877654333322333334566666665554433..23334444443331444555555555556666666677777777777777 PP
+
+           ComFA 193 kLkkgklpkklkrqikkqlksql.pllifvpeiklleklaeilkkllpaekiefvss..ededrlekveafregeldilvtttiLerGvtfpkvd 284
+                     ++ +    +kl +  +  +  ++ ++++f +       la+ l +l     ++ ++   ++++r + +++fr+g+l ilv+t +  rG+ ++ vd
+  DHCEFBOC_02182 218 YMLETSGRNKLSDLAQIIIGENYkRVMVFCDTKFNTATLANQLARL--GFSVDCLHGdlSQKERNQIMQNFRDGKLAILVATDVAARGIDVSDVD 310
+                     7666666666666666666555514788888777788889999999..677777776225789999***************************** PP
+
+           ComFA 285 vlv...veaehrlftessLiqiaGrvGrsldr 313
+                      ++   v +e++ +t+       Gr+Gr ++ 
+  DHCEFBOC_02182 311 AVInydVPSENEHYTH-----RIGRTGRAKKE 337
+                     8763223344444444.....34888888765 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (326 nodes)
+Target sequences:                       2450  (769152 residues searched)
+Passed MSV filter:                        92  (0.037551); expected 49.0 (0.02)
+Passed bias filter:                       77  (0.0314286); expected 49.0 (0.02)
+Passed Vit filter:                        20  (0.00816327); expected 2.5 (0.001)
+Passed Fwd filter:                         7  (0.00285714); expected 0.0 (1e-05)
+Initial search space (Z):               2450  [actual number of targets]
+Domain search space  (domZ):               5  [number of targets reported over threshold]
+# CPU time: 0.02u 0.00s 00:00:00.02 Elapsed: 00:00:00.03
+# Mc/sec: 7607.99
+//
+[ok]

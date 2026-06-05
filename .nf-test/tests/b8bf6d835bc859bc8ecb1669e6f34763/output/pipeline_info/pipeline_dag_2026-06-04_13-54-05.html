@@ -1,0 +1,145 @@
+<!--
+  ~ Copyright 2013-2024, Seqera Labs
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<pre class="mermaid" style="text-align: center;">
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#B6ECE2',
+      'primaryTextColor': '#160F26',
+      'primaryBorderColor': '#065647',
+      'lineColor': '#545555',
+      'clusterBkg': '#BABCBD22',
+      'clusterBorder': '#DDDEDE',
+      'fontFamily': 'arial'
+    }
+  }
+}%%
+flowchart TB
+    subgraph " "
+    v2["Channel.fromList"]
+    v20["proteins"]
+    v21["prodigal_tf"]
+    v63["run_macsyfinder"]
+    v64["run_traitar"]
+    v65["run_carveme"]
+    v66["run_gapseq"]
+    v73[" "]
+    v83["Channel.of"]
+    end
+    subgraph "NFCORE_BACMODEL [NFCORE_BACMODEL]"
+    subgraph "NFCORE_BACMODEL:BACMODEL [BACMODEL]"
+    subgraph "NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS [BACMODEL_ANALYSIS]"
+    subgraph "NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION [BACMODEL_FUNCTIONAL_ANNOTATION]"
+    v22(["PROKKA"])
+    v38(["GAPSEQ_DOALL"])
+    v67(["BACMODEL_SUMMARY"])
+    v35(( ))
+    v37(( ))
+    v42(( ))
+    v44(( ))
+    v47(( ))
+    v50(( ))
+    v53(( ))
+    v56(( ))
+    v59(( ))
+    end
+    v71(( ))
+    end
+    v72(( ))
+    end
+    end
+    subgraph " "
+    v23[" "]
+    v24[" "]
+    v25[" "]
+    v26[" "]
+    v27[" "]
+    v28[" "]
+    v29[" "]
+    v30[" "]
+    v31["proteins"]
+    v32[" "]
+    v33[" "]
+    v34["gff"]
+    v39[" "]
+    v40[" "]
+    v41[" "]
+    v68[" "]
+    v69[" "]
+    v70["summary"]
+    v87["ch_collated_versions"]
+    end
+    subgraph "PIPELINE_INITIALISATION [PIPELINE_INITIALISATION]"
+    v3(( ))
+    end
+    v2 --> v3
+    v20 --> v22
+    v21 --> v22
+    v3 --> v22
+    v22 --> v34
+    v22 --> v33
+    v22 --> v32
+    v22 --> v31
+    v22 --> v30
+    v22 --> v29
+    v22 --> v28
+    v22 --> v27
+    v22 --> v26
+    v22 --> v25
+    v22 --> v24
+    v22 --> v23
+    v22 --> v35
+    v37 --> v38
+    v38 --> v41
+    v38 --> v40
+    v38 --> v39
+    v38 --> v56
+    v38 --> v59
+    v63 --> v67
+    v64 --> v67
+    v65 --> v67
+    v66 --> v67
+    v42 --> v67
+    v44 --> v67
+    v47 --> v67
+    v50 --> v67
+    v53 --> v67
+    v56 --> v67
+    v59 --> v67
+    v67 --> v70
+    v67 --> v69
+    v67 --> v68
+    v73 --> v72
+    v83 --> v72
+    v72 --> v87
+    v3 --> v37
+    v3 --> v42
+    v35 --> v71
+    v71 --> v72
+
+</pre>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, maxTextSize: Number.MAX_SAFE_INTEGER, maxEdges: Number.MAX_SAFE_INTEGER });
+</script>
+</body>
+</html>

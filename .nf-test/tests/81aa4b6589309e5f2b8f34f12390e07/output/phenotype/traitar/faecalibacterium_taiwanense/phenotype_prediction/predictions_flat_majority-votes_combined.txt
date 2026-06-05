@@ -1,0 +1,25 @@
+sample	phenotype	phenotype model
+faecalibacterium_taiwanense	Esculin hydrolysis	1	phypat
+faecalibacterium_taiwanense	Esculin hydrolysis	1	phypat+PGL
+faecalibacterium_taiwanense	Bile-susceptible	1	phypat
+faecalibacterium_taiwanense	Bile-susceptible	1	phypat+PGL
+faecalibacterium_taiwanense	Lactose	1	phypat
+faecalibacterium_taiwanense	Lactose	1	phypat+PGL
+faecalibacterium_taiwanense	Tartrate utilization	1	phypat
+faecalibacterium_taiwanense	Tartrate utilization	1	phypat+PGL
+faecalibacterium_taiwanense	Maltose	1	phypat
+faecalibacterium_taiwanense	Maltose	1	phypat+PGL
+faecalibacterium_taiwanense	Alkaline phosphatase	1	phypat
+faecalibacterium_taiwanense	Alkaline phosphatase	1	phypat+PGL
+faecalibacterium_taiwanense	Gram positive	1	phypat
+faecalibacterium_taiwanense	Gram positive	1	phypat+PGL
+faecalibacterium_taiwanense	Growth on ordinary blood agar	1	phypat
+faecalibacterium_taiwanense	Growth on ordinary blood agar	1	phypat+PGL
+faecalibacterium_taiwanense	Bacillus or coccobacillus	1	phypat
+faecalibacterium_taiwanense	Bacillus or coccobacillus	1	phypat+PGL
+faecalibacterium_taiwanense	Glucose fermenter	1	phypat
+faecalibacterium_taiwanense	Glucose fermenter	1	phypat+PGL
+faecalibacterium_taiwanense	ONPG (beta galactosidase)	1	phypat
+faecalibacterium_taiwanense	ONPG (beta galactosidase)	1	phypat+PGL
+faecalibacterium_taiwanense	Anaerobe	1	phypat
+faecalibacterium_taiwanense	Anaerobe	1	phypat+PGL

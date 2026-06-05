@@ -1,0 +1,10 @@
+BACMODEL_SUMMARY:
+  pandas: 2.2.1
+  python: 3.12.3
+CARVEME_CARVE:
+  carveme: 1.6.6
+PROKKA:
+  prokka: 1.14.6
+Workflow:
+    nf-core/bacmodel: v1.0.0dev
+    Nextflow: 25.10.0

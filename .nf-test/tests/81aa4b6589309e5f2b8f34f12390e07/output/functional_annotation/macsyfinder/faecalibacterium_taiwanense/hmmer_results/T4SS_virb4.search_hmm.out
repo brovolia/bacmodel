@@ -1,0 +1,195 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.4 (Aug 2023); http://hmmer.org/
+# Copyright (C) 2023 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /work_ikmb/sukmb662/nf-core-bacmodel/.nf-test/tests/81aa4b6589309e5f2b8f34f12390e07/work/c9/363fe9c412e3fae98cb2371e6a3346/models/TXSS/profiles/T4SS_virb4.hmm
+# target sequence database:        faecalibacterium_taiwanense.faa
+# output directed to file:         faecalibacterium_taiwanense/hmmer_results/T4SS_virb4.search_hmm.out
+# model-specific thresholding:     GA cutoffs
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       virb4  [M=943]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence       Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------       -----------
+   2.2e-104  347.8   0.0   2.6e-104  347.5   0.0    1.0  1  DHCEFBOC_01432  hypothetical protein
+    3.1e-99  330.7   4.7    3.7e-99  330.5   4.7    1.0  1  DHCEFBOC_00539  hypothetical protein
+    1.6e-92  308.5   1.3    2.1e-92  308.1   1.3    1.0  1  DHCEFBOC_02170  hypothetical protein
+
+
+Domain annotation for each sequence (and alignments):
+>> DHCEFBOC_01432  hypothetical protein
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  347.5   0.0  3.1e-107  2.6e-104      52     795 ..      13     775 ..       1     796 [. 0.84
+
+  Alignments for each domain:
+  == domain 1  score: 347.5 bits;  conditional E-value: 3.1e-107
+           virb4  52 ksqstsslsallkkkkkkepslskllpyrehvddgvillkdgsllagfklegipfegasdeelnslnkllntllrslgsgvtlqvhlvrrkvaey 146
+                      + ++++l+ l++k k+ +   ++ lpyre++ dgv+++ d+ +++++++e i+++ a  e++   ++ ++  l+ ++s + +q+  + ++  ++
+  DHCEFBOC_01432  13 RKPEKQGLTGLFTKGKNIPTTAQQTLPYREMYRDGVCRVADRYYTKTIEYEDINYQLAQSEDQAAIFDGWSACLNYFDSSLPFQLSFLNHR--SR 105
+                     5667889999******************************************************************************999..77 PP
+
+           virb4 147 legefsnpfaaeldrayrerfekg..gffendlyltlvyrpfr.lrrllakls..skskeaseeleealekledalreletslsqygprllgltf 236
+                     + +++s  +   ++++++ +++ +   ++en++  +        +r +l + +         ++l  a  +le++  ++   ++++g +  +l  
+  DHCEFBOC_01432 106 PGSRYS--VNIPMQDDDYNSVRCEyvEMLENQIAKSNN----GiVRTKL-LTFgvN-----VDDLSTARARLERVEADICGNFKKLGVKCRSLSG 188
+                     888887..555566666666666336888887755555....2211111.111112.....2244445555555555555555555555455777 PP
+
+           virb4 237 selleflnflln.g.......erqpvrvpsplepldeqlads..elifgreeieirg..dkgeryarvlsikeyPeetypglldsllsipcefil 319
+                      e le+l+  l+ g       ++  ++   ++ + ++ +a +  ++ f+       +  ++g+++++   ++ + +e+ + ll +ll+++ e+++
+  DHCEFBOC_01432 189 LERLELLHGQLHpGsgspfrfSWDMIPK--TGLSTKDFIAPDsfDFRFS-------RlfRVGTTWGAASYLQILASELSDKLLAELLEMDAEMTI 274
+                     7888999988887855555433444444..4488888887774555555.......2457788999999999999******************** PP
+
+           virb4 320 tqsfrfedqekakkklnrkikrlkkkve..............aadpdaksqlaeleaalddltsgefvlgyyhltvtvfgktleeleeatnevks 400
+                     t+++++ dq  a k++++k ++++k+                 + pd+ +  ++++++l+dl+s+++ ++  ++ v+ +++t+ el+++   v  
+  DHCEFBOC_01432 275 TLHIQTVDQAAAVKSIKAKVSDIDKMKVeeqkkaaragydmdILPPDLVTYSNDAKTLLEDLQSRNERMFLLTFLVVNMAPTRRELDNDLFTVSG 369
+                     ************************65559************66**************************************************** PP
+
+           virb4 401 alsnlgfkiaretlaqeeaflsqLPgngklrgrtrtisssnlanllPfhnfslgkpgg.avmllptrsgqpfffnlhdsdlngntlvtGpsGaGK 494
+                     + ++ + +++r+++ qe+ fls+LP  ++ ++ +r +++s+ a ++Pf +++l   g   +++l+  s++++  n  + ++  n+l +G  G+GK
+  DHCEFBOC_01432 370 IVQKYNCTLKRLDFQQEDGFLSSLPLGHNGIEIKRGMTTSSTAIFVPFMTQELRMDGEaVYYGLNALSHNVIMANRKKLKN-PNGLFLGVPGSGK 463
+                     *************************66688888899**************99944433369999**********9886666.************* PP
+
+           virb4 495 Stllne.llaqllkygprvfifDkgrsykklvralgGkyitlspgkpiglnPfql.....edteadenraflkelfallaskpgepltpeersel 583
+                     S++ +  l++ +l+ ++r++++D+ ++y +l++ lgG++i++ p++p  +nP+++     e++++  + +f+ +l++l++   ++ l p er+++
+  DHCEFBOC_01432 464 SFAAKReLVNVFLATRDRIIVVDPMGEYSPLIKRLGGQVIEIAPDSPHHINPMDIdlifdEENPMALKADFILSLMELIVG-GKDGLQPVERTVI 557
+                     ***9987999999999**************************************8666665555557777***********.9999********* PP
+
+           virb4 584 sdairalye......epeeyrtlsdvlellq.eiderakdlaerLkkwtrgGqygwvFdnesd.sfdladfvvfeltellddpelrtpvllyLfy 670
+                     ++ +r++y+      e  +++tl ++++ll  + + +a +la +L+ +++ G+   vF++e++ +++  ++v+++l++l     lrt+++l++  
+  DHCEFBOC_01432 558 DRCVRQMYRehlqdpETSKMPTLQTLYDLLCsQPEGEAVRLATALEIYVS-GSLN-VFNHETNvDLN-RRLVCLDLKKLGAG--LRTIAMLIMQD 647
+                     *********888755444567*******77779999*************7.****.*******3366.***********444..*********** PP
+
+           virb4 671 rieqsm.....dggr.pkliiiDEawklldnpqfaefieeglrtaRKyngalifaTQsiedflsspiaraiiensatkilLpqpkaeredyvegf 759
+                     +++ ++     +     +++++DE++ ll +  +a++   +++++RK++++    TQ+ +dfl sp+++ i+ens++ +lL q + +r+ +++ +
+  DHCEFBOC_01432 648 LVNSQVsmnflR--GiATWCYFDEFHVLLRDRLTASYCVAIWKMLRKKGCVPSALTQNVKDFLASPEIENIFENSDFLVLLSQAQGDRQILAKQL 740
+                     ******555332..2359***************************************************************************** PP
+
+           virb4 760 glteaeieiikslepksraflikqgge.ialfrlsld 795
+                     g+++ +  ++   +++s+++l+  g++ i +++ ++ 
+  DHCEFBOC_01432 741 GISPHQLSYVT--HTNSGEGLLFFGNTtIPFVDRFPQ 775
+                     **********8..889998988888875444444444 PP
+
+>> DHCEFBOC_00539  hypothetical protein
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  330.5   4.7  4.5e-102   3.7e-99      37     781 ..       3     766 ..       1     793 [. 0.84
+
+  Alignments for each domain:
+  == domain 1  score: 330.5 bits;  conditional E-value: 4.5e-102
+           virb4  37 karastatkkakkemksqstsslsallkkkkkkepslskllpyrehvddgvillkdgsllagfklegipfegasdeelnslnkllntllrslgsg 131
+                     k++++t+++k k +++ +++ ++   ++k + k++  ++ +p+++++ dg+++l +g++++++++e i+++ a  ++    ++ l + ++s++  
+  DHCEFBOC_00539   3 KEKKNTQNEKRKLSRQERKQIDTLIRQAKGDGKPHTAQDSIPFERMYKDGICRLANGRYSKCIEFEDINYQLAQPDDKTAIFEALCDMYNSFDAS 97 
+                     455566666666667777777777889999999************************************************************** PP
+
+           virb4 132 vtlqvhlvrrkv.aeylegefs.npfaaeldrayrerfek.ggffendlyltlvyrpfrlrrllakls.skskeaseeleealekledalrelet 222
+                     +++q+ l++r + +++ +      p  +++d  ++e+ e  ++++e+  +  ++ +         +l+ + +++   +++ a  +l ++  +   
+  DHCEFBOC_00539  98 ISVQLSLISRHAnKDDFKNSITiAPQNDDFDSIRAEYTEMlRTQLERGNNGLIKTK---------FLTfTVEAK---DIRSARARLARIETDTLN 180
+                     ***********989999933333555666666666666555555555555555522.........111123333...333344444444434444 PP
+
+           virb4 223 slsqygprllgltfselleflnflln.g......erqpvrvpsplepldeqladselifgreei.eirgdkgeryarvlsikeyPeetypgllds 309
+                      ++ +g+    l+ ++ le l+ + + +       ++ +  p ++ ++++ +a s++ fg+ ++ ++     +++++v  ++    e+ +++l +
+  DHCEFBOC_00539 181 HFKVIGAAARVLDGKQRLEVLHGIFHpDgerfnfAWEWL--PASGLSVKDFIAPSSFRFGDGRMfQMG----GKFGAVSFLQIVAPELSDRMLAD 269
+                     44444444444889999999**99995576664334444..5566***************96666665....699999999999889******** PP
+
+           virb4 310 llsipcefiltqsfrfedqekakkklnrkikrlkkkve..............aadpdaksqlaeleaalddltsgefvlgyyhltvtvfgktlee 390
+                     ++ +   +i++++++ +d ++a+k+++rki++l+ + +                  d+++   e++++l+dl+s+++ ++  +l v+  ++t+++
+  DHCEFBOC_00539 270 FMDAENGIIVNLHIQSIDHNEAIKTIKRKITDLDRMKIeeqkkairsgydmdIIPSDLATYGGEAKNLLRDLQSRNERMFLLTLLVLNLADTKQK 364
+                     **********************************65559***********8446677777777******************************** PP
+
+           virb4 391 leeatnevksalsnlgfkiaretlaqeeaflsqLPgngklrgrtrtisssnlanllPfhnfslgkpgg.avmllptrsgqpfffnlhdsdlngnt 484
+                     l++ +  + ++ ++ +  ++r++++qe+ ++s++P   +l+  +r +++s+ a ++Pf  ++l + g   +++l+  s++++  +  + ++  n+
+  DHCEFBOC_00539 365 LDNEVFGAAAIAQKYNCILTRLDYRQEQGLMSSIPLGENLIHIQRGLTTSSTAVFVPFTVQELFQSGEaLYYGLNALSNNMILCDRKKLKN-PNG 458
+                     ***********************************6669************************7775548999************886677.*** PP
+
+           virb4 485 lvtGpsGaGKStllne.llaqllkygprvfifDkgrsykklvralgGkyitlspgkpiglnPfqledtead......enraflkelfallaskpg 572
+                     l++G+ G+GKS+  +  + + +l  +++++i D++++y++lv  l+G++i +s++++ ++nP++++ +  +       + +f+ ++ +l++   +
+  DHCEFBOC_00539 459 LILGTPGSGKSFSAKReITNAFLITADDIIICDPEAEYYPLVGRLKGQVIKVSQNSTQYINPMDINLNYSEgdtpiaLKSDFILSFCELIMG-GK 552
+                     **************994555555566******************************99******95554444444447777***********.88 PP
+
+           virb4 573 epltpeerselsdairalye......epeeyrtlsdvlellq.eiderakdlaerLkkwtrgGqygwvFdnesdsfdl.adfvvfeltellddpe 659
+                     + l++ e++++++a+ ++y+      +pe+++ l d+++ ++ + +++a+++a++L+ +++ G+   +F++ ++  d+ +++v+f+++el  +  
+  DHCEFBOC_00539 553 NGLEAVEKTLIDRAVISVYRnyladpKPENMPILGDLYDEIKkQPEKEAQRIAAALELYVN-GSLN-IFNHRTN-VDIhNRLVCFDIKELGTQ-- 642
+                     88*************************************9999999**************6.****.*******.6666***********666.. PP
+
+           virb4 660 lrtpvllyLfyrieqsm....dggrpkliiiDEawklldnpqfaefieeglrtaRKyngalifaTQsiedflsspiaraiiensatkilLpqpka 750
+                     l  + +l++  ++ +++     +g+ +  +iDE++ ll+ +q+a++  e+++++RK++g+ + +TQ+ +d+l s +   ++ens++   L+q + 
+  DHCEFBOC_00539 643 LKKVGMLIVQDQVWNRVtvnrSEGKATRYYIDEFHLLLKEEQTAAYSVEIWKRFRKWGGIPTGITQNVKDLLTSREVSNVFENSDFVYMLNQAQG 737
+                     6666666655555555545444456677******************************************************************* PP
+
+           virb4 751 eredyvegfglteaeieiikslepksrafli 781
+                     +re +++ ++++++++ ++   +++ +++li
+  DHCEFBOC_00539 738 DREILAKQLNISQQQMTYVT--HSEAGEGLI 766
+                     *******************8..555555555 PP
+
+>> DHCEFBOC_02170  hypothetical protein
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  308.1   1.3   2.6e-95   2.1e-92      71     800 ..      22     773 ..       5     786 .. 0.83
+
+  Alignments for each domain:
+  == domain 1  score: 308.1 bits;  conditional E-value: 2.6e-95
+           virb4  71 pslskllpyrehvddgvillkdgsllagfklegipfegasdeelnslnkllntllrslgsgvtlqvhlvrrkv.aeyle......gefs..npfa 156
+                     +  ++ +p++++ +dg+++++ g ++++++++ i+++ a +e+    ++ + ++l+ ++s + + +  v   + + + e      ++ +  +++ 
+  DHCEFBOC_02170  22 RTAQESIPFQRMFEDGTCRVRPGYYTRTIQYQDINYQLAQQEDKTAIFEEWCSFLNFFDSSIHFELSFVNTATdSADFEksiripYQQDgfDDVR 116
+                     467899**************************************************997555555555554433444446666552222345566 PP
+
+           virb4 157 aeldrayrerfek.ggffendlyltlvyrpfrlrrllaklsskskeaseeleealekledalreletslsqygprllgltfselleflnflln.g 249
+                     ae ++  r++++k ++ ++++++lt  +                     ++++   +le + ++l+  + ++g    +l+  e l++++ +ln +
+  DHCEFBOC_02170 117 AEYSQMLRQQLSKgNNGLTKTKFLTYGIEGD------------------SMAQVKPRLEHIQNDLMNNFHRLGVLAKPLDGTERLRLMHGMLNmD 193
+                     6667777777777447777777777774432..................33444446666667777777777544444999************55 PP
+
+           virb4 250 .....erqpvrv.psplepldeqladselifgreei.eirgdkgeryarvlsikeyPeetypglldsllsipcefiltqsfrfedqekakkklnr 337
+                          +++   + p ++ ++++++a + l f++++  ++ g     +++v  +    +++ + ll ++l ++ + i+t++++  dq+ka+k++++
+  DHCEFBOC_02170 194 gankfHFNWKDLvP-SGLSVKDAIAPTALAFKNSRTfQMGG----VFGAVGFLNITASDLSDQLLKDFLDMDSSQIVTMHIQSVDQNKAIKTIKH 283
+                     77776322222214.48***************944435553....3444444444668999********************************** PP
+
+           virb4 338 kikrlkkkve..............aadpdaksqlaeleaalddltsgefvlgyyhltvtvfgktleeleeatnevksalsnlgfkiaretlaqee 418
+                     +i++l+   +               +  d+++  ++++a+l++l+s+++ ++ +++ v+  gkt++ele ++ ++ s+ ++++ ++ r+++ qe+
+  DHCEFBOC_02170 284 TITELDRSKIeeqkkavragydmdVLPSDLATYGRDAKALLKELQSQNERMFLVTFLVLNTGKTEQELETNVFQAVSIAQKHNCELCRLDFQQEQ 378
+                     *****954449***********9559999999999************************************************************ PP
+
+           virb4 419 aflsqLPgngklrgrtrtisssnlanllPfhnfslgkpgg..avmllptrsgqpfffnlhdsdlngntlvtGpsGaGKStllnellaqllkyg.p 510
+                      ++s+LP     ++ +r +++s+ a ++Pf +++l + g+   +++l+  s++++ ++  + ++  n+l++G+ G+GKS+  +  ++++  +  +
+  DHCEFBOC_02170 379 GLMSSLPLADCQIEIQRGLTTSSTAIFVPFTTQELFDNGKesLYYGLNALSNNLIMVDRKKLKN-PNGLILGTPGSGKSFSAKREICNAFLVTdD 472
+                     *******888999999*******************55554558***************887777.*****************995555555555* PP
+
+           virb4 511 rvfifDkgrsykklvralgGkyitlspgkpiglnPfqledtead......enraflkelfallaskpgepltpeerselsdairalye......e 593
+                     +++i D++ +y +lv+ l+G++i++sp ++ ++nP++++++  +       + +f+ +l +l +   +e l p e++++++ ++ +y+       
+  DHCEFBOC_02170 473 DIIICDPECEYAPLVERLHGQVIHISPASTQYINPMDINSNYSEednplaLKADFVLSLCELVVG-GKEGLQPVEKTVIDRCVHVVYRkyfenpI 566
+                     *****************************99******95554333345557777***********.9999************************9 PP
+
+           virb4 594 peeyrtlsdvle.llqeiderakdlaerLkkwtrgGqygwvFdnesd.sfdladfvvfeltellddpe..lrtpvllyLfyrieqsmdggrpkli 684
+                     pe+++ l+d+++ ll +++ +a+ +a++L+ +++ G+   +F+++++ +++ +++v+f++++l ++ +   + +v  ++  r++     g+ +  
+  DHCEFBOC_02170 567 PENMPLLEDLYNaLLTQDEPEARHVAAALEIYVK-GSLN-IFNHHTNvDIN-NRIVCFDIKQLGKQLKklGMLIVQDAVWGRVTANRSAGKSTRY 658
+                     99**********777799***************8.****.*******3366.***********8887755555555557777777766666677* PP
+
+           virb4 685 iiDEawklldnpqfaefieeglrtaRKyngalifaTQsiedflsspiaraiiensatkilLpqpkaeredyvegfglteaeieiikslepksraf 779
+                     + DE++ ll+ +q+a++  e+++++RK++g+ +  TQ+ +d+l sp+   i+ens++   L+q + +r+ +++ +++++ +  ++   +++ +++
+  DHCEFBOC_02170 659 YADEFHLLLKEEQTAAYSVEIWKRFRKWGGIPTALTQNVKDLLASPEVSNIFENSDFVYMLNQANGDRQILAKQLNISPHQLSYVT--HSGEGEG 751
+                     *************************************************************************************8..6666666 PP
+
+           virb4 780 likqgge.ialfrlsldpeela 800
+                     l+  g+    +++ ++ ++el+
+  DHCEFBOC_02170 752 LLFFGNViLPFVDHFPKDLELY 773
+                     7766666555666666666665 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (943 nodes)
+Target sequences:                       2450  (769152 residues searched)
+Passed MSV filter:                       234  (0.0955102); expected 49.0 (0.02)
+Passed bias filter:                      193  (0.0787755); expected 49.0 (0.02)
+Passed Vit filter:                       117  (0.0477551); expected 2.5 (0.001)
+Passed Fwd filter:                        36  (0.0146939); expected 0.0 (1e-05)
+Initial search space (Z):               2450  [actual number of targets]
+Domain search space  (domZ):               3  [number of targets reported over threshold]
+# CPU time: 0.21u 0.01s 00:00:00.22 Elapsed: 00:00:00.22
+# Mc/sec: 3226.26
+//
+[ok]

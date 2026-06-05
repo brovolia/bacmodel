@@ -1,0 +1,9 @@
+# gene: Archaeal-T4P_arCOG00589 extract from faecalibacterium_taiwanense/hmmer_results/Archaeal-T4P_arCOG00589.search_hmm.out hmm output
+# profile length= 219
+# i_evalue threshold= 0.001
+# coverage threshold= 0.500
+# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
+DHCEFBOC_00489	faecalibacterium_taiwanense	479	325	Archaeal-T4P_arCOG00589	2.200e-14	50.900	0.566	0.502	8	170
+DHCEFBOC_00601	faecalibacterium_taiwanense	591	244	Archaeal-T4P_arCOG00589	1.700e-14	51.300	0.877	0.885	2	217
+DHCEFBOC_02160	faecalibacterium_taiwanense	2106	277	Archaeal-T4P_arCOG00589	1.600e-22	77.600	0.795	0.704	10	204
+DHCEFBOC_02364	faecalibacterium_taiwanense	2309	303	Archaeal-T4P_arCOG00589	1.700e-32	110.200	0.982	0.762	31	261

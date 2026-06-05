@@ -1,0 +1,8 @@
+# gene: T4SS_virb4 extract from faecalibacterium_taiwanense/hmmer_results/T4SS_virb4.search_hmm.out hmm output
+# profile length= 943
+# i_evalue threshold= 0.001
+# coverage threshold= 0.500
+# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
+DHCEFBOC_00539	faecalibacterium_taiwanense	529	798	T4SS_virb4	3.700e-99	330.500	0.790	0.957	3	766
+DHCEFBOC_01432	faecalibacterium_taiwanense	1408	797	T4SS_virb4	2.600e-104	347.500	0.789	0.957	13	775
+DHCEFBOC_02170	faecalibacterium_taiwanense	2116	789	T4SS_virb4	2.100e-92	308.100	0.774	0.953	22	773

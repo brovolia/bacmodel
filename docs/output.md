@@ -6,13 +6,95 @@ This document describes the output produced by the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-<!-- TODO nf-core: Write this documentation describing your workflow's output -->
-
 ## Pipeline overview
 
-The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
+The pipeline performs functional annotation and metabolic modeling of bacterial genomes using the following steps:
 
+The pipeline performs functional annotation and metabolic modeling of bacterial genomes using the following steps:
+
+- [Annotation](#annotation) - Genome annotation with Prokka or Bakta
+- [MacSyFinder](#macsyfinder) - Detection of macromolecular systems (secretion systems)
+- [TRAITAR](#traitar) - Phenotype prediction from protein sequences
+- [CarveMe](#carveme) - Genome-scale metabolic model reconstruction
+- [Gapseq](#gapseq) - Pathway analysis and metabolic modeling
+- [Summary Table](#summary-table) - Aggregated results from all tools
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
+
+### Annotation
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `annotation/`
+  - `*.gff`: Genome annotation in GFF3 format
+  - `*.faa`: Predicted protein sequences
+  - `*.fna`: Nucleotide sequences of predicted genes
+
+</details>
+
+Genomes are annotated using either Prokka (default) or Bakta. The annotation provides gene predictions and functional assignments.
+
+### MacSyFinder
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `macsyfinder/`
+  - `*_all_systems.tsv`: Detected macromolecular systems
+
+</details>
+
+MacSyFinder detects macromolecular systems such as Type III, IV, and VI secretion systems (TXSS).
+
+### TRAITAR
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `traitar/`
+  - `*_phenotype_predictions.tsv`: Phenotype predictions with confidence scores
+
+</details>
+
+TRAITAR predicts phenotypic traits from protein sequences using machine learning models.
+
+### CarveMe
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `carveme/`
+  - `*.xml`: Genome-scale metabolic models in SBML format
+
+</details>
+
+CarveMe reconstructs genome-scale metabolic models that can be used for flux balance analysis.
+
+### Gapseq
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `gapseq/`
+  - `*-all-Pathways.tbl`: Pathway predictions
+  - `*-Transporter.tbl`: Transporter predictions
+  - `*.RDS`: R model objects for further analysis
+
+</details>
+
+Gapseq predicts metabolic pathways and creates gap-filled metabolic models.
+
+### Summary Table
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `summary/`
+  - `bacmodel_summary.tsv`: Aggregated results from all enabled tools
+
+</details>
+
+The summary table provides a comprehensive overview of all analysis results in a single TSV file.
 
 ### Pipeline information
 

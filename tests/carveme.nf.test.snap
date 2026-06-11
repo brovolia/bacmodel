@@ -46,14 +46,14 @@
                 "faecalibacterium_taiwanense.ffn:md5,82e08ddb0a241f0848ce3afe1f2b5747",
                 "faecalibacterium_taiwanense.fna:md5,0508f1fe745351ca15f1fd2598a63ee8",
                 "faecalibacterium_taiwanense.fsa:md5,a0fa805662a42c7651a7b1f3fe90c267",
-                "faecalibacterium_taiwanense.gbk:md5,dd9bc16a220b7c0a34a54ebcc062c9b8",
+                "faecalibacterium_taiwanense.gbk:md5,26d06dc74e54ff2230af085c46afdeba",
                 "faecalibacterium_taiwanense.gff:md5,d188aff6ae0d3493d874e4e533f9d6d1",
-                "faecalibacterium_taiwanense.log:md5,45701c074e197c39eaa9f7acb057cdff",
-                "faecalibacterium_taiwanense.sqn:md5,510db08486268a884eb16d8d2583644e",
+                "faecalibacterium_taiwanense.log:md5,0c73b52c0a654b748aa0fe308a173965",
+                "faecalibacterium_taiwanense.sqn:md5,65b4b41dff19c2a35ccf324f6e9b604a",
                 "faecalibacterium_taiwanense.tbl:md5,5bfcf452ea6c31c12723188bc2ad8b41",
                 "faecalibacterium_taiwanense.tsv:md5,b2464233e052a994067100d89af8ac55",
                 "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749",
-                "faecalibacterium_taiwanense.xml:md5,b7a6532d7859753a1404d78829534161",
+                "faecalibacterium_taiwanense.xml:md5,ad79f602c3a3009363d4b08f602b6bb1",
                 "bacmodel_summary.tsv:md5,3e003fd9b00a2e0f50d0806452f64d25"
             ]
         ],
@@ -61,6 +61,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-06-04T15:00:58.575628327"
+        "timestamp": "2026-06-10T16:21:37.785215071"
     }
 }

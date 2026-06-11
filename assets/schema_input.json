@@ -18,6 +18,18 @@
                 "format": "file-path",
                 "pattern": "^\\S+\\.(f(ast)?a|fna)(\\.gz)?$",
                 "errorMessage": "Assembly FASTA file must be provided, cannot contain spaces and must have extension '.fasta', '.fa', '.fna', or '.fasta.gz'"
+            },
+            "medium_gapseq": {
+                "type": "string",
+                "pattern": "^\\S*$",
+                "errorMessage": "Medium for gapseq cannot contain spaces. Can be a medium name (e.g., 'LB', 'M9') or path to CSV file",
+                "meta": ["medium_gapseq"]
+            },
+            "medium_carveme": {
+                "type": "string",
+                "pattern": "^\\S*$",
+                "errorMessage": "Medium name for CarveMe cannot contain spaces. Must correspond to a medium in the mediadb (e.g., 'LB', 'M9')",
+                "meta": ["medium_carveme"]
             }
         },
         "required": ["sample", "fasta"]

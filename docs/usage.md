@@ -23,21 +23,76 @@ You will need to create a samplesheet with information about the genome assembli
 
 ### Samplesheet format
 
-The samplesheet should contain two columns: `sample` and `fasta`. An example is shown below:
+The samplesheet should contain at minimum two required columns: `sample` and `fasta`. Two optional columns `medium_gapseq` and `medium_carveme` can be added to specify growth media for metabolic modeling. An example is shown below:
 
 ```csv title="samplesheet.csv"
-sample,fasta
-SAMPLE1,/path/to/sample1_assembly.fasta
-SAMPLE2,/path/to/sample2_assembly.fasta
-SAMPLE3,/path/to/sample3_assembly.fasta
+sample,fasta,medium_gapseq,medium_carveme
+SAMPLE1,/path/to/sample1_assembly.fasta,LB,LB
+SAMPLE2,/path/to/sample2_assembly.fasta,/path/to/custom_medium.csv,M9
+SAMPLE3,/path/to/sample3_assembly.fasta,,
 ```
 
-| Column   | Description                                                                                                                                  |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample` | Custom sample name. Spaces in sample names are automatically converted to underscores (`_`).                                                 |
-| `fasta`  | Full path to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`). |
+| Column             | Description                                                                                                                                  |
+| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`           | **Required.** Custom sample name. Spaces in sample names are automatically converted to underscores (`_`).                                   |
+| `fasta`            | **Required.** Full path to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`). |
+| `medium_gapseq`    | **Optional.** Growth medium for gapseq metabolic modeling. Can be a medium name (e.g., `LB`, `M9`) or path to custom CSV file. If empty, gapseq auto-predicts the medium. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
+| `medium_carveme`   | **Optional.** Growth medium name for CarveMe gap-filling (e.g., `LB`, `M9`). Must correspond to a medium in the CarveMe media database. If empty, no gap-filling is performed. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
+
+### Metabolic modeling media
+
+The optional `medium_gapseq` and `medium_carveme` columns allow you to specify growth media for metabolic model reconstruction on a per-sample basis. This is useful when:
+
+- You have experimental growth data for specific media
+- You want to ensure models can simulate growth under specific conditions
+- Different bacterial species in your dataset require different growth conditions
+
+#### Gapseq media (`medium_gapseq`)
+
+**Default behavior (empty column):** Gapseq automatically predicts a suitable growth medium based on the genome content.
+
+**Built-in media names:** You can specify predefined media names that gapseq recognizes (e.g., `LB`, `M9`, `TSB`). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
+
+**Custom media files:** Provide a path to a CSV file with three columns:
+- `compounds`: Metabolite IDs (e.g., `cpd00027` for D-Glucose)
+- `name`: Metabolite names  
+- `maxFlux`: Maximum uptake rate in mmol/gDW/h
+
+The `maxFlux` parameter defines the maximum inflow flux for each compound. Use lower values (5-10) for carbon sources, medium values (10-20) for O2/CO2, and high values (100) for abundant nutrients like water, ions, and cofactors. For detailed information, see the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html).
+
+Example custom medium CSV:
+```csv
+compounds,name,maxFlux
+cpd00027,D-Glucose,5
+cpd00007,O2,10
+cpd00009,Phosphate,100
+cpd00013,NH3,100
+```
+
+#### CarveMe media (`medium_carveme`)
+
+**Default behavior (empty column):** CarveMe produces a simulation-ready model without gap-filling for any particular medium. The model can predict uptake and secretion capabilities based only on genetic evidence.
+
+**Media names:** Specify media names from the CarveMe media database (e.g., `LB`, `M9`, `TSB`). This enables gap-filling to ensure the model can simulate growth on the specified medium.
+
+**Custom media database:** To use a custom CarveMe media database, provide the `--carveme_mediadb` parameter pointing to a TSV file containing multiple media definitions.
+
+Example usage:
+```bash
+nextflow run nf-core/bacmodel \
+  --input samplesheet.csv \
+  --outdir results \
+  --carveme_mediadb /path/to/custom_media_db.tsv \
+  -profile docker
+```
+
+> [!NOTE]
+> The `medium_carveme` column should contain media **names** that exist in the media database, not file paths.
+
+> [!TIP]
+> For most applications, leaving both media columns empty uses sensible defaults: gapseq auto-predicts media and CarveMe produces a generic model. Only specify media when you need to constrain models to experimentally validated growth conditions.
 
 ## Running the pipeline
 

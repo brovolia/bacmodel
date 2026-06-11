@@ -21,9 +21,9 @@
 
 ## Introduction
 
-**nf-core/bacmodel** is a bioinformatics pipeline for comprehensive functional annotation and metabolic modeling of bacterial genomes. The pipeline takes bacterial genome assemblies (FASTA format) and performs structural annotation using Prokka or Bakta, followed by functional characterization using specialized tools for macromolecular system detection (MacSyFinder), phenotype prediction (Traitar), and metabolic model reconstruction (CarveMe). It produces a complete picture of genomic potential, functional capabilities, and predicted metabolic pathways.
+**nf-core/bacmodel** is a bioinformatics pipeline for comprehensive functional annotation and metabolic modeling of bacterial genomes. The pipeline takes bacterial genome assemblies (FASTA format) and performs structural annotation using Prokka or Bakta, followed by functional characterization using specialized tools for macromolecular system detection (MacSyFinder), phenotype prediction (Traitar), and metabolic model reconstruction (CarveMe and gapseq). It produces a complete picture of genomic potential, functional capabilities, and predicted metabolic pathways.
 
-![nf-core/bacmodel workflow](docs/images/bacmodel_workflow.png)
+![nf-core/bacmodel metro map](docs/images/bacmodel_metro_light.svg)
 
 The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It uses Docker/Singularity containers making installation trivial and results highly reproducible. The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementation of this pipeline uses one container per process which makes it much easier to maintain and update software dependencies. Where possible, these processes have been submitted to and installed from [nf-core/modules](https://github.com/nf-core/modules) in order to make them available to all nf-core pipelines, and to everyone within the Nextflow community!
 

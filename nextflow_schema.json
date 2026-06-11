@@ -248,6 +248,12 @@
                     "description": "Run CarveMe for genome-scale metabolic reconstruction",
                     "fa_icon": "fas fa-project-diagram"
                 },
+                "carveme_mediadb": {
+                    "type": "string",
+                    "description": "Path to CarveMe media database TSV file. If not provided, uses CarveMe's default media database",
+                    "fa_icon": "fas fa-database",
+                    "format": "file-path"
+                },
                 "run_gapseq": {
                     "type": "boolean",
                     "default": false,

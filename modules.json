@@ -22,7 +22,7 @@
                     },
                     "gapseq/doall": {
                         "branch": "master",
-                        "git_sha": "258c852e70261dca1ff2600f4c58fef6ab939128",
+                        "git_sha": "01703132c26e5c61d570731fc8b16585d26be229",
                         "installed_by": ["modules"]
                     },
                     "macsyfinder/download": {

@@ -40,7 +40,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         PROKKA(ch_genomes, [], [])
         ch_annotated_proteins = PROKKA.out.faa
         ch_annotated_gff = PROKKA.out.gff
-        ch_versions = ch_versions.mix(PROKKA.out.versions)
+        // versions emitted via topic system
     }
 
     // Option 2: Bakta for annotation (alternative)
@@ -79,6 +79,8 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
             params.macsyfinder_models
         )
         ch_macsyfinder_results = MACSYFINDER_SEARCH.out.summary
+    } else {
+        ch_macsyfinder_results = Channel.empty()
     }
 
     // Phenotype Prediction - run on all
@@ -105,26 +107,49 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         ch_traitar_results = TRAITAR.out.predictions_combined
         ch_traitar_single_votes = TRAITAR.out.predictions_single_votes
     } else {
+        ch_traitar_results = Channel.empty()
         ch_traitar_single_votes = Channel.empty()
     }
 
     // Metabolic Modeling - CarveMe (protein-based)
     if (params.run_carveme) {
+        // Handle CarveMe media database
+        ch_carveme_mediadb = params.carveme_mediadb 
+            ? Channel.fromPath(params.carveme_mediadb, checkIfExists: true) 
+            : Channel.empty()
+        
         ch_carveme_input = ch_annotated_proteins.map { meta, faa -> 
-            [ meta, faa, [], [], [], [], [] ]
+            // Keep medium_carveme in meta for ext.args configuration
+            // Pass mediadb as input (or empty if using default)
+            def mediadb = params.carveme_mediadb ? file(params.carveme_mediadb) : []
+            [ meta, faa, [], mediadb, [], [], [] ]
         }
         CARVEME_CARVE(ch_carveme_input)
         ch_carveme_model = CARVEME_CARVE.out.model
+    } else {
+        ch_carveme_model = Channel.empty()
     }
 
     // Metabolic Modeling - Gapseq (genome-based)
     if (params.run_gapseq) {
         ch_gapseq_input = ch_genomes.map { meta, fasta -> 
-            [ meta, fasta, [] ]
+            // medium_gapseq from meta: can be empty, a medium name (LB, M9), or path to CSV file
+            def medium = []
+            if (meta.medium_gapseq && meta.medium_gapseq.toString().contains('/')) {
+                // It's a file path - convert to file object
+                medium = file(meta.medium_gapseq)
+            }
+            // If it's just a name (LB, M9, etc.), leave medium as [] and handle via ext.args
+            [ meta, fasta, medium ]
         }
         GAPSEQ_DOALL(ch_gapseq_input)
         ch_gapseq_model = GAPSEQ_DOALL.out.model
+        ch_gapseq_xml = GAPSEQ_DOALL.out.xml
         ch_gapseq_tbl = GAPSEQ_DOALL.out.tbl
+    } else {
+        ch_gapseq_model = Channel.empty()
+        ch_gapseq_xml = Channel.empty()
+        ch_gapseq_tbl = Channel.empty()
     }
 
     // Generate summary table combining all results
@@ -160,6 +185,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     traitar          = ch_traitar_results
     carveme          = ch_carveme_model
     gapseq           = ch_gapseq_model
+    gapseq_xml       = ch_gapseq_xml
     summary          = BACMODEL_SUMMARY.out.tsv
     versions         = ch_versions
 }

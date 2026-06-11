@@ -7,7 +7,7 @@
                     "python": "3.12.3"
                 },
                 "GAPSEQ_DOALL": {
-                    "gapseq": "2.0.0"
+                    "gapseq": "2.1.0"
                 },
                 "PROKKA": {
                     "prokka": "1.14.6"
@@ -40,7 +40,9 @@
                 "metabolic_models/gapseq/faecalibacterium_taiwanense-all-Reactions.tbl",
                 "metabolic_models/gapseq/faecalibacterium_taiwanense-all-find_aligner.log",
                 "metabolic_models/gapseq/faecalibacterium_taiwanense-draft.RDS",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-draft.xml",
                 "metabolic_models/gapseq/faecalibacterium_taiwanense.RDS",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense.xml",
                 "pipeline_info",
                 "pipeline_info/nf_core_bacmodel_software_versions.yml",
                 "summary",
@@ -52,15 +54,17 @@
                 "faecalibacterium_taiwanense.ffn:md5,82e08ddb0a241f0848ce3afe1f2b5747",
                 "faecalibacterium_taiwanense.fna:md5,0508f1fe745351ca15f1fd2598a63ee8",
                 "faecalibacterium_taiwanense.fsa:md5,a0fa805662a42c7651a7b1f3fe90c267",
-                "faecalibacterium_taiwanense.gbk:md5,dd9bc16a220b7c0a34a54ebcc062c9b8",
+                "faecalibacterium_taiwanense.gbk:md5,26d06dc74e54ff2230af085c46afdeba",
                 "faecalibacterium_taiwanense.gff:md5,d188aff6ae0d3493d874e4e533f9d6d1",
-                "faecalibacterium_taiwanense.log:md5,ae03d706485a320b3b1683cf4e91766a",
-                "faecalibacterium_taiwanense.sqn:md5,510db08486268a884eb16d8d2583644e",
+                "faecalibacterium_taiwanense.log:md5,c3183289ced4a12ec704e0686c632915",
+                "faecalibacterium_taiwanense.sqn:md5,65b4b41dff19c2a35ccf324f6e9b604a",
                 "faecalibacterium_taiwanense.tbl:md5,5bfcf452ea6c31c12723188bc2ad8b41",
                 "faecalibacterium_taiwanense.tsv:md5,b2464233e052a994067100d89af8ac55",
                 "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749",
-                "faecalibacterium_taiwanense-draft.RDS:md5,cd46990fe78c5616aab8d0107a4005fb",
-                "faecalibacterium_taiwanense.RDS:md5,7a745d24d53cc0f05947348a87abccf4",
+                "faecalibacterium_taiwanense-draft.RDS:md5,45883534a2b0f3c480a881d4b6a8354b",
+                "faecalibacterium_taiwanense-draft.xml:md5,a926ce33715350499002e9e77ad985ff",
+                "faecalibacterium_taiwanense.RDS:md5,ef38b6cb408868a2b5c0b37b237bfa70",
+                "faecalibacterium_taiwanense.xml:md5,3b950cb3544d5509a9565d50a1d599d3",
                 "bacmodel_summary.tsv:md5,5676988c8c75dfeaf79d77e8d2a39cd4"
             ]
         ],
@@ -68,6 +72,6 @@
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-06-04T14:06:36.161645195"
+        "timestamp": "2026-06-10T15:59:44.3929474"
     }
 }

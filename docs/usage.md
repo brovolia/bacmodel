@@ -27,9 +27,9 @@ The samplesheet should contain at minimum two required columns: `sample` and `fa
 
 ```csv title="samplesheet.csv"
 sample,fasta,medium_gapseq,medium_carveme
-SAMPLE1,/path/to/sample1_assembly.fasta,LB,LB
-SAMPLE2,/path/to/sample2_assembly.fasta,/path/to/custom_medium.csv,M9
-SAMPLE3,/path/to/sample3_assembly.fasta,,
+SAMPLE1,/path/to/sample1_assembly.fasta,,complete
+SAMPLE2,/path/to/sample2_assembly.fasta,LB,LB
+SAMPLE3,/path/to/sample3_assembly.fasta,M9,M9
 ```
 
 | Column             | Description                                                                                                                                  |
@@ -51,9 +51,9 @@ The optional `medium_gapseq` and `medium_carveme` columns allow you to specify g
 
 #### Gapseq media (`medium_gapseq`)
 
-**Default behavior (empty column):** Gapseq automatically predicts a suitable growth medium based on the genome content.
+**Default behavior (empty column):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
 
-**Built-in media names:** You can specify predefined media names that gapseq recognizes (e.g., `LB`, `M9`, `TSB`). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
+**Built-in media names:** You can specify predefined media names that gapseq recognizes: `LB` (Luria-Bertani rich medium) or `M9` (M9 minimal medium). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
 
 **Custom media files:** Provide a path to a CSV file with three columns:
 - `compounds`: Metabolite IDs (e.g., `cpd00027` for D-Glucose)
@@ -73,9 +73,9 @@ cpd00013,NH3,100
 
 #### CarveMe media (`medium_carveme`)
 
-**Default behavior (empty column):** CarveMe produces a simulation-ready model without gap-filling for any particular medium. The model can predict uptake and secretion capabilities based only on genetic evidence.
+**Default behavior (empty column):** CarveMe uses **complete rich medium** for gap-filling by default, ensuring the model can simulate growth and shows comprehensive metabolic capabilities. This matches gapseq's permissive default behavior.
 
-**Media names:** Specify media names from the CarveMe media database (e.g., `LB`, `M9`, `TSB`). This enables gap-filling to ensure the model can simulate growth on the specified medium.
+**Media names:** Specify media names from the CarveMe media database (e.g., `LB`, `M9`, `complete`, `TSB`) to override the default and gap-fill for a specific growth medium.
 
 **Custom media database:** To use a custom CarveMe media database, provide the `--carveme_mediadb` parameter pointing to a TSV file containing multiple media definitions.
 
@@ -92,7 +92,7 @@ nextflow run nf-core/bacmodel \
 > The `medium_carveme` column should contain media **names** that exist in the media database, not file paths.
 
 > [!TIP]
-> For most applications, leaving both media columns empty uses sensible defaults: gapseq auto-predicts media and CarveMe produces a generic model. Only specify media when you need to constrain models to experimentally validated growth conditions.
+> For most applications, leaving both media columns empty uses sensible defaults: both tools use rich complete media for gap-filling, ensuring comparable and comprehensive metabolic models. Specify media explicitly when you need to constrain models to experimentally validated growth conditions (e.g., use `M9` for both tools for minimal medium experiments, or `LB` for rich medium cultures).
 
 ## Running the pipeline
 
@@ -126,7 +126,10 @@ Control which functional analysis tools to run:
 --run_traitar true      # Default: true  
 --run_carveme true      # Default: true
 --run_gapseq true       # Default: false
+--run_memote true       # Default: false - Evaluate metabolic model quality
 ```
+
+**Note:** MEMOTE requires at least one metabolic modeling tool (`run_carveme` or `run_gapseq`) to be enabled. MEMOTE will evaluate the quality of all generated metabolic models (SBML XML format) and produce HTML reports with comprehensive quality metrics.
 
 #### Database options
 

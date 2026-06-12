@@ -15,10 +15,12 @@ process BACMODEL_SUMMARY {
     path(carveme_models)
     path(gapseq_models)
     path(gapseq_tbls)
+    path(memote_jsons)
     val(run_macsyfinder)
     val(run_traitar)
     val(run_carveme)
     val(run_gapseq)
+    val(run_memote)
 
     output:
     path("bacmodel_summary.tsv")        , emit: tsv
@@ -35,6 +37,7 @@ process BACMODEL_SUMMARY {
     def carveme_files = carveme_models ? carveme_models.collect { "'$it'" }.join(' ') : ''
     def gapseq_files = gapseq_models ? gapseq_models.collect { "'$it'" }.join(' ') : ''
     def gapseq_tbl_files = gapseq_tbls ? gapseq_tbls.collect { "'$it'" }.join(' ') : ''
+    def memote_files = memote_jsons ? memote_jsons.collect { "'$it'" }.join(' ') : ''
     """
     python3 <<'EOF'
     import pandas as pd
@@ -49,6 +52,7 @@ process BACMODEL_SUMMARY {
     run_traitar = "${run_traitar}" == "true"
     run_carveme = "${run_carveme}" == "true"
     run_gapseq = "${run_gapseq}" == "true"
+    run_memote = "${run_memote}" == "true"
     
     # Initialize summary dataframe with conditional columns
     summary_data = {'sample_id': sample_ids}
@@ -160,34 +164,23 @@ process BACMODEL_SUMMARY {
                     except:
                         pass
     
-    # Process Gapseq models and .tbl files (only if enabled)
+    # Process Gapseq models (only if enabled)
     if run_gapseq:
         gapseq_files = [f for f in "${gapseq_files}".split() if f and f != "null"]
         for gs_file in gapseq_files:
             if gs_file.strip("'"):
-                sample = Path(gs_file.strip("'")).stem.replace("-all", "")
+                # Remove _gapseq suffix and -draft suffix to get sample name
+                sample = Path(gs_file.strip("'")).stem.replace("_gapseq", "").replace("-draft", "")
                 if sample in sample_ids:
                     idx = sample_ids.index(sample)
                     summary_data['gapseq_model'][idx] = 'Yes'
-        
-        # Count pathways and transporters from Gapseq .tbl files
-        gapseq_tbl_files = [f for f in "${gapseq_tbl_files}".split() if f and f != "null"]
-        for tbl_file in gapseq_tbl_files:
-            if tbl_file.strip("'"):
-                tbl_path = Path(tbl_file.strip("'"))
-                # Extract sample name from filename (e.g., sample_pathways.tbl, sample_transporters.tbl)
-                sample = tbl_path.stem.replace("_pathways", "").replace("_transporters", "").replace("-all", "")
-                
-                if sample in sample_ids:
-                    idx = sample_ids.index(sample)
+                    # Count reactions in XML (same approach as CarveMe)
                     try:
-                        # Count lines in .tbl file (excluding header if present)
-                        with open(tbl_file.strip("'"), 'r') as f:
-                            lines = f.readlines()
-                        # Count non-empty, non-header lines
-                        data_lines = [l for l in lines if l.strip() and not l.startswith('#') and not l.startswith('ID\\t')]
-                        summary_data['gapseq_reactions'][idx] += len(data_lines)
-                    except Exception as e:
+                        with open(gs_file.strip("'"), 'r') as f:
+                            content = f.read()
+                            reactions = content.count('<reaction ')
+                        summary_data['gapseq_reactions'][idx] = reactions
+                    except:
                         pass
     
     # Create and save dataframe

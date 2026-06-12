@@ -16,6 +16,8 @@ include { TRAITAR                 } from '../../../modules/nf-core/traitar/run/m
 include { TRAITAR_PFAMGET         } from '../../../modules/nf-core/traitar/pfamget/main'
 include { CARVEME_CARVE           } from '../../../modules/nf-core/carveme/carve/main'
 include { GAPSEQ_DOALL            } from '../../../modules/nf-core/gapseq/doall/main'
+include { MEMOTE_RUN              } from '../../../modules/nf-core/memote/run/main'
+include { MEMOTE_REPORT           } from '../../../modules/nf-core/memote/report/main'
 include { BACMODEL_SUMMARY        } from '../../../modules/local/bacmodel_summary/main'
 
 workflow BACMODEL_FUNCTIONAL_ANNOTATION {
@@ -152,6 +154,47 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         ch_gapseq_tbl = Channel.empty()
     }
 
+    //
+    // MODULE: Memote - Evaluate model quality
+    //
+    ch_memote_report = Channel.empty()
+    ch_memote_json = Channel.empty()
+    if (params.run_memote) {
+        // Filter gapseq models to only use final model (not draft) and add tool tag
+        ch_gapseq_final = ch_gapseq_xml
+            .map { meta, xml ->
+                // If xml is a list, filter out draft models
+                def final_xml = xml instanceof List ? xml.findAll { !it.name.contains('-draft') } : xml
+                def new_meta = meta + [tool: 'gapseq']
+                [new_meta, final_xml]
+            }
+            .filter { meta, xml ->
+                // Keep only if there's at least one final model
+                xml instanceof List ? !xml.isEmpty() : xml != null
+            }
+        
+        // Add tool tag to carveme models
+        ch_carveme_tagged = ch_carveme_model.map { meta, xml ->
+            def new_meta = meta + [tool: 'carveme']
+            [new_meta, xml]
+        }
+        
+        // Combine gapseq and carveme models for memote evaluation
+        ch_models_for_memote = ch_gapseq_final.mix(ch_carveme_tagged)
+        
+        // Run memote for JSON output (for summary table)
+        MEMOTE_RUN(
+            ch_models_for_memote
+        )
+        ch_memote_json = MEMOTE_RUN.out.json
+        
+        // Generate HTML report for visualization
+        MEMOTE_REPORT(
+            ch_models_for_memote
+        )
+        ch_memote_report = MEMOTE_REPORT.out.report
+    }
+
     // Generate summary table combining all results
     // Collect sample IDs
     ch_sample_ids = ch_genomes.map { meta, fasta -> meta.id }.collect()
@@ -161,8 +204,19 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     ch_traitar_majority_for_summary = ch_traitar_results.map { meta, file -> file }.collect().ifEmpty([])
     ch_traitar_single_for_summary = ch_traitar_single_votes.map { meta, file -> file }.collect().ifEmpty([])
     ch_carveme_for_summary = ch_carveme_model.map { meta, file -> file }.collect().ifEmpty([])
-    ch_gapseq_for_summary = ch_gapseq_model.map { meta, file -> file }.collect().ifEmpty([])
+    // Use XML files for gapseq (needed to count reactions), filter out draft models and rename to avoid collision
+    ch_gapseq_for_summary = ch_gapseq_xml.map { meta, xml ->
+        // If xml is a list, filter out draft models and return only final
+        def final_xml = xml instanceof List ? xml.findAll { !it.name.contains('-draft') } : xml
+        // Return with gapseq prefix to avoid filename collision with carveme
+        final_xml
+    }.flatten().map { file -> 
+        // Rename by adding _gapseq suffix before .xml extension
+        def newName = file.name.replaceAll(/\.xml$/, '_gapseq.xml')
+        file.copyTo(file.parent.resolve(newName))
+    }.collect().ifEmpty([])
     ch_gapseq_tbl_for_summary = ch_gapseq_tbl.map { meta, files -> files }.flatten().collect().ifEmpty([])
+    ch_memote_for_summary = ch_memote_json.map { meta, json -> json }.collect().ifEmpty([])
     
     BACMODEL_SUMMARY(
         ch_sample_ids,
@@ -172,10 +226,12 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         ch_carveme_for_summary,
         ch_gapseq_for_summary,
         ch_gapseq_tbl_for_summary,
+        ch_memote_for_summary,
         params.run_macsyfinder ?: false,
         params.run_traitar ?: false,
         params.run_carveme ?: false,
-        params.run_gapseq ?: false
+        params.run_gapseq ?: false,
+        params.run_memote ?: false
     )
 
     emit:
@@ -186,6 +242,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     carveme          = ch_carveme_model
     gapseq           = ch_gapseq_model
     gapseq_xml       = ch_gapseq_xml
+    memote           = ch_memote_report
     summary          = BACMODEL_SUMMARY.out.tsv
     versions         = ch_versions
 }

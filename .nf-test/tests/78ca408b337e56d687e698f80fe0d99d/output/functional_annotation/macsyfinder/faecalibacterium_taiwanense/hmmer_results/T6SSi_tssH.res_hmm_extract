@@ -1,0 +1,6 @@
+# gene: T6SSi_tssH extract from faecalibacterium_taiwanense/hmmer_results/T6SSi_tssH.search_hmm.out hmm output
+# profile length= 872
+# i_evalue threshold= 0.001
+# coverage threshold= 0.500
+# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
+DHCEFBOC_02273	faecalibacterium_taiwanense	2219	870	T6SSi_tssH	5.200e-236	783.000	0.776	0.794	159	849

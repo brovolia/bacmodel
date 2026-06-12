@@ -16,6 +16,8 @@ components:
   - traitar/pfamget
   - carveme/carve
   - gapseq/doall
+  - memote/run
+  - memote/report
   - bacmodel/summary
 input:
   - ch_samplesheet:

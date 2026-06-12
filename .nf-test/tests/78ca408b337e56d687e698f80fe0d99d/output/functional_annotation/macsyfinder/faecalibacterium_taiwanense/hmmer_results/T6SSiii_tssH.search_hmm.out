@@ -1,0 +1,48 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.4 (Aug 2023); http://hmmer.org/
+# Copyright (C) 2023 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/78ca408b337e56d687e698f80fe0d99d/work/7e/72d2f20363b2b57d3ac2b5081e664e/models/TXSS/profiles/T6SSiii_tssH.hmm
+# target sequence database:        faecalibacterium_taiwanense.faa
+# output directed to file:         faecalibacterium_taiwanense/hmmer_results/T6SSiii_tssH.search_hmm.out
+# model-specific thresholding:     GA cutoffs
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       fam7.tab  [M=818]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence       Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------       -----------
+   2.8e-193  641.4  10.5   4.2e-117  389.4   4.3    2.0  0  DHCEFBOC_02273  Chaperone protein ClpB 1
+   5.1e-156  518.1   1.1    1.1e-94  315.2   0.2    2.1  0  DHCEFBOC_01232  ATP-dependent Clp protease ATP-binding subuni
+   4.6e-152  505.0   0.0    4.2e-88  293.5   0.0    2.1  0  DHCEFBOC_00866  ATP-dependent Clp protease ATP-binding subuni
+
+
+Domain annotation for each sequence (and alignments):
+>> DHCEFBOC_02273  Chaperone protein ClpB 1
+   [No individual domains that satisfy reporting thresholds (although complete target did)]
+
+>> DHCEFBOC_01232  ATP-dependent Clp protease ATP-binding subunit ClpC
+   [No individual domains that satisfy reporting thresholds (although complete target did)]
+
+>> DHCEFBOC_00866  ATP-dependent Clp protease ATP-binding subunit ClpC
+   [No individual domains that satisfy reporting thresholds (although complete target did)]
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (818 nodes)
+Target sequences:                       2450  (769152 residues searched)
+Passed MSV filter:                       148  (0.0604082); expected 49.0 (0.02)
+Passed bias filter:                      113  (0.0461224); expected 49.0 (0.02)
+Passed Vit filter:                        32  (0.0130612); expected 2.5 (0.001)
+Passed Fwd filter:                         6  (0.00244898); expected 0.0 (1e-05)
+Initial search space (Z):               2450  [actual number of targets]
+Domain search space  (domZ):               3  [number of targets reported over threshold]
+# CPU time: 0.11u 0.01s 00:00:00.12 Elapsed: 00:00:00.12
+# Mc/sec: 5073.51
+//
+[ok]

@@ -1,0 +1,26 @@
+BACMODEL_SUMMARY:
+  pandas: 2.2.1
+  python: 3.12.3
+CARVEME_CARVE:
+  carveme: 1.6.6
+GAPSEQ_DOALL:
+  gapseq: 2.1.0
+MACSYFINDER_DOWNLOAD:
+  macsyfinder: 2.1.6
+  msf_data: 1.0.4
+MACSYFINDER_SEARCH:
+  hmmer: 3.4
+  macsyfinder: 2.1.6
+MEMOTE_REPORT:
+  memote: 0.17.0
+MEMOTE_RUN:
+  memote: 0.17.0
+PROKKA:
+  prokka: 1.14.6
+TRAITAR:
+  traitar: 0.1.1
+TRAITAR_PFAMGET:
+  traitar: 0.1.1
+Workflow:
+    nf-core/bacmodel: v1.0.0dev
+    Nextflow: 25.10.0

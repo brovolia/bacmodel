@@ -1,0 +1,250 @@
+Jun-12 09:47:18.408 [main] DEBUG nextflow.cli.Launcher - $> nextflow -quiet -log /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/meta/nextflow.log run /work_ikmb/sukmb662/bacmodel/tests/../main.nf -c /work_ikmb/sukmb662/bacmodel/nextflow.config -c /work_ikmb/sukmb662/bacmodel/tests/nextflow.config -params-file /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/meta/params.json -ansi-log false -profile test,singularity -with-trace /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/meta/trace.csv -w /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work
+Jun-12 09:47:18.495 [main] INFO  nextflow.cli.CmdRun - N E X T F L O W  ~  version 25.10.0
+Jun-12 09:47:18.563 [main] DEBUG nextflow.config.ConfigBuilder - Found config base: /work_ikmb/sukmb662/bacmodel/nextflow.config
+Jun-12 09:47:18.570 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /work_ikmb/sukmb662/bacmodel/nextflow.config
+Jun-12 09:47:18.571 [main] DEBUG nextflow.config.ConfigBuilder - User config file: /work_ikmb/sukmb662/bacmodel/tests/nextflow.config
+Jun-12 09:47:18.574 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /work_ikmb/sukmb662/bacmodel/nextflow.config
+Jun-12 09:47:18.575 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /work_ikmb/sukmb662/bacmodel/nextflow.config
+Jun-12 09:47:18.576 [main] DEBUG nextflow.config.ConfigBuilder - Parsing config file: /work_ikmb/sukmb662/bacmodel/tests/nextflow.config
+Jun-12 09:47:18.624 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jun-12 09:47:19.703 [main] DEBUG nextflow.plugin.PluginsFacade - Using Default plugin manager
+Jun-12 09:47:19.712 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-12 09:47:19.713 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-12 09:47:19.715 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Jun-12 09:47:19.727 [main] DEBUG nextflow.plugin.PluginsFacade - Using Default plugin manager
+Jun-12 09:47:20.516 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jun-12 09:47:20.683 [main] DEBUG nextflow.plugin.PluginsFacade - Using Default plugin manager
+Jun-12 09:47:20.684 [main] DEBUG nextflow.plugin.PluginsFacade - Using Default plugin manager
+Jun-12 09:47:20.994 [main] DEBUG nextflow.config.ConfigBuilder - Applying config profile: `test,singularity`
+Jun-12 09:47:21.014 [main] DEBUG nextflow.config.ConfigBuilder - Available config profiles: [bih, cfc_dev, uzl_omics, ifb_core, embl_hd, mcw_rcc, denbi_qbic, alice, mjolnir_globe, uppmax, giga, incliva, ilifu, ki_luria, uge, icr_alma, rosalind_uge, lugh, mccleary, unibe_ibu, vai, czbiohub_aws, jax, roslin, iris, tes, scw, unc_longleaf, tigem, tubingen_apg, apollo, ipop_up, vsc_calcua, pdc_kth, ceci_nic5, ccga_cau, humantechnopole, stjude, daisybio, eddie, medair, biowulf, mahuika, apptainer, bi, bigpurple, adcra, cedars, pawsey_setonix, vsc_kul_uhasselt, purdue_gautschi, pawsey_nimbus, rki, ucl_myriad, charliecloud, fred_hutch, seattlechildrens, icr_davros, ceres, purdue_negishi, munin, rosalind, hasta, cfc, emulate_amd64, uzh, shu_bmrc, ebi_codon_slurm, ebc, ccga_dx, crick, ku_sund_danhead, marvin, lrz_cm4, purdue_bell, shifter, biohpc_gen, mana, mamba, york_viking, unc_lccc, wehi, awsbatch, wustl_htcf, arcc, ceci_dragon2, imperial, maestro, cannon, genotoul, nci_gadi, abims, eva_grace, janelia, nu_genomics, googlebatch, oist, sahmri, kaust, alliance_canada, arm64, mpcdf, leicester, vsc_ugent, create, sage, cambridge, jex, podman, ebi_codon, cheaha, xanadu, nyu_hpc, test, marjorie, computerome, ucd_sonic, gpu, seg_globe, mssm, sanger, dkfz, bluebear, pasteur, einstein, ethz_euler, m3c, test_full, imb, ucl_cscluster, tuos_stanage, azurebatch, seadragon, crukmi, csiro_petrichor, qmul_apocrita, wave, docker, engaging, gis, hypatia, psmn, eva, unity, cropdiversityhpc, nygc, fgcz, conda, crg, singularity, mpcdf_viper, dirac, self_hosted_runner, tufts, uw_hyak_pedslabs, binac2, debug, hki_genie, genouest, cbe, unsw_katana, utd_juno, phoenix, seawulf, uod_hpc, fub_curta, lovelace, uct_hpc, aws_tower, fsu_draco]
+Jun-12 09:47:21.058 [main] DEBUG nextflow.plugin.PluginsFacade - Setting up plugin manager > mode=prod; embedded=false; plugins-dir=/zfshome/sukmb662/.nextflow/plugins; core-plugins: nf-amazon@3.4.1,nf-azure@1.20.2,nf-cloudcache@0.5.0,nf-codecommit@0.5.0,nf-console@1.3.0,nf-google@1.23.3,nf-k8s@1.2.2,nf-tower@1.17.1,nf-wave@1.16.1
+Jun-12 09:47:21.074 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Enabled plugins: []
+Jun-12 09:47:21.074 [main] INFO  o.pf4j.DefaultPluginStatusProvider - Disabled plugins: []
+Jun-12 09:47:21.076 [main] INFO  org.pf4j.DefaultPluginManager - PF4J version 3.12.0 in 'deployment' mode
+Jun-12 09:47:21.089 [main] DEBUG nextflow.util.RetryConfig - Missing nextflow session - using default retry config
+Jun-12 09:47:21.119 [main] INFO  org.pf4j.AbstractPluginManager - No plugins
+Jun-12 09:47:21.120 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins declared=[nf-schema@2.5.1]
+Jun-12 09:47:21.121 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins default=[]
+Jun-12 09:47:21.121 [main] DEBUG nextflow.plugin.PluginsFacade - Plugins resolved requirement=[nf-schema@2.5.1]
+Jun-12 09:47:21.316 [main] DEBUG n.plugin.HttpPluginRepository - Registry request: https://registry.nextflow.io/api/v1/plugins/dependencies?plugins=nf-schema%402.5.1&nextflowVersion=25.10.0
+- code: 200
+- body: {"plugins":[{"id":"nf-schema","releases":[{"version":"2.5.1","url":"https://registry.nextflow.io/api/v1/plugins/nf-schema/2.5.1/download/nf-schema-2.5.1.zip","date":"2025-09-02T14:48:39.714892Z","sha512sum":"82c9c17a9f77319386e670e7b52cf79b067320001f083ccdfec77dada9fd53499506200fd10b493cf8f6fc0420f42e2314481c353ca14b3a92f354bf07ad5c13","requires":">=25.04.0","dependsOn":[],"status":"PUBLISHED"}],"projectUrl":"https://github.com/nextflow-io/nf-schema","provider":"nextflow-io"}]}
+Jun-12 09:47:21.363 [main] DEBUG nextflow.plugin.PluginUpdater - Installing plugin nf-schema version: 2.5.1
+Jun-12 09:47:21.497 [main] INFO  org.pf4j.AbstractPluginManager - Plugin 'nf-schema@2.5.1' resolved
+Jun-12 09:47:21.497 [main] INFO  org.pf4j.AbstractPluginManager - Start plugin 'nf-schema@2.5.1'
+Jun-12 09:47:21.571 [main] DEBUG nextflow.plugin.BasePlugin - Plugin started nf-schema@2.5.1
+Jun-12 09:47:21.688 [main] DEBUG n.secret.LocalSecretsProvider - Secrets store: /zfshome/sukmb662/.nextflow/secrets/store.json
+Jun-12 09:47:21.691 [main] DEBUG nextflow.secret.SecretsLoader - Discovered secrets providers: [nextflow.secret.LocalSecretsProvider@612af486] - activable => nextflow.secret.LocalSecretsProvider@612af486
+Jun-12 09:47:21.784 [main] DEBUG nextflow.cli.CmdRun - Applied DSL=2 by global default
+Jun-12 09:47:21.802 [main] INFO  nextflow.cli.CmdRun - Launching `/work_ikmb/sukmb662/bacmodel/tests/../main.nf` [disturbed_ramanujan] DSL2 - revision: 1e2807f293
+Jun-12 09:47:21.849 [main] DEBUG nextflow.Session - Session UUID: 489138e9-5a04-4823-bd99-21f9a0106862
+Jun-12 09:47:21.850 [main] DEBUG nextflow.Session - Run name: disturbed_ramanujan
+Jun-12 09:47:21.850 [main] DEBUG nextflow.Session - Executor pool size: 64
+Jun-12 09:47:21.857 [main] DEBUG nextflow.file.FilePorter - File porter settings maxRetries=3; maxTransfers=50; pollTimeout=null
+Jun-12 09:47:21.862 [main] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'FileTransfer' minSize=10; maxSize=192; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jun-12 09:47:21.884 [main] DEBUG nextflow.cli.CmdRun - 
+  Version: 25.10.0 build 10289
+  Created: 22-10-2025 16:26 UTC (18:26 CEST)
+  System: Linux 4.18.0-372.9.1.el8.x86_64
+  Runtime: Groovy 4.0.28 on OpenJDK 64-Bit Server VM 17.0.10+7
+  Encoding: UTF-8 (UTF-8)
+  Process: 4014887@caucluster2 [172.24.120.11]
+  CPUs: 64 - Mem: 503.7 GB (32.2 GB) - Swap: 91.5 GB (44 KB)
+Jun-12 09:47:21.925 [main] DEBUG nextflow.Session - Work-dir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work [fhgfs]
+Jun-12 09:47:21.926 [main] DEBUG nextflow.Session - Script base path does not exist or is not a directory: /work_ikmb/sukmb662/bacmodel/bin
+Jun-12 09:47:21.936 [main] DEBUG nextflow.executor.ExecutorFactory - Extension executors providers=[]
+Jun-12 09:47:21.948 [main] DEBUG nextflow.Session - Observer factory (v2): LinObserverFactory
+Jun-12 09:47:21.951 [main] DEBUG nextflow.Session - Observer factory (v2): DefaultObserverFactory
+Jun-12 09:47:21.974 [main] DEBUG nextflow.Session - Observer factory (v2): ValidationObserverFactory
+Jun-12 09:47:22.025 [main] DEBUG nextflow.cache.CacheFactory - Using Nextflow cache factory: nextflow.cache.DefaultCacheFactory
+Jun-12 09:47:22.034 [main] DEBUG nextflow.util.CustomThreadPool - Creating default thread pool > poolSize: 65; maxThreads: 1000
+Jun-12 09:47:22.179 [main] DEBUG nextflow.Session - Session start
+Jun-12 09:47:22.190 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow started -- trace file: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/meta/trace.csv
+Jun-12 09:47:22.335 [main] DEBUG nextflow.script.ScriptRunner - > Launching execution
+Jun-12 09:47:22.462 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Jun-12 09:47:22.510 [main] DEBUG n.validation.config.ValidationConfig - Set `validation.monochromeLogs` to true due to the ANSI log settings.
+Jun-12 09:47:22.513 [main] DEBUG n.validation.config.ValidationConfig - Added the following parameters to the ignored parameters: [genomes]
+Jun-12 09:47:22.982 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryLog:paramsSummaryLog]; plugin Id: nf-schema
+Jun-12 09:47:22.983 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [validateParameters:validateParameters]; plugin Id: nf-schema
+Jun-12 09:47:22.984 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsHelp:paramsHelp]; plugin Id: nf-schema
+Jun-12 09:47:22.987 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Jun-12 09:47:22.988 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [samplesheetToList:samplesheetToList]; plugin Id: nf-schema
+Jun-12 09:47:24.384 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryLog:paramsSummaryLog]; plugin Id: nf-schema
+Jun-12 09:47:24.385 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [validateParameters:validateParameters]; plugin Id: nf-schema
+Jun-12 09:47:24.386 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsHelp:paramsHelp]; plugin Id: nf-schema
+Jun-12 09:47:24.390 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [paramsSummaryMap:paramsSummaryMap]; plugin Id: nf-schema
+Jun-12 09:47:24.390 [main] DEBUG nextflow.script.IncludeDef - Loading included plugin extensions with names: [samplesheetToList:samplesheetToList]; plugin Id: nf-schema
+Jun-12 09:47:24.570 [main] INFO  nextflow.Nextflow - 
+-[2m----------------------------------------------------[0m-
+                                        [0;32m,--.[0;30m/[0;32m,-.[0m
+[0;34m        ___     __   __   __   ___     [0;32m/,-._.--~'[0m
+[0;34m  |\ | |__  __ /  ` /  \ |__) |__         [0;33m}  {[0m
+[0;34m  | \| |       \__, \__/ |  \ |___     [0;32m\`-._,-`-,[0m
+                                        [0;32m`._,._,'[0m
+[0;35m  nf-core/bacmodel 1.0.0dev[0m
+-[2m----------------------------------------------------[0m-
+
+Jun-12 09:47:24.893 [main] INFO  nextflow.Nextflow - Input/output options
+  input                       : /work_ikmb/sukmb662/bacmodel/assets/samplesheet.tsv
+  outdir                      : /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/output
+
+Institutional config options
+  config_profile_name         : Test profile
+  config_profile_description  : Minimal test dataset to check pipeline function
+
+Generic options
+  pipelines_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/bacmodel/
+  trace_report_suffix         : 2026-06-12_09-47-20
+
+Analysis options
+  run_macsyfinder             : false
+  run_traitar                 : false
+  run_memote                  : true
+
+Core Nextflow options
+  runName                     : disturbed_ramanujan
+  containerEngine             : singularity
+  launchDir                   : /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0
+  workDir                     : /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work
+  projectDir                  : /work_ikmb/sukmb662/bacmodel
+  userName                    : sukmb662
+  profile                     : test,singularity
+  configFiles                 : /work_ikmb/sukmb662/bacmodel/nextflow.config, /work_ikmb/sukmb662/bacmodel/nextflow.config, /work_ikmb/sukmb662/bacmodel/tests/nextflow.config
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+Jun-12 09:47:24.894 [main] INFO  nextflow.Nextflow - 
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/bacmodel/blob/master/CITATIONS.md
+
+Jun-12 09:47:24.956 [main] DEBUG n.v.parameters.ParameterValidator - Starting parameters validation
+Jun-12 09:47:25.322 [main] DEBUG n.v.v.evaluators.SchemaEvaluator - Started validating /work_ikmb/sukmb662/bacmodel/assets/samplesheet.tsv
+Jun-12 09:47:25.693 [main] DEBUG n.v.v.evaluators.SchemaEvaluator - Validation of file '/work_ikmb/sukmb662/bacmodel/assets/samplesheet.tsv' passed!
+Jun-12 09:47:25.733 [main] WARN  n.v.logging.ValidationLogger - The following invalid input values have been detected:
+
+* --modules_testdata_base_path: https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/
+
+
+Jun-12 09:47:25.735 [main] DEBUG n.v.parameters.ParameterValidator - Finishing parameters validation
+Jun-12 09:47:26.105 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_low` matches labels `process_low` for process with name NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:PROKKA
+Jun-12 09:47:26.107 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:PROKKA` matches process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:PROKKA
+Jun-12 09:47:26.119 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-12 09:47:26.120 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-12 09:47:26.128 [main] DEBUG nextflow.executor.Executor - [warm up] executor > local
+Jun-12 09:47:26.134 [main] DEBUG n.processor.LocalPollingMonitor - Creating local task monitor for executor 'local' > cpus=64; memory=503.7 GB; capacity=64; pollInterval=100ms; dumpInterval=5m
+Jun-12 09:47:26.136 [main] DEBUG n.processor.TaskPollingMonitor - >>> barrier register (monitor: local)
+Jun-12 09:47:26.154 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:PROKKA': maxForks=0; fair=false; array=0
+Jun-12 09:47:26.186 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_single` matches labels `process_single` for process with name NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE
+Jun-12 09:47:26.186 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:CARVEME_CARVE` matches process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE
+Jun-12 09:47:26.188 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-12 09:47:26.189 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-12 09:47:26.190 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE': maxForks=0; fair=false; array=0
+Jun-12 09:47:26.206 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_low` matches labels `process_low` for process with name NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_RUN
+Jun-12 09:47:26.207 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:MEMOTE_RUN` matches process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_RUN
+Jun-12 09:47:26.208 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-12 09:47:26.208 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-12 09:47:26.209 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_RUN': maxForks=0; fair=false; array=0
+Jun-12 09:47:26.211 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_low` matches labels `process_low` for process with name NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_REPORT
+Jun-12 09:47:26.212 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:MEMOTE_REPORT` matches process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_REPORT
+Jun-12 09:47:26.213 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-12 09:47:26.213 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-12 09:47:26.214 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_REPORT': maxForks=0; fair=false; array=0
+Jun-12 09:47:26.265 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withLabel:process_single` matches labels `process_single` for process with name NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:BACMODEL_SUMMARY
+Jun-12 09:47:26.266 [main] DEBUG n.script.dsl.ProcessConfigBuilder - Config settings `withName:BACMODEL_SUMMARY` matches process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:BACMODEL_SUMMARY
+Jun-12 09:47:26.270 [main] DEBUG nextflow.executor.ExecutorFactory - << taskConfig executor: null
+Jun-12 09:47:26.270 [main] DEBUG nextflow.executor.ExecutorFactory - >> processorType: 'local'
+Jun-12 09:47:26.271 [main] DEBUG nextflow.processor.TaskProcessor - Creating process 'NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:BACMODEL_SUMMARY': maxForks=0; fair=false; array=0
+Jun-12 09:47:26.337 [main] DEBUG nextflow.Session - Config process names validation disabled as requested
+Jun-12 09:47:26.346 [main] DEBUG nextflow.Session - Igniting dataflow network (30)
+Jun-12 09:47:26.347 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:PROKKA
+Jun-12 09:47:26.348 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE
+Jun-12 09:47:26.348 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_RUN
+Jun-12 09:47:26.348 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_REPORT
+Jun-12 09:47:26.348 [main] DEBUG nextflow.processor.TaskProcessor - Starting process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:BACMODEL_SUMMARY
+Jun-12 09:47:26.350 [main] DEBUG nextflow.script.ScriptRunner - Parsed script files:
+  Script_4a7fc56ee6b16531: /work_ikmb/sukmb662/bacmodel/modules/nf-core/gapseq/doall/main.nf
+  Script_3387a6490c851b59: /work_ikmb/sukmb662/bacmodel/modules/nf-core/memote/run/main.nf
+  Script_d402c27e2fec4622: /work_ikmb/sukmb662/bacmodel/modules/nf-core/macsyfinder/download/main.nf
+  Script_512987442257ae76: /work_ikmb/sukmb662/bacmodel/main.nf
+  Script_feb42345ed3c4d8e: /work_ikmb/sukmb662/bacmodel/modules/local/bacmodel_summary/main.nf
+  Script_061a934a2fab6857: /work_ikmb/sukmb662/bacmodel/subworkflows/local/bacmodel_annotation/main.nf
+  Script_8df419e69b5a32df: /work_ikmb/sukmb662/bacmodel/subworkflows/nf-core/utils_nextflow_pipeline/main.nf
+  Script_ae55a9345c1f94fb: /work_ikmb/sukmb662/bacmodel/modules/nf-core/traitar/pfamget/main.nf
+  Script_0e1bfe67f2a31e1c: /work_ikmb/sukmb662/bacmodel/modules/nf-core/traitar/run/main.nf
+  Script_f5c525a78347ca0e: /work_ikmb/sukmb662/bacmodel/modules/nf-core/macsyfinder/search/main.nf
+  Script_a6e854f2b34cbd88: /work_ikmb/sukmb662/bacmodel/subworkflows/local/utils_nfcore_bacmodel_pipeline/main.nf
+  Script_2111a90c3a4a2f02: /work_ikmb/sukmb662/bacmodel/subworkflows/nf-core/utils_nfcore_pipeline/main.nf
+  Script_1b36c2132b7ac3e9: /work_ikmb/sukmb662/bacmodel/modules/nf-core/bakta/baktadbdownload/main.nf
+  Script_e772e19f4c8a22f0: /work_ikmb/sukmb662/bacmodel/subworkflows/local/bacmodel_analysis/main.nf
+  Script_8910d0aa0c5a7a5b: /work_ikmb/sukmb662/bacmodel/modules/nf-core/carveme/carve/main.nf
+  Script_6b500ab6c65e4521: /work_ikmb/sukmb662/bacmodel/subworkflows/nf-core/utils_nfschema_plugin/main.nf
+  Script_10ec90d390725602: /work_ikmb/sukmb662/bacmodel/modules/nf-core/bakta/bakta/main.nf
+  Script_4906a33235d6ccdb: /work_ikmb/sukmb662/bacmodel/workflows/bacmodel.nf
+  Script_2f47829deb24c9b1: /work_ikmb/sukmb662/bacmodel/modules/nf-core/prokka/main.nf
+  Script_734a8e1df0b5af2c: /work_ikmb/sukmb662/bacmodel/modules/nf-core/memote/report/main.nf
+Jun-12 09:47:26.350 [main] DEBUG nextflow.script.ScriptRunner - > Awaiting termination 
+Jun-12 09:47:26.350 [main] DEBUG nextflow.Session - Session await
+Jun-12 09:47:26.468 [FileTransfer-1] DEBUG nextflow.file.FilePorter - Copying foreign file https://raw.githubusercontent.com/nf-core/test-datasets/bacmodel/testdata/faecalibacterium_taiwanense.fasta.gz to work dir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/stage-489138e9-5a04-4823-bd99-21f9a0106862/c8/1f9308a39bacfe668e9a4c582ba81c/faecalibacterium_taiwanense.fasta.gz
+Jun-12 09:47:26.661 [Actor Thread 52] WARN  nextflow.container.SingularityCache - Singularity cache directory has not been defined -- Remote image will be stored in the path: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+Jun-12 09:47:26.661 [Actor Thread 52] INFO  nextflow.container.SingularityCache - Pulling Singularity image https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3a/3af46b047c8fe84112adeaecf300878217c629b97f111f923ecf327656ddd141/data [cache /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-3a-3af46b047c8fe84112adeaecf300878217c629b97f111f923ecf327656ddd141-data.img]
+Jun-12 09:47:29.140 [Actor Thread 52] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/3a/3af46b047c8fe84112adeaecf300878217c629b97f111f923ecf327656ddd141/data path=/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-3a-3af46b047c8fe84112adeaecf300878217c629b97f111f923ecf327656ddd141-data.img
+Jun-12 09:47:29.260 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-12 09:47:29.263 [Task submitter] INFO  nextflow.Session - [d6/fe1c5a] Submitted process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:PROKKA (faecalibacterium_taiwanense)
+Jun-12 09:50:01.621 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 1; name: NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:PROKKA (faecalibacterium_taiwanense); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/d6/fe1c5a84c6ca127385c7abd0a8dc88]
+Jun-12 09:50:01.622 [Task monitor] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'TaskFinalizer' minSize=10; maxSize=192; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jun-12 09:50:01.777 [TaskFinalizer-1] DEBUG nextflow.util.ThreadPoolBuilder - Creating thread pool 'PublishDir' minSize=10; maxSize=192; workQueue=LinkedBlockingQueue[-1]; allowCoreThreadTimeout=false
+Jun-12 09:50:01.779 [Actor Thread 55] WARN  nextflow.container.SingularityCache - Singularity cache directory has not been defined -- Remote image will be stored in the path: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+Jun-12 09:50:01.779 [Actor Thread 55] INFO  nextflow.container.SingularityCache - Pulling Singularity image https://depot.galaxyproject.org/singularity/carveme:1.6.6--pyhdfd78af_1 [cache /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/depot.galaxyproject.org-singularity-carveme-1.6.6--pyhdfd78af_1.img]
+Jun-12 09:50:03.302 [Actor Thread 55] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=https://depot.galaxyproject.org/singularity/carveme:1.6.6--pyhdfd78af_1 path=/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/depot.galaxyproject.org-singularity-carveme-1.6.6--pyhdfd78af_1.img
+Jun-12 09:50:03.326 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-12 09:50:03.327 [Task submitter] INFO  nextflow.Session - [8c/f29a40] Submitted process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense)
+Jun-12 09:52:26.282 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense); status: RUNNING; exit: -; error: -; workDir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21]
+Jun-12 09:57:26.322 [Task monitor] DEBUG n.processor.TaskPollingMonitor - !! executor local > tasks to be completed: 1 -- submitted tasks are shown below
+~> TaskHandler[id: 2; name: NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense); status: RUNNING; exit: -; error: -; workDir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21]
+Jun-12 10:00:22.410 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 2; name: NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21]
+Jun-12 10:00:22.415 [TaskFinalizer-2] DEBUG n.processor.TaskFileCollector - Process `NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense)` is unable to find [UnixPath]: `/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21/faecalibacterium_taiwanense_gene_scores.tsv` (pattern: `faecalibacterium_taiwanense_gene_scores.tsv`)
+Jun-12 10:00:22.416 [TaskFinalizer-2] DEBUG n.processor.TaskFileCollector - Process `NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense)` is unable to find [UnixPath]: `/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21/faecalibacterium_taiwanense_milp_problem.lp` (pattern: `faecalibacterium_taiwanense_milp_problem.lp`)
+Jun-12 10:00:22.417 [TaskFinalizer-2] DEBUG n.processor.TaskFileCollector - Process `NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense)` is unable to find [UnixPath]: `/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21/faecalibacterium_taiwanense_milp_solution.tsv` (pattern: `faecalibacterium_taiwanense_milp_solution.tsv`)
+Jun-12 10:00:22.418 [TaskFinalizer-2] DEBUG n.processor.TaskFileCollector - Process `NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense)` is unable to find [UnixPath]: `/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21/faecalibacterium_taiwanense_protein_scores.tsv` (pattern: `faecalibacterium_taiwanense_protein_scores.tsv`)
+Jun-12 10:00:22.419 [TaskFinalizer-2] DEBUG n.processor.TaskFileCollector - Process `NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE (faecalibacterium_taiwanense)` is unable to find [UnixPath]: `/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/8c/f29a40ccd2ff09e7c13c8d97d90a21/faecalibacterium_taiwanense_reaction_scores.tsv` (pattern: `faecalibacterium_taiwanense_reaction_scores.tsv`)
+Jun-12 10:00:22.541 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE > Skipping output binding because one or more optional files are missing: fileoutparam<1:1>
+Jun-12 10:00:22.542 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE > Skipping output binding because one or more optional files are missing: fileoutparam<2:1>
+Jun-12 10:00:22.542 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE > Skipping output binding because one or more optional files are missing: fileoutparam<3:1>
+Jun-12 10:00:22.542 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE > Skipping output binding because one or more optional files are missing: fileoutparam<4:1>
+Jun-12 10:00:22.542 [TaskFinalizer-2] DEBUG nextflow.processor.TaskProcessor - Process NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:CARVEME_CARVE > Skipping output binding because one or more optional files are missing: fileoutparam<5:1>
+Jun-12 10:00:22.559 [Actor Thread 65] WARN  nextflow.container.SingularityCache - Singularity cache directory has not been defined -- Remote image will be stored in the path: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+Jun-12 10:00:22.559 [Actor Thread 65] INFO  nextflow.container.SingularityCache - Pulling Singularity image https://depot.galaxyproject.org/singularity/memote:0.17.0--pyhdfd78af_0 [cache /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/depot.galaxyproject.org-singularity-memote-0.17.0--pyhdfd78af_0.img]
+Jun-12 10:00:23.691 [Actor Thread 65] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=https://depot.galaxyproject.org/singularity/memote:0.17.0--pyhdfd78af_0 path=/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/depot.galaxyproject.org-singularity-memote-0.17.0--pyhdfd78af_0.img
+Jun-12 10:00:23.717 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-12 10:00:23.717 [Task submitter] INFO  nextflow.Session - [5c/592c06] Submitted process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_RUN (faecalibacterium_taiwanense)
+Jun-12 10:00:23.727 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-12 10:00:23.727 [Task submitter] INFO  nextflow.Session - [45/57af2d] Submitted process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_REPORT (faecalibacterium_taiwanense)
+Jun-12 10:01:19.549 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 3; name: NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_RUN (faecalibacterium_taiwanense); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/5c/592c06a7d0ba75eb4323a95432bb0c]
+Jun-12 10:01:19.622 [Actor Thread 51] INFO  nextflow.container.SingularityCache - Pulling Singularity image https://depot.galaxyproject.org/singularity/pandas:2.2.1 [cache /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/depot.galaxyproject.org-singularity-pandas-2.2.1.img]
+Jun-12 10:01:20.281 [Actor Thread 51] DEBUG nextflow.container.SingularityCache - Singularity pull complete image=https://depot.galaxyproject.org/singularity/pandas:2.2.1 path=/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/singularity/depot.galaxyproject.org-singularity-pandas-2.2.1.img
+Jun-12 10:01:20.350 [Task submitter] DEBUG n.executor.local.LocalTaskHandler - Launch cmd line: /bin/bash -ue .command.run
+Jun-12 10:01:20.351 [Task submitter] INFO  nextflow.Session - [fc/61b50e] Submitted process > NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:BACMODEL_SUMMARY (summary)
+Jun-12 10:01:24.974 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 5; name: NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:BACMODEL_SUMMARY (summary); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/fc/61b50e55b3138c7b8abf4c07ac8daf]
+Jun-12 10:01:40.588 [Task monitor] DEBUG n.processor.TaskPollingMonitor - Task completed > TaskHandler[id: 4; name: NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:MEMOTE_REPORT (faecalibacterium_taiwanense); status: COMPLETED; exit: 0; error: -; workDir: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/45/57af2ddb183842503d311940ebcc31]
+Jun-12 10:01:40.602 [main] DEBUG nextflow.Session - Session await > all processes finished
+Jun-12 10:01:40.626 [Actor Thread 51] DEBUG nextflow.sort.BigSort - Sort completed -- entries: 6; slices: 1; internal sort time: 0.014 s; external sort time: 0.002 s; total time: 0.016 s
+Jun-12 10:01:40.637 [Actor Thread 51] DEBUG nextflow.file.FileCollector - Saved collect-files list to: /work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/work/collect-file/6621b9a7692ee3ba53af6b34d189b2b2
+Jun-12 10:01:40.643 [Actor Thread 51] DEBUG nextflow.file.FileCollector - Deleting file collector temp dir: /tmp/nxf-4428546280805518404
+Jun-12 10:01:40.689 [Task monitor] DEBUG n.processor.TaskPollingMonitor - <<< barrier arrives (monitor: local) - terminating tasks monitor poll loop
+Jun-12 10:01:40.689 [main] DEBUG nextflow.Session - Session await > all barriers passed
+Jun-12 10:01:40.691 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'TaskFinalizer' shutdown completed (hard=false)
+Jun-12 10:01:40.692 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'PublishDir' shutdown completed (hard=false)
+Jun-12 10:01:40.699 [main] INFO  nextflow.Nextflow - -[0;35m[nf-core/bacmodel][0;32m Pipeline completed successfully[0m-
+Jun-12 10:01:40.705 [main] DEBUG n.trace.WorkflowStatsObserver - Workflow completed > WorkflowStats[succeededCount=5; failedCount=0; ignoredCount=0; cachedCount=0; pendingCount=0; submittedCount=0; runningCount=0; retriesCount=0; abortedCount=0; succeedDuration=19m 47s; failedDuration=0ms; cachedDuration=0ms;loadCpus=0; loadMemory=0; peakRunning=2; peakCpus=4; peakMemory=24 GB; ]
+Jun-12 10:01:40.747 [main] DEBUG nextflow.trace.ReportObserver - Workflow completed -- rendering execution report
+Jun-12 10:01:41.079 [main] DEBUG nextflow.trace.TimelineObserver - Workflow completed -- rendering execution timeline
+Jun-12 10:01:41.120 [main] DEBUG nextflow.trace.TraceFileObserver - Workflow completed -- saving trace file
+Jun-12 10:01:41.130 [main] DEBUG nextflow.cache.CacheDB - Closing CacheDB done
+Jun-12 10:01:41.150 [main] INFO  org.pf4j.AbstractPluginManager - Stop plugin 'nf-schema@2.5.1'
+Jun-12 10:01:41.150 [main] DEBUG nextflow.plugin.BasePlugin - Plugin stopped nf-schema
+Jun-12 10:01:41.152 [main] DEBUG nextflow.util.ThreadPoolManager - Thread pool 'FileTransfer' shutdown completed (hard=false)
+Jun-12 10:01:41.153 [main] DEBUG nextflow.script.ScriptRunner - > Execution complete -- Goodbye

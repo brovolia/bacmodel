@@ -259,6 +259,12 @@
                     "default": false,
                     "description": "Run Gapseq for pathway analysis and metabolic modeling",
                     "fa_icon": "fas fa-share-alt"
+                },
+                "run_memote": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Run MEMOTE to evaluate metabolic model quality (requires run_gapseq or run_carveme)",
+                    "fa_icon": "fas fa-check-circle"
                 }
             }
         }

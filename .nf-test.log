@@ -1,18 +1,18 @@
-Jun-04 15:39:06.778 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
-Jun-04 15:39:06.791 [main] INFO  com.askimed.nf.test.App - Arguments: [test, --profile, test,singularity, tests/full.nf.test, --update-snapshot]
-Jun-04 15:39:07.612 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.0
-Jun-04 15:39:07.615 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /work_ikmb/sukmb662/nf-core-bacmodel/nf-test.config...
-Jun-04 15:39:19.126 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 32 files from directory /work_ikmb/sukmb662/nf-core-bacmodel in 11.055 sec
-Jun-04 15:39:19.132 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
-Jun-04 15:39:19.132 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/work_ikmb/sukmb662/nf-core-bacmodel/tests/full.nf.test]
-Jun-04 15:39:19.361 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 1 tests to execute.
-Jun-04 15:39:19.362 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
-Jun-04 15:39:19.362 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline - Full analysis' from file '/work_ikmb/sukmb662/nf-core-bacmodel/tests/full.nf.test'.
-Jun-04 15:39:19.362 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '81aa4b65: Params: Full analysis with all tools'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
-Jun-04 15:52:32.393 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/work_ikmb/sukmb662/nf-core-bacmodel/tests/full.nf.test.snap'
-Jun-04 15:52:35.301 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'Params: Full analysis with all tools' do not match. Update snapshots flag set.
-Jun-04 15:52:35.302 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Updated snapshot 'Params: Full analysis with all tools'
-Jun-04 15:52:40.133 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/work_ikmb/sukmb662/nf-core-bacmodel/tests/full.nf.test.snap'
-Jun-04 15:52:40.134 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '81aa4b65: Params: Full analysis with all tools' finished. status: PASSED
-Jun-04 15:52:40.137 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline - Full analysis' finished. snapshot file: true, skipped tests: false, failed tests: false
-Jun-04 15:52:40.139 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 1 tests. 0 tests failed. Done!
+Jun-12 11:45:05.727 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
+Jun-12 11:45:05.738 [main] INFO  com.askimed.nf.test.App - Arguments: [test, --profile, test,singularity, tests/full.nf.test, --update-snapshot]
+Jun-12 11:45:06.969 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.0
+Jun-12 11:45:06.970 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /work_ikmb/sukmb662/bacmodel/nf-test.config...
+Jun-12 11:45:28.156 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 34 files from directory /work_ikmb/sukmb662/bacmodel in 20.733 sec
+Jun-12 11:45:28.160 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
+Jun-12 11:45:28.161 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/work_ikmb/sukmb662/bacmodel/tests/full.nf.test]
+Jun-12 11:45:28.385 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 1 tests to execute.
+Jun-12 11:45:28.386 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
+Jun-12 11:45:28.387 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline - Full analysis' from file '/work_ikmb/sukmb662/bacmodel/tests/full.nf.test'.
+Jun-12 11:45:28.387 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '78ca408b: Params: Full analysis with all tools'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jun-12 12:03:01.523 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/work_ikmb/sukmb662/bacmodel/tests/full.nf.test.snap'
+Jun-12 12:03:04.423 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'Params: Full analysis with all tools' do not match. Update snapshots flag set.
+Jun-12 12:03:04.423 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Updated snapshot 'Params: Full analysis with all tools'
+Jun-12 12:03:08.352 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Wrote snapshots to file '/work_ikmb/sukmb662/bacmodel/tests/full.nf.test.snap'
+Jun-12 12:03:08.353 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '78ca408b: Params: Full analysis with all tools' finished. status: PASSED
+Jun-12 12:03:08.358 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline - Full analysis' finished. snapshot file: true, skipped tests: false, failed tests: false
+Jun-12 12:03:08.361 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 1 tests. 0 tests failed. Done!

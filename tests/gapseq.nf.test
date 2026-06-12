@@ -18,6 +18,7 @@ nextflow_pipeline {
                 run_traitar = false
                 run_carveme = false
                 run_gapseq = true
+                run_memote = true
             }
         }
 

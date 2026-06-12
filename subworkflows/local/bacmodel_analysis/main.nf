@@ -30,6 +30,7 @@ workflow BACMODEL_ANALYSIS {
     traitar     = BACMODEL_FUNCTIONAL_ANNOTATION.out.traitar
     carveme     = BACMODEL_FUNCTIONAL_ANNOTATION.out.carveme
     gapseq      = BACMODEL_FUNCTIONAL_ANNOTATION.out.gapseq
+    memote      = BACMODEL_FUNCTIONAL_ANNOTATION.out.memote
     summary     = BACMODEL_FUNCTIONAL_ANNOTATION.out.summary
     versions    = ch_versions
 }

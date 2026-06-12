@@ -19,6 +19,7 @@ nextflow_pipeline {
                 pfamdb_download = true
                 run_carveme = true
                 run_gapseq = true
+                run_memote = true
             }
         }
 

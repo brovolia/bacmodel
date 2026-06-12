@@ -17,6 +17,7 @@ nextflow_pipeline {
                 run_macsyfinder = false
                 run_traitar = false
                 run_carveme = true
+                run_memote = true
             }
         }
 

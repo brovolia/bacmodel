@@ -1,0 +1,17 @@
+ERROR ~ Error executing process > 'NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:RENAME_GAPSEQ_XML (1)'
+
+Caused by:
+  Failed to pull singularity image
+    command: singularity pull  --name community-cr-prod.seqera.io-docker-registry-v2-blobs-sha256-31-31ec84fb4e50446228f9f2d971b8c08cd68977d20fa3cd24ce92851d15e8bb7d-data.img.pulling.1781687963871 https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/31/31ec84fb4e50446228f9f2d971b8c08cd68977d20fa3cd24ce92851d15e8bb7d/data > /dev/null
+    status : 255
+    hint   : Try and increase singularity.pullTimeout in the config (current is "2h")
+    message:
+      INFO:    Downloading network image
+      FATAL:   the requested image was not found
+
+
+
+ -- Check '/work_ikmb/sukmb662/bacmodel/.nf-test/tests/78ca408b337e56d687e698f80fe0d99d/meta/nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '/work_ikmb/sukmb662/bacmodel/.nf-test/tests/78ca408b337e56d687e698f80fe0d99d/meta/nextflow.log' file for details

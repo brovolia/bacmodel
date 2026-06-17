@@ -1,4 +1,4 @@
-LOCUS       scaffold1_size448814  448617 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold1_size448814  448617 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -13271,7 +13271,7 @@ ORIGIN
    448501 gctgcttccg gctcgtcaaa aatatagact ccatctgcac ccatgtagtc ctgcgcaatg
    448561 gcgaggaaac tttcaccgtg tgatttttgg tgatagcctt tggagggatg atcgtca
 //
-LOCUS       scaffold2_size492260  492177 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold2_size492260  492177 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -27813,7 +27813,7 @@ ORIGIN
    492061 agtcatcgaa aaagaatttt ccagccgtta tgaagcactc gtatggatct gtaaaaatca
    492121 gcttgggcgg cgaaacctga ccccagaaca gaaaaagttc ctgatcggaa agcaggc
 //
-LOCUS       scaffold3_size318724  318724 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold3_size318724  318724 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -37357,7 +37357,7 @@ ORIGIN
    318661 agaatacgaa tccgtgatac tggaatcccg tttggcttta ggcttacgaa gctctgccac
    318721 aact
 //
-LOCUS       scaffold4_size319973  319960 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold4_size319973  319960 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -46873,7 +46873,7 @@ ORIGIN
    319861 agggtgtcca gagctaccag cgtgacattt acgcccggtt cctctgtttc ggcaacggtg
    319921 cgttgacctc gctgtacgac cattcggacg gcttcttccg
 //
-LOCUS       scaffold5_size311984  311984 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold5_size311984  311984 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -56324,7 +56324,7 @@ ORIGIN
    311881 ttgttttcaa tcaggctgtc cagtgcggcg gcatcgcctt tctgtgccag cgcacaaagc
    311941 cgttcattcg tctgcttcat gggcgttttc ctgctctgcg gcag
 //
-LOCUS       scaffold6_size222276  222167 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold6_size222276  222167 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -62829,7 +62829,7 @@ ORIGIN
    222061 tatcacgaaa gtgataaaat aaataagctt tcagccgcaa ggctgaggcg ctacaggacc
    222121 ttgaaaattg aacaatatcg aaaaacttgt aaggaacctt ttaagtg
 //
-LOCUS       scaffold7_size177181  177181 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold7_size177181  177181 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -68015,7 +68015,7 @@ ORIGIN
    177121 aagtggacgg aagcgattat ggtctgctcg tgcagggcga catcggaaag ctgagttttc
    177181 a
 //
-LOCUS       scaffold8_size144476  144476 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold8_size144476  144476 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -72321,7 +72321,7 @@ ORIGIN
    144361 tttctgcctt tatgatacta ttttttgccc caaaacgcaa acaaaaaagc cctaagactt
    144421 tcatctcaga gctttctgtt caagtcggcg actacctatt ttcacgcgcc gtttcc
 //
-LOCUS       scaffold9_size116222  116222 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold9_size116222  116222 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -75708,7 +75708,7 @@ ORIGIN
    116161 aggcgctaca ggaccttgaa aattgaacaa tatcgaaaaa cttgtaagga accttttaag
    116221 tg
 //
-LOCUS       scaffold10_size101087 101087 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold10_size101087 101087 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -78650,7 +78650,7 @@ ORIGIN
    100981 aatctgtcaa aaagtgttga caaggaggca ggggtgtggt attatacttg agcgccaagc
    101041 gctgaggcaa aagaatgact tccgaagcct cagcaggaag cccttga
 //
-LOCUS       scaffold11_size10319   10319 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold11_size10319   10319 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -78956,7 +78956,7 @@ ORIGIN
     10201 gcccctgaat gtcttgcttg aaagtcgtta taaacgcatt gtcctttgaa ggcgaagaat
     10261 acgaatccgt gatactggaa tcccgtttgg ctttaggctt acgaagctct gccacaact
 //
-LOCUS       scaffold12_size4517     4517 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold12_size4517     4517 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION
@@ -79106,7 +79106,7 @@ ORIGIN
      4441 aagtcggcga ctacctattt tcacgcgccg tttccagcga actatcttcg gcacaagtga
      4501 gcttaacttc tgtgttc
 //
-LOCUS       scaffold13_size2186     2186 bp    DNA     linear       12-JUN-2026
+LOCUS       scaffold13_size2186     2186 bp    DNA     linear       17-JUN-2026
 DEFINITION  Genus species strain strain.
 ACCESSION   
 VERSION

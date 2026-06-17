@@ -3,7 +3,7 @@
 # Copyright (C) 2023 Howard Hughes Medical Institute.
 # Freely distributed under the BSD open source license.
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# query HMM file:                  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/78ca408b337e56d687e698f80fe0d99d/work/7e/72d2f20363b2b57d3ac2b5081e664e/models/TXSS/profiles/T5bSS_translocator.hmm
+# query HMM file:                  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/78ca408b337e56d687e698f80fe0d99d/work/9f/685cdb419983e92690c5cc9e49c725/models/TXSS/profiles/T5bSS_translocator.hmm
 # target sequence database:        faecalibacterium_taiwanense.faa
 # output directed to file:         faecalibacterium_taiwanense/hmmer_results/T5bSS_translocator.search_hmm.out
 # model-specific thresholding:     GA cutoffs
@@ -34,7 +34,7 @@ Passed Vit filter:                         2  (0.000816327); expected 2.5 (0.001
 Passed Fwd filter:                         1  (0.000408163); expected 0.0 (1e-05)
 Initial search space (Z):               2450  [actual number of targets]
 Domain search space  (domZ):               0  [number of targets reported over threshold]
-# CPU time: 0.02u 0.00s 00:00:00.02 Elapsed: 00:00:00.02
-# Mc/sec: 19583.26
+# CPU time: 0.01u 0.00s 00:00:00.01 Elapsed: 00:00:00.02
+# Mc/sec: 18842.89
 //
 [ok]

@@ -4,8 +4,8 @@ process RENAME_GAPSEQ_XML {
 
     conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/31/31ec84fb4e50446228f9f2d971b8c08cd68977d20fa3cd24ce92851d15e8bb7d/data':
-        'community.wave.seqera.io/library/pip_pygments:85c7e7669ec60a48' }"
+        'community.wave.seqera.io/library/gapseq:2.1.0--31c8824b3592beaf' :
+        'quay.io/biocontainers/gapseq:2.1.0--hdfd78af_0' }"
 
     input:
     tuple val(meta), path(xml)

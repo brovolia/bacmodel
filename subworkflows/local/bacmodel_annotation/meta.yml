@@ -16,6 +16,7 @@ components:
   - traitar/pfamget
   - carveme/carve
   - gapseq/doall
+  - rename/gapseq/xml
   - memote/run
   - memote/report
   - bacmodel/summary

@@ -1,0 +1,6 @@
+name: rename_gapseq_xml
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - coreutils=9.5

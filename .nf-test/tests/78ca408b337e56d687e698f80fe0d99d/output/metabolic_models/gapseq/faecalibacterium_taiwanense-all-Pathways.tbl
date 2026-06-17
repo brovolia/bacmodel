@@ -1,6 +1,6 @@
 # gapseq version: 2.1.0
 # Sequence DB version: 1.5 (Bacteria, 2026-05-29)
-# genome_format=nucl;taxonomy=Bacteria;ORF_coverage=15.74;gram=pos;translation_md5=dc81eb5;translation_table=11
+# genome_format=nucl;taxonomy=Bacteria;ORF_coverage=15.74;gram=pos;translation_md5=75ea9f2;translation_table=11
 ID	Name	Prediction	Completeness	Status	NrReaction	NrSpontaneous	NrVague	NrKeyReaction	NrReactionFound	NrKeyReactionFound	ReactionsFound	SpontaneousReactions	KeyReactions
 12DICHLORETHDEG-PWY	1,2-dichloroethane degradation	FALSE	0		4	0	0	1	0	0			DHLAXANAU-RXN
 14DICHLORBENZDEG-PWY	1,4-dichlorobenzene degradation	FALSE	0		9	2	0	2	0	0		RXN-18361 RXN-18362	CHLOROBENDDH-RXN DIOXYXANFL-RXN

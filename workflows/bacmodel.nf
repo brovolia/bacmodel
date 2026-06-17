@@ -67,7 +67,7 @@ workflow BACMODEL {
 
 
     emit:
-    versions       = ch_versions                 // channel: [ path(versions.yml) ]
+    versions       = ch_collated_versions                 // channel: [ path(versions.yml) ]
 }
 
 /*

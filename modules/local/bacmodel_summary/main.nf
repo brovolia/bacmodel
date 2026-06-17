@@ -8,7 +8,7 @@ process BACMODEL_SUMMARY {
         'biocontainers/pandas:2.2.1' }"
 
     input:
-    val(sample_ids)
+    path(sample_ids_file)
     path(macsyfinder_results)
     path(traitar_majority_results)
     path(traitar_single_results)
@@ -44,8 +44,9 @@ process BACMODEL_SUMMARY {
     import os
     from pathlib import Path
 
-    # Sample IDs
-    sample_ids = "${sample_ids}".strip("[]").replace(" ", "").split(",")
+    # Read sample IDs from file (one per line)
+    with open("${sample_ids_file}", 'r') as f:
+        sample_ids = [line.strip() for line in f if line.strip()]
     
     # Tool enable flags (convert Nextflow boolean to Python)
     run_macsyfinder = "${run_macsyfinder}" == "true"

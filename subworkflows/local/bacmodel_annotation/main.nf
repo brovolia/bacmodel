@@ -19,6 +19,7 @@ include { GAPSEQ_DOALL            } from '../../../modules/nf-core/gapseq/doall/
 include { MEMOTE_RUN              } from '../../../modules/nf-core/memote/run/main'
 include { MEMOTE_REPORT           } from '../../../modules/nf-core/memote/report/main'
 include { BACMODEL_SUMMARY        } from '../../../modules/local/bacmodel_summary/main'
+include { RENAME_GAPSEQ_XML       } from '../../../modules/local/rename_gapseq_xml/main'
 
 workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
@@ -115,11 +116,6 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Metabolic Modeling - CarveMe (protein-based)
     if (params.run_carveme) {
-        // Handle CarveMe media database
-        ch_carveme_mediadb = params.carveme_mediadb 
-            ? Channel.fromPath(params.carveme_mediadb, checkIfExists: true) 
-            : Channel.empty()
-        
         ch_carveme_input = ch_annotated_proteins.map { meta, faa -> 
             // Keep medium_carveme in meta for ext.args configuration
             // Pass mediadb as input (or empty if using default)
@@ -196,25 +192,28 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Generate summary table combining all results
-    // Collect sample IDs
-    ch_sample_ids = ch_genomes.map { meta, fasta -> meta.id }.collect()
+    // Collect sample IDs and write to file
+    ch_sample_ids = ch_genomes.map { meta, fasta -> meta.id }.collectFile(name: 'sample_ids.txt', newLine: true)
     
     // Collect all results for summary (handling empty channels)
     ch_macsyfinder_for_summary = ch_macsyfinder_results.map { meta, file -> file }.collect().ifEmpty([])
     ch_traitar_majority_for_summary = ch_traitar_results.map { meta, file -> file }.collect().ifEmpty([])
     ch_traitar_single_for_summary = ch_traitar_single_votes.map { meta, file -> file }.collect().ifEmpty([])
     ch_carveme_for_summary = ch_carveme_model.map { meta, file -> file }.collect().ifEmpty([])
-    // Use XML files for gapseq (needed to count reactions), filter out draft models and rename to avoid collision
-    ch_gapseq_for_summary = ch_gapseq_xml.map { meta, xml ->
-        // If xml is a list, filter out draft models and return only final
-        def final_xml = xml instanceof List ? xml.findAll { !it.name.contains('-draft') } : xml
-        // Return with gapseq prefix to avoid filename collision with carveme
-        final_xml
-    }.flatten().map { file -> 
-        // Rename by adding _gapseq suffix before .xml extension
-        def newName = file.name.replaceAll(/\.xml$/, '_gapseq.xml')
-        file.copyTo(file.parent.resolve(newName))
-    }.collect().ifEmpty([])
+    
+    // Use RENAME_GAPSEQ_XML process to rename XML files (avoid collision with CarveMe)
+    if (params.run_gapseq) {
+        ch_gapseq_xml_filtered = ch_gapseq_xml.map { meta, xml ->
+            // Filter out draft models if xml is a list
+            def final_xml = xml instanceof List ? xml.findAll { !it.name.contains('-draft') } : xml
+            [ meta, final_xml ]
+        }
+        RENAME_GAPSEQ_XML(ch_gapseq_xml_filtered)
+        ch_gapseq_for_summary = RENAME_GAPSEQ_XML.out.xml.map { meta, xml -> xml }.flatten().collect().ifEmpty([])
+    } else {
+        ch_gapseq_for_summary = Channel.empty()
+    }
+    
     ch_gapseq_tbl_for_summary = ch_gapseq_tbl.map { meta, files -> files }.flatten().collect().ifEmpty([])
     ch_memote_for_summary = ch_memote_json.map { meta, json -> json }.collect().ifEmpty([])
     

@@ -14,3 +14,9 @@ bin/
 ro-crate-metadata.json
 modules/nf-core/
 subworkflows/nf-core/
+*.pyc
+bin/
+.nf-test/
+ro-crate-metadata.json
+modules/nf-core/
+subworkflows/nf-core/

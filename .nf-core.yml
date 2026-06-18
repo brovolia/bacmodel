@@ -6,6 +6,7 @@ lint:
   files_unchanged:
     - .github/CONTRIBUTING.md
     - assets/sendmail_template.txt
+    - .prettierignore
   multiqc_config: false
   files_exist:
     - conf/igenomes.config

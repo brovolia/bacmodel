@@ -1,6 +1,0 @@
-# gene: T4aP_pilN extract from faecalibacterium_taiwanense/hmmer_results/T4aP_pilN.search_hmm.out hmm output
-# profile length= 145
-# i_evalue threshold= 0.001
-# coverage threshold= 0.500
-# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
-DHCEFBOC_01740	faecalibacterium_taiwanense	1708	379	T4aP_pilN	1.100e-04	19.500	0.503	0.201	225	300

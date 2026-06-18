@@ -1,8 +1,0 @@
-# gene: T4SS_t4cp1 extract from faecalibacterium_taiwanense/hmmer_results/T4SS_t4cp1.search_hmm.out hmm output
-# profile length= 110
-# i_evalue threshold= 0.001
-# coverage threshold= 0.500
-# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
-DHCEFBOC_00534	faecalibacterium_taiwanense	524	594	T4SS_t4cp1	1.400e-17	61.600	1.000	0.182	152	259
-DHCEFBOC_01438	faecalibacterium_taiwanense	1414	607	T4SS_t4cp1	1.300e-16	58.500	0.991	0.175	151	256
-DHCEFBOC_02165	faecalibacterium_taiwanense	2111	593	T4SS_t4cp1	1.900e-18	64.400	1.000	0.189	152	263

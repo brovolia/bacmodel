@@ -1,6 +1,0 @@
-# gene: T1SS_mfp extract from faecalibacterium_taiwanense/hmmer_results/T1SS_mfp.search_hmm.out hmm output
-# profile length= 378
-# i_evalue threshold= 0.001
-# coverage threshold= 0.500
-# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
-DHCEFBOC_02072	faecalibacterium_taiwanense	2024	370	T1SS_mfp	3.700e-21	72.700	0.706	0.692	105	360

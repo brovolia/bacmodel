@@ -10,7 +10,7 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.tsv"
-                
+
                 // Test with Prokka annotation only for speed
                 annotation_tool = 'prokka'
                 run_macsyfinder = false

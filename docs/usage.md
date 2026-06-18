@@ -32,12 +32,12 @@ SAMPLE2,/path/to/sample2_assembly.fasta,LB,LB
 SAMPLE3,/path/to/sample3_assembly.fasta,M9,M9
 ```
 
-| Column             | Description                                                                                                                                  |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`           | **Required.** Custom sample name. Spaces in sample names are automatically converted to underscores (`_`).                                   |
-| `fasta`            | **Required.** Full path to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`). |
-| `medium_gapseq`    | **Optional.** Growth medium for gapseq metabolic modeling. Can be a medium name (e.g., `LB`, `M9`) or path to custom CSV file. If empty, gapseq auto-predicts the medium. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
-| `medium_carveme`   | **Optional.** Growth medium name for CarveMe gap-filling (e.g., `LB`, `M9`). Must correspond to a medium in the CarveMe media database. If empty, no gap-filling is performed. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
+| Column           | Description                                                                                                                                                                                                                                           |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`         | **Required.** Custom sample name. Spaces in sample names are automatically converted to underscores (`_`).                                                                                                                                            |
+| `fasta`          | **Required.** Full path to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`).                                                                                    |
+| `medium_gapseq`  | **Optional.** Growth medium for gapseq metabolic modeling. Can be a medium name (e.g., `LB`, `M9`) or path to custom CSV file. If empty, gapseq auto-predicts the medium. See [Metabolic modeling media](#metabolic-modeling-media) for details.      |
+| `medium_carveme` | **Optional.** Growth medium name for CarveMe gap-filling (e.g., `LB`, `M9`). Must correspond to a medium in the CarveMe media database. If empty, no gap-filling is performed. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 
@@ -56,13 +56,15 @@ The optional `medium_gapseq` and `medium_carveme` columns allow you to specify g
 **Built-in media names:** You can specify predefined media names that gapseq recognizes: `LB` (Luria-Bertani rich medium) or `M9` (M9 minimal medium). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
 
 **Custom media files:** Provide a path to a CSV file with three columns:
+
 - `compounds`: Metabolite IDs (e.g., `cpd00027` for D-Glucose)
-- `name`: Metabolite names  
+- `name`: Metabolite names
 - `maxFlux`: Maximum uptake rate in mmol/gDW/h
 
 The `maxFlux` parameter defines the maximum inflow flux for each compound. Use lower values (5-10) for carbon sources, medium values (10-20) for O2/CO2, and high values (100) for abundant nutrients like water, ions, and cofactors. For detailed information, see the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html).
 
 Example custom medium CSV:
+
 ```csv
 compounds,name,maxFlux
 cpd00027,D-Glucose,5
@@ -80,6 +82,7 @@ cpd00013,NH3,100
 **Custom media database:** To use a custom CarveMe media database, provide the `--carveme_mediadb` parameter pointing to a TSV file containing multiple media definitions.
 
 Example usage:
+
 ```bash
 nextflow run nf-core/bacmodel \
   --input samplesheet.csv \
@@ -123,7 +126,7 @@ Control which functional analysis tools to run:
 
 ```bash
 --run_macsyfinder true  # Default: true
---run_traitar true      # Default: true  
+--run_traitar true      # Default: true
 --run_carveme true      # Default: true
 --run_gapseq true       # Default: false
 --run_memote true       # Default: false - Evaluate metabolic model quality

@@ -47,34 +47,34 @@ process BACMODEL_SUMMARY {
     # Read sample IDs from file (one per line)
     with open("${sample_ids_file}", 'r') as f:
         sample_ids = [line.strip() for line in f if line.strip()]
-    
+
     # Tool enable flags (convert Nextflow boolean to Python)
     run_macsyfinder = "${run_macsyfinder}" == "true"
     run_traitar = "${run_traitar}" == "true"
     run_carveme = "${run_carveme}" == "true"
     run_gapseq = "${run_gapseq}" == "true"
     run_memote = "${run_memote}" == "true"
-    
+
     # Initialize summary dataframe with conditional columns
     summary_data = {'sample_id': sample_ids}
-    
+
     # Add columns only for enabled tools
     if run_macsyfinder:
         summary_data['macsyfinder_systems'] = [0] * len(sample_ids)
         summary_data['macsyfinder_types'] = [''] * len(sample_ids)
-    
+
     if run_traitar:
         summary_data['traitar_phenotypes_majority'] = [0] * len(sample_ids)
         summary_data['traitar_phenotypes_single'] = [0] * len(sample_ids)
-    
+
     if run_carveme:
         summary_data['carveme_model'] = ['No'] * len(sample_ids)
         summary_data['carveme_reactions'] = [0] * len(sample_ids)
-    
+
     if run_gapseq:
         summary_data['gapseq_model'] = ['No'] * len(sample_ids)
         summary_data['gapseq_reactions'] = [0] * len(sample_ids)
-    
+
     # Process MacSyFinder results (only if enabled)
     if run_macsyfinder:
         macsyfinder_files = [f for f in "${macsyfinder_files}".split() if f and f != "null"]
@@ -83,18 +83,18 @@ process BACMODEL_SUMMARY {
                 # Extract sample name from path (file is usually sample/all_systems.tsv)
                 file_path = Path(mf_file.strip("'"))
                 sample = file_path.parent.name if file_path.parent.name else file_path.stem
-                
+
                 if sample in sample_ids:
                     idx = sample_ids.index(sample)
                     try:
                         # Read file and count non-comment lines (actual detected systems)
                         with open(mf_file.strip("'"), 'r') as f:
                             lines = f.readlines()
-                        
+
                         # Filter out comment lines (starting with #)
                         data_lines = [line for line in lines if line.strip() and not line.startswith('#')]
                         systems_count = len(data_lines)
-                        
+
                         # Extract system types if systems were found
                         system_types = set()
                         if systems_count > 0:
@@ -103,12 +103,12 @@ process BACMODEL_SUMMARY {
                                 parts = line.strip().split('\\t')
                                 if len(parts) >= 3:  # Assuming system type is in 3rd column
                                     system_types.add(parts[2])
-                        
+
                         summary_data['macsyfinder_systems'][idx] = systems_count
                         summary_data['macsyfinder_types'][idx] = ', '.join(sorted(system_types)) if system_types else ''
                     except Exception as e:
                         pass
-    
+
     # Process TRAITAR results (only if enabled)
     if run_traitar:
         # Process TRAITAR majority-vote results (conservative predictions, score = 3.0)
@@ -128,7 +128,7 @@ process BACMODEL_SUMMARY {
                                 summary_data['traitar_phenotypes_majority'][idx] = phenotypes
                 except Exception as e:
                     pass
-        
+
         # Process TRAITAR single-votes results (permissive predictions, score > 0)
         traitar_single_files = [f for f in "${traitar_single_files}".split() if f and f != "null"]
         for tr_file in traitar_single_files:
@@ -146,7 +146,7 @@ process BACMODEL_SUMMARY {
                                 summary_data['traitar_phenotypes_single'][idx] = phenotypes
                 except Exception as e:
                     pass
-    
+
     # Process CarveMe models (only if enabled)
     if run_carveme:
         carveme_files = [f for f in "${carveme_files}".split() if f and f != "null"]
@@ -164,7 +164,7 @@ process BACMODEL_SUMMARY {
                         summary_data['carveme_reactions'][idx] = reactions
                     except:
                         pass
-    
+
     # Process Gapseq models (only if enabled)
     if run_gapseq:
         gapseq_files = [f for f in "${gapseq_files}".split() if f and f != "null"]
@@ -183,7 +183,7 @@ process BACMODEL_SUMMARY {
                         summary_data['gapseq_reactions'][idx] = reactions
                     except:
                         pass
-    
+
     # Create and save dataframe
     df = pd.DataFrame(summary_data)
     df.to_csv('bacmodel_summary.tsv', sep='\\t', index=False)

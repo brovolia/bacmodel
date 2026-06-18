@@ -11,7 +11,7 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.tsv"
-                
+
                 // Test with Bakta annotation
                 annotation_tool = 'bakta'
                 baktadb_download = true

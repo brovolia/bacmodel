@@ -1,9 +1,0 @@
-# gene: Flg_sctN_FLG extract from faecalibacterium_taiwanense/hmmer_results/Flg_sctN_FLG.search_hmm.out hmm output
-# profile length= 430
-# i_evalue threshold= 0.001
-# coverage threshold= 0.500
-# hit_id	replicon_name	position_hit	hit_sequence_length	gene_name	i_eval	score	profile_coverage	sequence_coverage	begin	end
-DHCEFBOC_00169	faecalibacterium_taiwanense	165	575	Flg_sctN_FLG	1.900e-56	188.600	0.951	0.711	92	500
-DHCEFBOC_00171	faecalibacterium_taiwanense	167	470	Flg_sctN_FLG	6.900e-71	236.200	0.928	0.864	3	408
-DHCEFBOC_01526	faecalibacterium_taiwanense	1501	506	Flg_sctN_FLG	4.800e-59	197.200	0.958	0.814	26	437
-DHCEFBOC_01528	faecalibacterium_taiwanense	1503	464	Flg_sctN_FLG	1.000e-71	238.900	0.937	0.884	4	413

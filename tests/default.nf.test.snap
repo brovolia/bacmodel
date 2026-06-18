@@ -2,15 +2,11 @@
     "Params: test profile": {
         "content": [
             {
-                "BACMODEL_SUMMARY": {
-                    "pandas": "2.2.1",
-                    "python": "3.12.3"
-                },
                 "PROKKA": {
                     "prokka": "1.14.6"
                 },
                 "Workflow": {
-                    "nf-core/bacmodel": "v1.0.0dev"
+                    "nf-core/bacmodel": "v1.0.0"
                 }
             },
             [
@@ -30,9 +26,7 @@
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tsv",
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.txt",
                 "pipeline_info",
-                "pipeline_info/nf_core_bacmodel_software_versions.yml",
-                "summary",
-                "summary/bacmodel_summary.tsv"
+                "pipeline_info/nf_core_bacmodel_software_versions.yml"
             ],
             [
                 "faecalibacterium_taiwanense.err:md5,e22435b4287449f69ac02bf70992007a",
@@ -40,20 +34,19 @@
                 "faecalibacterium_taiwanense.ffn:md5,82e08ddb0a241f0848ce3afe1f2b5747",
                 "faecalibacterium_taiwanense.fna:md5,0508f1fe745351ca15f1fd2598a63ee8",
                 "faecalibacterium_taiwanense.fsa:md5,a0fa805662a42c7651a7b1f3fe90c267",
-                "faecalibacterium_taiwanense.gbk:md5,dd9bc16a220b7c0a34a54ebcc062c9b8",
+                "faecalibacterium_taiwanense.gbk:md5,0f43f5300973a12ccfe6ccb424da5106",
                 "faecalibacterium_taiwanense.gff:md5,d188aff6ae0d3493d874e4e533f9d6d1",
-                "faecalibacterium_taiwanense.log:md5,13cbd10b1dda079bc021e407516640c0",
-                "faecalibacterium_taiwanense.sqn:md5,510db08486268a884eb16d8d2583644e",
+                "faecalibacterium_taiwanense.log:md5,94773e4ca4de67578e4a48f262cfeac5",
+                "faecalibacterium_taiwanense.sqn:md5,d91496de32b4b74f7cd737ccbf755f98",
                 "faecalibacterium_taiwanense.tbl:md5,5bfcf452ea6c31c12723188bc2ad8b41",
                 "faecalibacterium_taiwanense.tsv:md5,b2464233e052a994067100d89af8ac55",
-                "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749",
-                "bacmodel_summary.tsv:md5,afec2b7fb256f0ed01a8b4815ff85cc1"
+                "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-06-04T14:17:07.591554444"
+        "timestamp": "2026-06-18T14:46:09.247851314"
     }
 }

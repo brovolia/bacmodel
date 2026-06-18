@@ -1,4 +1,2 @@
 sample,fasta,medium_gapseq,medium_carveme
-SAMPLE1,/path/to/assembly1.fasta,,complete
-SAMPLE2,/path/to/assembly2.fasta,LB,LB
-SAMPLE3,/path/to/assembly3.fasta,M9,M9
+faecalibacterium_taiwanense,https://raw.githubusercontent.com/nf-core/test-datasets/bacmodel/testdata/faecalibacterium_taiwanense.fasta.gz,,complete

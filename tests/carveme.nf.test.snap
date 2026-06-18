@@ -2,10 +2,6 @@
     "Params: Prokka + CarveMe": {
         "content": [
             {
-                "BACMODEL_SUMMARY": {
-                    "pandas": "2.2.1",
-                    "python": "3.12.3"
-                },
                 "CARVEME_CARVE": {
                     "carveme": "1.6.6"
                 },
@@ -19,7 +15,7 @@
                     "prokka": "1.14.6"
                 },
                 "Workflow": {
-                    "nf-core/bacmodel": "v1.0.0dev"
+                    "nf-core/bacmodel": "v1.0.0"
                 }
             },
             [
@@ -45,9 +41,7 @@
                 "metabolic_models/memote/faecalibacterium_taiwanense_carveme.html",
                 "metabolic_models/memote/faecalibacterium_taiwanense_carveme.json.gz",
                 "pipeline_info",
-                "pipeline_info/nf_core_bacmodel_software_versions.yml",
-                "summary",
-                "summary/bacmodel_summary.tsv"
+                "pipeline_info/nf_core_bacmodel_software_versions.yml"
             ],
             [
                 "faecalibacterium_taiwanense.err:md5,e22435b4287449f69ac02bf70992007a",
@@ -55,23 +49,22 @@
                 "faecalibacterium_taiwanense.ffn:md5,82e08ddb0a241f0848ce3afe1f2b5747",
                 "faecalibacterium_taiwanense.fna:md5,0508f1fe745351ca15f1fd2598a63ee8",
                 "faecalibacterium_taiwanense.fsa:md5,a0fa805662a42c7651a7b1f3fe90c267",
-                "faecalibacterium_taiwanense.gbk:md5,c9fbb7f89b4f0688656b5f7d5000a782",
+                "faecalibacterium_taiwanense.gbk:md5,0f43f5300973a12ccfe6ccb424da5106",
                 "faecalibacterium_taiwanense.gff:md5,d188aff6ae0d3493d874e4e533f9d6d1",
-                "faecalibacterium_taiwanense.log:md5,cb216321d50540c2521b685bc9dcf05d",
-                "faecalibacterium_taiwanense.sqn:md5,43e5193740cb55491c97729db0a5d3ce",
+                "faecalibacterium_taiwanense.log:md5,bb458f5060b5819ed795d833fd695695",
+                "faecalibacterium_taiwanense.sqn:md5,d91496de32b4b74f7cd737ccbf755f98",
                 "faecalibacterium_taiwanense.tbl:md5,5bfcf452ea6c31c12723188bc2ad8b41",
                 "faecalibacterium_taiwanense.tsv:md5,b2464233e052a994067100d89af8ac55",
                 "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749",
-                "faecalibacterium_taiwanense.xml:md5,f6c2f492ce9eea3bab0fc86190414be7",
-                "faecalibacterium_taiwanense_carveme.html:md5,eeddf5adb1b9bcc4276acbaf6dba829d",
-                "faecalibacterium_taiwanense_carveme.json.gz:md5,188e8183b7de9355ebe04fd8bba70088",
-                "bacmodel_summary.tsv:md5,3e003fd9b00a2e0f50d0806452f64d25"
+                "faecalibacterium_taiwanense.xml:md5,bab60b1bf34805d3fd5eedf75b7c81dd",
+                "faecalibacterium_taiwanense_carveme.html:md5,475378750e46965c4b9407450a7b3e0f",
+                "faecalibacterium_taiwanense_carveme.json.gz:md5,ee3488abebf65034241fe9308f66510a"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-06-12T10:01:42.117473511"
+        "timestamp": "2026-06-18T14:43:30.536462869"
     }
 }

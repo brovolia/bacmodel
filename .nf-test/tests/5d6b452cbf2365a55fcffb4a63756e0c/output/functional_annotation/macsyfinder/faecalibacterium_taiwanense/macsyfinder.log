@@ -1,0 +1,381 @@
+INFO     : MacSyFinder 2.1.6 
+using:
+- Python 3.14.2 | packaged by conda-forge | (main, Dec  6 2025, 11:21:58) [GCC 14.3.0]
+- MacSyLib 1.0.4 
+- NetworkX 3.6.1
+- Pandas 2.3.3
+
+MacSyFinder is distributed under the terms of the GNU General Public License (GPLv3).
+See the COPYING file for details.
+
+If you use this software please cite:
+Néron, Bertrand; Denise, Rémi; Coluzzi, Charles; Touchon, Marie; Rocha, Eduardo P.C.; Abby, Sophie S.
+MacSyFinder v2: Improved modelling and search engine to identify molecular systems in genomes.
+Peer Community Journal, Volume 3 (2023), article no. e28. doi : 10.24072/pcjournal.250.
+https://peercommunityjournal.org/articles/10.24072/pcjournal.250/
+
+and don't forget to cite the used models:
+msf_data cite <model>
+
+INFO     : command used: /usr/local/bin/macsyfinder --sequence-db faecalibacterium_taiwanense.faa --models-dir models --models TXSS --out-dir faecalibacterium_taiwanense --worker 4 --db-type unordered
+INFO     : 
+models used: TXSS-1.1.4
+INFO     : 
+######################### Searching systems ##########################
+INFO     : Parsing Models: ComM, T6SSi, T9SS, T5cSS, T6SSii, T6SSiii, Flagellum, T4aP, T4bP, T3SS, MSH, Tad, pT4SSt, pT4SSi, T5aSS, T5bSS, T1SS, T2SS, Archaeal-T4P
+INFO     : macsyfinder's results will be stored in working_dirfaecalibacterium_taiwanense
+INFO     : Analysis launched on faecalibacterium_taiwanense.faa for model(s):
+INFO     : 	- TXSS/bacteria/monoderm/ComM
+INFO     : 	- TXSS/bacteria/diderm/T6SSi
+INFO     : 	- TXSS/bacteria/diderm/T9SS
+INFO     : 	- TXSS/bacteria/diderm/T5cSS
+INFO     : 	- TXSS/bacteria/diderm/T6SSii
+INFO     : 	- TXSS/bacteria/diderm/T6SSiii
+INFO     : 	- TXSS/bacteria/diderm/Flagellum
+INFO     : 	- TXSS/bacteria/diderm/T4aP
+INFO     : 	- TXSS/bacteria/diderm/T4bP
+INFO     : 	- TXSS/bacteria/diderm/T3SS
+INFO     : 	- TXSS/bacteria/diderm/MSH
+INFO     : 	- TXSS/bacteria/diderm/Tad
+INFO     : 	- TXSS/bacteria/diderm/pT4SSt
+INFO     : 	- TXSS/bacteria/diderm/pT4SSi
+INFO     : 	- TXSS/bacteria/diderm/T5aSS
+INFO     : 	- TXSS/bacteria/diderm/T5bSS
+INFO     : 	- TXSS/bacteria/diderm/T1SS
+INFO     : 	- TXSS/bacteria/diderm/T2SS
+INFO     : 	- TXSS/archaea/Archaeal-T4P
+INFO     : search gene Tad_tadE
+INFO     : search gene Archaeal-T4P_arCOG04026
+INFO     : search gene T4aP_pilW
+INFO     : search gene Archaeal-T4P_arCOG05987
+INFO     : search gene T1SS_mfp
+INFO     : search gene Archaeal-T4P_arCOG06291
+INFO     : search gene T4aP_fimT
+INFO     : search gene T4SS_T_virB6
+INFO     : search gene Archaeal-T4P_arCOG06518
+INFO     : search gene T6SSi_tssJ
+INFO     : search gene MSH_mshF
+INFO     : search gene Archaeal-T4P_arCOG07478
+INFO     : search gene Tad_rcpC
+INFO     : search gene ComM_comGA
+INFO     : search gene T5bSS_translocator
+INFO     : search gene T6SSii_iglD
+INFO     : search gene T6SSi_tssG
+INFO     : search gene T6SSii_iglF
+INFO     : search gene T4SS_I_traQ
+INFO     : search gene T6SSii_iglH
+INFO     : search gene T4SS_T_virB3
+INFO     : search gene ComM_comGG
+INFO     : search gene T9SS_porV
+INFO     : search gene T4aP_pilQ
+INFO     : search gene T6SSii_iglA
+INFO     : search gene T6SSii_iglE
+INFO     : search gene T3SS_sctT
+INFO     : search gene MSH_mshG
+INFO     : search gene Archaeal-T4P_arCOG06517
+INFO     : search gene T6SSii_iglJ
+INFO     : search gene T3SS_sctR
+INFO     : search gene T1SS_omf
+INFO     : search gene T4SS_T_virB2
+INFO     : search gene T6SSiii_tssR
+INFO     : search gene T4SS_I_traM
+INFO     : search gene Archaeal-T4P_arCOG11520
+INFO     : search gene Archaeal-T4P_arCOG08836
+INFO     : search gene T4bP_pilC
+INFO     : search gene T6SSi_tssM
+INFO     : search gene Archaeal-T4P_arCOG03872
+INFO     : search gene T4SS_T_virB10
+INFO     : search gene Archaeal-T4P_arCOG04673
+INFO     : search gene Tad_tadA
+INFO     : search gene T5cSS_PF03895
+INFO     : search gene ComM_comC
+INFO     : search gene MSH_mshE
+INFO     : search gene Tad_tadZ
+INFO     : search gene Archaeal-T4P_arCOG01817_ATP
+INFO     : search gene Archaeal-T4P_arCOG02420
+INFO     : search gene Archaeal-T4P_arCOG03926
+INFO     : search gene T6SSi_tssL
+INFO     : search gene T6SSi_tssD
+INFO     : search gene Archaeal-T4P_arCOG01829_Pil
+INFO     : search gene T4bP_pilE
+INFO     : search gene Archaeal-T4P_arCOG05619
+INFO     : search gene T2SS_gspF
+INFO     : search gene Archaeal-T4P_arCOG00589
+INFO     : search gene Archaeal-T4P_arCOG01815
+INFO     : search gene T4SS_T_virB1
+INFO     : search gene Archaeal-T4P_arCOG05611
+INFO     : search gene MSH_mshB
+INFO     : search gene Archaeal-T4P_arCOG07777
+INFO     : search gene Archaeal-T4P_arCOG09029
+INFO     : search gene T6SSii_pdpD
+INFO     : search gene MSH_mshI
+INFO     : search gene Archaeal-T4P_arCOG03870
+INFO     : search gene T9SS_gldM_TIGR03517
+INFO     : search gene T9SS_sprA-2_PF12118
+INFO     : search gene Flg_sctQ_FLG
+INFO     : search gene Archaeal-T4P_arCOG01809_IM
+INFO     : search gene Archaeal-T4P_arCOG05612
+INFO     : search gene Archaeal-T4P_arCOG10426
+INFO     : search gene Archaeal-T4P_arCOG02916
+INFO     : search gene Archaeal-T4P_arCOG01814
+INFO     : search gene T6SSiii_tssE
+INFO     : search gene T6SSiii_tssO
+WARNING  : GA bit thresholds unavailable on profile T6SSiii_tssO. Switch to e-value threshold (-E 0.100000)
+INFO     : search gene Tad_rcpA
+INFO     : search gene Archaeal-T4P_arCOG05458
+INFO     : search gene Archaeal-T4P_arCOG05614
+INFO     : search gene T9SS_gldK_TIGR03525
+INFO     : search gene Archaeal-T4P_arCOG04148
+INFO     : search gene T4aP_pilE
+INFO     : search gene Archaeal-T4P_arCOG05617
+INFO     : search gene Archaeal-T4P_arCOG01818
+INFO     : search gene T4SS_I_trbA
+INFO     : search gene T6SSi_tssK
+INFO     : search gene T3SS_sctS
+INFO     : search gene T6SSii_pdpB
+INFO     : search gene Archaeal-T4P_arCOG03871
+INFO     : search gene Archaeal-T4P_arCOG06296
+INFO     : search gene T6SSiii_tssH
+INFO     : search gene T4aP_pilA
+INFO     : search gene T6SSiii_tssN
+INFO     : search gene T3SS_sctU
+INFO     : search gene T9SS_gldN_TIGR03523
+INFO     : search gene T4SS_T_virB11
+INFO     : search gene Archaeal-T4P_arCOG05616
+INFO     : search gene ComM_comGB
+INFO     : search gene T3SS_sctC
+INFO     : search gene T6SSiii_tssP
+INFO     : search gene T2SS_gspC
+INFO     : search gene T3SS_sctJ
+INFO     : search gene T2SS_gspD
+INFO     : search gene Tad_tadD
+INFO     : search gene T6SSii_vgrG
+INFO     : search gene T4SS_I_traR
+INFO     : search gene T6SSi_tssB
+INFO     : search gene T9SS_sprA-3_TIGR04189
+INFO     : search gene T6SSii_iglG
+INFO     : search gene Flg_sctU_FLG
+INFO     : search gene MSH_mshN
+INFO     : search gene T6SSi_tssF
+INFO     : search gene T4bP_pilT
+INFO     : search gene T9SS_sprA_PF14349
+INFO     : search gene T4aP_pilN
+INFO     : search gene T4bP_pilQ
+INFO     : search gene T4SS_I_traI
+INFO     : search gene T4SS_I_traY
+INFO     : search gene T2SS_gspH
+INFO     : search gene ComM_comFA
+INFO     : search gene ComM_comGD
+INFO     : search gene T4aP_pilC
+INFO     : search gene Archaeal-T4P_arCOG05613
+INFO     : search gene Archaeal-T4P_arCOG02963
+INFO     : search gene Archaeal-T4P_arCOG02911
+INFO     : search gene Archaeal-T4P_arCOG02900
+INFO     : search gene ComM_comK
+INFO     : search gene T2SS_gspJ
+INFO     : search gene Archaeal-T4P_arCOG01824
+INFO     : search gene Archaeal-T4P_arCOG08522
+INFO     : search gene T4SS_virb4
+INFO     : search gene Archaeal-T4P_arCOG03360
+INFO     : search gene Archaeal-T4P_arCOG01812
+INFO     : search gene T4bP_pilB
+INFO     : search gene T2SS_gspL
+INFO     : search gene T4SS_I_traO
+INFO     : search gene T4SS_I_traL
+INFO     : search gene Archaeal-T4P_arCOG05610
+INFO     : search gene T2SS_gspG
+INFO     : search gene T4SS_MOBB
+INFO     : search gene Flg_sctS_FLG
+INFO     : search gene Flg_fliE
+INFO     : search gene Archaeal-T4P_arCOG08837
+INFO     : search gene T4aP_pilB
+INFO     : search gene T4aP_pilX
+INFO     : search gene ComM_comB
+INFO     : search gene Archaeal-T4P_arCOG03511
+INFO     : search gene Archaeal-T4P_arCOG05057
+INFO     : search gene T3SS_sctQ
+INFO     : search gene Archaeal-T4P_arCOG02396
+INFO     : search gene Archaeal-T4P_arCOG03422
+INFO     : search gene Archaeal-T4P_arCOG05166
+INFO     : search gene ComM_comGF
+INFO     : search gene T4aP_pilP
+INFO     : search gene Archaeal-T4P_arCOG11939
+INFO     : search gene T4SS_I_traE
+INFO     : search gene Archaeal-T4P_arCOG06335
+INFO     : search gene Flg_sctN_FLG
+INFO     : search gene T6SSi_tssC
+INFO     : search gene T6SSiii_tssK
+INFO     : search gene MSH_mshK
+INFO     : search gene T6SSi_tssI
+INFO     : search gene Archaeal-T4P_arCOG02425
+INFO     : search gene Flg_flgC
+INFO     : search gene Archaeal-T4P_arCOG01810
+INFO     : search gene MSH_mshP
+INFO     : search gene Archaeal-T4P_arCOG02416
+INFO     : search gene MSH_mshL
+INFO     : search gene T4SS_I_traW
+INFO     : search gene T4SS_T_virB9
+INFO     : search gene Archaeal-T4P_arCOG10216
+INFO     : search gene T2SS_gspE
+INFO     : search gene ComM_comGC
+INFO     : search gene T4SS_I_traK
+INFO     : search gene Archaeal-T4P_arCOG02300
+INFO     : search gene T4aP_pilZ
+INFO     : search gene T4bP_pilA
+INFO     : search gene T9SS_sprT
+INFO     : search gene Flg_sctV_FLG
+INFO     : search gene ComM_comEA
+INFO     : search gene T3SS_sctN
+INFO     : search gene Archaeal-T4P_arCOG01811
+INFO     : search gene T6SSii_dotU
+INFO     : search gene T6SSiii_tssI
+INFO     : search gene T2SS_gspM
+INFO     : search gene Archaeal-T4P_arCOG04679
+INFO     : search gene T4bP_pilD
+INFO     : search gene Flg_sctR_FLG
+INFO     : search gene MSH_mshO
+INFO     : search gene T6SSii_pdpE
+INFO     : search gene T6SSii_iglC
+INFO     : search gene MSH_mshJ
+INFO     : search gene MSH_mshC
+INFO     : search gene T4SS_T_virB8
+INFO     : search gene T4SS_I_trbB
+INFO     : search gene T4aP_pilY
+INFO     : search gene Archaeal-T4P_arCOG08524
+INFO     : search gene Archaeal-T4P_arCOG06117
+INFO     : search gene T6SSiii_tssQ
+WARNING  : GA bit thresholds unavailable on profile T6SSiii_tssQ. Switch to e-value threshold (-E 0.100000)
+INFO     : search gene Tad_tadB
+INFO     : search gene Flg_sctJ_FLG
+INFO     : search gene T9SS_gldL_TIGR03513
+INFO     : search gene T4aP_pilM
+INFO     : search gene T4SS_t4cp1
+INFO     : search gene Tad_tadF
+INFO     : search gene Archaeal-T4P_arCOG01822
+INFO     : search gene T4aP_pilU
+INFO     : search gene ComM_comEB
+INFO     : search gene T5aSS_PF03797
+INFO     : search gene T6SSi_evpJ
+INFO     : search gene Tad_tadV
+INFO     : search gene Archaeal-T4P_arCOG01808
+INFO     : search gene T4SS_I_traP
+INFO     : search gene T6SSi_tssA
+INFO     : search gene T6SSii_pdpC
+INFO     : search gene Tad_tadG
+INFO     : search gene T9SS_porU
+INFO     : search gene T6SSiii_tssF
+INFO     : search gene ComM_comFC
+INFO     : search gene T6SSiii_tssD
+INFO     : search gene T4bP_pilP
+INFO     : search gene Archaeal-T4P_arCOG02421
+INFO     : search gene T4aP_pilV
+INFO     : search gene T3SS_sctV
+INFO     : search gene Archaeal-T4P_arCOG08085
+INFO     : search gene T6SSiii_tssC
+INFO     : search gene T2SS_gspN
+INFO     : search gene Flg_sctT_FLG
+INFO     : search gene ComM_comGE
+INFO     : search gene T4SS_I_traT
+INFO     : search gene Archaeal-T4P_arCOG05119
+INFO     : search gene Archaeal-T4P_arCOG02419
+INFO     : search gene MSH_mshA
+INFO     : search gene T4SS_T_virB5
+INFO     : search gene T9SS_gldJ_TIGR03524
+INFO     : search gene MSH_mshQ
+INFO     : search gene Archaeal-T4P_arCOG05986
+INFO     : search gene Archaeal-T4P_arCOG03933
+INFO     : search gene T2SS_gspO
+INFO     : search gene Archaeal-T4P_arCOG04652
+INFO     : search gene Archaeal-T4P_arCOG05609
+INFO     : search gene T9SS_sprE
+INFO     : search gene MSH_mshI2
+INFO     : search gene Archaeal-T4P_arCOG02394
+INFO     : search gene Archaeal-T4P_arCOG02298_PP
+INFO     : search gene T6SSiii_tssB
+INFO     : search gene ComM_comX
+INFO     : search gene T6SSi_tssH
+INFO     : search gene T6SSii_iglI
+INFO     : search gene T6SSii_pdpA
+INFO     : search gene T4aP_pilO
+INFO     : search gene MSH_mshM
+INFO     : search gene Archaeal-T4P_arCOG02981
+INFO     : search gene Archaeal-T4P_arCOG05615
+INFO     : search gene Archaeal-T4P_arCOG07276
+INFO     : search gene T4aP_pilT
+INFO     : search gene Flg_flgB
+INFO     : search gene T4aP_pilD
+INFO     : search gene MSH_mshD
+INFO     : search gene Tad_tadC
+INFO     : search gene T4SS_I_traN
+INFO     : search gene Tad_rcpB
+INFO     : search gene Archaeal-T4P_arCOG08521
+INFO     : search gene T6SSii_iglB
+INFO     : search gene Archaeal-T4P_arCOG04680
+INFO     : search gene Archaeal-T4P_arCOG03821
+INFO     : search gene Archaeal-T4P_arCOG07564
+INFO     : search gene ComM_comEC
+INFO     : search gene T6SSi_tssE
+INFO     : search gene T6SSiii_tssG
+INFO     : search gene Archaeal-T4P_arCOG09150
+INFO     : search gene T2SS_gspK
+INFO     : search gene Archaeal-T4P_arCOG05618
+INFO     : search gene Archaeal-T4P_arCOG02964
+INFO     : search gene Archaeal-T4P_arCOG07206
+INFO     : search gene Tad_flp
+INFO     : search gene T9SS_porQ
+INFO     : search gene T2SS_gspI
+INFO     : search gene T1SS_abc
+INFO     : search gene Archaeal-T4P_arCOG05608
+INFO     : 
+## Hits analysis for replicon faecalibacterium_taiwanense ##
+INFO     : Check model TXSS/archaea/Archaeal-T4P
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/monoderm/ComM
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/diderm/Flagellum
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/diderm/MSH
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/MSH
+INFO     : Check model TXSS/bacteria/diderm/T1SS
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/diderm/T2SS
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T2SS
+INFO     : Check model TXSS/bacteria/diderm/T3SS
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/diderm/T4aP
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/diderm/T4bP
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T4bP
+INFO     : Check model TXSS/bacteria/diderm/T5aSS
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T5aSS
+INFO     : Check model TXSS/bacteria/diderm/T5bSS
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T5bSS
+INFO     : Check model TXSS/bacteria/diderm/T5cSS
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T5cSS
+INFO     : Check model TXSS/bacteria/diderm/T6SSi
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/diderm/T6SSii
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T6SSii
+INFO     : Check model TXSS/bacteria/diderm/T6SSiii
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T6SSiii
+INFO     : Check model TXSS/bacteria/diderm/T9SS
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/T9SS
+INFO     : Check model TXSS/bacteria/diderm/Tad
+INFO     : Searching systems
+INFO     : No hits found for model TXSS/bacteria/diderm/Tad
+INFO     : Check model TXSS/bacteria/diderm/pT4SSi
+INFO     : Searching systems
+INFO     : Check model TXSS/bacteria/diderm/pT4SSt
+INFO     : Searching systems
+INFO     : 
+####### Writing down results in 'faecalibacterium_taiwanense' ########
+INFO     : END

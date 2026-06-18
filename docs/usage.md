@@ -51,6 +51,8 @@ The optional `medium_gapseq` and `medium_carveme` columns allow you to specify g
 
 #### Gapseq media (`medium_gapseq`)
 
+> **Note:** Gapseq automatically downloads reference sequence databases on first use. The pipeline uses container options to ensure each process has a writable directory for database initialization.
+
 **Default behavior (empty column):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
 
 **Built-in media names:** You can specify predefined media names that gapseq recognizes: `LB` (Luria-Bertani rich medium) or `M9` (M9 minimal medium). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
@@ -70,6 +72,18 @@ cpd00007,O2,10
 cpd00009,Phosphate,100
 cpd00013,NH3,100
 ```
+
+**Advanced customization:** The pipeline uses `gapseq doall` for streamlined workflow execution. For advanced users who need full control over individual gapseq subworkflows (`find`, `find-transport`, `draft`, `medium`, and `fill`), additional parameters can be passed via a custom configuration file:
+
+```nextflow
+process {
+    withName: 'GAPSEQ_DOALL' {
+        ext.args = '-b 200 -p nuc -c 0.5'  // Example: custom blast threshold, pathway completion threshold
+    }
+}
+```
+
+Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for available parameters. Note that full subworkflow customization may require creating a custom workflow outside of the `doall` command.
 
 #### CarveMe media (`medium_carveme`)
 

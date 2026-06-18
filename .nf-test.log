@@ -1,19 +1,18 @@
-Jun-17 11:07:24.151 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
-Jun-17 11:07:24.192 [main] INFO  com.askimed.nf.test.App - Arguments: [test, --profile, test,singularity, tests/full.nf.test, --update-snapshot]
-Jun-17 11:07:25.238 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.0
-Jun-17 11:07:25.240 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /work_ikmb/sukmb662/bacmodel/nf-test.config...
-Jun-17 11:07:39.410 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 35 files from directory /work_ikmb/sukmb662/bacmodel in 13.595 sec
-Jun-17 11:07:39.411 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
-Jun-17 11:07:39.411 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/work_ikmb/sukmb662/bacmodel/tests/full.nf.test]
-Jun-17 11:07:39.632 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 1 tests to execute.
-Jun-17 11:07:39.633 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
-Jun-17 11:07:39.633 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline - Full analysis' from file '/work_ikmb/sukmb662/bacmodel/tests/full.nf.test'.
-Jun-17 11:07:39.633 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '78ca408b: Params: Full analysis with all tools'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
-Jun-17 11:19:26.830 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/work_ikmb/sukmb662/bacmodel/tests/full.nf.test.snap'
-Jun-17 11:19:28.218 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'Params: Full analysis with all tools' do not match. Update snapshots flag set.
-Jun-17 11:19:28.218 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Updated snapshot 'Params: Full analysis with all tools'
-Jun-17 11:19:29.551 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '78ca408b: Params: Full analysis with all tools' finished. status: FAILED
-org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions failed
+Jun-18 14:58:53.090 [main] INFO  com.askimed.nf.test.App - nf-test 0.9.3
+Jun-18 14:58:53.101 [main] INFO  com.askimed.nf.test.App - Arguments: [test, --profile, test,singularity, tests/gapseq.nf.test, --update-snapshot]
+Jun-18 14:58:53.791 [main] INFO  com.askimed.nf.test.App - Nextflow Version: 25.10.0
+Jun-18 14:58:53.792 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Load config from file /work_ikmb/sukmb662/bacmodel/nf-test.config...
+Jun-18 14:58:55.910 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Loaded 36 files from directory /work_ikmb/sukmb662/bacmodel in 1.761 sec
+Jun-18 14:58:55.911 [main] INFO  com.askimed.nf.test.lang.dependencies.DependencyResolver - Found 1 files containing tests.
+Jun-18 14:58:55.911 [main] DEBUG com.askimed.nf.test.lang.dependencies.DependencyResolver - Found files: [/work_ikmb/sukmb662/bacmodel/tests/gapseq.nf.test]
+Jun-18 14:58:56.075 [main] INFO  com.askimed.nf.test.commands.RunTestsCommand - Found 1 tests to execute.
+Jun-18 14:58:56.076 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Started test plan
+Jun-18 14:58:56.076 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Running testsuite 'Test pipeline - Gapseq' from file '/work_ikmb/sukmb662/bacmodel/tests/gapseq.nf.test'.
+Jun-18 14:58:56.076 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Run test '66a77969: Params: Prokka + Gapseq'. type: com.askimed.nf.test.lang.pipeline.PipelineTest
+Jun-18 14:59:07.357 [main] DEBUG com.askimed.nf.test.lang.extensions.SnapshotFile - Load snapshots from file '/work_ikmb/sukmb662/bacmodel/tests/gapseq.nf.test.snap'
+Jun-18 14:59:07.366 [main] DEBUG com.askimed.nf.test.lang.extensions.Snapshot - Snapshots 'Params: Prokka + Gapseq' match.
+Jun-18 14:59:07.369 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Test '66a77969: Params: Prokka + Gapseq' finished. status: FAILED
+org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 1 of 2 assertions failed
 	at com.askimed.nf.test.lang.extensions.GlobalMethods.assertAll(GlobalMethods.java:48)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
@@ -26,8 +25,8 @@ org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions f
 	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallStatic(CallSiteArray.java:55)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:217)
 	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.callStatic(AbstractCallSite.java:240)
-	at full_nf$_run_closure1$_closure2$_closure4.doCall(full.nf.test:31)
-	at full_nf$_run_closure1$_closure2$_closure4.doCall(full.nf.test)
+	at gapseq_nf$_run_closure1$_closure2$_closure4.doCall(gapseq.nf.test:30)
+	at gapseq_nf$_run_closure1$_closure2$_closure4.doCall(gapseq.nf.test)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -53,5 +52,5 @@ org.codehaus.groovy.runtime.powerassert.PowerAssertionError: 2 of 2 assertions f
 	at picocli.CommandLine.execute(CommandLine.java:2078)
 	at com.askimed.nf.test.App.run(App.java:39)
 	at com.askimed.nf.test.App.main(App.java:46)
-Jun-17 11:19:29.599 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline - Full analysis' finished. snapshot file: true, skipped tests: false, failed tests: true
-Jun-17 11:19:29.601 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 1 tests. 1 tests failed. Done!
+Jun-18 14:59:07.375 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Testsuite 'Test pipeline - Gapseq' finished. snapshot file: true, skipped tests: false, failed tests: true
+Jun-18 14:59:07.375 [main] INFO  com.askimed.nf.test.core.TestExecutionEngine - Executed 1 tests. 1 tests failed. Done!

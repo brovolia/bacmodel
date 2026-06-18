@@ -1,1 +1,1 @@
-{"run_memote":true,"input":"/work_ikmb/sukmb662/bacmodel/assets/samplesheet.tsv","annotation_tool":"prokka","run_traitar":false,"run_carveme":true,"run_macsyfinder":false,"outdir":"/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/output"}
+{"run_memote":true,"input":"/work_ikmb/sukmb662/bacmodel/assets/samplesheet.csv","annotation_tool":"prokka","run_traitar":false,"run_carveme":true,"run_macsyfinder":false,"outdir":"/work_ikmb/sukmb662/bacmodel/.nf-test/tests/43f7c3c81746bc3d5065af204a53dfb0/output"}

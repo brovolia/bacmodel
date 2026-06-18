@@ -10,7 +10,7 @@ nextflow_pipeline {
         when {
             params {
                 outdir = "$outputDir"
-                input = "$projectDir/assets/samplesheet.tsv"
+                input = "$projectDir/assets/samplesheet.csv"
                 
                 // Test with Prokka and all analysis tools
                 annotation_tool = 'prokka'

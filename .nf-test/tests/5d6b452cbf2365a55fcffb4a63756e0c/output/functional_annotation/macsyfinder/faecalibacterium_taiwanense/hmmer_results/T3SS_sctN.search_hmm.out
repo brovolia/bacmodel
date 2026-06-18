@@ -1,0 +1,163 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.4 (Aug 2023); http://hmmer.org/
+# Copyright (C) 2023 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/5d6b452cbf2365a55fcffb4a63756e0c/work/33/15dcd7ee6b8cfb8af3cfa2a10c09d1/models/TXSS/profiles/T3SS_sctN.hmm
+# target sequence database:        faecalibacterium_taiwanense.faa
+# output directed to file:         faecalibacterium_taiwanense/hmmer_results/T3SS_sctN.search_hmm.out
+# model-specific thresholding:     GA cutoffs
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       sctN  [M=434]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence       Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------       -----------
+    1.2e-71  238.9   0.0    1.5e-71  238.6   0.0    1.0  1  DHCEFBOC_01528  ATP synthase subunit beta, sodium ion specifi
+    1.1e-69  232.5   0.2    1.3e-69  232.2   0.2    1.0  1  DHCEFBOC_00171  ATP synthase subunit beta
+      5e-60  200.6   1.4    6.4e-60  200.3   1.4    1.1  1  DHCEFBOC_01526  ATP synthase subunit alpha
+    1.4e-57  192.6   0.5    1.8e-57  192.2   0.5    1.1  1  DHCEFBOC_00169  ATP synthase subunit alpha
+
+
+Domain annotation for each sequence (and alignments):
+>> DHCEFBOC_01528  ATP synthase subunit beta, sodium ion specific
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  238.6   0.0   2.5e-74   1.5e-71      18     421 ..       5     414 ..       1     421 [. 0.92
+
+  Alignments for each domain:
+  == domain 1  score: 238.6 bits;  conditional E-value: 2.5e-74
+            sctN  18 vvGrvtevsgtllkavlpdvriGelCllkea.desllleaevvGftde.kallsplgelaGlsssaevvptgralevgvgegLLGrvldglgrpl 110
+                      +G+v +v g +l+++  d ++ el +  e  ++   l  ev   t +  +  +++ +++Gl +++e v tg+  +v+vg++ LGrv + lg+p+
+  DHCEFBOC_01528   5 HIGKVLQVIGPVLDIQFEDGQLPELLNAIEIdNHGEKLVVEVAQHTGDnVVRCIAMNSTDGLVRGTEAVDTGEPIKVPVGDQCLGRVFNLLGEPV 99 
+                     68**********************98765551445677788887775505567899*************************************** PP
+
+            sctN 111 dggelaevaevrpvdaaapdpmerkkiekplstGirviDslltlgeGqrvGifaaaGvGkstLlamlirnaeaD...vnvlaLiGerGrevrefi 202
+                     d+++ + + ++ p+++ ap++ e++  +++l tGi+v+D +   ++G ++G+f++aGvGk++L+++li n +++     v++ +Ger re  ++ 
+  DHCEFBOC_01528 100 DNKPAPAPEAYWPIHRPAPSYEEQQSTTEILETGIKVVDLICPYAKGGKIGLFGGAGVGKTVLIQELIYNIATEhngYSVFTGVGERTREGNDLY 194
+                     ********************************************************************998665112569*************** PP
+
+            sctN 203 ekelgeegkkrsvlvvatsDrssverakaayvataiaeyfrd.qGkrvlLllDsltrfaralreiglaaGepparrgyppsvfaaLPrLleraGl 296
+                      +  ++   +++ lv+   +++   r++ a  + ++aeyfrd + + vlL++D + rf++a  e++   G  p+  gy p+  +++  L er   
+  DHCEFBOC_01528 195 GEMTESGVINKTALVYGQMNEPPGARMRVALSGLTMAEYFRDvKNQDVLLFIDNIFRFTQAGSEVSALLGRMPSAVGYQPTLATEMGALQERITS 289
+                     *****************************************956789************************************************ PP
+
+            sctN 297 sekGsitalYtvLvedddmndPvadevrsiLDGhivLsrklaerghyPaiDvlasisrvlt.qvvseehrklaarlrelLakyeevelllrlGeY 390
+                     + kGsit++ +v v  dd++dP    + + LD   vLsr++a +g yPa+D l s sr+l+ +vv +eh ++a +++++L +y+e++ ++ +   
+  DHCEFBOC_01528 290 TRKGSITSVQAVYVPADDLTDPAPATTFTHLDATTVLSRDIASQGIYPAVDPLDSTSRILSpEVVGQEHYEIARAVQKVLQRYKELQDIIAIMGM 384
+                     ***********************************************************9658***************************99777 PP
+
+            sctN 391 kkGedketDkavdkidalesfLrqdtdevve 421
+                      + +++   + v +  ++++fL q+ +   +
+  DHCEFBOC_01528 385 DELSEE-DKRTVSRARKVQRFLSQSFHVAEQ 414
+                     766554.4578999**********9987655 PP
+
+>> DHCEFBOC_00171  ATP synthase subunit beta
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  232.2   0.2   2.2e-72   1.3e-69      18     417 ..       2     407 ..       1     418 [. 0.91
+
+  Alignments for each domain:
+  == domain 1  score: 232.2 bits;  conditional E-value: 2.2e-72
+            sctN  18 vvGrvtevsgtllkavlpdvriGelCl.lkeadesllleaevvGftdekal.lsplgelaGlsssaevvptgralevgvgegLLGrvldglgrpl 110
+                     ++G +++v+g +++++ ++ r+  l + l+ + e    + ev    +e+++  + l++++Gl ++ +v++tg+ l  +vge+ LGr+ d+lgrp+
+  DHCEFBOC_00171   2 IQGTIIRVAGPVVDVQFTAGRLPALQEaLTVTAEGTERTMEVTQHVNETTVrCIMLSASEGLGKGMTVTATGHGLTAPVGEATLGRMFDPLGRPI 96 
+                     67999999999999999998887776424444555566678877655555427889*************************************** PP
+
+            sctN 111 dggelaevaevrpvdaaapdpmerkkiekplstGirviDslltlgeGqrvGifaaaGvGkstLlamlirnaeaD...vnvlaLiGerGrevrefi 202
+                     dg+  ++ +   p++++ap+  e+k  +++l tGi+viD l+  ++G ++G+f++aGvGk++L+++li+n +++     +++ +Ger re  ++ 
+  DHCEFBOC_00171  97 DGKGSVDDVPHWPIHRKAPSFAEQKPATEILETGIKVIDLLAPYAKGGKIGLFGGAGVGKTVLIQELIHNVATEhggYSIFTGVGERSREGCDLW 191
+                     **9999999999*********************************************************9866522268**************** PP
+
+            sctN 203 ekelgeegkkrsvlvvatsDrssverakaayvataiaeyfrdqGkr.vlLllDsltrfaralreiglaaGepparrgyppsvfaaLPrLleraGl 296
+                      +  ++  ++++ lv+   +++   r++ a ++ ++aeyfr++ ++ vlL++D + rf +a  e++   G  p+  gy p+  ++L  L er   
+  DHCEFBOC_00171 192 GEMNESGVLNKTALVFGQMNEPPGARMRVAETGLTMAEYFREETHKdVLLFIDNIFRFVQAGSEVSALMGRMPSAVGYQPTLANELGALQERITS 286
+                     ******************************************987659999******************************************** PP
+
+            sctN 297 sekGsitalYtvLvedddmndPvadevrsiLDGhivLsrklaerghyPaiDvlasisrvltq.vvseehrklaarlrelLakyeevelllrlGeY 390
+                     +++Gsit++ +v v  dd++dP    + + LD   vLsrk+ e+g yPa+D las sr+l++ +v eeh ++a +++++L +y+e++ ++ +   
+  DHCEFBOC_00171 287 TKEGSITSVQAVYVPADDLTDPAPATTFAHLDATTVLSRKIVEQGIYPAVDPLASTSRILEAdIVGEEHYRVARKVQSILQRYQELQDIIAILGM 381
+                     ************************************************************855*************************9998665 PP
+
+            sctN 391 kkGedketDkavdkidalesfLrqdtd 417
+                      +  d++    v++  +l++fL q   
+  DHCEFBOC_00171 382 DE-LDENDKLTVARARKLQKFLSQPFA 407
+                     54.566666789999*******99755 PP
+
+>> DHCEFBOC_01526  ATP synthase subunit alpha
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  200.3   1.4     1e-62   6.4e-60      19     431 ..      28     439 ..      10     442 .. 0.90
+
+  Alignments for each domain:
+  == domain 1  score: 200.3 bits;  conditional E-value: 1e-62
+            sctN  19 vGrvtevsgtllkav.lpdvriGelCllkeadesllleaevvGftdekallsplgelaGlsssaevvptgralevgvgegLLGrvldglgrpldg 112
+                     +G v+ v   + +a+ l +   Gel +  +++  + +      ++++++ + +lg+  G++ +++v+ tg++ +v+vge+++Grv+++lg+p+dg
+  DHCEFBOC_01526  28 TGTVIMVGDGIARASgLEKCMAGELLQFDNGEYGMAQ-----NLEENTVSIVLLGSDVGIKEGSTVKRTGKVVSVPVGEAMIGRVVNALGQPIDG 117
+                     5666666655555541555667888887777766555.....58899999********************************************* PP
+
+            sctN 113 gelaevaevrpvdaaapdpmerkkiekplstGirviDslltlgeGqrvGifaaaGvGkstLla.mlirnaeaDvnvl.aLiGerGrevrefieke 205
+                         e++e+r + ++ap  + r+ +++pl+tGi++iDs++ +g+Gqr  i ++  +Gk+t+ + ++i++++ Dv+ + + iG +   v +++++ 
+  DHCEFBOC_01526 118 AGPIETTEFRAIESRAPGIIDRQPVKEPLQTGIKAIDSMIPIGRGQRELIIGDRQTGKTTIASdTIINQKGKDVICIyVAIGQKRSTVANLVQSL 212
+                     ************************************************************99735888889999765378*************** PP
+
+            sctN 206 lgeegkkrsvlvvatsDrssverakaayvataiaeyfrdqGkrvlLllDsltrfaralreiglaaGepparrgyppsvfaaLPrLleraG.lsek 299
+                      +   +  +++v at+ + s  +  a y + a+ eyf +qGk+vl++ D l ++a a r ++l    pp+r+ yp  vf    rLlera  ls++
+  DHCEFBOC_01526 213 TEAGAMGYTIVVSATASELSPLQYIAPYSGCAMGEYFMHQGKHVLIIYDDLSKHAVAYRALSLLIRRPPGREAYPGDVFYLHSRLLERAAkLSNE 307
+                     *****************************************************************************************965553 PP
+
+            sctN 300 ...GsitalYtvLvedddmndPvadevrsiLDGhivLsrklaerghyPaiDvlasisrvltqvvseehrklaarlrelLakyeevelllrlGeYk 391
+                        Gs+tal  +  +  d++  +  +v si DG i L  +l + g  Pa++   s+srv  +   +  +k+a++l+ + ++y+e++ + ++G   
+  DHCEFBOC_01526 308 lggGSLTALPIIETQAGDVSAYIPTNVISITDGQIFLETELFHSGVMPAVNPGISVSRVGGNAQIKAMKKVAGTLKLIYSQYRELQSFAQFGS-- 400
+                     4449**********************************************************************************9999985.. PP
+
+            sctN 392 kGedketDkavdkidalesfLrqdtdevveleetlellee 431
+                        d++t + +++ +++ + L+q+    v +e+ +  l +
+  DHCEFBOC_01526 401 -DLDADTKARLAQGERIVEVLKQNRSAPVPVEKQVAILYA 439
+                     .5788888889999***************99999988766 PP
+
+>> DHCEFBOC_00169  ATP synthase subunit alpha
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !  192.2   0.5     3e-60   1.8e-57      68     424 ..     143     503 ..      81     510 .. 0.88
+
+  Alignments for each domain:
+  == domain 1  score: 192.2 bits;  conditional E-value: 3e-60
+            sctN  68 lsplgelaGlsssaevvptgralevgvgegLLGrvldglgrpldggelaevaevrpvdaaapdpmerkkiekplstGirviDslltlgeGqrvGi 162
+                     + ++ +++ + +++ v+ +g++  ++vg+++LGrv+ +lg+p+dg+   e + ++p+ ++ap  +er+ +++pl tGi +iDs+  +g+Gqr  i
+  DHCEFBOC_00169 143 VMLFDDIEKVGVGTLVTRSGKRAGIPVGDAFLGRVISPLGEPIDGKGPIEAVGYNPIEKQAPGILERQSVDTPLHTGILAIDSMFPIGRGQRELI 237
+                     45677778888999********************************************************************************* PP
+
+            sctN 163 faaaGvGkstLlam.lirnaeaDvn.vlaLiGerGrevrefiekelgeegkkrsvlvvatsDrssverakaayvataiaeyfrdqGkrvlLllDs 255
+                      ++  +Gk+++ +  +++++++ v  + + iG +   +  +     +   ++ + +v at+  s+  +  a y +ta+aeyf  +Gk vl++ D 
+  DHCEFBOC_00169 238 IGDRQTGKTSIATDaILNQKDTGVLcIYVAIGQKASSIARVAGDLQKHGAMSYTTIVAATASDSAPLQYIAPYAGTALAEYFMSKGKSVLIVYDD 332
+                     *********998651667778888615578**********9999999999********************************************* PP
+
+            sctN 256 ltrfaralreiglaaGepparrgyppsvfaaLPrLleraG.lsek...GsitalYtvLvedddmndPvadevrsiLDGhivLsrklaerghyPai 346
+                     l ++a a r i+l    +p+r+ yp  vf    rLler+  +s+k   Gsital  v  +  d++  +  +v si DG i L  +l ++g+ Pa+
+  DHCEFBOC_00169 333 LSKHAVAYRAISLLLRRSPGREAYPGDVFYLHSRLLERSCrMSDKlggGSITALPIVETQAGDVSAYIPTNVISITDGQIFLESALFNAGNRPAV 427
+                     **************************************99899866669********************************************** PP
+
+            sctN 347 DvlasisrvltqvvseehrklaarlrelLakyeevelllrlGeYkkGedketDkavdkidalesfLrqdtde.vvelee 424
+                     +v  s+srv  +  ++  +k++a+lr  La+y+++e + +   + +  d+et + +d+ +al++ L+q   + +++ e+
+  DHCEFBOC_00169 428 NVGLSVSRVGGAAQTKAMKKANANLRIELAQYKDMESFAQ---FSSDLDAETRRQLDHGKALTEMLKQPLYQpKSDAEQ 503
+                     ************************************8665...678899999999***********9976541444454 PP
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (434 nodes)
+Target sequences:                       2450  (769152 residues searched)
+Passed MSV filter:                       138  (0.0563265); expected 49.0 (0.02)
+Passed bias filter:                      108  (0.0440816); expected 49.0 (0.02)
+Passed Vit filter:                        31  (0.0126531); expected 2.5 (0.001)
+Passed Fwd filter:                         9  (0.00367347); expected 0.0 (1e-05)
+Initial search space (Z):               2450  [actual number of targets]
+Domain search space  (domZ):               4  [number of targets reported over threshold]
+# CPU time: 0.03u 0.00s 00:00:00.03 Elapsed: 00:00:00.03
+# Mc/sec: 8909.78
+//
+[ok]

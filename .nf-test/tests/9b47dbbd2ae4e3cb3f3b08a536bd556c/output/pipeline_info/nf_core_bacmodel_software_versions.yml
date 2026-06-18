@@ -1,0 +1,9 @@
+PROKKA:
+  prokka: 1.14.6
+TRAITAR:
+  traitar: 0.1.1
+TRAITAR_PFAMGET:
+  traitar: 0.1.1
+Workflow:
+    nf-core/bacmodel: v1.0.0
+    Nextflow: 25.10.0

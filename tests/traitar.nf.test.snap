@@ -2,10 +2,6 @@
     "Params: Prokka + Traitar": {
         "content": [
             {
-                "BACMODEL_SUMMARY": {
-                    "pandas": "2.2.1",
-                    "python": "3.12.3"
-                },
                 "PROKKA": {
                     "prokka": "1.14.6"
                 },
@@ -16,7 +12,7 @@
                     "traitar": "0.1.1"
                 },
                 "Workflow": {
-                    "nf-core/bacmodel": "v1.0.0dev"
+                    "nf-core/bacmodel": "v1.0.0"
                 }
             },
             [
@@ -48,9 +44,7 @@
                 "phenotype/traitar/faecalibacterium_taiwanense/predictions_raw.txt",
                 "phenotype/traitar/faecalibacterium_taiwanense/predictions_single-votes.txt",
                 "pipeline_info",
-                "pipeline_info/nf_core_bacmodel_software_versions.yml",
-                "summary",
-                "summary/bacmodel_summary.tsv"
+                "pipeline_info/nf_core_bacmodel_software_versions.yml"
             ],
             [
                 "faecalibacterium_taiwanense.err:md5,e22435b4287449f69ac02bf70992007a",
@@ -58,28 +52,27 @@
                 "faecalibacterium_taiwanense.ffn:md5,82e08ddb0a241f0848ce3afe1f2b5747",
                 "faecalibacterium_taiwanense.fna:md5,0508f1fe745351ca15f1fd2598a63ee8",
                 "faecalibacterium_taiwanense.fsa:md5,a0fa805662a42c7651a7b1f3fe90c267",
-                "faecalibacterium_taiwanense.gbk:md5,dd9bc16a220b7c0a34a54ebcc062c9b8",
+                "faecalibacterium_taiwanense.gbk:md5,0f43f5300973a12ccfe6ccb424da5106",
                 "faecalibacterium_taiwanense.gff:md5,d188aff6ae0d3493d874e4e533f9d6d1",
-                "faecalibacterium_taiwanense.log:md5,411be2f1e8dfa725b3c0db431c988c0e",
-                "faecalibacterium_taiwanense.sqn:md5,510db08486268a884eb16d8d2583644e",
+                "faecalibacterium_taiwanense.log:md5,c33c44df1b361633c5b9823ce9d4396b",
+                "faecalibacterium_taiwanense.sqn:md5,d91496de32b4b74f7cd737ccbf755f98",
                 "faecalibacterium_taiwanense.tbl:md5,5bfcf452ea6c31c12723188bc2ad8b41",
                 "faecalibacterium_taiwanense.tsv:md5,b2464233e052a994067100d89af8ac55",
                 "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749",
-                "predictions_flat_majority-votes_combined.txt:md5,c0c28289e65f672bfc3bcf3327d0c2e4",
-                "predictions_flat_single-votes_combined.txt:md5,64b85c43c4542d3dd398a6457157d8ca",
-                "predictions_majority-vote_combined.txt:md5,d892729457665e43b98a1e337f751704",
-                "predictions_single-votes_combined.txt:md5,b094982d60c64eb5a830f4f0049dc773",
+                "predictions_flat_majority-votes_combined.txt:md5,5ca416cd528bc20165d1794471c5cdf0",
+                "predictions_flat_single-votes_combined.txt:md5,92a5ca9832bc002f396e7e41a2265873",
+                "predictions_majority-vote_combined.txt:md5,05e6a0156853d27350f3c0087af366c8",
+                "predictions_single-votes_combined.txt:md5,ea7e5283ae4279664c84f5fff7251280",
                 "predictions_conservative-vote.txt:md5,abe528f97b0e00023049acef7bc2ca7b",
                 "predictions_majority-vote.txt:md5,ea9494e14e7eb621f2ff5d6989de6f8a",
                 "predictions_raw.txt:md5,f7b870035c448eeda5370394cd65c442",
-                "predictions_single-votes.txt:md5,bdf09e6959100ec24273f157da34f995",
-                "bacmodel_summary.tsv:md5,a97ddae2304b97a78c6c4a641f8a38d2"
+                "predictions_single-votes.txt:md5,bdf09e6959100ec24273f157da34f995"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-06-04T14:23:40.098483505"
+        "timestamp": "2026-06-18T14:58:10.557832222"
     }
 }

@@ -1,6 +1,3 @@
-BACMODEL_SUMMARY:
-  pandas: 2.2.1
-  python: 3.12.3
 CARVEME_CARVE:
   carveme: 1.6.6
 MEMOTE_REPORT:
@@ -10,5 +7,5 @@ MEMOTE_RUN:
 PROKKA:
   prokka: 1.14.6
 Workflow:
-    nf-core/bacmodel: v1.0.0dev
+    nf-core/bacmodel: v1.0.0
     Nextflow: 25.10.0

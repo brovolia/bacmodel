@@ -1,0 +1,2 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	82/ed00b0	666470	NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:PROKKA (faecalibacterium_taiwanense)	COMPLETED	0	2026-06-18 14:43:41.905	2m 26s	2m 26s	193.8%	373.4 MB	568 MB	57.5 GB	93.9 MB

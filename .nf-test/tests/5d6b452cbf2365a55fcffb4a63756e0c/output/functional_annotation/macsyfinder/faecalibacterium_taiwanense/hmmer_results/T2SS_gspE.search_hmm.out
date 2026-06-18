@@ -1,0 +1,40 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.4 (Aug 2023); http://hmmer.org/
+# Copyright (C) 2023 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/5d6b452cbf2365a55fcffb4a63756e0c/work/33/15dcd7ee6b8cfb8af3cfa2a10c09d1/models/TXSS/profiles/T2SS_gspE.hmm
+# target sequence database:        faecalibacterium_taiwanense.faa
+# output directed to file:         faecalibacterium_taiwanense/hmmer_results/T2SS_gspE.search_hmm.out
+# model-specific thresholding:     GA cutoffs
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       T2SS_gspE  [M=422]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence Description
+    ------- ------ -----    ------- ------ -----   ---- --  -------- -----------
+
+   [No hits detected that satisfy reporting thresholds]
+
+
+Domain annotation for each sequence (and alignments):
+
+   [No targets detected that satisfy reporting thresholds]
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (422 nodes)
+Target sequences:                       2450  (769152 residues searched)
+Passed MSV filter:                       165  (0.0673469); expected 49.0 (0.02)
+Passed bias filter:                      131  (0.0534694); expected 49.0 (0.02)
+Passed Vit filter:                        37  (0.015102); expected 2.5 (0.001)
+Passed Fwd filter:                         6  (0.00244898); expected 0.0 (1e-05)
+Initial search space (Z):               2450  [actual number of targets]
+Domain search space  (domZ):               0  [number of targets reported over threshold]
+# CPU time: 0.03u 0.00s 00:00:00.03 Elapsed: 00:00:00.03
+# Mc/sec: 10104.44
+//
+[ok]

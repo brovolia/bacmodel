@@ -1,0 +1,11 @@
+MACSYFINDER_DOWNLOAD:
+  macsyfinder: 2.1.6
+  msf_data: 1.0.4
+MACSYFINDER_SEARCH:
+  hmmer: 3.4
+  macsyfinder: 2.1.6
+PROKKA:
+  prokka: 1.14.6
+Workflow:
+    nf-core/bacmodel: v1.0.0
+    Nextflow: 25.10.0

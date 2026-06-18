@@ -1,0 +1,97 @@
+# hmmsearch :: search profile(s) against a sequence database
+# HMMER 3.4 (Aug 2023); http://hmmer.org/
+# Copyright (C) 2023 Howard Hughes Medical Institute.
+# Freely distributed under the BSD open source license.
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# query HMM file:                  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/5d6b452cbf2365a55fcffb4a63756e0c/work/33/15dcd7ee6b8cfb8af3cfa2a10c09d1/models/TXSS/profiles/Archaeal-T4P_arCOG05613.hmm
+# target sequence database:        faecalibacterium_taiwanense.faa
+# output directed to file:         faecalibacterium_taiwanense/hmmer_results/Archaeal-T4P_arCOG05613.search_hmm.out
+# model-specific thresholding:     GA cutoffs
+# number of worker threads:        1
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Query:       arCOG05613  [M=230]
+Scores for complete sequences (score includes all domains):
+   --- full sequence ---   --- best 1 domain ---    -#dom-
+    E-value  score  bias    E-value  score  bias    exp  N  Sequence       Description
+    ------- ------ -----    ------- ------ -----   ---- --  --------       -----------
+    0.00024   18.4   0.1    0.00035   17.8   0.1    1.3  1  DHCEFBOC_02366  Serine--tRNA ligase
+    0.00029   18.1   1.8    0.00029   18.1   1.8    1.1  1  DHCEFBOC_01430  hypothetical protein
+    0.00033   17.9  14.1    0.00033   17.9  14.1    2.5  1  DHCEFBOC_02273  Chaperone protein ClpB 1
+    0.00046   17.5   1.3    0.00077   16.7   1.3    1.4  1  DHCEFBOC_01740  hypothetical protein
+    0.00072   16.8  28.4      0.063   10.5  14.4    2.7  0  DHCEFBOC_00424  hypothetical protein
+
+
+Domain annotation for each sequence (and alignments):
+>> DHCEFBOC_02366  Serine--tRNA ligase
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   17.8   0.1   7.2e-07   0.00035     112     186 ..      34     111 ..       5     197 .. 0.70
+
+  Alignments for each domain:
+  == domain 1  score: 17.8 bits;  conditional E-value: 7.2e-07
+      arCOG05613 112 eakdde.......ieaLkaeleevkkemdslkseleelkndnes..lkakidelnrt....fgdlderlsavvklselqlqqskasee 186
+                      +kd++       +eaLka   +++k +  l ++l + ++++++  l+a+id+ n++                k++el++++++ s++
+  DHCEFBOC_02366  34 IEKDAKyraclkeVEALKAARNKLSKANGPLFGQLKKCTDEAQKaeLQAQIDANNAAvkadA----------DKMAELEKEEETLSAR 111
+                     33333334444448888888888888888888888888877777678888888888733330..........3444444333322222 PP
+
+>> DHCEFBOC_01430  hypothetical protein
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   18.1   1.8     6e-07   0.00029     131     169 ..       3      39 ..       1      84 [. 0.77
+
+  Alignments for each domain:
+  == domain 1  score: 18.1 bits;  conditional E-value: 6e-07
+      arCOG05613 131 emdslkseleelkndneslkakidelnrtfgdlderlsa 169
+                       d+l +ele++++++++++aki+el+++   ++e+ s 
+  DHCEFBOC_01430   3 KIDKLDKELEKAREKAAEWQAKIRELEKQ--KQEEENSQ 39 
+                     689*************************8..33333332 PP
+
+>> DHCEFBOC_02273  Chaperone protein ClpB 1
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   17.9  14.1   6.7e-07   0.00033      65     200 ..     398     530 ..     386     594 .. 0.63
+
+  Alignments for each domain:
+  == domain 1  score: 17.9 bits;  conditional E-value: 6.7e-07
+      arCOG05613  65 LdeqledlkaelsqvkgnkeelenelkqlkakvkaLedekkelee.kieakddeieaLkaeleevkkemdslk...seleelkndneslkakide 155
+                      de     k+e+ +  +++++l++++ ql+ +  +L++e  +l++ ++++ ++e+ +L+++ +++k+  ++ k   ++++ l+++ e+ +a i++
+  DHCEFBOC_02273 398 VDEACAMIKTEMDSMPSEMDDLAHRITQLQIEQVSLKKETDALSQsRLKDLEKELAELQDKFRSMKAKWENEKnaiGKVQSLREQIEQTNADIEK 492
+                     55555556777777777777777777777775555655555554224555555555555555554444333331115566666666667777888 PP
+
+      arCOG05613 156 lnrtfgdlderlsa.vvklselqlqqskaseelikeeslaelnesD 200
+                      +r++ dl++ +     kl +lq+q +    e   ee++a ++++D
+  DHCEFBOC_02273 493 AQREY-DLNKAAELkYGKLPQLQKQLE----E---EEKIAAAKKED 530
+                     88886.555555552245555553333....2...34455555553 PP
+
+>> DHCEFBOC_01740  hypothetical protein
+   #    score  bias  c-Evalue  i-Evalue hmmfrom  hmm to    alifrom  ali to    envfrom  env to     acc
+ ---   ------ ----- --------- --------- ------- -------    ------- -------    ------- -------    ----
+   1 !   16.7   1.3   1.6e-06   0.00077      77     149 ..     235     309 ..     141     323 .. 0.76
+
+  Alignments for each domain:
+  == domain 1  score: 16.7 bits;  conditional E-value: 1.6e-06
+      arCOG05613  77 sqvkgnkeelenelkqlkakvkaLedekkeleekieakdde..ieaLkaeleevkkemdslkseleelkndnesl 149
+                     ++  ++ ++  +++  +++++++L++++ +l++ +++ d++  + + +++l +v+++ +s +s+++ + ++ e++
+  DHCEFBOC_01740 235 TYKNQQADDVTAQYMDVETRLENLKNQRTRLQQLQQQADNLsdLLEIESSLTDVQSQIESWQSQMDWYNDQVEEC 309
+                     444556667777777788899999999999999999999998888889999999999999999998888777765 PP
+
+>> DHCEFBOC_00424  hypothetical protein
+   [No individual domains that satisfy reporting thresholds (although complete target did)]
+
+
+
+Internal pipeline statistics summary:
+-------------------------------------
+Query model(s):                            1  (230 nodes)
+Target sequences:                       2450  (769152 residues searched)
+Passed MSV filter:                       233  (0.095102); expected 49.0 (0.02)
+Passed bias filter:                      175  (0.0714286); expected 49.0 (0.02)
+Passed Vit filter:                        66  (0.0269388); expected 2.5 (0.001)
+Passed Fwd filter:                        25  (0.0102041); expected 0.0 (1e-05)
+Initial search space (Z):               2450  [actual number of targets]
+Domain search space  (domZ):               5  [number of targets reported over threshold]
+# CPU time: 0.09u 0.00s 00:00:00.09 Elapsed: 00:00:00.09
+# Mc/sec: 1787.60
+//
+[ok]

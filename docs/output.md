@@ -22,6 +22,8 @@ The pipeline performs functional annotation and metabolic modeling of bacterial 
 
 ### Annotation
 
+Genomes are annotated using either Prokka (default) or Bakta. The annotation provides gene predictions and functional assignments.
+
 <details markdown="1">
 <summary>Output files</summary>
 
@@ -32,9 +34,9 @@ The pipeline performs functional annotation and metabolic modeling of bacterial 
 
 </details>
 
-Genomes are annotated using either Prokka (default) or Bakta. The annotation provides gene predictions and functional assignments.
-
 ### MacSyFinder
+
+MacSyFinder detects macromolecular systems such as Type III, IV, and VI secretion systems (TXSS).
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -44,9 +46,9 @@ Genomes are annotated using either Prokka (default) or Bakta. The annotation pro
 
 </details>
 
-MacSyFinder detects macromolecular systems such as Type III, IV, and VI secretion systems (TXSS).
-
 ### TRAITAR
+
+TRAITAR predicts phenotypic traits from protein sequences using machine learning models.
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -56,9 +58,9 @@ MacSyFinder detects macromolecular systems such as Type III, IV, and VI secretio
 
 </details>
 
-TRAITAR predicts phenotypic traits from protein sequences using machine learning models.
-
 ### CarveMe
+
+CarveMe reconstructs genome-scale metabolic models that can be used for flux balance analysis.
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -68,9 +70,9 @@ TRAITAR predicts phenotypic traits from protein sequences using machine learning
 
 </details>
 
-CarveMe reconstructs genome-scale metabolic models that can be used for flux balance analysis.
-
 ### Gapseq
+
+Gapseq predicts metabolic pathways and creates gap-filled metabolic models.
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -82,9 +84,9 @@ CarveMe reconstructs genome-scale metabolic models that can be used for flux bal
 
 </details>
 
-Gapseq predicts metabolic pathways and creates gap-filled metabolic models.
-
 ### Summary Table
+
+The summary table provides a comprehensive overview of all analysis results in a single TSV file.
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -93,8 +95,6 @@ Gapseq predicts metabolic pathways and creates gap-filled metabolic models.
   - `bacmodel_summary.tsv`: Aggregated results from all enabled tools
 
 </details>
-
-The summary table provides a comprehensive overview of all analysis results in a single TSV file.
 
 ### Pipeline information
 

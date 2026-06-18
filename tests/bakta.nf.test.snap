@@ -2,10 +2,6 @@
     "Params: Bakta annotation": {
         "content": [
             {
-                "BACMODEL_SUMMARY": {
-                    "pandas": "2.2.1",
-                    "python": "3.12.3"
-                },
                 "BAKTA_BAKTA": {
                     "bakta": "1.11.4"
                 },
@@ -13,7 +9,7 @@
                     "bakta": "1.11.4"
                 },
                 "Workflow": {
-                    "nf-core/bacmodel": "v1.0.0dev"
+                    "nf-core/bacmodel": "v1.0.0"
                 }
             },
             [
@@ -30,18 +26,16 @@
                 "annotation/bakta/faecalibacterium_taiwanense.tsv",
                 "annotation/bakta/faecalibacterium_taiwanense.txt",
                 "pipeline_info",
-                "pipeline_info/nf_core_bacmodel_software_versions.yml",
-                "summary",
-                "summary/bacmodel_summary.tsv"
+                "pipeline_info/nf_core_bacmodel_software_versions.yml"
             ],
             [
-                "bacmodel_summary.tsv:md5,afec2b7fb256f0ed01a8b4815ff85cc1"
+                
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-06-04T15:33:58.129682124"
+        "timestamp": "2026-06-17T13:13:30.030593802"
     }
 }

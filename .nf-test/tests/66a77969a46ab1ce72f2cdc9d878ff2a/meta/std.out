@@ -1,0 +1,42 @@
+ERROR ~ Error executing process > 'NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:GAPSEQ_UPDATESEQ'
+
+Caused by:
+  Process `NFCORE_BACMODEL:BACMODEL:BACMODEL_ANALYSIS:BACMODEL_FUNCTIONAL_ANNOTATION:GAPSEQ_UPDATESEQ` terminated with an error exit status (1)
+
+
+Command executed:
+
+  # Set gapseq database path to work directory to avoid read-only filesystem issues
+  export GAPSEQ_PATH=$PWD/gapseq_db
+  mkdir -p $GAPSEQ_PATH
+  
+  # Download reference sequence databases for both Bacteria and Archaea
+  # This prevents race conditions when multiple gapseq jobs try to download simultaneously
+  gapseq update-sequences -t Bacteria
+  gapseq update-sequences -t Archaea
+  
+  # Create flag file to indicate database is ready
+  echo "gapseq database initialized" > gapseq_db.txt
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  mkdir: cannot create directory ‘/zfshome’: Read-only file system
+  Error: could not create fallback directory '/zfshome/sukmb662/.gapseq/seq'.
+
+Work dir:
+  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/66a77969a46ab1ce72f2cdc9d878ff2a/work/cf/3b0b524b257d807e44720ccdee713f
+
+Container:
+  /work_ikmb/sukmb662/bacmodel/.nf-test/tests/66a77969a46ab1ce72f2cdc9d878ff2a/work/singularity/community.wave.seqera.io-library-gapseq-2.1.0--31c8824b3592beaf.img
+
+Tip: you can try to figure out what's wrong by changing to the process work dir and showing the script file named `.command.sh`
+
+ -- Check '/work_ikmb/sukmb662/bacmodel/.nf-test/tests/66a77969a46ab1ce72f2cdc9d878ff2a/meta/nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '/work_ikmb/sukmb662/bacmodel/.nf-test/tests/66a77969a46ab1ce72f2cdc9d878ff2a/meta/nextflow.log' file for details

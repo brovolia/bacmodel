@@ -2,87 +2,22 @@
     "Params: Prokka + Gapseq": {
         "content": [
             {
-                "BACMODEL_SUMMARY": {
-                    "pandas": "2.2.1",
-                    "python": "3.12.3"
-                },
-                "GAPSEQ_DOALL": {
-                    "gapseq": "2.1.0"
-                },
-                "MEMOTE_REPORT": {
-                    "memote": "0.17.0"
-                },
-                "MEMOTE_RUN": {
-                    "memote": "0.17.0"
-                },
-                "PROKKA": {
-                    "prokka": "1.14.6"
-                },
                 "Workflow": {
-                    "nf-core/bacmodel": "v1.0.0dev"
+                    "nf-core/bacmodel": "v1.0.0"
                 }
             },
             [
-                "annotation",
-                "annotation/prokka",
-                "annotation/prokka/faecalibacterium_taiwanense",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.err",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.faa",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.ffn",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.fna",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.fsa",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gbk",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gff",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.log",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.sqn",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tbl",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tsv",
-                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.txt",
-                "metabolic_models",
-                "metabolic_models/gapseq",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-Transporter-find_aligner.log",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-Transporter.tbl",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-Pathways.tbl",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-Reactions.tbl",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-find_aligner.log",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-draft.RDS",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-draft.xml",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense.RDS",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense.xml",
-                "metabolic_models/memote",
-                "metabolic_models/memote/faecalibacterium_taiwanense_gapseq.html",
-                "metabolic_models/memote/faecalibacterium_taiwanense_gapseq.json.gz",
                 "pipeline_info",
-                "pipeline_info/nf_core_bacmodel_software_versions.yml",
-                "summary",
-                "summary/bacmodel_summary.tsv"
+                "pipeline_info/nf_core_bacmodel_software_versions.yml"
             ],
             [
-                "faecalibacterium_taiwanense.err:md5,e22435b4287449f69ac02bf70992007a",
-                "faecalibacterium_taiwanense.faa:md5,f87b47c5cb67d9f06b228ae5a5dd8894",
-                "faecalibacterium_taiwanense.ffn:md5,82e08ddb0a241f0848ce3afe1f2b5747",
-                "faecalibacterium_taiwanense.fna:md5,0508f1fe745351ca15f1fd2598a63ee8",
-                "faecalibacterium_taiwanense.fsa:md5,a0fa805662a42c7651a7b1f3fe90c267",
-                "faecalibacterium_taiwanense.gbk:md5,c9fbb7f89b4f0688656b5f7d5000a782",
-                "faecalibacterium_taiwanense.gff:md5,d188aff6ae0d3493d874e4e533f9d6d1",
-                "faecalibacterium_taiwanense.log:md5,85034295c7afbc27916991be52d7918b",
-                "faecalibacterium_taiwanense.sqn:md5,43e5193740cb55491c97729db0a5d3ce",
-                "faecalibacterium_taiwanense.tbl:md5,5bfcf452ea6c31c12723188bc2ad8b41",
-                "faecalibacterium_taiwanense.tsv:md5,b2464233e052a994067100d89af8ac55",
-                "faecalibacterium_taiwanense.txt:md5,125ba58744cc39d0228683a29be68749",
-                "faecalibacterium_taiwanense-draft.RDS:md5,45883534a2b0f3c480a881d4b6a8354b",
-                "faecalibacterium_taiwanense-draft.xml:md5,a926ce33715350499002e9e77ad985ff",
-                "faecalibacterium_taiwanense.RDS:md5,ef38b6cb408868a2b5c0b37b237bfa70",
-                "faecalibacterium_taiwanense.xml:md5,3b950cb3544d5509a9565d50a1d599d3",
-                "faecalibacterium_taiwanense_gapseq.html:md5,99919d73491277479aca38f4af9eca0e",
-                "faecalibacterium_taiwanense_gapseq.json.gz:md5,0e245ba7e225f7eb626fdf3ec0c07b18",
-                "bacmodel_summary.tsv:md5,c857816c015a832cf3b2c2a753ccc9cc"
+                
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "25.10.0"
         },
-        "timestamp": "2026-06-12T09:46:36.232871711"
+        "timestamp": "2026-06-18T14:49:52.949427177"
     }
 }

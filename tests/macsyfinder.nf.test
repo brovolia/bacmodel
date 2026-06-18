@@ -11,7 +11,7 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.csv"
-                
+
                 // Test MacSyFinder specifically
                 annotation_tool = 'prokka'
                 macsyfinder_models = 'TXSS'

@@ -50,7 +50,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     if (params.annotation_tool == 'bakta') {
         // Handle Bakta database
         ch_baktadb = Channel.empty()
-        
+
         if (params.baktadb_download) {
             // Download database
             BAKTA_BAKTADBDOWNLOAD()
@@ -61,7 +61,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         } else {
             error "Bakta requires a database. Please provide --baktadb /path/to/db or use --baktadb_download true"
         }
-        
+
         BAKTA_BAKTA(ch_genomes, ch_baktadb, [], [], [], [])
         ch_annotated_proteins = BAKTA_BAKTA.out.faa
         ch_annotated_gff = BAKTA_BAKTA.out.gff
@@ -72,10 +72,10 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         if (!params.macsyfinder_models) {
             error "MacSyFinder requires model names. Please provide --macsyfinder_models (e.g., 'TXSS')"
         }
-        
+
         // Download MacSyFinder models
         MACSYFINDER_DOWNLOAD(params.macsyfinder_models)
-        
+
         MACSYFINDER_SEARCH(
             ch_annotated_proteins,
             MACSYFINDER_DOWNLOAD.out.models,
@@ -90,7 +90,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     if (params.run_traitar) {
         // Handle Pfam database for TRAITAR
         ch_pfamdb = Channel.empty()
-        
+
         if (params.pfamdb_download) {
             // Download database
             TRAITAR_PFAMGET()
@@ -101,7 +101,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         } else {
             error "TRAITAR requires a Pfam database. Please provide --pfamdb /path/to/pfam or use --pfamdb_download true"
         }
-        
+
         TRAITAR(
             ch_annotated_proteins,
             'from_genes',
@@ -116,7 +116,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Metabolic Modeling - CarveMe (protein-based)
     if (params.run_carveme) {
-        ch_carveme_input = ch_annotated_proteins.map { meta, faa -> 
+        ch_carveme_input = ch_annotated_proteins.map { meta, faa ->
             // Keep medium_carveme in meta for ext.args configuration
             // Pass mediadb as input (or empty if using default)
             def mediadb = params.carveme_mediadb ? file(params.carveme_mediadb) : []
@@ -130,7 +130,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Metabolic Modeling - Gapseq (genome-based)
     if (params.run_gapseq) {
-        ch_gapseq_input = ch_genomes.map { meta, fasta -> 
+        ch_gapseq_input = ch_genomes.map { meta, fasta ->
             // medium_gapseq from meta: can be empty, a medium name (LB, M9), or path to CSV file
             def medium = []
             if (meta.medium_gapseq && meta.medium_gapseq.toString().contains('/')) {
@@ -168,22 +168,22 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
                 // Keep only if there's at least one final model
                 xml instanceof List ? !xml.isEmpty() : xml != null
             }
-        
+
         // Add tool tag to carveme models
         ch_carveme_tagged = ch_carveme_model.map { meta, xml ->
             def new_meta = meta + [tool: 'carveme']
             [new_meta, xml]
         }
-        
+
         // Combine gapseq and carveme models for memote evaluation
         ch_models_for_memote = ch_gapseq_final.mix(ch_carveme_tagged)
-        
+
         // Run memote for JSON output (for summary table)
         MEMOTE_RUN(
             ch_models_for_memote
         )
         ch_memote_json = MEMOTE_RUN.out.json
-        
+
         // Generate HTML report for visualization
         MEMOTE_REPORT(
             ch_models_for_memote
@@ -194,13 +194,13 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     // Generate summary table combining all results
     // Collect sample IDs and write to file
     ch_sample_ids = ch_genomes.map { meta, fasta -> meta.id }.collectFile(name: 'sample_ids.txt', newLine: true)
-    
+
     // Collect all results for summary (handling empty channels)
     ch_macsyfinder_for_summary = ch_macsyfinder_results.map { meta, file -> file }.collect().ifEmpty([])
     ch_traitar_majority_for_summary = ch_traitar_results.map { meta, file -> file }.collect().ifEmpty([])
     ch_traitar_single_for_summary = ch_traitar_single_votes.map { meta, file -> file }.collect().ifEmpty([])
     ch_carveme_for_summary = ch_carveme_model.map { meta, file -> file }.collect().ifEmpty([])
-    
+
     // Use RENAME_GAPSEQ_XML process to rename XML files (avoid collision with CarveMe)
     if (params.run_gapseq) {
         ch_gapseq_xml_filtered = ch_gapseq_xml.map { meta, xml ->
@@ -213,10 +213,10 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     } else {
         ch_gapseq_for_summary = Channel.empty()
     }
-    
+
     ch_gapseq_tbl_for_summary = ch_gapseq_tbl.map { meta, files -> files }.flatten().collect().ifEmpty([])
     ch_memote_for_summary = ch_memote_json.map { meta, json -> json }.collect().ifEmpty([])
-    
+
     BACMODEL_SUMMARY(
         ch_sample_ids,
         ch_macsyfinder_for_summary,

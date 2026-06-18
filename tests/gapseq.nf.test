@@ -11,7 +11,7 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.csv"
-                
+
                 // Test Gapseq specifically
                 annotation_tool = 'prokka'
                 run_macsyfinder = false

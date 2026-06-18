@@ -9,6 +9,7 @@ We welcome contributions from the community. Here's how you can help:
 ### Reporting bugs
 
 If you find a bug, please open an issue on our [GitHub repository](https://github.com/nf-core/bacmodel/issues) with:
+
 - A clear description of the bug
 - Steps to reproduce
 - Expected vs actual behavior
@@ -17,6 +18,7 @@ If you find a bug, please open an issue on our [GitHub repository](https://githu
 ### Suggesting enhancements
 
 Feature requests are welcome! Please open an issue describing:
+
 - The enhancement you'd like to see
 - Why it would be useful
 - How it might work

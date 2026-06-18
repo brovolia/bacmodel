@@ -11,7 +11,7 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
                 input = "$projectDir/assets/samplesheet.csv"
-                
+
                 // Test Traitar specifically
                 annotation_tool = 'prokka'
                 pfamdb_download = true

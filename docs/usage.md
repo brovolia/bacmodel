@@ -13,6 +13,28 @@ nf-core/bacmodel is a bioinformatics pipeline for functional annotation and meta
 - Phenotype prediction (TRAITAR)
 - Metabolic model reconstruction (CarveMe and/or Gapseq)
 
+## Pipeline workflow
+
+The pipeline processes genome assemblies through multiple tools with the following data flow:
+
+1. **Prokka or Bakta** performs primary genome annotation
+   - Input: Raw genome FASTA files
+   - Output: Protein FASTA (`.faa`), GFF files, and various annotation formats
+2. **CarveMe** builds metabolic models using protein-based annotation
+   - Input: Protein FASTA (`.faa`) from Prokka/Bakta
+   - Uses annotated proteins to reconstruct metabolic networks
+3. **Gapseq** builds metabolic models independently
+   - Input: Raw genome FASTA files (runs its own internal annotation)
+   - Does not depend on Prokka/Bakta output
+4. **MacSyFinder** searches for macromolecular systems
+   - Input: Protein FASTA (`.faa`) from Prokka/Bakta
+   - Detects secretion systems (TXSS) and other molecular machines
+5. **TRAITAR** predicts phenotypic traits
+   - Input: Protein FASTA (`.faa`) from Prokka/Bakta
+   - Predicts metabolic and physiological capabilities
+
+This architecture means that if you choose Prokka (`--annotation_tool prokka`) or Bakta (`--annotation_tool bakta`), the annotation will be shared by CarveMe, MacSyFinder, and TRAITAR. Gapseq operates independently with its own annotation step, allowing comparison between different metabolic modeling approaches.
+
 ## Samplesheet input
 
 You will need to create a samplesheet with information about the genome assemblies you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns, and a header row as shown in the example below.

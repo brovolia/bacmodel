@@ -10,8 +10,11 @@ annotation/prokka/*.{html,log,err,txt,tsv,tbl,sqn,faa,ffn,fna,gbk,gff}
 annotation/bakta/*.{html,log,json,txt,tsv,svg,png,faa,ffn,fna,gbff,gff3,embl}
 functional_annotation/macsyfinder/*.{log,txt}
 phenotype/traitar/*.{log,txt}
-metabolic_models/carveme/*.{log,txt}
-metabolic_models/gapseq/*.{log,txt,fna,tbl}
+phenotype/traitar/*.txt
+metabolic_models/carveme/*.{log,txt,xml,RDS}
+metabolic_models/gapseq/*.{log,txt,fna,tbl,xml,RDS,html,json.gz}
+metabolic_models/memote/*.{html,json.gz}
+bacmodel_summary.tsv
 bakta/db/**
 traitar/pfam/**
 macsyfinder/models/**

@@ -29,22 +29,13 @@
                 "pipeline_info/nf_core_bacmodel_software_versions.yml"
             ],
             [
-                "faecalibacterium_taiwanense.embl:md5,8d559ae6a847f31071b26718957eb550",
-                "faecalibacterium_taiwanense.faa:md5,f9dbe2aa3b06bf6c75a1ff7318e2d908",
-                "faecalibacterium_taiwanense.ffn:md5,2c7887db6a657f48e176aca7c11c1d16",
-                "faecalibacterium_taiwanense.fna:md5,d39ab8bcb7f92cc87b1c5eccad3e87ad",
-                "faecalibacterium_taiwanense.gbff:md5,6bb6cd38aeeab6511e9be4672e3b0a92",
-                "faecalibacterium_taiwanense.gff3:md5,4f0abd19b209bf13d6eed4499ae3c25b",
-                "faecalibacterium_taiwanense.hypotheticals.faa:md5,15ac35e50b8311aa190163329db610ef",
-                "faecalibacterium_taiwanense.hypotheticals.tsv:md5,f99b699d562f6c4520d1e9a5bae568a9",
-                "faecalibacterium_taiwanense.tsv:md5,293efdb698fdc32592ab6418b384d604",
-                "faecalibacterium_taiwanense.txt:md5,cb6c0e17ac26a80b738a315339073a50"
+                
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-06-24T14:33:04.809881008"
+        "timestamp": "2026-06-24T16:11:26.269704352"
     }
 }

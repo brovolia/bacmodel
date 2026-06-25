@@ -54,13 +54,10 @@
                 "metabolic_models/memote/faecalibacterium_taiwanense_gapseq.json.gz",
                 "pipeline_info",
                 "pipeline_info/nf_core_bacmodel_software_versions.yml",
-                "rename",
-                "rename/faecalibacterium_taiwanense_gapseq.xml",
                 "summary",
                 "summary/bacmodel_summary.tsv"
             ],
             [
-                "faecalibacterium_taiwanense_gapseq.xml:md5,3b950cb3544d5509a9565d50a1d599d3"
             ]
         ],
         "meta": {

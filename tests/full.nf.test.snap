@@ -938,13 +938,10 @@
                 "phenotype/traitar/faecalibacterium_taiwanense/predictions_single-votes.txt",
                 "pipeline_info",
                 "pipeline_info/nf_core_bacmodel_software_versions.yml",
-                "rename",
-                "rename/faecalibacterium_taiwanense_gapseq.xml",
                 "summary",
                 "summary/bacmodel_summary.tsv"
             ],
             [
-                "faecalibacterium_taiwanense_gapseq.xml:md5,3b950cb3544d5509a9565d50a1d599d3"
             ],
             "bacmodel_summary.tsv:md5,249acbe68ec208428373aa30039b324c"
         ],

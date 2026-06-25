@@ -23,6 +23,7 @@ Initial release of nf-core/bacmodel, created with the [nf-core](https://nf-co.re
 - XML filename collision between CarveMe and gapseq outputs
 - Reaction counting for gapseq models now parses XML directly
 - MEMOTE module whitespace alignment with nf-core remote
+- Gapseq database auto-download: container options ensure writable directory for database initialization
 
 ### `Dependencies`
 

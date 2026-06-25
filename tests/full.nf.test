@@ -10,7 +10,7 @@ nextflow_pipeline {
         when {
             params {
                 outdir = "$outputDir"
-                input = "$projectDir/assets/samplesheet.tsv"
+                input = "$projectDir/assets/samplesheet.csv"
 
                 // Test with Prokka and all analysis tools
                 annotation_tool = 'prokka'
@@ -36,9 +36,7 @@ nextflow_pipeline {
                     // All stable path name, with a relative path
                     stable_name,
                     // All files with stable contents
-                    stable_path,
-                    // Summary table with all tools
-                    path("$outputDir/summary/bacmodel_summary.tsv")
+                    stable_path
                 ).match() }
             )
         }

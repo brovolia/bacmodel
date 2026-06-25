@@ -197,6 +197,12 @@
                     "default": "--type light",
                     "description": "Arguments for Bakta database download",
                     "fa_icon": "fas fa-cog"
+                },
+                "min_contig_length": {
+                    "type": "integer",
+                    "default": 200,
+                    "description": "Minimum contig length for annotation and analysis",
+                    "fa_icon": "fas fa-ruler"
                 }
             }
         },

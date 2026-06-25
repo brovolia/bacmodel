@@ -13,6 +13,28 @@ nf-core/bacmodel is a bioinformatics pipeline for functional annotation and meta
 - Phenotype prediction (TRAITAR)
 - Metabolic model reconstruction (CarveMe and/or Gapseq)
 
+## Pipeline workflow
+
+The pipeline processes genome assemblies through multiple tools with the following data flow:
+
+1. **Prokka or Bakta** performs primary genome annotation
+   - Input: Raw genome FASTA files
+   - Output: Protein FASTA (`.faa`), GFF files, and various annotation formats
+2. **CarveMe** builds metabolic models using protein-based annotation
+   - Input: Protein FASTA (`.faa`) from Prokka/Bakta
+   - Uses annotated proteins to reconstruct metabolic networks
+3. **Gapseq** builds metabolic models independently
+   - Input: Raw genome FASTA files (runs its own internal annotation)
+   - Does not depend on Prokka/Bakta output
+4. **MacSyFinder** searches for macromolecular systems
+   - Input: Protein FASTA (`.faa`) from Prokka/Bakta
+   - Detects secretion systems (TXSS) and other molecular machines
+5. **TRAITAR** predicts phenotypic traits
+   - Input: Protein FASTA (`.faa`) from Prokka/Bakta
+   - Predicts metabolic and physiological capabilities
+
+This architecture means that if you choose Prokka (`--annotation_tool prokka`) or Bakta (`--annotation_tool bakta`), the annotation will be shared by CarveMe, MacSyFinder, and TRAITAR. Gapseq operates independently with its own annotation step, allowing comparison between different metabolic modeling approaches.
+
 ## Samplesheet input
 
 You will need to create a samplesheet with information about the genome assemblies you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns, and a header row as shown in the example below.
@@ -51,6 +73,8 @@ The optional `medium_gapseq` and `medium_carveme` columns allow you to specify g
 
 #### Gapseq media (`medium_gapseq`)
 
+> **Note:** Gapseq automatically downloads reference sequence databases on first use. The pipeline uses container options to ensure each process has a writable directory for database initialization.
+
 **Default behavior (empty column):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
 
 **Built-in media names:** You can specify predefined media names that gapseq recognizes: `LB` (Luria-Bertani rich medium) or `M9` (M9 minimal medium). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
@@ -72,6 +96,18 @@ cpd00007,O2,10
 cpd00009,Phosphate,100
 cpd00013,NH3,100
 ```
+
+**Advanced customization:** The pipeline uses `gapseq doall` for streamlined workflow execution. For advanced users who need full control over individual gapseq subworkflows (`find`, `find-transport`, `draft`, `medium`, and `fill`), additional parameters can be passed via a custom configuration file:
+
+```nextflow
+process {
+    withName: 'GAPSEQ_DOALL' {
+        ext.args = '-b 200 -p nuc -c 0.5'  // Example: custom blast threshold, pathway completion threshold
+    }
+}
+```
+
+Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for available parameters. Note that full subworkflow customization may require creating a custom workflow outside of the `doall` command.
 
 #### CarveMe media (`medium_carveme`)
 

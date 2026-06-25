@@ -17,4 +17,3 @@ metabolic_models/memote/*.{html,json.gz}
 summary/bacmodel_summary.tsv
 bakta/db/**
 traitar/pfam/**
-

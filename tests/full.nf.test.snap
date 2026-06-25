@@ -942,13 +942,13 @@
                 "summary/bacmodel_summary.tsv"
             ],
             [
-            ],
-            "bacmodel_summary.tsv:md5,249acbe68ec208428373aa30039b324c"
+                
+            ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-06-24T15:07:48.373773452"
+        "timestamp": "2026-06-25T13:56:51.622901861"
     }
 }

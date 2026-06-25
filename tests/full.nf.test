@@ -36,9 +36,7 @@ nextflow_pipeline {
                     // All stable path name, with a relative path
                     stable_name,
                     // All files with stable contents
-                    stable_path,
-                    // Summary table with all tools
-                    path("$outputDir/summary/bacmodel_summary.tsv")
+                    stable_path
                 ).match() }
             )
         }

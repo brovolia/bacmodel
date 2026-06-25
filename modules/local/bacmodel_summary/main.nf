@@ -184,8 +184,9 @@ process BACMODEL_SUMMARY {
                     except:
                         pass
 
-    # Create and save dataframe
+    # Create and save dataframe (sorted by sample_id for deterministic output)
     df = pd.DataFrame(summary_data)
+    df = df.sort_values('sample_id').reset_index(drop=True)
     df.to_csv('bacmodel_summary.tsv', sep='\\t', index=False)
     EOF
     """

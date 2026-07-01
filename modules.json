@@ -7,58 +7,80 @@
                 "nf-core": {
                     "bakta/bakta": {
                         "branch": "master",
-                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
-                        "installed_by": ["modules"]
+                        "git_sha": "81fe5e6f07fa92ecfd1721373620e2538a1466eb",
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "bakta/baktadbdownload": {
                         "branch": "master",
-                        "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
-                        "installed_by": ["modules"]
+                        "git_sha": "81fe5e6f07fa92ecfd1721373620e2538a1466eb",
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "carveme/carve": {
                         "branch": "master",
                         "git_sha": "3326d8229aae457d374efecfd479f3120d589f17",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "gapseq/doall": {
                         "branch": "master",
                         "git_sha": "01703132c26e5c61d570731fc8b16585d26be229",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "macsyfinder/download": {
                         "branch": "master",
                         "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "macsyfinder/search": {
                         "branch": "master",
                         "git_sha": "6d46786420b4d7bc88eba026eb389c0c5535d120",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "memote/report": {
                         "branch": "master",
                         "git_sha": "b753e113d805b8244cc3b9dd59ba3f4fac1a42f3",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "memote/run": {
                         "branch": "master",
                         "git_sha": "b753e113d805b8244cc3b9dd59ba3f4fac1a42f3",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "prokka": {
                         "branch": "master",
                         "git_sha": "2dc23692bd1c3a23a12cfd959808a8fe7e3c6557",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "traitar/pfamget": {
                         "branch": "master",
                         "git_sha": "bd8653e13f9c2394b757da1fd48b8cf9ad641e11",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     },
                     "traitar/run": {
                         "branch": "master",
                         "git_sha": "bd8653e13f9c2394b757da1fd48b8cf9ad641e11",
-                        "installed_by": ["modules"]
+                        "installed_by": [
+                            "modules"
+                        ]
                     }
                 }
             },
@@ -67,17 +89,23 @@
                     "utils_nextflow_pipeline": {
                         "branch": "master",
                         "git_sha": "1a545fcbd762911c21a64ced3dbef99b2b51ac75",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": [
+                            "subworkflows"
+                        ]
                     },
                     "utils_nfcore_pipeline": {
                         "branch": "master",
                         "git_sha": "a3fb7351b1fdb2b1de282b765816bbea190e86a8",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": [
+                            "subworkflows"
+                        ]
                     },
                     "utils_nfschema_plugin": {
                         "branch": "master",
                         "git_sha": "a7b27fd25bfa8dcc07d299e88bd790585901a436",
-                        "installed_by": ["subworkflows"]
+                        "installed_by": [
+                            "subworkflows"
+                        ]
                     }
                 }
             }

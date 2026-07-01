@@ -3,16 +3,18 @@ repository_type: pipeline
 nf_core_version: 4.0.2
 
 lint:
-  files_unchanged:
-    - .github/CONTRIBUTING.md
-    - assets/sendmail_template.txt
-    - .prettierignore
+  # files_unchanged disabled due to nf-core/tools 4.0.2 bug:
+  # JSONDecodeError in try_generate_container_configs() when Nextflow 26.x
+  # outputs non-JSON lines (e.g. "[PIPELINE]") to stdout during `nextflow inspect`.
+  # Re-enable once nf-core/tools fixes the except clause (should catch JSONDecodeError).
+  files_unchanged: false
   multiqc_config: false
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
     - assets/multiqc_config.yml
   template_strings: false
+  container_configs: false
 
 template:
   org: nf-core

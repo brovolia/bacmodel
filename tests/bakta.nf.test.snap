@@ -3,10 +3,10 @@
         "content": [
             {
                 "BAKTA_BAKTA": {
-                    "bakta": "1.11.4"
+                    "bakta": "1.12.0"
                 },
                 "BAKTA_BAKTADBDOWNLOAD": {
-                    "bakta": "1.11.4"
+                    "bakta": "1.12.0"
                 },
                 "Workflow": {
                     "nf-core/bacmodel": "v1.0.0"
@@ -36,6 +36,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-06-24T16:11:26.269704352"
+        "timestamp": "2026-07-02T09:16:57.363524998"
     }
 }

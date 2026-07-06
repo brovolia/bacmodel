@@ -19,6 +19,16 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: Clean disk space
+      shell: bash
+      run: |
+        echo "Available space before cleanup:"
+        df -h
+        docker system prune -af --volumes || true
+        sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/share/boost "$AGENT_TOOLSDIRECTORY" || true
+        echo "Available space after cleanup:"
+        df -h
+
     - name: Setup Nextflow
       uses: nf-core/setup-nextflow@v2
       with:

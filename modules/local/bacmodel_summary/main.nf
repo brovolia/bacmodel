@@ -24,7 +24,7 @@ process BACMODEL_SUMMARY {
 
     output:
     path("bacmodel_summary.tsv")        , emit: tsv
-    tuple val("${task.process}"), val('python'), eval("python3 --version | sed 's/Python //' | sed 's/.*/\"&\"/'"), topic: versions, emit: versions_python
+    tuple val("${task.process}"), val('python'), eval("python3 --version | sed 's/Python //' | sed 's/\\.[0-9]*\$//' | sed 's/.*/\"&\"/'"), topic: versions, emit: versions_python
     tuple val("${task.process}"), val('pandas'), eval("python3 -c 'import pandas; print(pandas.__version__)'"), topic: versions, emit: versions_pandas
 
     when:

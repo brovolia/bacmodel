@@ -4,7 +4,7 @@
             {
                 "BACMODEL_SUMMARY": {
                     "pandas": "2.2.1",
-                    "python": "3.12.3"
+                    "python": "3.12"
                 },
                 "GAPSEQ_DOALL": {
                     "gapseq": "2.1.0"

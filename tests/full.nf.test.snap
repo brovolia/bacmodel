@@ -55,7 +55,7 @@
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tbl",
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tsv",
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.txt",
-                "functional_annotation",
+                "macromolecular_systems",
                 "macromolecular_systems/macsyfinder",
                 "macromolecular_systems/macsyfinder/faecalibacterium_taiwanense",
                 "macromolecular_systems/macsyfinder/faecalibacterium_taiwanense/all_systems.tsv",
@@ -949,6 +949,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-06-26T11:27:15.600568042"
+        "timestamp": "2026-07-07T15:03:28.632781553"
     }
 }

@@ -1,17 +1,15 @@
-name: gapseq_doall
-description: Complete gapseq workflow from genome to gap-filled model
+name: gapseq_find
+description: Predict metabolic pathways from genomic data using gapseq
 keywords:
-  - metabolic model
-  - gap filling
-  - pathway prediction
+  - metabolic pathways
+  - genomics
   - bacteria
-  - genome-scale model
-  - complete workflow
+  - pathway prediction
 tools:
   - gapseq:
       description: |
         gapseq is designed to combine metabolic pathway analysis with metabolic network reconstruction and curation.
-        The doall command runs the complete workflow: pathway prediction, transporter inference, model construction, and gap filling.
+        The find command predicts metabolic pathways from genomic information and databases for pathways and reactions.
       homepage: https://github.com/jotech/gapseq
       documentation: https://gapseq.readthedocs.io/
       tool_dev_url: https://github.com/jotech/gapseq
@@ -31,12 +29,6 @@ input:
         pattern: "*.{fasta,fa,faa,fna,gz}"
         ontologies:
           - edam: http://edamontology.org/format_3989
-    - medium:
-        type: file
-        description: Optional medium definition file (CSV format)
-        pattern: "*.csv"
-        ontologies:
-          - edam: http://edamontology.org/format_3752
   - db:
       type: directory
       description: |
@@ -44,40 +36,27 @@ input:
         Passed to gapseq via -D. If not provided, gapseq downloads the database itself.
       pattern: "gapseq_db"
 output:
-  model:
+  reactions:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. [ id:'test', single_end:false ]
-      - "*.RDS":
+      - "*-all-Reactions.tbl":
           type: file
-          description: Gap-filled metabolic model in RDS format
-          pattern: "*.RDS"
+          description: TBL file containing predicted reactions
+          pattern: "*-all-Reactions.tbl"
           ontologies: []
-  xml:
+  pathways:
     - - meta:
           type: map
           description: |
             Groovy Map containing sample information
             e.g. [ id:'test', single_end:false ]
-      - "*.xml":
+      - "*-all-Pathways.tbl":
           type: file
-          description: Gap-filled metabolic model in SBML XML format
-          pattern: "*.xml"
-          ontologies:
-            - edam: http://edamontology.org/format_2585
-            - edam: http://edamontology.org/format_2332
-  tbl:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.tbl":
-          type: file
-          description: TBL files containing pathway and transporter predictions
-          pattern: "*.tbl"
+          description: TBL file containing predicted pathways
+          pattern: "*-all-Pathways.tbl"
           ontologies: []
   fna:
     - - meta:
@@ -98,7 +77,7 @@ output:
             e.g. [ id:'test', single_end:false ]
       - "*.log":
           type: file
-          description: Log files from gapseq doall
+          description: Log files from gapseq find
           pattern: "*.log"
           ontologies: []
   versions_gapseq:
@@ -147,6 +126,6 @@ containers:
       https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/93/933e301b11c1ec1699da6382e9e35b0e4e31edb80763eb2fa1b69ad7d6d1e5c7/data
   conda:
     linux/amd64:
-      lock_file: modules/nf-core/gapseq/doall/.conda-lock/linux_amd64-bd-c32b876ebb5e5f5b_1.txt
+      lock_file: modules/nf-core/gapseq/find/.conda-lock/linux_amd64-bd-c32b876ebb5e5f5b_1.txt
     linux/arm64:
-      lock_file: modules/nf-core/gapseq/doall/.conda-lock/linux_arm64-bd-4c3c0957c0119f60_1.txt
+      lock_file: modules/nf-core/gapseq/find/.conda-lock/linux_arm64-bd-4c3c0957c0119f60_1.txt

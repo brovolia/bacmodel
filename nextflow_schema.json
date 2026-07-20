@@ -266,6 +266,31 @@
                     "description": "Run Gapseq for pathway analysis and metabolic modeling",
                     "fa_icon": "fas fa-share-alt"
                 },
+                "gapseq_find_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq find' (e.g., '-b 200 -A diamond')",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_findtransport_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq find-transport' (e.g., '-b 200')",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_draft_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq draft' (e.g., '-u 200')",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_medium_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq medium'",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_fill_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq fill' (e.g., '-b 100')",
+                    "fa_icon": "fas fa-cog"
+                },
                 "run_memote": {
                     "type": "boolean",
                     "default": false,

@@ -22,7 +22,37 @@
                     },
                     "gapseq/doall": {
                         "branch": "master",
-                        "git_sha": "01703132c26e5c61d570731fc8b16585d26be229",
+                        "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+                        "installed_by": ["modules"]
+                    },
+                    "gapseq/draft": {
+                        "branch": "master",
+                        "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+                        "installed_by": ["modules"]
+                    },
+                    "gapseq/fill": {
+                        "branch": "master",
+                        "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+                        "installed_by": ["modules"]
+                    },
+                    "gapseq/find": {
+                        "branch": "master",
+                        "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+                        "installed_by": ["modules"]
+                    },
+                    "gapseq/findtransport": {
+                        "branch": "master",
+                        "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
+                        "installed_by": ["modules"]
+                    },
+                    "gapseq/medium": {
+                        "branch": "master",
+                        "git_sha": "999a6e24abd9daf0ea946e750100bd8d33d65c91",
+                        "installed_by": ["modules"]
+                    },
+                    "gapseq/requestdb": {
+                        "branch": "master",
+                        "git_sha": "f4b46ce19a6149a91545bafd521c0e59eba2f705",
                         "installed_by": ["modules"]
                     },
                     "macsyfinder/download": {

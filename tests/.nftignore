@@ -13,6 +13,10 @@ macromolecular_systems/macsyfinder/**/hmmer_results/**
 phenotype/traitar/**/*.{log,txt}
 metabolic_models/carveme/*.{log,txt,xml,RDS}
 metabolic_models/gapseq/*.{log,txt,fna,tbl,xml,RDS,html,json.gz}
+metabolic_models/gapseq/intermediate/draft/*.RDS
+metabolic_models/gapseq/intermediate/find/*.tbl
+metabolic_models/gapseq/intermediate/findtransport/*.tbl
+metabolic_models/gapseq/intermediate/medium/*.csv
 metabolic_models/memote/*.{html,json.gz}
 summary/bacmodel_summary.tsv
 bakta/db/**

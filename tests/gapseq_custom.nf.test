@@ -20,7 +20,7 @@ nextflow_pipeline {
                 run_carveme = false
                 run_gapseq = true
                 run_memote = true
-                
+
                 // Custom parameters trigger custom workflow mode
                 // This tests find → findtransport → draft → medium → fill sequence
                 gapseq_find_args = '-b 150 -A diamond'

@@ -5,12 +5,12 @@
     Full gapseq metabolic reconstruction workflow with customizable parameters.
     Supports both simplified 'doall' mode and advanced customization via individual
     subworkflows (find, find-transport, draft, medium, fill).
-    
+
     Workflow selection:
     - If any custom args are provided (gapseq_find_args, gapseq_findtransport_args, etc.),
       the custom workflow is automatically used for full parameter control
     - Otherwise, uses the simplified 'doall' approach (recommended for most users)
-    
+
     Addresses two key requirements:
     1. Database pre-download to prevent race conditions in parallel execution
     2. Full parameter customization for advanced users
@@ -33,9 +33,9 @@ workflow GAPSEQ_WORKFLOW {
     main:
 
     ch_versions = Channel.empty()
-    
+
     // Automatically detect if custom workflow should be used based on parameters
-    def use_custom = params.gapseq_find_args || params.gapseq_findtransport_args || 
+    def use_custom = params.gapseq_find_args || params.gapseq_findtransport_args ||
                      params.gapseq_draft_args || params.gapseq_medium_args || params.gapseq_fill_args
 
     //
@@ -61,26 +61,26 @@ workflow GAPSEQ_WORKFLOW {
         // Custom workflow: Full control over each gapseq subworkflow
         // Allows advanced users to customize find, find-transport, draft, medium, and fill separately
         //
-        
+
         // Step 1: Find pathways (uses sequence database)
         ch_find_input = ch_gapseq_input.map { meta, fasta, medium ->
             [ meta, fasta ]
         }
         GAPSEQ_FIND(ch_find_input, ch_seqdb)
-        
+
         // Step 2: Find transporters (does NOT use sequence database)
         ch_findtransport_input = ch_gapseq_input.map { meta, fasta, medium ->
             [ meta, fasta ]
         }
         GAPSEQ_FINDTRANSPORT(ch_findtransport_input)
-        
+
         // Step 3: Create draft model (uses results, not sequence database)
         // Combine find and findtransport outputs
         ch_draft_input = GAPSEQ_FIND.out.reactions
             .join(GAPSEQ_FINDTRANSPORT.out.tbl, by: 0)
             .join(GAPSEQ_FIND.out.pathways, by: 0)
         GAPSEQ_DRAFT(ch_draft_input)
-        
+
         // Step 4: Medium definition (does NOT use sequence database)
         // If the sample provides its own medium file via medium_gapseq, use it as-is
         // (gapseq has no notion of "combining" media - it only lets you add/remove
@@ -106,22 +106,22 @@ workflow GAPSEQ_WORKFLOW {
         ch_fill_input = GAPSEQ_DRAFT.out.draft
             .join(ch_medium, by: 0)
         GAPSEQ_FILL(ch_fill_input)
-        
+
         // Outputs from custom workflow
         ch_model = GAPSEQ_FILL.out.filled
         ch_xml = GAPSEQ_FILL.out.xml
         ch_pathways = GAPSEQ_FIND.out.pathways
         ch_transporters = GAPSEQ_FINDTRANSPORT.out.tbl
-        
+
     } else {
         //
         // Simplified workflow: Use gapseq doall (uses sequence database)
         // Recommended for most users - runs entire pipeline in one step
         //
         ch_doall_input = ch_gapseq_input
-        
+
         GAPSEQ_DOALL(ch_doall_input, ch_seqdb)
-        
+
         // Outputs from doall workflow
         ch_model = GAPSEQ_DOALL.out.model
         ch_xml = GAPSEQ_DOALL.out.xml

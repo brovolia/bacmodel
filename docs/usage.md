@@ -97,17 +97,53 @@ cpd00009,Phosphate,100
 cpd00013,NH3,100
 ```
 
-**Advanced customization:** The pipeline uses `gapseq doall` for streamlined workflow execution. For advanced users who need full control over individual gapseq subworkflows (`find`, `find-transport`, `draft`, `medium`, and `fill`), additional parameters can be passed via a custom configuration file:
+**How the medium is chosen:** gapseq has no notion of "combining" two media files - per sample, it is either your file, or its own prediction (optionally nudged with `-c`, see below). The pipeline resolves this as follows, in order:
 
-```nextflow
-process {
-    withName: 'GAPSEQ_DOALL' {
-        ext.args = '-b 200 -p nuc -c 0.5'  // Example: custom blast threshold, pathway completion threshold
-    }
-}
+1. **`medium_gapseq` is a path to a CSV file** - that file is used directly for gap-filling. Gapseq's medium prediction step is skipped entirely for that sample, and any `--gapseq_medium_args` you've set are ignored for it.
+2. **`medium_gapseq` is empty** - gapseq predicts the medium itself from the draft model and pathway results. If `--gapseq_medium_args` is set (e.g. `-c "cpd00007:0"`), those flags are applied on top of the prediction to add/remove specific compounds.
+3. **`medium_gapseq` is a built-in name (`LB`, `M9`)** - only honoured in the default `doall` mode, where it's passed straight to `gapseq doall -m`. It has no effect in the custom/stepwise mode described below, since gapseq's standalone `medium` command doesn't accept predefined medium names - only a draft model and pathway table.
+
+**Advanced customization:** For advanced users who need full control over individual gapseq subworkflows (`find`, `find-transport`, `draft`, `medium`, and `fill`), provide custom arguments for specific steps. The pipeline automatically switches to custom workflow mode when any of these are set:
+
+```bash
+nextflow run nf-core/bacmodel \
+  --input samplesheet.csv \
+  --run_gapseq \
+  --gapseq_find_args '-b 200 -p nuc' \
+  --gapseq_findtransport_args '-b 180' \
+  --gapseq_fill_args '-b 100' \
+  --outdir results \
+  -profile docker
 ```
 
-Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for available parameters. Note that full subworkflow customization may require creating a custom workflow outside of the `doall` command.
+**Available parameters for customization:**
+
+- `--gapseq_find_args` - Pathway prediction (default: `-b 200 -A diamond`)
+- `--gapseq_findtransport_args` - Transporter prediction (default: `-b 200`)
+- `--gapseq_draft_args` - Draft model construction (default: none)
+- `--gapseq_medium_args` - Add/remove specific compounds on top of the predicted medium, e.g. `-c "cpd00007:0"` to remove oxygen (default: none; ignored for samples with their own `medium_gapseq` file)
+- `--gapseq_fill_args` - Gap-filling (default: none)
+
+Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all available parameters for each command.
+
+**Example - adjust bit scores:**
+
+```bash
+--gapseq_find_args '-b 150 -A diamond' \
+--gapseq_findtransport_args '-b 150'
+```
+
+**Example - custom pathway completion threshold:**
+
+```bash
+--gapseq_draft_args '-c 0.5'
+```
+
+> [!IMPORTANT]
+> **Database pre-download:** The pipeline automatically downloads the gapseq reference sequence database once before parallel reconstruction. This prevents race conditions and delays when processing hundreds of genomes simultaneously - a key improvement over running gapseq manually where each process would attempt to download the database independently.
+
+> [!TIP]
+> Only provide custom `gapseq_*_args` if you need fine-grained control over reconstruction parameters. The default `doall` mode (no custom args) is recommended for most users as it provides sensible defaults and is well-tested.
 
 #### CarveMe media (`medium_carveme`)
 

@@ -1,17 +1,16 @@
-name: gapseq_doall
-description: Complete gapseq workflow from genome to gap-filled model
+name: gapseq_draft
+description: Create draft metabolic model from pathway and transporter
+  predictions
 keywords:
   - metabolic model
-  - gap filling
-  - pathway prediction
+  - draft reconstruction
   - bacteria
   - genome-scale model
-  - complete workflow
 tools:
   - gapseq:
       description: |
         gapseq is designed to combine metabolic pathway analysis with metabolic network reconstruction and curation.
-        The doall command runs the complete workflow: pathway prediction, transporter inference, model construction, and gap filling.
+        The draft command constructs a draft metabolic model from pathway and transporter predictions.
       homepage: https://github.com/jotech/gapseq
       documentation: https://gapseq.readthedocs.io/
       tool_dev_url: https://github.com/jotech/gapseq
@@ -25,26 +24,23 @@ input:
         description: |
           Groovy Map containing sample information
           e.g. [ id:'test', single_end:false ]
-    - fasta:
+    - reactions:
         type: file
-        description: Protein or genomic FASTA file
-        pattern: "*.{fasta,fa,faa,fna,gz}"
-        ontologies:
-          - edam: http://edamontology.org/format_3989
-    - medium:
+        description: Reactions table from gapseq find
+        pattern: "*-all-Reactions.tbl"
+        ontologies: []
+    - transporters:
         type: file
-        description: Optional medium definition file (CSV format)
-        pattern: "*.csv"
-        ontologies:
-          - edam: http://edamontology.org/format_3752
-  - db:
-      type: directory
-      description: |
-        Optional gapseq reference sequence database directory (from GAPSEQ_REQUESTDB).
-        Passed to gapseq via -D. If not provided, gapseq downloads the database itself.
-      pattern: "gapseq_db"
+        description: Transporters CSV file from gapseq find-transport
+        pattern: "*-Transporter.tbl"
+        ontologies: []
+    - pathways:
+        type: file
+        description: Pathways CSV file from gapseq find
+        pattern: "*-all-Pathways.tbl"
+        ontologies: []
 output:
-  model:
+  draft:
     - - meta:
           type: map
           description: |
@@ -52,7 +48,7 @@ output:
             e.g. [ id:'test', single_end:false ]
       - "*.RDS":
           type: file
-          description: Gap-filled metabolic model in RDS format
+          description: Draft metabolic model in RDS format
           pattern: "*.RDS"
           ontologies: []
   xml:
@@ -63,33 +59,11 @@ output:
             e.g. [ id:'test', single_end:false ]
       - "*.xml":
           type: file
-          description: Gap-filled metabolic model in SBML XML format
+          description: Draft metabolic model in SBML XML format
           pattern: "*.xml"
           ontologies:
             - edam: http://edamontology.org/format_2585
             - edam: http://edamontology.org/format_2332
-  tbl:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.tbl":
-          type: file
-          description: TBL files containing pathway and transporter predictions
-          pattern: "*.tbl"
-          ontologies: []
-  fna:
-    - - meta:
-          type: map
-          description: |
-            Groovy Map containing sample information
-            e.g. [ id:'test', single_end:false ]
-      - "*.fna":
-          type: file
-          description: Optional extracted sequences in FASTA format
-          pattern: "*.fna"
-          ontologies: []
   log:
     - - meta:
           type: map
@@ -98,7 +72,7 @@ output:
             e.g. [ id:'test', single_end:false ]
       - "*.log":
           type: file
-          description: Log files from gapseq doall
+          description: Log files from gapseq draft
           pattern: "*.log"
           ontologies: []
   versions_gapseq:
@@ -147,6 +121,6 @@ containers:
       https: https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/93/933e301b11c1ec1699da6382e9e35b0e4e31edb80763eb2fa1b69ad7d6d1e5c7/data
   conda:
     linux/amd64:
-      lock_file: modules/nf-core/gapseq/doall/.conda-lock/linux_amd64-bd-c32b876ebb5e5f5b_1.txt
+      lock_file: modules/nf-core/gapseq/draft/.conda-lock/linux_amd64-bd-c32b876ebb5e5f5b_1.txt
     linux/arm64:
-      lock_file: modules/nf-core/gapseq/doall/.conda-lock/linux_arm64-bd-4c3c0957c0119f60_1.txt
+      lock_file: modules/nf-core/gapseq/draft/.conda-lock/linux_arm64-bd-4c3c0957c0119f60_1.txt

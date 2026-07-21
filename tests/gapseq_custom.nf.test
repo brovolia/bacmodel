@@ -1,0 +1,50 @@
+nextflow_pipeline {
+
+    name "Test pipeline - Gapseq Custom Workflow"
+    script "../main.nf"
+    tag "pipeline"
+    tag "gapseq"
+    tag "gapseq_custom"
+
+    test("Params: Prokka + Gapseq with custom subworkflow parameters") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                input = "$projectDir/assets/samplesheet.csv"
+
+                // Test Gapseq custom workflow mode with individual subworkflow parameters
+                annotation_tool = 'prokka'
+                run_macsyfinder = false
+                run_traitar = false
+                run_carveme = false
+                run_gapseq = true
+                run_memote = true
+
+                // Custom parameters trigger custom workflow mode
+                // This tests find → findtransport → draft → medium → fill sequence
+                gapseq_find_args = '-b 150 -A diamond'
+                gapseq_findtransport_args = '-b 150'
+                gapseq_fill_args = '-b 50'
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

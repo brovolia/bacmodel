@@ -1,12 +1,24 @@
 {
-    "Params: Prokka + Gapseq": {
+    "Params: Prokka + Gapseq with custom subworkflow parameters": {
         "content": [
             {
                 "BACMODEL_SUMMARY": {
                     "pandas": "2.2.1",
                     "python": "3.12"
                 },
-                "GAPSEQ_DOALL": {
+                "GAPSEQ_DRAFT": {
+                    "gapseq": "2.1.0"
+                },
+                "GAPSEQ_FILL": {
+                    "gapseq": "2.1.0"
+                },
+                "GAPSEQ_FIND": {
+                    "gapseq": "2.1.0"
+                },
+                "GAPSEQ_FINDTRANSPORT": {
+                    "gapseq": "2.1.0"
+                },
+                "GAPSEQ_MEDIUM": {
                     "gapseq": "2.1.0"
                 },
                 "GAPSEQ_REQUESTDB": {
@@ -43,15 +55,17 @@
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.txt",
                 "metabolic_models",
                 "metabolic_models/gapseq",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-Transporter-find_aligner.log",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-Transporter.tbl",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-Pathways.tbl",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-Reactions.tbl",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-all-find_aligner.log",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-draft.RDS",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense-draft.xml",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense.RDS",
-                "metabolic_models/gapseq/faecalibacterium_taiwanense.xml",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-filled.RDS",
+                "metabolic_models/gapseq/faecalibacterium_taiwanense-filled.xml",
+                "metabolic_models/gapseq/intermediate",
+                "metabolic_models/gapseq/intermediate/draft",
+                "metabolic_models/gapseq/intermediate/draft/faecalibacterium_taiwanense-draft.RDS",
+                "metabolic_models/gapseq/intermediate/find",
+                "metabolic_models/gapseq/intermediate/find/faecalibacterium_taiwanense-all-Pathways.tbl",
+                "metabolic_models/gapseq/intermediate/findtransport",
+                "metabolic_models/gapseq/intermediate/findtransport/faecalibacterium_taiwanense-Transporter.tbl",
+                "metabolic_models/gapseq/intermediate/medium",
+                "metabolic_models/gapseq/intermediate/medium/faecalibacterium_taiwanense-medium.csv",
                 "metabolic_models/memote",
                 "metabolic_models/memote/faecalibacterium_taiwanense_gapseq.html",
                 "metabolic_models/memote/faecalibacterium_taiwanense_gapseq.json.gz",
@@ -68,6 +82,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-17T16:56:54.21351339"
+        "timestamp": "2026-07-21T10:29:08.852851322"
     }
 }

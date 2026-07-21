@@ -15,7 +15,7 @@ include { MACSYFINDER_DOWNLOAD    } from '../../../modules/nf-core/macsyfinder/d
 include { TRAITAR                 } from '../../../modules/nf-core/traitar/run/main'
 include { TRAITAR_PFAMGET         } from '../../../modules/nf-core/traitar/pfamget/main'
 include { CARVEME_CARVE           } from '../../../modules/nf-core/carveme/carve/main'
-include { GAPSEQ_DOALL            } from '../../../modules/nf-core/gapseq/doall/main'
+include { GAPSEQ_WORKFLOW         } from '../gapseq_workflow/main'
 include { MEMOTE_RUN              } from '../../../modules/nf-core/memote/run/main'
 include { MEMOTE_REPORT           } from '../../../modules/nf-core/memote/report/main'
 include { BACMODEL_SUMMARY        } from '../../../modules/local/bacmodel_summary/main'
@@ -130,20 +130,22 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Metabolic Modeling - Gapseq (genome-based)
     if (params.run_gapseq) {
-        ch_gapseq_input = ch_genomes.map { meta, fasta ->
-            // medium_gapseq from meta: can be empty, a medium name (LB, M9), or path to CSV file
-            def medium = []
-            if (meta.medium_gapseq && meta.medium_gapseq.toString().contains('/')) {
-                // It's a file path - convert to file object
-                medium = file(meta.medium_gapseq)
+        // Workflow automatically uses custom mode if any gapseq_*_args are provided
+        // Otherwise uses streamlined 'doall' mode (recommended for most users)
+
+        GAPSEQ_WORKFLOW(ch_genomes)
+
+        ch_gapseq_model = GAPSEQ_WORKFLOW.out.model
+        ch_gapseq_xml = GAPSEQ_WORKFLOW.out.xml
+        ch_gapseq_pathways = GAPSEQ_WORKFLOW.out.pathways
+        ch_gapseq_transporters = GAPSEQ_WORKFLOW.out.transporters
+
+        // Combine pathways and transporters into single tbl channel for compatibility
+        ch_gapseq_tbl = ch_gapseq_pathways
+            .join(ch_gapseq_transporters, by: 0)
+            .map { meta, pathways, transporters ->
+                [ meta, [ pathways, transporters ] ]
             }
-            // If it's just a name (LB, M9, etc.), leave medium as [] and handle via ext.args
-            [ meta, fasta, medium ]
-        }
-        GAPSEQ_DOALL(ch_gapseq_input)
-        ch_gapseq_model = GAPSEQ_DOALL.out.model
-        ch_gapseq_xml = GAPSEQ_DOALL.out.xml
-        ch_gapseq_tbl = GAPSEQ_DOALL.out.tbl
     } else {
         ch_gapseq_model = Channel.empty()
         ch_gapseq_xml = Channel.empty()

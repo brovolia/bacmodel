@@ -75,16 +75,13 @@
                 "summary/bacmodel_summary.tsv"
             ],
             [
-                "faecalibacterium_taiwanense-draft.RDS:md5,5c77a3483f83493dddeac1ec86c910e4",
-                "faecalibacterium_taiwanense-all-Pathways.tbl:md5,28163d1398dc701657059bbe624546ec",
-                "faecalibacterium_taiwanense-Transporter.tbl:md5,cabaca97616df25739caef92f21678ee",
-                "faecalibacterium_taiwanense-medium.csv:md5,39c48c0ca1a6ad6b4db2e0a47438abee"
+                
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-20T16:21:58.903965361"
+        "timestamp": "2026-07-21T10:29:08.852851322"
     }
 }

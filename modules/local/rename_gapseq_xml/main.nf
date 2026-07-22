@@ -12,7 +12,6 @@ process RENAME_GAPSEQ_XML {
 
     output:
     tuple val(meta), path("*_gapseq.xml"), emit: xml
-    tuple val("${task.process}"), val('bash'), eval('bash --version | head -n1 | cut -d\' \' -f4'), topic: versions, emit: versions_bash
 
     when:
     task.ext.when == null || task.ext.when

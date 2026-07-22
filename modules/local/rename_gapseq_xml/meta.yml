@@ -36,28 +36,6 @@ output:
           type: file
           description: Renamed XML files with _gapseq suffix
           pattern: "*_gapseq.xml"
-  - versions_bash:
-      - - ${task.process}:
-            type: string
-            description: The name of the process
-        - bash:
-            type: string
-            description: The name of the tool
-        - bash --version | head -n1 | cut -d' ' -f4:
-            type: eval
-            description: The expression to obtain the version of the tool
-
-topics:
-  versions:
-    - - ${task.process}:
-          type: string
-          description: The name of the process
-      - bash:
-          type: string
-          description: The name of the tool
-      - bash --version | head -n1 | cut -d' ' -f4:
-          type: eval
-          description: The expression to obtain the version of the tool
 
 authors:
   - "@brovolia"

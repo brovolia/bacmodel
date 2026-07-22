@@ -14,11 +14,11 @@ nextflow_pipeline {
 
                 // Test Gapseq specifically
                 annotation_tool = 'prokka'
-                run_macsyfinder = false
-                run_traitar = false
-                run_carveme = false
-                run_gapseq = true
-                run_memote = true
+                skip_macsyfinder = true
+                skip_traitar = true
+                skip_carveme = true
+                skip_gapseq = false
+                skip_memote = false
             }
         }
 

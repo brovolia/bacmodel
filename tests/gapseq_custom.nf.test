@@ -15,11 +15,11 @@ nextflow_pipeline {
 
                 // Test Gapseq custom workflow mode with individual subworkflow parameters
                 annotation_tool = 'prokka'
-                run_macsyfinder = false
-                run_traitar = false
-                run_carveme = false
-                run_gapseq = true
-                run_memote = true
+                skip_macsyfinder = true
+                skip_traitar = true
+                skip_carveme = true
+                skip_gapseq = false
+                skip_memote = false
 
                 // Custom parameters trigger custom workflow mode
                 // This tests find → findtransport → draft → medium → fill sequence

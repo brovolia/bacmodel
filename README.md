@@ -38,29 +38,29 @@ The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool
 > [!NOTE]
 > If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
 
-First, prepare a samplesheet with your input data that looks as follows:
+First, prepare a samplesheet with your input data that looks as follows. It can be comma-separated (`.csv`) or tab-separated (`.tsv`):
 
-`samplesheet.tsv`:
+`samplesheet.csv`:
 
-```tsv
-sample	fasta
-sample1	/path/to/genome1.fasta
-sample2	/path/to/genome2.fasta.gz
-sample3	https://example.com/genome3.fasta.gz
+```csv
+sample,fasta
+sample1,/path/to/genome1.fasta
+sample2,/path/to/genome2.fasta.gz
+sample3,https://example.com/genome3.fasta.gz
 ```
 
 Each row represents a bacterial genome assembly. The `fasta` column can contain:
 
 - Local file paths (absolute or relative)
 - URLs to remote FASTA files
-- Gzipped or uncompressed FASTA format
+- the files can be in gzipped or in uncompressed FASTA format
 
 Now, you can run the pipeline using:
 
 ```bash
 nextflow run nf-core/bacmodel \
    -profile <docker/singularity/.../institute> \
-   --input samplesheet.tsv \
+   --input samplesheet.csv \
    --outdir <OUTDIR>
 ```
 
@@ -69,7 +69,7 @@ By default, the pipeline runs Prokka annotation. To use Bakta instead:
 ```bash
 nextflow run nf-core/bacmodel \
    -profile <docker/singularity/.../institute> \
-   --input samplesheet.tsv \
+   --input samplesheet.csv \
    --annotation_tool bakta \
    --outdir <OUTDIR>
 ```
@@ -79,12 +79,12 @@ To enable optional functional analysis tools:
 ```bash
 nextflow run nf-core/bacmodel \
    -profile <docker/singularity/.../institute> \
-   --input samplesheet.tsv \
-   --run_macsyfinder true \
-   --run_traitar true \
-   --run_carveme true \
-   --run_gapseq true \
-   --run_memote true \
+   --input samplesheet.csv \
+   --skip_macsyfinder false \
+   --skip_traitar false \
+   --skip_carveme false \
+   --skip_gapseq false \
+   --skip_memote false \
    --outdir <OUTDIR>
 ```
 

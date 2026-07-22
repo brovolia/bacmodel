@@ -15,13 +15,10 @@ workflow BACMODEL_ANALYSIS {
 
     main:
 
-    ch_versions = Channel.empty()
-
     //
     // Run functional annotation and modeling
     //
     BACMODEL_FUNCTIONAL_ANNOTATION(ch_genomes)
-    ch_versions = ch_versions.mix(BACMODEL_FUNCTIONAL_ANNOTATION.out.versions)
 
     emit:
     proteins    = BACMODEL_FUNCTIONAL_ANNOTATION.out.proteins
@@ -32,5 +29,4 @@ workflow BACMODEL_ANALYSIS {
     gapseq      = BACMODEL_FUNCTIONAL_ANNOTATION.out.gapseq
     memote      = BACMODEL_FUNCTIONAL_ANNOTATION.out.memote
     summary     = BACMODEL_FUNCTIONAL_ANNOTATION.out.summary
-    versions    = ch_versions
 }

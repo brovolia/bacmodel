@@ -15,9 +15,9 @@ nextflow_pipeline {
                 // Test with Bakta annotation
                 annotation_tool = 'bakta'
                 baktadb_download = true
-                run_macsyfinder = false
-                run_traitar = false
-                run_carveme = false
+                skip_macsyfinder = true
+                skip_traitar = true
+                skip_carveme = true
             }
         }
 

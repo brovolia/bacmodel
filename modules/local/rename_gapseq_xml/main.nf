@@ -12,7 +12,7 @@ process RENAME_GAPSEQ_XML {
 
     output:
     tuple val(meta), path("*_gapseq.xml"), emit: xml
-    path "versions.yml"              , emit: versions
+    tuple val("${task.process}"), val('bash'), eval('bash --version | head -n1 | cut -d\' \' -f4'), topic: versions, emit: versions_bash
 
     when:
     task.ext.when == null || task.ext.when
@@ -27,21 +27,11 @@ process RENAME_GAPSEQ_XML {
             cp "\$xml_file" "\${base}_gapseq.xml"
         fi
     done
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bash: \$(bash --version | head -n1 | cut -d' ' -f4)
-    END_VERSIONS
     """
 
     stub:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     touch ${prefix}_gapseq.xml
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        bash: \$(bash --version | head -n1 | cut -d' ' -f4)
-    END_VERSIONS
     """
 }

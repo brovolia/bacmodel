@@ -15,9 +15,9 @@ nextflow_pipeline {
                 // Test Traitar specifically
                 annotation_tool = 'prokka'
                 pfamdb_download = true
-                run_macsyfinder = false
-                run_traitar = true
-                run_carveme = false
+                skip_macsyfinder = true
+                skip_traitar = false
+                skip_carveme = true
             }
         }
 

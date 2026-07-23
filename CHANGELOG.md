@@ -3,6 +3,12 @@
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### `Changed`
+
+- **Breaking:** Renamed `run_macsyfinder`/`run_traitar`/`run_carveme`/`run_gapseq`/`run_memote` params to `skip_macsyfinder`/`skip_traitar`/`skip_carveme`/`skip_gapseq`/`skip_memote`, following the nf-core `skip_*` convention. Default behavior is unchanged: MacSyFinder, TRAITAR, and CarveMe still run unless skipped; gapseq and MEMOTE are still opt-in (`skip_gapseq`/`skip_memote` default to `true`).
+
 ## v1.0.0 - 2026-06-17
 
 Initial release of nf-core/bacmodel, created with the [nf-core](https://nf-co.re/) template.

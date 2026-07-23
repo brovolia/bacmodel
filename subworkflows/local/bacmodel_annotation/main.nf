@@ -28,7 +28,6 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     main:
 
-    ch_versions = Channel.empty()
     ch_annotated_proteins = Channel.empty()
     ch_annotated_gff = Channel.empty()
     ch_macsyfinder_results = Channel.empty()
@@ -68,7 +67,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Macromolecular Systems - run on all
-    if (params.run_macsyfinder) {
+    if (!params.skip_macsyfinder) {
         if (!params.macsyfinder_models) {
             error "MacSyFinder requires model names. Please provide --macsyfinder_models (e.g., 'TXSS')"
         }
@@ -87,7 +86,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Phenotype Prediction - run on all
-    if (params.run_traitar) {
+    if (!params.skip_traitar) {
         // Handle Pfam database for TRAITAR
         ch_pfamdb = Channel.empty()
 
@@ -115,7 +114,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Metabolic Modeling - CarveMe (protein-based)
-    if (params.run_carveme) {
+    if (!params.skip_carveme) {
         ch_carveme_input = ch_annotated_proteins.map { meta, faa ->
             // Keep medium_carveme in meta for ext.args configuration
             // Pass mediadb as input (or empty if using default)
@@ -129,7 +128,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Metabolic Modeling - Gapseq (genome-based)
-    if (params.run_gapseq) {
+    if (!params.skip_gapseq) {
         // Workflow automatically uses custom mode if any gapseq_*_args are provided
         // Otherwise uses streamlined 'doall' mode (recommended for most users)
 
@@ -157,7 +156,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     //
     ch_memote_report = Channel.empty()
     ch_memote_json = Channel.empty()
-    if (params.run_memote) {
+    if (!params.skip_memote) {
         // Filter gapseq models to only use final model (not draft) and add tool tag
         ch_gapseq_final = ch_gapseq_xml
             .map { meta, xml ->
@@ -204,7 +203,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     ch_carveme_for_summary = ch_carveme_model.map { meta, file -> file }.collect().ifEmpty([])
 
     // Use RENAME_GAPSEQ_XML process to rename XML files (avoid collision with CarveMe)
-    if (params.run_gapseq) {
+    if (!params.skip_gapseq) {
         ch_gapseq_xml_filtered = ch_gapseq_xml.map { meta, xml ->
             // Filter out draft models if xml is a list
             def final_xml = xml instanceof List ? xml.findAll { !it.name.contains('-draft') } : xml
@@ -213,7 +212,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         RENAME_GAPSEQ_XML(ch_gapseq_xml_filtered)
         ch_gapseq_for_summary = RENAME_GAPSEQ_XML.out.xml.map { meta, xml -> xml }.flatten().collect().ifEmpty([])
     } else {
-        ch_gapseq_for_summary = Channel.empty()
+        ch_gapseq_for_summary = Channel.empty().collect().ifEmpty([])
     }
 
     ch_gapseq_tbl_for_summary = ch_gapseq_tbl.map { meta, files -> files }.flatten().collect().ifEmpty([])
@@ -228,11 +227,11 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         ch_gapseq_for_summary,
         ch_gapseq_tbl_for_summary,
         ch_memote_for_summary,
-        params.run_macsyfinder ?: false,
-        params.run_traitar ?: false,
-        params.run_carveme ?: false,
-        params.run_gapseq ?: false,
-        params.run_memote ?: false
+        !params.skip_macsyfinder,
+        !params.skip_traitar,
+        !params.skip_carveme,
+        !params.skip_gapseq,
+        !params.skip_memote
     )
 
     emit:
@@ -245,5 +244,4 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     gapseq_xml       = ch_gapseq_xml
     memote           = ch_memote_report
     summary          = BACMODEL_SUMMARY.out.tsv
-    versions         = ch_versions
 }

@@ -2,6 +2,10 @@
     "Params: test profile": {
         "content": [
             {
+                "BACMODEL_SUMMARY": {
+                    "pandas": "2.2.1",
+                    "python": "3.12"
+                },
                 "PROKKA": {
                     "prokka": "1.14.6"
                 },
@@ -26,7 +30,9 @@
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tsv",
                 "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.txt",
                 "pipeline_info",
-                "pipeline_info/nf_core_bacmodel_software_versions.yml"
+                "pipeline_info/nf_core_bacmodel_software_versions.yml",
+                "summary",
+                "summary/bacmodel_summary.tsv"
             ],
             [
                 
@@ -36,6 +42,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-06-24T11:49:40.350441813"
+        "timestamp": "2026-07-22T14:13:52.07305256"
     }
 }

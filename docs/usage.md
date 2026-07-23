@@ -37,7 +37,7 @@ This architecture means that if you choose Prokka (`--annotation_tool prokka`) o
 
 ## Samplesheet input
 
-You will need to create a samplesheet with information about the genome assemblies you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 2 columns, and a header row as shown in the example below.
+You will need to create a samplesheet with information about the genome assemblies you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated or tab-separated file with 2 columns, and a header row as shown in the example below.
 
 ```bash
 --input '[path to samplesheet file]'
@@ -56,8 +56,8 @@ SAMPLE3,/path/to/sample3_assembly.fasta,M9,M9
 
 | Column           | Description                                                                                                                                                                                                                                           |
 | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`         | **Required.** Custom sample name. Spaces in sample names are automatically converted to underscores (`_`).                                                                                                                                            |
-| `fasta`          | **Required.** Full path to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`).                                                                                    |
+| `sample`         | **Required.** Custom sample name. Cannot contain spaces - use underscores (`_`) instead, or the pipeline will fail with a validation error.                                                                                                           |
+| `fasta`          | **Required.** Path (absolute or relative) or URL to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`).                                                           |
 | `medium_gapseq`  | **Optional.** Growth medium for gapseq metabolic modeling. Can be a medium name (e.g., `LB`, `M9`) or path to custom CSV file. If empty, gapseq auto-predicts the medium. See [Metabolic modeling media](#metabolic-modeling-media) for details.      |
 | `medium_carveme` | **Optional.** Growth medium name for CarveMe gap-filling (e.g., `LB`, `M9`). Must correspond to a medium in the CarveMe media database. If empty, no gap-filling is performed. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
 
@@ -73,7 +73,8 @@ The optional `medium_gapseq` and `medium_carveme` columns allow you to specify g
 
 #### Gapseq media (`medium_gapseq`)
 
-> **Note:** Gapseq automatically downloads reference sequence databases on first use. The pipeline uses container options to ensure each process has a writable directory for database initialization.
+:::note
+Gapseq automatically downloads reference sequence databases on first use. The pipeline uses container options to ensure each process has a writable directory for database initialization.
 
 **Default behavior (empty column):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
 
@@ -108,7 +109,7 @@ cpd00013,NH3,100
 ```bash
 nextflow run nf-core/bacmodel \
   --input samplesheet.csv \
-  --run_gapseq \
+  --skip_gapseq false \
   --gapseq_find_args '-b 200 -p nuc' \
   --gapseq_findtransport_args '-b 180' \
   --gapseq_fill_args '-b 100' \
@@ -139,11 +140,13 @@ Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all avai
 --gapseq_draft_args '-c 0.5'
 ```
 
-> [!IMPORTANT]
-> **Database pre-download:** The pipeline automatically downloads the gapseq reference sequence database once before parallel reconstruction. This prevents race conditions and delays when processing hundreds of genomes simultaneously - a key improvement over running gapseq manually where each process would attempt to download the database independently.
+:::important
+**Database pre-download:** The pipeline automatically downloads the gapseq reference sequence database once before parallel reconstruction. This prevents race conditions and delays when processing hundreds of genomes simultaneously - a key improvement over running gapseq manually where each process would attempt to download the database independently.
+:::
 
-> [!TIP]
-> Only provide custom `gapseq_*_args` if you need fine-grained control over reconstruction parameters. The default `doall` mode (no custom args) is recommended for most users as it provides sensible defaults and is well-tested.
+:::tip
+Only provide custom `gapseq_*_args` if you need fine-grained control over reconstruction parameters. The default `doall` mode (no custom args) is recommended for most users as it provides sensible defaults and is well-tested.
+:::
 
 #### CarveMe media (`medium_carveme`)
 
@@ -163,11 +166,13 @@ nextflow run nf-core/bacmodel \
   -profile docker
 ```
 
-> [!NOTE]
-> The `medium_carveme` column should contain media **names** that exist in the media database, not file paths.
+:::note
+The `medium_carveme` column should contain media **names** that exist in the media database, not file paths.
+:::
 
-> [!TIP]
-> For most applications, leaving both media columns empty uses sensible defaults: both tools use rich complete media for gap-filling, ensuring comparable and comprehensive metabolic models. Specify media explicitly when you need to constrain models to experimentally validated growth conditions (e.g., use `M9` for both tools for minimal medium experiments, or `LB` for rich medium cultures).
+:::tip
+For most applications, leaving both media columns empty uses sensible defaults: both tools use rich complete media for gap-filling, ensuring comparable and comprehensive metabolic models. Specify media explicitly when you need to constrain models to experimentally validated growth conditions (e.g., use `M9` for both tools for minimal medium experiments, or `LB` for rich medium cultures).
+:::
 
 ## Running the pipeline
 
@@ -197,21 +202,23 @@ Choose between Prokka (default) and Bakta for genome annotation:
 Control which functional analysis tools to run:
 
 ```bash
---run_macsyfinder true  # Default: true
---run_traitar true      # Default: true
---run_carveme true      # Default: true
---run_gapseq true       # Default: false
---run_memote true       # Default: false - Evaluate metabolic model quality
+--skip_macsyfinder true  # Default: false
+--skip_traitar true      # Default: false
+--skip_carveme true      # Default: false
+--skip_gapseq false      # Default: true
+--skip_memote false      # Default: true - Evaluate metabolic model quality
 ```
 
-**Note:** MEMOTE requires at least one metabolic modeling tool (`run_carveme` or `run_gapseq`) to be enabled. MEMOTE will evaluate the quality of all generated metabolic models (SBML XML format) and produce HTML reports with comprehensive quality metrics.
+:::note
+MEMOTE requires at least one metabolic modeling tool (`skip_carveme=false` or `skip_gapseq=false`) to be enabled. MEMOTE will evaluate the quality of all generated metabolic models (SBML XML format) and produce HTML reports with comprehensive quality metrics.
+:::
 
 #### Database options
 
 Specify or download required databases:
 
 ```bash
---pfamdb /path/to/pfam      # Required if run_traitar=true
+--pfamdb /path/to/pfam      # Required if skip_traitar=false
 --pfamdb_download true      # Download Pfam database automatically
 
 --baktadb /path/to/bakta    # Required if annotation_tool=bakta
@@ -231,8 +238,9 @@ If you wish to repeatedly use the same parameters for multiple runs, rather than
 
 Pipeline settings can be provided in a `yaml` or `json` file via `-params-file <file>`.
 
-> [!WARNING]
-> Do not use `-c <file>` to specify parameters as this will result in errors. Custom config files specified with `-c` must only be used for [tuning process resource specifications](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), other infrastructural tweaks (such as output directories), or module arguments (args).
+:::warning
+Do not use `-c <file>` to specify parameters as this will result in errors. Custom config files specified with `-c` must only be used for [tuning process resource specifications](https://nf-co.re/docs/usage/configuration#tuning-workflow-resources), other infrastructural tweaks (such as output directories), or module arguments (args).
+:::
 
 The above pipeline run specified with a params file in yaml format:
 
@@ -268,13 +276,15 @@ This version number will be logged in reports when you run the pipeline, so that
 
 To further assist in reproducibility, you can use share and reuse [parameter files](#running-the-pipeline) to repeat pipeline runs with the same settings without having to write out a command with every single parameter.
 
-> [!TIP]
-> If you wish to share such profile (such as upload as supplementary material for academic publications), make sure to NOT include cluster specific paths to files, nor institutional specific profiles.
+:::tip
+If you wish to share such profile (such as upload as supplementary material for academic publications), make sure to NOT include cluster specific paths to files, nor institutional specific profiles.
+:::
 
 ## Core Nextflow arguments
 
-> [!NOTE]
-> These options are part of Nextflow and use a _single_ hyphen (pipeline parameters use a double-hyphen)
+:::note
+These options are part of Nextflow and use a _single_ hyphen (pipeline parameters use a double-hyphen)
+:::
 
 ### `-profile`
 
@@ -282,8 +292,9 @@ Use this parameter to choose a configuration profile. Profiles can give configur
 
 Several generic profiles are bundled with the pipeline which instruct the pipeline to use software packaged using different methods (Docker, Singularity, Podman, Shifter, Charliecloud, Apptainer, Conda) - see below.
 
-> [!IMPORTANT]
-> We highly recommend the use of Docker or Singularity containers for full pipeline reproducibility, however when this is not possible, Conda is also supported.
+:::important
+We highly recommend the use of Docker or Singularity containers for full pipeline reproducibility, however when this is not possible, Conda is also supported.
+:::
 
 The pipeline also dynamically loads configurations from [https://github.com/nf-core/configs](https://github.com/nf-core/configs) when it runs, making multiple config profiles for various institutional clusters available at run time. For more information and to check if your system is supported, please see the [nf-core/configs documentation](https://github.com/nf-core/configs#documentation).
 

@@ -2,6 +2,10 @@
     "Params: Prokka + MacSyFinder": {
         "content": [
             {
+                "BACMODEL_SUMMARY": {
+                    "pandas": "2.2.1",
+                    "python": "3.12"
+                },
                 "MACSYFINDER_DOWNLOAD": {
                     "macsyfinder": "2.1.6",
                     "msf_data": "1.0.4"
@@ -885,7 +889,9 @@
                 "macromolecular_systems/macsyfinder/faecalibacterium_taiwanense/macsyfinder.out",
                 "macromolecular_systems/macsyfinder/faecalibacterium_taiwanense/uncomplete_systems.txt",
                 "pipeline_info",
-                "pipeline_info/nf_core_bacmodel_software_versions.yml"
+                "pipeline_info/nf_core_bacmodel_software_versions.yml",
+                "summary",
+                "summary/bacmodel_summary.tsv"
             ],
             [
                 
@@ -895,6 +901,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-07T14:43:42.883019406"
+        "timestamp": "2026-07-22T15:03:36.910463312"
     }
 }

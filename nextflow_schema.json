@@ -184,7 +184,7 @@
                 },
                 "baktadb": {
                     "type": "string",
-                    "description": "Path to Bakta database (required if annotation_tool='bakta')",
+                    "description": "Path to Bakta database (required if `annotation_tool`='bakta')",
                     "fa_icon": "fas fa-database"
                 },
                 "baktadb_download": {
@@ -196,6 +196,7 @@
                     "type": "string",
                     "default": "--type light",
                     "description": "Arguments for Bakta database download",
+                    "help_text": "Arguments passed to `bakta_db download` (e.g. `--type light` or `--type full`). See the [Bakta database docs](https://github.com/oschwengers/bakta#database-download) for available options.",
                     "fa_icon": "fas fa-cog"
                 },
                 "min_contig_length": {
@@ -204,7 +205,33 @@
                     "description": "Minimum contig length for annotation and analysis",
                     "fa_icon": "fas fa-ruler"
                 }
-            }
+            },
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "annotation_tool": {
+                                "const": "bakta"
+                            }
+                        }
+                    },
+                    "then": {
+                        "anyOf": [
+                            {
+                                "required": ["baktadb"]
+                            },
+                            {
+                                "properties": {
+                                    "baktadb_download": {
+                                        "const": true
+                                    }
+                                },
+                                "required": ["baktadb_download"]
+                            }
+                        ]
+                    }
+                }
+            ]
         },
         "database_options": {
             "title": "Database options",
@@ -214,7 +241,7 @@
             "properties": {
                 "pfamdb": {
                     "type": "string",
-                    "description": "Path to Pfam database (required if run_traitar=true)",
+                    "description": "Path to Pfam database (required if `skip_traitar`=false)",
                     "fa_icon": "fas fa-folder"
                 },
                 "pfamdb_download": {
@@ -230,10 +257,10 @@
             "fa_icon": "fas fa-microscope",
             "description": "Options for functional annotation and metabolic modeling tools",
             "properties": {
-                "run_macsyfinder": {
+                "skip_macsyfinder": {
                     "type": "boolean",
-                    "default": true,
-                    "description": "Run MacSyFinder for macromolecular systems detection",
+                    "default": false,
+                    "description": "Skip MacSyFinder macromolecular systems detection",
                     "fa_icon": "fas fa-search"
                 },
                 "macsyfinder_models": {
@@ -242,16 +269,16 @@
                     "description": "MacSyFinder models to use (TXSS for Type III/IV/VI secretion systems)",
                     "fa_icon": "fas fa-cogs"
                 },
-                "run_traitar": {
+                "skip_traitar": {
                     "type": "boolean",
-                    "default": true,
-                    "description": "Run TRAITAR for phenotype prediction",
+                    "default": false,
+                    "description": "Skip TRAITAR phenotype prediction",
                     "fa_icon": "fas fa-flask"
                 },
-                "run_carveme": {
+                "skip_carveme": {
                     "type": "boolean",
-                    "default": true,
-                    "description": "Run CarveMe for genome-scale metabolic reconstruction",
+                    "default": false,
+                    "description": "Skip CarveMe genome-scale metabolic reconstruction",
                     "fa_icon": "fas fa-project-diagram"
                 },
                 "carveme_mediadb": {
@@ -260,10 +287,10 @@
                     "fa_icon": "fas fa-database",
                     "format": "file-path"
                 },
-                "run_gapseq": {
+                "skip_gapseq": {
                     "type": "boolean",
-                    "default": false,
-                    "description": "Run Gapseq for pathway analysis and metabolic modeling",
+                    "default": true,
+                    "description": "Skip Gapseq pathway analysis and metabolic modeling",
                     "fa_icon": "fas fa-share-alt"
                 },
                 "gapseq_find_args": {
@@ -291,13 +318,56 @@
                     "description": "Custom arguments for 'gapseq fill' (e.g., '-b 100')",
                     "fa_icon": "fas fa-cog"
                 },
-                "run_memote": {
+                "skip_memote": {
                     "type": "boolean",
-                    "default": false,
-                    "description": "Run MEMOTE to evaluate metabolic model quality (requires run_gapseq or run_carveme)",
+                    "default": true,
+                    "description": "Skip MEMOTE metabolic model quality evaluation (only runs when skip_gapseq=false or skip_carveme=false)",
                     "fa_icon": "fas fa-check-circle"
                 }
-            }
+            },
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "skip_macsyfinder": {
+                                "const": false
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "macsyfinder_models": {
+                                "minLength": 1
+                            }
+                        },
+                        "required": ["macsyfinder_models"]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "skip_traitar": {
+                                "const": false
+                            }
+                        }
+                    },
+                    "then": {
+                        "anyOf": [
+                            {
+                                "required": ["pfamdb"]
+                            },
+                            {
+                                "properties": {
+                                    "pfamdb_download": {
+                                        "const": true
+                                    }
+                                },
+                                "required": ["pfamdb_download"]
+                            }
+                        ]
+                    }
+                }
+            ]
         }
     },
     "allOf": [

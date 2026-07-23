@@ -15,9 +15,9 @@ nextflow_pipeline {
                 // Test MacSyFinder specifically
                 annotation_tool = 'prokka'
                 macsyfinder_models = 'TXSS'
-                run_macsyfinder = true
-                run_traitar = false
-                run_carveme = false
+                skip_macsyfinder = false
+                skip_traitar = true
+                skip_carveme = true
             }
         }
 

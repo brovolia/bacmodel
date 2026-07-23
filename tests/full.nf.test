@@ -14,12 +14,12 @@ nextflow_pipeline {
 
                 // Test with Prokka and all analysis tools
                 annotation_tool = 'prokka'
-                run_macsyfinder = true
-                run_traitar = true
+                skip_macsyfinder = false
+                skip_traitar = false
                 pfamdb_download = true
-                run_carveme = true
-                run_gapseq = true
-                run_memote = true
+                skip_carveme = false
+                skip_gapseq = false
+                skip_memote = false
             }
         }
 

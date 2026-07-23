@@ -31,7 +31,6 @@ workflow BACMODEL {
     // Run functional annotation and analysis
     //
     BACMODEL_ANALYSIS(ch_genomes)
-    ch_versions = ch_versions.mix(BACMODEL_ANALYSIS.out.versions)
 
     //
     // Collate and save software versions

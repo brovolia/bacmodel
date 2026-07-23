@@ -32,9 +32,6 @@
                 "PROKKA": {
                     "prokka": "1.14.6"
                 },
-                "RENAME_GAPSEQ_XML": {
-                    "bash": "5.2.21(1)-release"
-                },
                 "TRAITAR": {
                     "traitar": "0.1.1"
                 },
@@ -955,6 +952,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-22T11:54:52.359989933"
+        "timestamp": "2026-07-22T17:29:49.037661392"
     }
 }

@@ -21,9 +21,6 @@
                 "PROKKA": {
                     "prokka": "1.14.6"
                 },
-                "RENAME_GAPSEQ_XML": {
-                    "bash": "5.2.21(1)-release"
-                },
                 "Workflow": {
                     "nf-core/bacmodel": "v1.0.0"
                 }
@@ -71,6 +68,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-22T11:21:47.671719848"
+        "timestamp": "2026-07-22T17:46:38.235526496"
     }
 }

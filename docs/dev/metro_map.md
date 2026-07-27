@@ -41,7 +41,7 @@ sed -i -e '$a\' docs/images/nf-core-bacmodel_metro_map.svg
 
 ## Why no animated SVG (for now)
 
-nf-core/rnaseq and other reference pipelines embed an *animated* SVG in
+nf-core/rnaseq and other reference pipelines embed an _animated_ SVG in
 their README (balls traveling along the lines). We are deliberately not
 doing that yet: the "Metabolic Modeling" line forks three ways from
 `Input Assemblies/MAGs` (Prokka, Bakta DB, and the direct-to-Gapseq
@@ -63,7 +63,7 @@ embedded legend logo on the metro map itself - the same file, deliberately.
 
 We tried splitting this into a mascot-only image for the legend (so the
 diagram wouldn't repeat the README's banner), but nf-metro has no way to
-show the pipeline name on the map *and* a mascot-only logo at the same time:
+show the pipeline name on the map _and_ a mascot-only logo at the same time:
 checked `src/nf_metro/render/svg.py` - a standalone title text
 (`%%metro title:`) and an embedded-in-legend logo are drawn by an `if`/`elif`,
 never both. So the choices are: (a) a logo image with no name text, (b) name

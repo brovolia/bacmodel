@@ -37,7 +37,7 @@ nextflow_pipeline {
 
             // Custom mode runs find -> findtransport -> draft -> medium -> fill
             // as separate steps (conf/modules.config only publishes these
-            // intermediates when a gapseq_*_args param is set) - check each
+            // intermediates if a gapseq_*_args param is set) - check each
             // intermediate directory actually got populated, proving custom
             // mode engaged rather than silently falling back to doall.
             def find_tbls          = new File("$outputDir/metabolic_models/gapseq/intermediate/find").listFiles({ f -> f.name.endsWith('.tbl') } as FileFilter)

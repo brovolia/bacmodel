@@ -26,7 +26,7 @@ nextflow_pipeline {
             // stable_path: All files in ${params.outdir}/ with stable content
             def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
 
-            // all_systems.tsv is optional (MacSyFinder only writes it when at
+            // all_systems.tsv is optional (MacSyFinder only writes it if at
             // least one system is detected), so its presence isn't asserted -
             // only the shape of the derived summary column, which is always
             // written regardless of whether any system was found.

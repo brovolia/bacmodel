@@ -29,7 +29,7 @@ graph LR
     subgraph annotation [Genome Annotation]
         %%metro entry: left | macsyfinder, metabolic, phenotype
         %%metro exit: right | macsyfinder, metabolic, phenotype
-        
+
         input_assemblies[Input Assemblies/MAGs]
         _metabolic_branch
         prokka[Prokka]
@@ -37,7 +37,7 @@ graph LR
         bakta[Bakta]
         proteins_out[Proteins]
         gff_out[GFF]
-        
+
         input_assemblies -->|macsyfinder,metabolic,phenotype| prokka
         input_assemblies -->|macsyfinder,metabolic,phenotype| bakta_db
         bakta_db -->|macsyfinder,metabolic,phenotype| bakta
@@ -52,26 +52,26 @@ graph LR
     subgraph functional_analysis [Functional Analysis]
         %%metro entry: left | macsyfinder, metabolic, phenotype
         %%metro exit: right | macsyfinder, metabolic, phenotype
-        
+
         macsyfinder_models[MacSyFinder Models]
         macsyfinder[MacSyFinder]
-        
+
         pfam_db[Pfam DB]
         traitar[TRAITAR]
-        
+
         carveme[CarveMe]
         gapseq_genome[Gapseq]
         memote[Memote]
-        
+
         macsyfinder_models -->|macsyfinder| macsyfinder
-        
+
         pfam_db -->|phenotype| traitar
     end
 
     %% Output section
     subgraph output [Output & Reporting]
         %%metro entry: left | macsyfinder, metabolic, phenotype
-        
+
         summary_table[Summary]
     end
 

@@ -11,14 +11,15 @@ include { BACMODEL_FUNCTIONAL_ANNOTATION } from '../bacmodel_annotation/main'
 workflow BACMODEL_ANALYSIS {
 
     take:
-    ch_genomes  // channel: [ val(meta), path(fasta) ]
+    ch_genomes         // channel: [ val(meta), path(fasta) ]
+    annotation_options // map: annotation/analysis tool options, see workflows/bacmodel.nf
 
     main:
 
     //
     // Run functional annotation and modeling
     //
-    BACMODEL_FUNCTIONAL_ANNOTATION(ch_genomes)
+    BACMODEL_FUNCTIONAL_ANNOTATION(ch_genomes, annotation_options)
 
     emit:
     proteins    = BACMODEL_FUNCTIONAL_ANNOTATION.out.proteins

@@ -28,9 +28,34 @@ workflow BACMODEL {
     ch_genomes = ch_samplesheet
 
     //
+    // Snapshot the params BACMODEL_ANALYSIS and its subworkflows need, so
+    // params.* access stays confined to this top-level workflow file instead
+    // of being read again in every subworkflow down the call chain.
+    //
+    def annotation_options = [
+        annotation_tool           : params.annotation_tool,
+        baktadb_download          : params.baktadb_download,
+        baktadb                   : params.baktadb,
+        skip_macsyfinder          : params.skip_macsyfinder,
+        macsyfinder_models        : params.macsyfinder_models,
+        skip_traitar              : params.skip_traitar,
+        pfamdb_download           : params.pfamdb_download,
+        pfamdb                    : params.pfamdb,
+        skip_carveme              : params.skip_carveme,
+        carveme_mediadb           : params.carveme_mediadb,
+        skip_gapseq               : params.skip_gapseq,
+        skip_memote               : params.skip_memote,
+        gapseq_find_args          : params.gapseq_find_args,
+        gapseq_findtransport_args : params.gapseq_findtransport_args,
+        gapseq_draft_args         : params.gapseq_draft_args,
+        gapseq_medium_args        : params.gapseq_medium_args,
+        gapseq_fill_args          : params.gapseq_fill_args,
+    ]
+
+    //
     // Run functional annotation and analysis
     //
-    BACMODEL_ANALYSIS(ch_genomes)
+    BACMODEL_ANALYSIS(ch_genomes, annotation_options)
 
     //
     // Collate and save software versions

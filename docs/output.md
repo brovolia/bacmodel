@@ -8,9 +8,7 @@ The directories listed below will be created in the results directory after the 
 
 ## Pipeline overview
 
-The pipeline performs functional annotation and metabolic modeling of bacterial genomes using the following steps:
-
-The pipeline performs functional annotation and metabolic modeling of bacterial genomes using the following steps:
+The pipeline is built using [Nextflow](https://www.nextflow.io/) and performs functional annotation and metabolic modeling of bacterial genomes using the following steps:
 
 - [Annotation](#annotation) - Genome annotation with Prokka or Bakta
 - [MacSyFinder](#macsyfinder) - Detection of macromolecular systems (secretion systems)

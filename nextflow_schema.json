@@ -269,6 +269,13 @@
                     "description": "MacSyFinder models to use (TXSS for Type III/IV/VI secretion systems)",
                     "fa_icon": "fas fa-cogs"
                 },
+                "macsyfinder_db_type": {
+                    "type": "string",
+                    "default": "unordered",
+                    "enum": ["unordered", "ordered_replicon", "gembase"],
+                    "description": "MacSyFinder --db-type: 'unordered' for MAGs/draft assemblies with unreliable gene order (default, most permissive), 'ordered_replicon' for a single complete/nearly-complete genome (enables synteny-aware detection), or 'gembase' for multiple complete replicons in one gembase-formatted database",
+                    "fa_icon": "fas fa-sitemap"
+                },
                 "skip_traitar": {
                     "type": "boolean",
                     "default": false,
@@ -283,7 +290,7 @@
                 },
                 "carveme_mediadb": {
                     "type": "string",
-                    "description": "Path to CarveMe media database TSV file. If not provided, uses CarveMe's default media database",
+                    "description": "Path to CarveMe media database TSV file (columns: medium, description, compound, name). If not provided, uses CarveMe's default media database. See assets/medium_carveme_mediadb_example.tsv for an example.",
                     "fa_icon": "fas fa-database",
                     "format": "file-path"
                 },
@@ -292,6 +299,11 @@
                     "default": true,
                     "description": "Skip Gapseq pathway analysis and metabolic modeling",
                     "fa_icon": "fas fa-share-alt"
+                },
+                "gapseq_doall_args": {
+                    "type": "string",
+                    "description": "Custom arguments for the simplified 'gapseq doall' search step (default: '-b 200 -A diamond'). Only used in the default doall workflow - ignored if any of the gapseq_find_args/gapseq_findtransport_args/gapseq_draft_args/gapseq_medium_args/gapseq_fill_args below are set, since that switches to the custom/stepwise workflow instead.",
+                    "fa_icon": "fas fa-cog"
                 },
                 "gapseq_find_args": {
                     "type": "string",

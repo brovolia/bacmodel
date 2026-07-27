@@ -29,14 +29,16 @@ workflow GAPSEQ_WORKFLOW {
 
     take:
     ch_genomes       // channel: [ val(meta), path(fasta) ]
+    options          // map: gapseq_find_args, gapseq_findtransport_args, gapseq_draft_args,
+                     //      gapseq_medium_args, gapseq_fill_args - see workflows/bacmodel.nf
 
     main:
 
     ch_versions = Channel.empty()
 
     // Automatically detect if custom workflow should be used based on parameters
-    def use_custom = params.gapseq_find_args || params.gapseq_findtransport_args ||
-                     params.gapseq_draft_args || params.gapseq_medium_args || params.gapseq_fill_args
+    def use_custom = options.gapseq_find_args || options.gapseq_findtransport_args ||
+                     options.gapseq_draft_args || options.gapseq_medium_args || options.gapseq_fill_args
 
     //
     // Download gapseq reference sequence database once before parallel execution
@@ -45,14 +47,16 @@ workflow GAPSEQ_WORKFLOW {
     GAPSEQ_REQUESTDB('Bacteria')
     ch_seqdb = GAPSEQ_REQUESTDB.out.db
 
-    // Prepare input channel with medium information
+    // Prepare input channel with medium information.
+    // medium_gapseq_csv (a file path) and medium_gapseq (a built-in name like
+    // LB/M9) are mutually exclusive per sample: a custom CSV is passed as a
+    // file input here, while a built-in name is handled separately via
+    // ext.args in doall mode (see conf/modules.config).
     ch_gapseq_input = ch_genomes.map { meta, fasta ->
-        def medium = []
-        if (meta.medium_gapseq && meta.medium_gapseq.toString().contains('/')) {
-            // It's a file path
-            medium = file(meta.medium_gapseq)
+        if (meta.medium_gapseq && meta.medium_gapseq_csv) {
+            error "Sample '${meta.id}': provide either 'medium_gapseq' (a built-in medium name) or 'medium_gapseq_csv' (a custom medium CSV file) in the samplesheet, not both."
         }
-        // If it's just a name (LB, M9), leave medium as [] and handle via ext.args
+        def medium = meta.medium_gapseq_csv ? file(meta.medium_gapseq_csv) : []
         [ meta, fasta, medium ]
     }
 
@@ -82,7 +86,7 @@ workflow GAPSEQ_WORKFLOW {
         GAPSEQ_DRAFT(ch_draft_input)
 
         // Step 4: Medium definition (does NOT use sequence database)
-        // If the sample provides its own medium file via medium_gapseq, use it as-is
+        // If the sample provides its own medium file via medium_gapseq_csv, use it as-is
         // (gapseq has no notion of "combining" media - it only lets you add/remove
         // individual compounds on top of its own prediction via -c, so a user-supplied
         // file and the auto-prediction are mutually exclusive per sample).

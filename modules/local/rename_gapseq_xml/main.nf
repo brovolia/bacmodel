@@ -19,11 +19,15 @@ process RENAME_GAPSEQ_XML {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    # Rename XML files with _gapseq suffix to avoid collision with CarveMe
+    # Rename the final (non-draft) gapseq XML model to a canonical
+    # ${prefix}_gapseq.xml, avoiding collision with CarveMe outputs.
+    # The upstream suffix varies by workflow (doall: no suffix, custom
+    # find/findtransport/draft/fill: "-filled"), so we normalize to the
+    # sample prefix here rather than preserving the input basename -
+    # otherwise BACMODEL_SUMMARY's sample-name matching breaks.
     for xml_file in ${xml}; do
         if [[ ! \$xml_file =~ -draft\\.xml\$ ]]; then
-            base=\$(basename "\$xml_file" .xml)
-            cp "\$xml_file" "\${base}_gapseq.xml"
+            cp "\$xml_file" "${prefix}_gapseq.xml"
         fi
     done
     """

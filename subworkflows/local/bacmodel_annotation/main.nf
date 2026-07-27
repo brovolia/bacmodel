@@ -25,6 +25,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     take:
     ch_genomes  // channel: [ val(meta), path(fasta) ]
+    options     // map: annotation/analysis tool options, see workflows/bacmodel.nf
 
     main:
 
@@ -38,7 +39,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     ch_gapseq_tbl = Channel.empty()
 
     // Option 1: Prokka for annotation (preferred for speed)
-    if (params.annotation_tool == 'prokka' || !params.annotation_tool) {
+    if (options.annotation_tool == 'prokka' || !options.annotation_tool) {
         PROKKA(ch_genomes, [], [])
         ch_annotated_proteins = PROKKA.out.faa
         ch_annotated_gff = PROKKA.out.gff
@@ -46,17 +47,17 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Option 2: Bakta for annotation (alternative)
-    if (params.annotation_tool == 'bakta') {
+    if (options.annotation_tool == 'bakta') {
         // Handle Bakta database
         ch_baktadb = Channel.empty()
 
-        if (params.baktadb_download) {
+        if (options.baktadb_download) {
             // Download database
             BAKTA_BAKTADBDOWNLOAD()
             ch_baktadb = BAKTA_BAKTADBDOWNLOAD.out.db
-        } else if (params.baktadb) {
+        } else if (options.baktadb) {
             // Use provided database path
-            ch_baktadb = Channel.fromPath(params.baktadb, checkIfExists: true)
+            ch_baktadb = Channel.fromPath(options.baktadb, checkIfExists: true)
         } else {
             error "Bakta requires a database. Please provide --baktadb /path/to/db or use --baktadb_download true"
         }
@@ -67,18 +68,18 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Macromolecular Systems - run on all
-    if (!params.skip_macsyfinder) {
-        if (!params.macsyfinder_models) {
+    if (!options.skip_macsyfinder) {
+        if (!options.macsyfinder_models) {
             error "MacSyFinder requires model names. Please provide --macsyfinder_models (e.g., 'TXSS')"
         }
 
         // Download MacSyFinder models
-        MACSYFINDER_DOWNLOAD(params.macsyfinder_models)
+        MACSYFINDER_DOWNLOAD(options.macsyfinder_models)
 
         MACSYFINDER_SEARCH(
             ch_annotated_proteins,
             MACSYFINDER_DOWNLOAD.out.models,
-            params.macsyfinder_models
+            options.macsyfinder_models
         )
         ch_macsyfinder_results = MACSYFINDER_SEARCH.out.summary
     } else {
@@ -86,17 +87,17 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Phenotype Prediction - run on all
-    if (!params.skip_traitar) {
+    if (!options.skip_traitar) {
         // Handle Pfam database for TRAITAR
         ch_pfamdb = Channel.empty()
 
-        if (params.pfamdb_download) {
+        if (options.pfamdb_download) {
             // Download database
             TRAITAR_PFAMGET()
             ch_pfamdb = TRAITAR_PFAMGET.out.pfam_db
-        } else if (params.pfamdb) {
+        } else if (options.pfamdb) {
             // Use provided database path
-            ch_pfamdb = Channel.fromPath(params.pfamdb, checkIfExists: true)
+            ch_pfamdb = Channel.fromPath(options.pfamdb, checkIfExists: true)
         } else {
             error "TRAITAR requires a Pfam database. Please provide --pfamdb /path/to/pfam or use --pfamdb_download true"
         }
@@ -114,11 +115,15 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Metabolic Modeling - CarveMe (protein-based)
-    if (!params.skip_carveme) {
+    if (!options.skip_carveme) {
         ch_carveme_input = ch_annotated_proteins.map { meta, faa ->
-            // Keep medium_carveme in meta for ext.args configuration
-            // Pass mediadb as input (or empty if using default)
-            def mediadb = params.carveme_mediadb ? file(params.carveme_mediadb) : []
+            // Keep medium_carveme in meta for ext.args configuration (selects which
+            // medium, by name, to gap-fill with - from whichever mediadb applies below).
+            // A per-sample medium_carveme_tsv overrides the global --carveme_mediadb
+            // for that sample only; otherwise fall back to --carveme_mediadb, or
+            // CarveMe's own bundled default database if neither is set.
+            def mediadb = meta.medium_carveme_tsv ? file(meta.medium_carveme_tsv) :
+                (options.carveme_mediadb ? file(options.carveme_mediadb) : [])
             [ meta, faa, [], mediadb, [], [], [] ]
         }
         CARVEME_CARVE(ch_carveme_input)
@@ -128,11 +133,11 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     }
 
     // Metabolic Modeling - Gapseq (genome-based)
-    if (!params.skip_gapseq) {
+    if (!options.skip_gapseq) {
         // Workflow automatically uses custom mode if any gapseq_*_args are provided
         // Otherwise uses streamlined 'doall' mode (recommended for most users)
 
-        GAPSEQ_WORKFLOW(ch_genomes)
+        GAPSEQ_WORKFLOW(ch_genomes, options)
 
         ch_gapseq_model = GAPSEQ_WORKFLOW.out.model
         ch_gapseq_xml = GAPSEQ_WORKFLOW.out.xml
@@ -156,7 +161,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     //
     ch_memote_report = Channel.empty()
     ch_memote_json = Channel.empty()
-    if (!params.skip_memote) {
+    if (!options.skip_memote) {
         // Filter gapseq models to only use final model (not draft) and add tool tag
         ch_gapseq_final = ch_gapseq_xml
             .map { meta, xml ->
@@ -203,7 +208,7 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
     ch_carveme_for_summary = ch_carveme_model.map { meta, file -> file }.collect().ifEmpty([])
 
     // Use RENAME_GAPSEQ_XML process to rename XML files (avoid collision with CarveMe)
-    if (!params.skip_gapseq) {
+    if (!options.skip_gapseq) {
         ch_gapseq_xml_filtered = ch_gapseq_xml.map { meta, xml ->
             // Filter out draft models if xml is a list
             def final_xml = xml instanceof List ? xml.findAll { !it.name.contains('-draft') } : xml
@@ -227,11 +232,11 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
         ch_gapseq_for_summary,
         ch_gapseq_tbl_for_summary,
         ch_memote_for_summary,
-        !params.skip_macsyfinder,
-        !params.skip_traitar,
-        !params.skip_carveme,
-        !params.skip_gapseq,
-        !params.skip_memote
+        !options.skip_macsyfinder,
+        !options.skip_traitar,
+        !options.skip_carveme,
+        !options.skip_gapseq,
+        !options.skip_memote
     )
 
     emit:

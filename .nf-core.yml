@@ -1,7 +1,5 @@
 repository_type: pipeline
-
 nf_core_version: 4.0.2
-
 lint:
   # files_unchanged disabled due to nf-core/tools 4.0.2 bug:
   # JSONDecodeError in try_generate_container_configs() when Nextflow 26.x
@@ -13,9 +11,9 @@ lint:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
     - assets/multiqc_config.yml
+    - .github/workflows/linting_comment.yml
   template_strings: false
   container_configs: false
-
 template:
   org: nf-core
   name: bacmodel

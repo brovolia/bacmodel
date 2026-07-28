@@ -150,5 +150,5 @@ df.to_csv('bacmodel_summary.tsv', sep='\t', index=False)
 
 with open("versions.yml", "w") as vf:
     vf.write('"${task.process}":\\n')
-    vf.write(f'    python: "{sys.version.split()[0]}"\\n')
+    vf.write(f'    python: "{".".join(sys.version.split()[0].split(".")[:2])}"\\n')
     vf.write(f'    pandas: "{pd.__version__}"\\n')

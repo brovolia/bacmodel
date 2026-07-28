@@ -3,7 +3,7 @@
         "content": [
             {
                 "BACMODEL_SUMMARY": {
-                    "python": "3.12.3",
+                    "python": "3.12",
                     "pandas": "2.2.1"
                 },
                 "CARVEME_CARVE": {
@@ -946,13 +946,13 @@
                 "summary/versions.yml"
             ],
             [
-                "versions.yml:md5,f11b0f23e6090fddc5bfa008dd8b56b6"
+                "versions.yml:md5,b16b3424da0a397a592ae0f1064763cd"
             ]
         ],
         "meta": {
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-27T16:52:28.950887289"
+        "timestamp": "2026-07-28T13:36:19.928322278"
     }
 }

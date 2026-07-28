@@ -1,0 +1,87 @@
+%%metro logo: docs/images/nf-core-bacmodel_logo_light.png
+%%metro style: light
+%%metro legend: br
+%%metro logo_scale: 0.55
+%%metro legend_min_height: 90
+%%metro legend_logo_gap: 12
+
+%% Define metro lines (analysis types)
+%%metro line: macsyfinder | Macromolecular Systems | #e63946
+%%metro line: metabolic | Metabolic Modeling | #2db572
+%%metro line: phenotype | Phenotype Prediction | #0570b0
+
+%% Grid layout
+%%metro grid: annotation | 0,0
+%%metro grid: functional_analysis | 1,0
+%%metro grid: output | 2,0
+
+%% File/directory markers
+%%metro file: input_assemblies | .fasta
+%%metro file: proteins_out | .faa
+%%metro file: gff_out | .gff
+%%metro file: summary_table | .tsv
+
+%% Lift output artefacts above the main track
+%%metro off_track: input_assemblies, proteins_out, gff_out, summary_table
+
+graph LR
+    %% Annotation section (shared by all lines)
+    subgraph annotation [Genome Annotation]
+        %%metro entry: left | macsyfinder, metabolic, phenotype
+        %%metro exit: right | macsyfinder, metabolic, phenotype
+
+        input_assemblies[Input Assemblies/MAGs]
+        _metabolic_branch
+        prokka[Prokka]
+        bakta_db[Bakta DB]
+        bakta[Bakta]
+        proteins_out[Proteins]
+        gff_out[GFF]
+
+        input_assemblies -->|macsyfinder,metabolic,phenotype| prokka
+        input_assemblies -->|macsyfinder,metabolic,phenotype| bakta_db
+        bakta_db -->|macsyfinder,metabolic,phenotype| bakta
+        prokka -->|macsyfinder,metabolic,phenotype| proteins_out
+        bakta -->|macsyfinder,metabolic,phenotype| proteins_out
+        prokka -->|macsyfinder,metabolic,phenotype| gff_out
+        bakta -->|macsyfinder,metabolic,phenotype| gff_out
+        input_assemblies -->|metabolic| _metabolic_branch
+    end
+
+    %% Functional analysis section
+    subgraph functional_analysis [Functional Analysis]
+        %%metro entry: left | macsyfinder, metabolic, phenotype
+        %%metro exit: right | macsyfinder, metabolic, phenotype
+
+        macsyfinder_models[MacSyFinder Models]
+        macsyfinder[MacSyFinder]
+
+        pfam_db[Pfam DB]
+        traitar[TRAITAR]
+
+        carveme[CarveMe]
+        gapseq_genome[Gapseq]
+        memote[Memote]
+
+        macsyfinder_models -->|macsyfinder| macsyfinder
+
+        pfam_db -->|phenotype| traitar
+    end
+
+    %% Output section
+    subgraph output [Output & Reporting]
+        %%metro entry: left | macsyfinder, metabolic, phenotype
+
+        summary_table[Summary]
+    end
+
+    %% Inter-section connections
+    proteins_out -->|macsyfinder| macsyfinder
+    proteins_out -->|phenotype| traitar
+    proteins_out -->|metabolic| carveme
+    _metabolic_branch -->|metabolic| gapseq_genome
+    macsyfinder -->|macsyfinder| summary_table
+    traitar -->|phenotype| summary_table
+    carveme -->|metabolic| memote
+    gapseq_genome -->|metabolic| memote
+    memote -->|metabolic| summary_table

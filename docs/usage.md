@@ -45,42 +45,44 @@ You will need to create a samplesheet with information about the genome assembli
 
 ### Samplesheet format
 
-The samplesheet should contain at minimum two required columns: `sample` and `fasta`. Two optional columns `medium_gapseq` and `medium_carveme` can be added to specify growth media for metabolic modeling. An example is shown below:
+The samplesheet should contain at minimum two required columns: `sample` and `fasta`. Four optional columns - `medium_gapseq`, `medium_gapseq_csv`, `medium_carveme`, and `medium_carveme_tsv` - can be added to specify growth media for metabolic modeling. An example is shown below:
 
 ```csv title="samplesheet.csv"
-sample,fasta,medium_gapseq,medium_carveme
-SAMPLE1,/path/to/sample1_assembly.fasta,,complete
-SAMPLE2,/path/to/sample2_assembly.fasta,LB,LB
-SAMPLE3,/path/to/sample3_assembly.fasta,M9,M9
+sample,fasta,medium_gapseq,medium_gapseq_csv,medium_carveme,medium_carveme_tsv
+SAMPLE1,/path/to/sample1_assembly.fasta,,,,
+SAMPLE2,/path/to/sample2_assembly.fasta,LB,,LB,
+SAMPLE3,/path/to/sample3_assembly.fasta,,/path/to/custom_medium.csv,M9,/path/to/custom_mediadb.tsv
 ```
 
-| Column           | Description                                                                                                                                                                                                                                           |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `sample`         | **Required.** Custom sample name. Cannot contain spaces - use underscores (`_`) instead, or the pipeline will fail with a validation error.                                                                                                           |
-| `fasta`          | **Required.** Path (absolute or relative) or URL to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`).                                                           |
-| `medium_gapseq`  | **Optional.** Growth medium for gapseq metabolic modeling. Can be a medium name (e.g., `LB`, `M9`) or path to custom CSV file. If empty, gapseq auto-predicts the medium. See [Metabolic modeling media](#metabolic-modeling-media) for details.      |
-| `medium_carveme` | **Optional.** Growth medium name for CarveMe gap-filling (e.g., `LB`, `M9`). Must correspond to a medium in the CarveMe media database. If empty, no gap-filling is performed. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
+| Column               | Description                                                                                                                                                                                                                                                                                             |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `sample`             | **Required.** Custom sample name. Cannot contain spaces - use underscores (`_`) instead, or the pipeline will fail with a validation error.                                                                                                                                                             |
+| `fasta`              | **Required.** Path (absolute or relative) or URL to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`).                                                                                                             |
+| `medium_gapseq`      | **Optional.** Built-in growth medium name for gapseq (e.g., `LB`, `M9`). Mutually exclusive with `medium_gapseq_csv` - set at most one of the two. If both are empty, gapseq auto-predicts the medium. See [Metabolic modeling media](#metabolic-modeling-media) for details.                           |
+| `medium_gapseq_csv`  | **Optional.** Path to a custom gapseq medium CSV file. Mutually exclusive with `medium_gapseq` - the pipeline errors out if both are set for the same sample. See [Metabolic modeling media](#metabolic-modeling-media) for details.                                                                    |
+| `medium_carveme`     | **Optional.** Growth medium **name** for CarveMe gap-filling (e.g., `LB`, `M9`), selected from whichever media database applies (see `medium_carveme_tsv` and `--carveme_mediadb` below). If empty, no gap-filling is performed. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
+| `medium_carveme_tsv` | **Optional.** Path to a custom per-sample CarveMe media database TSV file. Overrides the global `--carveme_mediadb` for this sample only; combine with `medium_carveme` to pick a medium name out of it. See [Metabolic modeling media](#metabolic-modeling-media) for details.                         |
 
 An [example samplesheet](../assets/samplesheet.csv) has been provided with the pipeline.
 
 ### Metabolic modeling media
 
-The optional `medium_gapseq` and `medium_carveme` columns allow you to specify growth media for metabolic model reconstruction on a per-sample basis. This is useful when:
+The optional `medium_gapseq`/`medium_gapseq_csv` and `medium_carveme`/`medium_carveme_tsv` columns allow you to specify growth media for metabolic model reconstruction on a per-sample basis. This is useful when:
 
 - You have experimental growth data for specific media
 - You want to ensure models can simulate growth under specific conditions
 - Different bacterial species in your dataset require different growth conditions
 
-#### Gapseq media (`medium_gapseq`)
+#### Gapseq media (`medium_gapseq` / `medium_gapseq_csv`)
 
 :::note
 Gapseq automatically downloads reference sequence databases on first use. The pipeline uses container options to ensure each process has a writable directory for database initialization.
 
-**Default behavior (empty column):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
+**Default behavior (both columns empty):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
 
-**Built-in media names:** You can specify predefined media names that gapseq recognizes: `LB` (Luria-Bertani rich medium) or `M9` (M9 minimal medium). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
+**Built-in media names (`medium_gapseq`):** You can specify predefined media names that gapseq recognizes: `LB` (Luria-Bertani rich medium) or `M9` (M9 minimal medium). See the [gapseq medium documentation](https://gapseq.readthedocs.io/en/latest/usage/medium.html) for available options.
 
-**Custom media files:** Provide a path to a CSV file with three columns:
+**Custom media files (`medium_gapseq_csv`):** Provide a path to a CSV file with three columns:
 
 - `compounds`: Metabolite IDs (e.g., `cpd00027` for D-Glucose)
 - `name`: Metabolite names
@@ -98,11 +100,15 @@ cpd00009,Phosphate,100
 cpd00013,NH3,100
 ```
 
-**How the medium is chosen:** gapseq has no notion of "combining" two media files - per sample, it is either your file, or its own prediction (optionally nudged with `-c`, see below). The pipeline resolves this as follows, in order:
+An [example medium CSV](../assets/medium_gapseq_example.csv) with this exact format is shipped with the pipeline - copy it and adjust the compounds/fluxes for your own medium.
 
-1. **`medium_gapseq` is a path to a CSV file** - that file is used directly for gap-filling. Gapseq's medium prediction step is skipped entirely for that sample, and any `--gapseq_medium_args` you've set are ignored for it.
-2. **`medium_gapseq` is empty** - gapseq predicts the medium itself from the draft model and pathway results. If `--gapseq_medium_args` is set (e.g. `-c "cpd00007:0"`), those flags are applied on top of the prediction to add/remove specific compounds.
+**How the medium is chosen:** gapseq has no notion of "combining" two media files - per sample, it is either your file, or its own prediction (optionally nudged with `-c`, see below). `medium_gapseq` and `medium_gapseq_csv` are mutually exclusive - the pipeline errors out if both are set for the same sample. The pipeline resolves this as follows, in order:
+
+1. **`medium_gapseq_csv` is set** - that CSV file is used directly for gap-filling. Gapseq's medium prediction step is skipped entirely for that sample, and any `--gapseq_medium_args` you've set are ignored for it.
+2. **Both columns are empty** - gapseq predicts the medium itself from the draft model and pathway results. If `--gapseq_medium_args` is set (e.g. `-c "cpd00007:0"`), those flags are applied on top of the prediction to add/remove specific compounds.
 3. **`medium_gapseq` is a built-in name (`LB`, `M9`)** - only honoured in the default `doall` mode, where it's passed straight to `gapseq doall -m`. It has no effect in the custom/stepwise mode described below, since gapseq's standalone `medium` command doesn't accept predefined medium names - only a draft model and pathway table.
+
+**Tuning the default `doall` mode:** the default (non-advanced) workflow runs `gapseq doall` with a fixed `-b 200 -A diamond` (bit-score cutoff and aligner). Override it with `--gapseq_doall_args`, e.g. `--gapseq_doall_args '-b 150 -A diamond'` to loosen the bit-score cutoff, without switching to the full custom/stepwise mode below. Note `-b` here is gapseq's alignment bit-score threshold, not a contig-length filter - contig length is controlled separately via `--min_contig_length` (only used by Bakta annotation).
 
 **Advanced customization:** For advanced users who need full control over individual gapseq subworkflows (`find`, `find-transport`, `draft`, `medium`, and `fill`), provide custom arguments for specific steps. The pipeline automatically switches to custom workflow mode when any of these are set:
 
@@ -122,7 +128,7 @@ nextflow run nf-core/bacmodel \
 - `--gapseq_find_args` - Pathway prediction (default: `-b 200 -A diamond`)
 - `--gapseq_findtransport_args` - Transporter prediction (default: `-b 200`)
 - `--gapseq_draft_args` - Draft model construction (default: none)
-- `--gapseq_medium_args` - Add/remove specific compounds on top of the predicted medium, e.g. `-c "cpd00007:0"` to remove oxygen (default: none; ignored for samples with their own `medium_gapseq` file)
+- `--gapseq_medium_args` - Add/remove specific compounds on top of the predicted medium, e.g. `-c "cpd00007:0"` to remove oxygen (default: none; ignored for samples with their own `medium_gapseq_csv` file)
 - `--gapseq_fill_args` - Gap-filling (default: none)
 
 Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all available parameters for each command.
@@ -148,13 +154,17 @@ Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all avai
 Only provide custom `gapseq_*_args` if you need fine-grained control over reconstruction parameters. The default `doall` mode (no custom args) is recommended for most users as it provides sensible defaults and is well-tested.
 :::
 
-#### CarveMe media (`medium_carveme`)
+#### CarveMe media (`medium_carveme` / `medium_carveme_tsv`)
 
-**Default behavior (empty column):** CarveMe uses **complete rich medium** for gap-filling by default, ensuring the model can simulate growth and shows comprehensive metabolic capabilities. This matches gapseq's permissive default behavior.
+**Default behavior (all columns empty):** No gap-filling is performed - CarveMe still produces a draft reconstruction from its reaction scores, but it is not fitted to grow on any particular medium. There is no "complete"/rich-medium fallback: CarveMe's own bundled media database only defines `LB`, `LB[-O2]`, `M9`, `M9[-O2]`, `M9[glyc]`, and `PHOTO` - passing an unrecognised name (e.g. `complete`) makes CarveMe print `Medium <name> not in database, ignored.` and silently skip gap-filling, so the pipeline only passes `--gapfill` when `medium_carveme` is actually set.
 
-**Media names:** Specify media names from the CarveMe media database (e.g., `LB`, `M9`, `complete`, `TSB`) to override the default and gap-fill for a specific growth medium.
+**Media names (`medium_carveme`):** Specify a media name from the CarveMe media database (e.g., `LB`, `M9`) to gap-fill for a specific growth medium. This column always holds a **name**, never a file path - it selects an entry out of whichever media database applies to that sample, checked in this order: a per-sample `medium_carveme_tsv` first, then the run-wide `--carveme_mediadb`, then CarveMe's own bundled default database (`LB`, `LB[-O2]`, `M9`, `M9[-O2]`, `M9[glyc]`, `PHOTO`).
 
-**Custom media database:** To use a custom CarveMe media database, provide the `--carveme_mediadb` parameter pointing to a TSV file containing multiple media definitions.
+**Custom media database, run-wide (`--carveme_mediadb`):** To use a custom CarveMe media database for every sample, provide the `--carveme_mediadb` parameter pointing to a TSV file with four columns: `medium` (the name referenced by `medium_carveme`), `description`, `compound` (BiGG-style metabolite ID), and `name`. One row per compound, so a single file can define several media by repeating the `medium` value across their rows.
+
+**Custom media database, per-sample (`medium_carveme_tsv`):** To use a different media database for one specific sample (e.g. a species with unusual growth requirements), set `medium_carveme_tsv` to a TSV file in that same four-column format. It overrides `--carveme_mediadb` for that sample only - other samples keep using the run-wide database (or CarveMe's default, if `--carveme_mediadb` isn't set).
+
+An [example media database](../assets/medium_carveme_mediadb_example.tsv) with this format (covering `LB` and `M9`) is shipped with the pipeline - copy it and extend it with your own media/compounds. Use it as either the `--carveme_mediadb` value or a `medium_carveme_tsv` value; the format is identical.
 
 Example usage:
 
@@ -167,11 +177,11 @@ nextflow run nf-core/bacmodel \
 ```
 
 :::note
-The `medium_carveme` column should contain media **names** that exist in the media database, not file paths.
+The `medium_carveme` column should contain media **names** that exist in the applicable media database, not file paths - use `medium_carveme_tsv` (per-sample) or `--carveme_mediadb` (run-wide) for the file itself.
 :::
 
 :::tip
-For most applications, leaving both media columns empty uses sensible defaults: both tools use rich complete media for gap-filling, ensuring comparable and comprehensive metabolic models. Specify media explicitly when you need to constrain models to experimentally validated growth conditions (e.g., use `M9` for both tools for minimal medium experiments, or `LB` for rich medium cultures).
+Leaving all media columns empty gives each tool its own default: gapseq falls back to its permissive built-in complete medium, while CarveMe skips gap-filling entirely and returns an ungap-filled draft reconstruction (see above). Specify media explicitly when you need comparable, gap-filled models from both tools, or when constraining to experimentally validated growth conditions (e.g., use `M9` for both tools for minimal medium experiments, or `LB` for rich medium cultures).
 :::
 
 ## Running the pipeline
@@ -212,6 +222,18 @@ Control which functional analysis tools to run:
 :::note
 MEMOTE requires at least one metabolic modeling tool (`skip_carveme=false` or `skip_gapseq=false`) to be enabled. MEMOTE will evaluate the quality of all generated metabolic models (SBML XML format) and produce HTML reports with comprehensive quality metrics.
 :::
+
+#### MacSyFinder search mode
+
+MacSyFinder's detection power depends on whether gene order (synteny) is known, controlled via `--macsyfinder_db_type`:
+
+```bash
+--macsyfinder_db_type unordered         # Default - MAGs / draft assemblies with unreliable gene order
+--macsyfinder_db_type ordered_replicon  # A single complete (or nearly complete) genome
+--macsyfinder_db_type gembase           # Multiple complete replicons in one gembase-formatted database
+```
+
+`unordered` is the safe default for the fragmented assemblies and MAGs this pipeline typically handles. If your input assemblies are complete, single-replicon genomes, `ordered_replicon` enables MacSyFinder's synteny-aware detection rules for more precise system calls. See the [MacSyFinder documentation](https://macsyfinder.readthedocs.io/en/latest/user_guide/functioning.html) for details on how each mode affects detection.
 
 #### Database options
 

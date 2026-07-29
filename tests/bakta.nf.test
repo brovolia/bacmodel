@@ -17,7 +17,6 @@ nextflow_pipeline {
             params {
                 outdir = "$outputDir"
                 annotation_tool  = 'bakta'
-                baktadb_download = true
             }
         }
 

@@ -184,19 +184,16 @@
                 },
                 "baktadb": {
                     "type": "string",
-                    "description": "Path to Bakta database (required if `annotation_tool`='bakta')",
+                    "default": "assets/bakta_db",
+                    "description": "Directory to cache the Bakta database in (only used when `annotation_tool`='bakta'). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs, so most users never need to set this.",
                     "fa_icon": "fas fa-database"
                 },
-                "baktadb_download": {
-                    "type": "boolean",
-                    "description": "Download Bakta database automatically",
-                    "fa_icon": "fas fa-download"
-                },
-                "baktadb_download_args": {
+                "baktadb_type": {
                     "type": "string",
-                    "default": "--type light",
-                    "description": "Arguments for Bakta database download",
-                    "help_text": "Arguments passed to `bakta_db download` (e.g. `--type light` or `--type full`). See the [Bakta database docs](https://github.com/oschwengers/bakta#database-download) for available options.",
+                    "default": "light",
+                    "enum": ["light", "full"],
+                    "description": "Bakta database type to download",
+                    "help_text": "'light' excludes some reference databases (smaller, faster download) while 'full' includes everything. See the [Bakta database docs](https://github.com/oschwengers/bakta#database-download) for details. For any other `bakta_db download` argument, set `ext.args` for the `BAKTA_BAKTADBDOWNLOAD` process in a custom config file instead.",
                     "fa_icon": "fas fa-cog"
                 },
                 "min_contig_length": {
@@ -205,33 +202,7 @@
                     "description": "Minimum contig length for annotation and analysis",
                     "fa_icon": "fas fa-ruler"
                 }
-            },
-            "allOf": [
-                {
-                    "if": {
-                        "properties": {
-                            "annotation_tool": {
-                                "const": "bakta"
-                            }
-                        }
-                    },
-                    "then": {
-                        "anyOf": [
-                            {
-                                "required": ["baktadb"]
-                            },
-                            {
-                                "properties": {
-                                    "baktadb_download": {
-                                        "const": true
-                                    }
-                                },
-                                "required": ["baktadb_download"]
-                            }
-                        ]
-                    }
-                }
-            ]
+            }
         },
         "database_options": {
             "title": "Database options",
@@ -241,13 +212,9 @@
             "properties": {
                 "pfamdb": {
                     "type": "string",
-                    "description": "Path to Pfam database (required if `skip_traitar`=false)",
+                    "default": "assets/pfam_db",
+                    "description": "Directory to cache the Pfam database in (only used when `skip_traitar`=false). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs, so most users never need to set this.",
                     "fa_icon": "fas fa-folder"
-                },
-                "pfamdb_download": {
-                    "type": "boolean",
-                    "description": "Download Pfam database automatically",
-                    "fa_icon": "fas fa-download"
                 }
             }
         },
@@ -275,6 +242,12 @@
                     "enum": ["unordered", "ordered_replicon", "gembase"],
                     "description": "MacSyFinder --db-type: 'unordered' for MAGs/draft assemblies with unreliable gene order (default, most permissive), 'ordered_replicon' for a single complete/nearly-complete genome (enables synteny-aware detection), or 'gembase' for multiple complete replicons in one gembase-formatted database",
                     "fa_icon": "fas fa-sitemap"
+                },
+                "macsyfinder_db": {
+                    "type": "string",
+                    "default": "assets/macsyfinder_db",
+                    "description": "Directory to cache downloaded MacSyFinder models in (one subdirectory per `macsyfinder_models` value). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs.",
+                    "fa_icon": "fas fa-database"
                 },
                 "skip_traitar": {
                     "type": "boolean",
@@ -353,30 +326,6 @@
                             }
                         },
                         "required": ["macsyfinder_models"]
-                    }
-                },
-                {
-                    "if": {
-                        "properties": {
-                            "skip_traitar": {
-                                "const": false
-                            }
-                        }
-                    },
-                    "then": {
-                        "anyOf": [
-                            {
-                                "required": ["pfamdb"]
-                            },
-                            {
-                                "properties": {
-                                    "pfamdb_download": {
-                                        "const": true
-                                    }
-                                },
-                                "required": ["pfamdb_download"]
-                            }
-                        ]
                     }
                 }
             ]

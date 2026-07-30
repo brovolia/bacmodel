@@ -17,15 +17,10 @@ include { BACMODEL_ANALYSIS      } from '../subworkflows/local/bacmodel_analysis
 workflow BACMODEL {
 
     take:
-    ch_samplesheet // channel: samplesheet read in from --input
+    ch_genomes // channel: [ val(meta), path(fasta) ] - samplesheet read in from --input, already formatted by PIPELINE_INITIALISATION
     main:
 
     ch_versions = channel.empty()
-
-    //
-    // Create channel from samplesheet (already formatted by PIPELINE_INITIALISATION)
-    //
-    ch_genomes = ch_samplesheet
 
     //
     // Snapshot the params BACMODEL_ANALYSIS and its subworkflows need, so
@@ -34,12 +29,11 @@ workflow BACMODEL {
     //
     def annotation_options = [
         annotation_tool           : params.annotation_tool,
-        baktadb_download          : params.baktadb_download,
         baktadb                   : params.baktadb,
         skip_macsyfinder          : params.skip_macsyfinder,
         macsyfinder_models        : params.macsyfinder_models,
+        macsyfinder_db            : params.macsyfinder_db,
         skip_traitar              : params.skip_traitar,
-        pfamdb_download           : params.pfamdb_download,
         pfamdb                    : params.pfamdb,
         skip_carveme              : params.skip_carveme,
         carveme_mediadb           : params.carveme_mediadb,

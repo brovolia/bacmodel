@@ -16,7 +16,6 @@ nextflow_pipeline {
         when {
             params {
                 outdir = "$outputDir"
-                pfamdb_download = true
                 skip_traitar    = false
             }
         }

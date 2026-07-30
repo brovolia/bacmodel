@@ -204,7 +204,7 @@ Choose between Prokka (default) and Bakta for genome annotation:
 
 ```bash
 --annotation_tool prokka  # Default
---annotation_tool bakta   # Requires --baktadb or --baktadb_download
+--annotation_tool bakta   # Downloads and caches its database automatically on first use
 ```
 
 #### Enable/disable analysis tools
@@ -237,14 +237,15 @@ MacSyFinder's detection power depends on whether gene order (synteny) is known, 
 
 #### Database options
 
-Specify or download required databases:
+The Pfam (Traitar), Bakta, and MacSyFinder databases are downloaded automatically the first time they're
+needed and cached in a directory (via Nextflow's `storeDir`), so most users don't need to set anything here.
+Later runs reuse the cached copy instead of re-downloading. Override the cache location if you want it
+somewhere other than the pipeline's `assets/` directory, or to share one copy across multiple runs/users:
 
 ```bash
---pfamdb /path/to/pfam      # Required if skip_traitar=false
---pfamdb_download true      # Download Pfam database automatically
-
---baktadb /path/to/bakta    # Required if annotation_tool=bakta
---baktadb_download true     # Download Bakta database automatically
+--pfamdb /path/to/pfam_cache            # Default: assets/pfam_db - used if skip_traitar=false
+--baktadb /path/to/bakta_cache          # Default: assets/bakta_db - used if annotation_tool=bakta
+--macsyfinder_db /path/to/macsyfinder_cache  # Default: assets/macsyfinder_db
 ```
 
 Note that the pipeline will create the following files in your working directory:

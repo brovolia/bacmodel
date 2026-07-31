@@ -30,7 +30,6 @@ nextflow_pipeline {
                 skip_carveme     = false
                 skip_gapseq      = false
                 skip_memote      = false
-                pfamdb_download  = true
             }
         }
 

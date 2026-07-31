@@ -48,18 +48,16 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Option 2: Bakta for annotation (alternative)
     if (options.annotation_tool == 'bakta') {
-        // Handle Bakta database
-        ch_baktadb = Channel.empty()
-
-        if (options.baktadb_download) {
-            // Download database
+        // Skip the download if the DB is already cached at options.baktadb (published
+        // there by a previous run - see conf/modules.config). Can't use storeDir here:
+        // BAKTA_BAKTADBDOWNLOAD also emits a tuple for versions-topic reporting, and
+        // storeDir only supports processes whose outputs are all `val`/`path`.
+        def baktadb_cached = file("${options.baktadb}/db")
+        if (baktadb_cached.exists()) {
+            ch_baktadb = Channel.fromPath(baktadb_cached, checkIfExists: true)
+        } else {
             BAKTA_BAKTADBDOWNLOAD()
             ch_baktadb = BAKTA_BAKTADBDOWNLOAD.out.db
-        } else if (options.baktadb) {
-            // Use provided database path
-            ch_baktadb = Channel.fromPath(options.baktadb, checkIfExists: true)
-        } else {
-            error "Bakta requires a database. Please provide --baktadb /path/to/db or use --baktadb_download true"
         }
 
         BAKTA_BAKTA(ch_genomes, ch_baktadb, [], [], [], [])
@@ -73,12 +71,22 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
             error "MacSyFinder requires model names. Please provide --macsyfinder_models (e.g., 'TXSS')"
         }
 
-        // Download MacSyFinder models
-        MACSYFINDER_DOWNLOAD(options.macsyfinder_models)
+        // Skip the download if these models are already cached at
+        // options.macsyfinder_db/<model_name> (published there by a previous run -
+        // see conf/modules.config). Can't use storeDir here: MACSYFINDER_DOWNLOAD also
+        // emits tuples for versions-topic reporting, and storeDir only supports
+        // processes whose outputs are all `val`/`path`.
+        def macsyfinder_models_cached = file("${options.macsyfinder_db}/${options.macsyfinder_models}/models")
+        if (macsyfinder_models_cached.exists()) {
+            ch_macsyfinder_models = Channel.fromPath(macsyfinder_models_cached, checkIfExists: true)
+        } else {
+            MACSYFINDER_DOWNLOAD(options.macsyfinder_models)
+            ch_macsyfinder_models = MACSYFINDER_DOWNLOAD.out.models
+        }
 
         MACSYFINDER_SEARCH(
             ch_annotated_proteins,
-            MACSYFINDER_DOWNLOAD.out.models,
+            ch_macsyfinder_models,
             options.macsyfinder_models
         )
         ch_macsyfinder_results = MACSYFINDER_SEARCH.out.summary
@@ -88,18 +96,16 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Phenotype Prediction - run on all
     if (!options.skip_traitar) {
-        // Handle Pfam database for TRAITAR
-        ch_pfamdb = Channel.empty()
-
-        if (options.pfamdb_download) {
-            // Download database
+        // Skip the download if the DB is already cached at options.pfamdb (published
+        // there by a previous run - see conf/modules.config). Can't use storeDir here:
+        // TRAITAR_PFAMGET also emits a tuple for versions-topic reporting, and
+        // storeDir only supports processes whose outputs are all `val`/`path`.
+        def pfamdb_cached = file("${options.pfamdb}/pfam_data")
+        if (pfamdb_cached.exists()) {
+            ch_pfamdb = Channel.fromPath(pfamdb_cached, checkIfExists: true)
+        } else {
             TRAITAR_PFAMGET()
             ch_pfamdb = TRAITAR_PFAMGET.out.pfam_db
-        } else if (options.pfamdb) {
-            // Use provided database path
-            ch_pfamdb = Channel.fromPath(options.pfamdb, checkIfExists: true)
-        } else {
-            error "TRAITAR requires a Pfam database. Please provide --pfamdb /path/to/pfam or use --pfamdb_download true"
         }
 
         TRAITAR(

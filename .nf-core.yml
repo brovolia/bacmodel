@@ -14,6 +14,14 @@ lint:
     - .github/workflows/linting_comment.yml
   template_strings: false
   container_configs: false
+  nextflow_config:
+    # These three default to "${projectDir}/assets/<tool>_db" in nextflow.config, so they
+    # resolve to an absolute, checkout-specific path - can never literally string-match a
+    # static default in nextflow_schema.json (used there only for documentation purposes).
+    - config_defaults:
+        - params.baktadb
+        - params.pfamdb
+        - params.macsyfinder_db
 template:
   org: nf-core
   name: bacmodel

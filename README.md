@@ -116,29 +116,7 @@ For further information or help, don't hesitate to get in touch on the [Slack `#
 <!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
 <!-- If you use nf-core/bacmodel for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
 
-If you use nf-core/bacmodel for your analysis, please cite the pipeline along with the tools it uses:
-
-### Core annotation tools
-
-- **Prokka** - Seemann T. (2014) Prokka: rapid prokaryotic genome annotation. Bioinformatics, 30(14):2068-9. doi: [10.1093/bioinformatics/btu153](https://doi.org/10.1093/bioinformatics/btu153)
-
-- **Bakta** - Schwengers O, et al. (2021) Bakta: rapid and standardized annotation of bacterial genomes via alignment-free sequence identification. Microb Genom, 7(11):000685. doi: [10.1099/mgen.0.000685](https://www.microbiologyresearch.org/content/journal/mgen/10.1099/mgen.0.000685)
-
-### Functional characterization tools
-
-- **MacSyFinder** - Néron B, et al. (2023) MacSyFinder v2: Improved modelling and search engine to identify molecular systems in genomes. Peer Community Journal, 3:e28. doi: [10.24072/pcjournal.250](https://peercommunityjournal.org/articles/10.24072/pcjournal.250/)
-
-- **TRAITAR** - Weimann A, et al. (2016) From Genomes to Phenotypes: Traitar, the Microbial Trait Analyzer. mSystems, 1(6):e00101-16. doi: [10.1128/mSystems.00101-16](https://journals.asm.org/doi/10.1128/msystems.00101-16)
-
-### Metabolic modeling tools
-
-- **CarveMe** - Machado D, et al. (2018) Fast automated reconstruction of genome-scale metabolic models for microbial species and communities. Nucleic Acids Res, 46(15):7542-7553. doi: [10.1093/nar/gky537](https://doi.org/10.1093/nar/gky537)
-
-- **gapseq** - Zimmermann J, et al. (2021) gapseq: informed prediction of bacterial metabolic pathways and reconstruction of accurate metabolic models. Genome Biol, 22(1):81. doi: [10.1186/s13059-021-02295-1](https://link.springer.com/article/10.1186/s13059-021-02295-1)
-
-- **MEMOTE** - Lieven C, et al. (2020) MEMOTE for standardized genome-scale metabolic model testing. Nat Biotechnol, 38(3):272-276. doi: [10.1038/s41587-020-0446-y](https://doi.org/10.1038/s41587-020-0446-y)
-
-An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
+If you use nf-core/bacmodel for your analysis, please cite the pipeline along with the tools it uses. A full list of references for the tools and data used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
 You can cite the `nf-core` publication as follows:
 

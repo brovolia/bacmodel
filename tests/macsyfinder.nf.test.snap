@@ -6,6 +6,10 @@
                     "python": "3.12",
                     "pandas": "2.2.1"
                 },
+                "MACSYFINDER_DOWNLOAD": {
+                    "macsyfinder": "2.1.6",
+                    "msf_data": "1.0.4"
+                },
                 "MACSYFINDER_SEARCH": {
                     "hmmer": 3.4,
                     "macsyfinder": "2.1.6"

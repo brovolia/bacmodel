@@ -6,10 +6,6 @@
                     "python": "3.12",
                     "pandas": "2.2.1"
                 },
-                "MACSYFINDER_DOWNLOAD": {
-                    "macsyfinder": "2.1.6",
-                    "msf_data": "1.0.4"
-                },
                 "MACSYFINDER_SEARCH": {
                     "hmmer": 3.4,
                     "macsyfinder": "2.1.6"
@@ -902,6 +898,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-29T16:33:55.924043014"
+        "timestamp": "2026-08-19T12:53:51.446052454"
     }
 }

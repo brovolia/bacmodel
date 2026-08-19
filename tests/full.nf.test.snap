@@ -35,9 +35,6 @@
                 "TRAITAR": {
                     "traitar": "0.1.1"
                 },
-                "TRAITAR_PFAMGET": {
-                    "traitar": "0.1.1"
-                },
                 "Workflow": {
                     "nf-core/bacmodel": "v1.0.0"
                 }
@@ -953,6 +950,6 @@
             "nf-test": "0.9.3",
             "nextflow": "26.04.4"
         },
-        "timestamp": "2026-07-28T13:36:19.928322278"
+        "timestamp": "2026-08-19T12:17:47.7537032"
     }
 }

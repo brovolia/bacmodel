@@ -16,8 +16,8 @@
 */
 
 include { BACMODEL  } from './workflows/bacmodel'
-include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_bacmodel_pipeline/main'
-include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_bacmodel_pipeline/main'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_bacmodel_pipeline'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_bacmodel_pipeline'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE

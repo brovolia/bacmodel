@@ -1,10 +1,11 @@
 nextflow_pipeline {
 
-    name "Test pipeline"
+    name "Test pipeline - default (prokka annotation)"
     script "../main.nf"
     tag "pipeline"
+    profile "test"
 
-    test("-profile test") {
+    test("Params: test profile") {
 
         when {
             params {
@@ -13,19 +14,34 @@ nextflow_pipeline {
         }
 
         then {
-            // stable_path: All files + folders in ${params.outdir}/ with a stable path (including file name)
-            def stable_path = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
-            // stable_content: All files in ${params.outdir}/ with stable content
-            def stable_content = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
-            assert workflow.success
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            // annotation/prokka/**/*.{faa,gff,...} content is unstable (embedded
+            // run timestamps) and ignored above - check format instead of content.
+            def prokka_faa = path("$outputDir/annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.faa")
+            def prokka_gff = path("$outputDir/annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gff")
+
+            // summary/bacmodel_summary.tsv content is unstable (all downstream
+            // tools are skipped in this profile) and ignored above - check that
+            // it still has the expected shape for a single sample with every
+            // optional tool skipped.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+
             assertAll(
+                { assert workflow.success},
+                { assert summary_lines.size() == 2 : "Summary should have a header line plus exactly one sample row" },
+                { assert summary_lines[0] == 'sample_id' : "No optional tools ran, so summary should only have the sample_id column" },
+                { assert summary_lines[1] == 'faecalibacterium_taiwanense' },
                 { assert snapshot(
                     // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
-                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_mqc_versions.yml"),
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
                     // All stable path name, with a relative path
-                    stable_path,
+                    stable_name,
                     // All files with stable contents
-                    stable_content
+                    stable_path
                 ).match() }
             )
         }

@@ -1,0 +1,82 @@
+nextflow_pipeline {
+
+    name "Test pipeline - Gapseq Custom Workflow"
+    script "../main.nf"
+    tag "pipeline"
+    tag "gapseq"
+    tag "gapseq_custom"
+    // nf-test 0.9.3 silently drops this suite-level `profile` for
+    // nextflow_pipeline tests (confirmed via meta/nextflow.log: the actual
+    // invocation only ever carries nf-test.config's global default `test`
+    // profile) - conf/test_gapseq_custom.config's overrides are set inline
+    // below instead, since that's unaffected by the bug.
+    profile "test_gapseq_custom"
+
+    test("Params: Prokka + Gapseq with custom subworkflow parameters") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_gapseq               = false
+                skip_memote               = false
+                gapseq_find_args          = '-b 150 -A diamond'
+                gapseq_findtransport_args = '-b 150'
+                gapseq_fill_args          = '-b 50'
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            // metabolic_models/gapseq/*.xml content is unstable and ignored
+            // above. gapseq names these itself, so check by glob.
+            def gapseq_xmls = new File("$outputDir/metabolic_models/gapseq").listFiles({ f -> f.name.endsWith('.xml') } as FileFilter)
+
+            // Custom mode runs find -> findtransport -> draft -> medium -> fill
+            // as separate steps (conf/modules.config only publishes these
+            // intermediates if a gapseq_*_args param is set) - check each
+            // intermediate directory actually got populated, proving custom
+            // mode engaged rather than silently falling back to doall.
+            def find_tbls          = new File("$outputDir/metabolic_models/gapseq/intermediate/find").listFiles({ f -> f.name.endsWith('.tbl') } as FileFilter)
+            def findtransport_tbls = new File("$outputDir/metabolic_models/gapseq/intermediate/findtransport").listFiles({ f -> f.name.endsWith('.tbl') } as FileFilter)
+            def draft_rds          = new File("$outputDir/metabolic_models/gapseq/intermediate/draft").listFiles({ f -> f.name.endsWith('.RDS') } as FileFilter)
+
+            // metabolic_models/memote/*.{html,json.gz} content is unstable and
+            // ignored above - check the files exist and are non-empty.
+            def memote_report = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_gapseq.html")
+            def memote_json   = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_gapseq.json.gz")
+
+            // summary/bacmodel_summary.tsv content is unstable and ignored above -
+            // check its shape: only Gapseq ran, so only its two columns are added.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+            def summary_row   = summary_lines[1].split('\t')
+
+            assertAll(
+                { assert workflow.success},
+                { assert gapseq_xmls.size() >= 1 : "Gapseq should produce at least one SBML model (.xml)" },
+                { assert gapseq_xmls.every { it.length() > 0 } : "Gapseq model files should not be empty" },
+                { assert find_tbls != null && find_tbls.size() >= 1 : "Custom find step should publish a .tbl file" },
+                { assert findtransport_tbls != null && findtransport_tbls.size() >= 1 : "Custom findtransport step should publish a .tbl file" },
+                { assert draft_rds != null && draft_rds.size() >= 1 : "Custom draft step should publish a .RDS file" },
+                { assert memote_report.size() > 0 : "MEMOTE HTML report should not be empty" },
+                { assert memote_json.size() > 0 : "MEMOTE JSON report should not be empty" },
+                { assert summary_lines.size() == 2 : "Summary should have a header line plus exactly one sample row" },
+                { assert summary_lines[0] == 'sample_id\tgapseq_model\tgapseq_reactions' },
+                { assert summary_row[0] == 'faecalibacterium_taiwanense' },
+                { assert summary_row[1] == 'Yes' : "Gapseq always produces a model, so gapseq_model should be 'Yes'" },
+                { assert summary_row[2] ==~ /\d+/ : "gapseq_reactions should be a reaction count" },
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

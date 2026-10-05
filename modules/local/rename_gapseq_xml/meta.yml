@@ -1,0 +1,43 @@
+name: "rename_gapseq_xml"
+description: Rename gapseq XML output files to avoid collision with CarveMe outputs
+keywords:
+  - rename
+  - gapseq
+  - metabolic model
+  - xml
+tools:
+  - gapseq:
+      description: Informed prediction and analysis of bacterial metabolic pathways and genome-scale networks
+      homepage: https://github.com/jotech/gapseq
+      documentation: https://gapseq.readthedocs.io/
+      tool_dev_url: https://github.com/jotech/gapseq
+      licence: ["GPL v3"]
+      identifier: biotools:gapseq
+
+input:
+  - - meta:
+        type: map
+        description: |
+          Groovy Map containing sample information
+          e.g. `[ id:'sample1' ]`
+    - xml:
+        type: file
+        description: XML files from gapseq (non-draft models)
+        pattern: "*.xml"
+
+output:
+  - xml_renamed:
+      - meta:
+          type: map
+          description: |
+            Groovy Map containing sample information
+            e.g. `[ id:'sample1' ]`
+      - "*.xml":
+          type: file
+          description: Renamed XML files with _gapseq suffix
+          pattern: "*_gapseq.xml"
+
+authors:
+  - "@brovolia"
+maintainers:
+  - "@brovolia"

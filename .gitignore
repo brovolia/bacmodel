@@ -8,3 +8,12 @@ testing*
 *.pyc
 null/
 .lineage/
+.nf-test*
+.venv/
+venv/
+
+# Downloaded/cached databases (storeDir default: assets/<tool>_db, see conf/modules.config) -
+# large binary files that should never be committed or linted as pipeline source.
+assets/bakta_db/
+assets/pfam_db/
+assets/macsyfinder_db/

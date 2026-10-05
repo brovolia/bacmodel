@@ -1,0 +1,48 @@
+{
+    "Params: test profile": {
+        "content": [
+            {
+                "BACMODEL_SUMMARY": {
+                    "python": "3.12",
+                    "pandas": "2.2.1"
+                },
+                "PROKKA": {
+                    "prokka": "1.14.6"
+                },
+                "Workflow": {
+                    "nf-core/bacmodel": "v1.0.0"
+                }
+            },
+            [
+                "annotation",
+                "annotation/prokka",
+                "annotation/prokka/faecalibacterium_taiwanense",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.err",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.faa",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.ffn",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.fna",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.fsa",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gbk",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gff",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.log",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.sqn",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tbl",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.tsv",
+                "annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.txt",
+                "pipeline_info",
+                "pipeline_info/nf_core_bacmodel_software_versions.yml",
+                "summary",
+                "summary/bacmodel_summary.tsv",
+                "summary/versions.yml"
+            ],
+            [
+                "versions.yml:md5,b16b3424da0a397a592ae0f1064763cd"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "26.04.4"
+        },
+        "timestamp": "2026-07-28T13:21:04.086256192"
+    }
+}

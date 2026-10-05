@@ -1,0 +1,48 @@
+{
+    "Params: Bakta annotation": {
+        "content": [
+            {
+                "BACMODEL_SUMMARY": {
+                    "python": "3.12",
+                    "pandas": "2.2.1"
+                },
+                "BAKTA_BAKTA": {
+                    "bakta": "1.12.0"
+                },
+                "BAKTA_BAKTADBDOWNLOAD": {
+                    "bakta": "1.12.0"
+                },
+                "Workflow": {
+                    "nf-core/bacmodel": "v1.0.0"
+                }
+            },
+            [
+                "annotation",
+                "annotation/bakta",
+                "annotation/bakta/faecalibacterium_taiwanense.embl",
+                "annotation/bakta/faecalibacterium_taiwanense.faa",
+                "annotation/bakta/faecalibacterium_taiwanense.ffn",
+                "annotation/bakta/faecalibacterium_taiwanense.fna",
+                "annotation/bakta/faecalibacterium_taiwanense.gbff",
+                "annotation/bakta/faecalibacterium_taiwanense.gff3",
+                "annotation/bakta/faecalibacterium_taiwanense.hypotheticals.faa",
+                "annotation/bakta/faecalibacterium_taiwanense.hypotheticals.tsv",
+                "annotation/bakta/faecalibacterium_taiwanense.tsv",
+                "annotation/bakta/faecalibacterium_taiwanense.txt",
+                "pipeline_info",
+                "pipeline_info/nf_core_bacmodel_software_versions.yml",
+                "summary",
+                "summary/bacmodel_summary.tsv",
+                "summary/versions.yml"
+            ],
+            [
+                "versions.yml:md5,b16b3424da0a397a592ae0f1064763cd"
+            ]
+        ],
+        "meta": {
+            "nf-test": "0.9.3",
+            "nextflow": "26.04.4"
+        },
+        "timestamp": "2026-07-29T15:31:51.64261306"
+    }
+}

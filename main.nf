@@ -16,8 +16,8 @@
 */
 
 include { BACMODEL  } from './workflows/bacmodel'
-include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_bacmodel_pipeline'
-include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_bacmodel_pipeline'
+include { PIPELINE_INITIALISATION } from './subworkflows/local/utils_nfcore_bacmodel_pipeline/main'
+include { PIPELINE_COMPLETION     } from './subworkflows/local/utils_nfcore_bacmodel_pipeline/main'
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     NAMED WORKFLOWS FOR PIPELINE
@@ -38,8 +38,7 @@ workflow NFCORE_BACMODEL {
     // WORKFLOW: Run pipeline
     //
     BACMODEL (
-        samplesheet,
-        params.outdir,
+        samplesheet
     )
 }
 /*
@@ -81,6 +80,7 @@ workflow {
         params.plaintext_email,
         params.outdir,
         params.monochrome_logs,
+        params.hook_url,
     )
 }
 

@@ -42,7 +42,7 @@ jobs:
 
       # indication that the linting has finished
       - name: react if linting finished succesfully
-        if: steps.prek.outcome == 'success'
+        if: steps.pre-commit.outcome == 'success'
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
           comment-id: ${{ github.event.comment.id }}

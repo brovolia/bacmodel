@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "bacmodel_functional_annotation"
+description: Bacterial genome annotation and functional modeling subworkflow
+keywords:
+  - bacteria
+  - annotation
+  - functional analysis
+  - metabolic reconstruction
+components:
+  - prokka
+  - bakta/bakta
+  - bakta/baktadbdownload
+  - macsyfinder/search
+  - macsyfinder/download
+  - traitar
+  - traitar/pfamget
+  - carveme/carve
+  - gapseq/doall
+  - rename/gapseq/xml
+  - memote/run
+  - memote/report
+  - bacmodel/summary
+input:
+  - ch_samplesheet:
+      type: channel
+      description: |
+        Channel containing sample information and genome assembly files
+        Structure: [ val(meta), path(fasta) ]
+  - ch_baktadb:
+      type: channel
+      description: |
+        Channel containing Bakta database path (optional)
+        Structure: [ path(db) ]
+  - ch_pfamdb:
+      type: channel
+      description: |
+        Channel containing Pfam database path (optional)
+        Structure: [ path(db) ]
+output:
+  - proteins:
+      type: channel
+      description: |
+        Channel containing predicted protein sequences
+        Structure: [ val(meta), path(faa) ]
+  - gff:
+      type: channel
+      description: |
+        Channel containing genome annotation files
+        Structure: [ val(meta), path(gff) ]
+  - macsyfinder:
+      type: channel
+      description: |
+        Channel containing MacSyFinder results (optional)
+        Structure: [ val(meta), path(tsv) ]
+  - traitar:
+      type: channel
+      description: |
+        Channel containing TRAITAR phenotype predictions (optional)
+        Structure: [ val(meta), path(tsv) ]
+  - carveme:
+      type: channel
+      description: |
+        Channel containing CarveMe metabolic models (optional)
+        Structure: [ val(meta), path(xml) ]
+  - gapseq_pathways:
+      type: channel
+      description: |
+        Channel containing gapseq pathway files (optional)
+        Structure: [ val(meta), path(tbl) ]
+  - gapseq_transporters:
+      type: channel
+      description: |
+        Channel containing gapseq transporter files (optional)
+        Structure: [ val(meta), path(tbl) ]
+  - summary:
+      type: channel
+      description: |
+        Channel containing summary table of all analysis results
+        Structure: [ path(tsv) ]
+  - versions:
+      type: channel
+      description: |
+        Channel containing software version information
+        Structure: [ path(versions.yml) ]
+authors:
+  - "@brovolia"
+maintainers:
+  - "@brovolia"

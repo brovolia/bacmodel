@@ -1,0 +1,64 @@
+nextflow_pipeline {
+
+    name "Test pipeline - Traitar"
+    script "../main.nf"
+    tag "pipeline"
+    tag "traitar"
+    // nf-test 0.9.3 silently drops this suite-level `profile` for
+    // nextflow_pipeline tests (confirmed via meta/nextflow.log: the actual
+    // invocation only ever carries nf-test.config's global default `test`
+    // profile) - conf/test_traitar.config's overrides are set inline below
+    // instead, since that's unaffected by the bug.
+    profile "test_traitar"
+
+    test("Params: Prokka + Traitar") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_traitar    = false
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            // phenotype/traitar/**/*.txt content is unstable and ignored above.
+            // TRAITAR nests these under a directory it names itself (not a fixed
+            // sample-id prefix), so find them by recursive filename search.
+            def majority_file = null
+            def single_file = null
+            new File("$outputDir/phenotype/traitar").eachFileRecurse { f ->
+                if (f.name == 'predictions_majority-vote_combined.txt') majority_file = f
+                if (f.name == 'predictions_single-votes_combined.txt') single_file = f
+            }
+
+            // summary/bacmodel_summary.tsv content is unstable and ignored above -
+            // check its shape: only TRAITAR ran, so only its two columns are added.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+            def summary_row   = summary_lines[1].split('\t')
+
+            assertAll(
+                { assert workflow.success},
+                { assert majority_file != null && majority_file.length() > 0 : "TRAITAR majority-vote predictions should exist and be non-empty" },
+                { assert single_file != null && single_file.length() > 0 : "TRAITAR single-votes predictions should exist and be non-empty" },
+                { assert summary_lines.size() == 2 : "Summary should have a header line plus exactly one sample row" },
+                { assert summary_lines[0] == 'sample_id\ttraitar_phenotypes_majority\ttraitar_phenotypes_single' },
+                { assert summary_row[0] == 'faecalibacterium_taiwanense' },
+                { assert summary_row[1] ==~ /\d+/ : "traitar_phenotypes_majority should be a phenotype count" },
+                { assert summary_row[2] ==~ /\d+/ : "traitar_phenotypes_single should be a phenotype count" },
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

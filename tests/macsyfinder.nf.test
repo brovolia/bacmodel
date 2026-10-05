@@ -1,0 +1,53 @@
+nextflow_pipeline {
+
+    name "Test pipeline - MacSyFinder"
+    script "../main.nf"
+    tag "pipeline"
+    tag "macsyfinder"
+    // nf-test 0.9.3 silently drops this suite-level `profile` for
+    // nextflow_pipeline tests (confirmed via meta/nextflow.log: the actual
+    // invocation only ever carries nf-test.config's global default `test`
+    // profile) - conf/test_macsyfinder.config's overrides are set inline
+    // below instead, since that's unaffected by the bug.
+    profile "test_macsyfinder"
+
+    test("Params: Prokka + MacSyFinder") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_macsyfinder = false
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            // all_systems.tsv is optional (MacSyFinder only writes it if at
+            // least one system is detected), so its presence isn't asserted -
+            // only the shape of the derived summary column, which is always
+            // written regardless of whether any system was found.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+            def summary_row   = summary_lines[1].split('\t')
+
+            assertAll(
+                { assert workflow.success},
+                { assert summary_lines.size() == 2 : "Summary should have a header line plus exactly one sample row" },
+                { assert summary_lines[0] == 'sample_id\tmacsyfinder_systems\tmacsyfinder_types' },
+                { assert summary_row[0] == 'faecalibacterium_taiwanense' },
+                { assert summary_row[1] ==~ /\d+/ : "macsyfinder_systems should be a detected-system count" },
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

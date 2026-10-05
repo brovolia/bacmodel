@@ -41,6 +41,15 @@
                     "@id": "docs/images/"
                 },
                 {
+                    "@id": "modules/"
+                },
+                {
+                    "@id": "modules/local/"
+                },
+                {
+                    "@id": "modules/nf-core/"
+                },
+                {
                     "@id": "workflows/"
                 },
                 {
@@ -115,8 +124,12 @@
         },
         {
             "@id": "main.nf",
-            "@type": ["File", "SoftwareSourceCode", "ComputationalWorkflow"],
-            "contributor": [
+            "@type": [
+                "File",
+                "SoftwareSourceCode",
+                "ComputationalWorkflow"
+            ],
+            "author": [
                 {
                     "@id": "#6d329014-5db8-4daa-bdb8-a5c41a607852"
                 }
@@ -124,17 +137,34 @@
             "dateCreated": "",
             "dateModified": "2026-09-01T12:57:57Z",
             "dct:conformsTo": "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/",
-            "keywords": ["nf-core", "nextflow"],
-            "license": ["MIT"],
-            "name": ["nf-core/bacmodel"],
+            "keywords": [
+                "nf-core",
+                "nextflow"
+            ],
+            "license": [
+                "MIT"
+            ],
+            "maintainer": [
+                {
+                    "@id": "https://orcid.org/0000-0002-0946-7331"
+                }
+            ],
+            "name": [
+                "nf-core/bacmodel"
+            ],
             "programmingLanguage": {
                 "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow"
             },
             "sdPublisher": {
                 "@id": "https://nf-co.re/"
             },
-            "url": ["https://github.com/nf-core/bacmodel", "https://nf-co.re/bacmodel/1.0.0/"],
-            "version": ["1.0.0"]
+            "url": [
+                "https://github.com/nf-core/bacmodel",
+                "https://nf-co.re/bacmodel/1.0.0/"
+            ],
+            "version": [
+                "1.0.0"
+            ]
         },
         {
             "@id": "https://w3id.org/workflowhub/workflow-ro-crate#nextflow",
@@ -146,7 +176,7 @@
             "url": {
                 "@id": "https://www.nextflow.io/"
             },
-            "version": "!>=25.10.4"
+            "version": "!>=25.04.0"
         },
         {
             "@id": "#44ef7501-de57-466d-b44b-b2d33c4ad699",
@@ -198,6 +228,21 @@
             "@id": "docs/images/",
             "@type": "Dataset",
             "description": "Images for the documentation files"
+        },
+        {
+            "@id": "modules/",
+            "@type": "Dataset",
+            "description": "Modules used by the pipeline"
+        },
+        {
+            "@id": "modules/local/",
+            "@type": "Dataset",
+            "description": "Pipeline-specific modules"
+        },
+        {
+            "@id": "modules/nf-core/",
+            "@type": "Dataset",
+            "description": "nf-core modules"
         },
         {
             "@id": "workflows/",
@@ -283,7 +328,10 @@
         {
             "@id": "#6d329014-5db8-4daa-bdb8-a5c41a607852",
             "@type": "Person",
-            "name": "Olga Brovkina"
+            "affiliation": "Institute of Clinical Molecular Biology, Kiel University",
+            "email": "o.brovkina@ikmb.uni-kiel.de",
+            "name": "Olga Brovkina",
+            "url": "https://github.com/brovolia"
         }
     ]
 }

@@ -1,42 +1,39 @@
----
-title: Contributing
-markdownPlugin: checklist
----
+# Contributing to nf-core/bacmodel
 
-# `nf-core/bacmodel`: Contributing guidelines
+Thank you for your interest in contributing to nf-core/bacmodel!
 
-Hi there!
-Thanks for taking an interest in improving nf-core/bacmodel.
+## How to contribute
 
-This page describes the recommended nf-core way to contribute to both nf-core/bacmodel and nf-core pipelines in general, including:
+We welcome contributions from the community. Here's how you can help:
 
-- [General contribution guidelines](#general-contribution-guidelines): common procedures or guides across all nf-core pipelines.
-- [Pipeline-specific contribution guidelines](#pipeline-specific-contribution-guidelines): procedures or guides specific to the development conventions of nf-core/bacmodel.
+### Reporting bugs
 
-> [!NOTE]
-> If you need help using or modifying nf-core/bacmodel, ask on the nf-core Slack [#bacmodel](https://nfcore.slack.com/channels/bacmodel) channel ([join our Slack here](https://nf-co.re/join/slack)).
+If you find a bug, please open an issue on our [GitHub repository](https://github.com/nf-core/bacmodel/issues) with:
 
-## General contribution guidelines
+- A clear description of the bug
+- Steps to reproduce
+- Expected vs actual behavior
+- Pipeline version and environment details
 
-### Contribution quick start
+### Suggesting enhancements
 
-To contribute code to any nf-core pipeline:
+Feature requests are welcome! Please open an issue describing:
 
-- [ ] Ensure you have Nextflow, nf-core tools, and nf-test installed. See the [nf-core/tools repository](https://github.com/nf-core/tools) for instructions.
-- [ ] Check whether a GitHub [issue](https://github.com/nf-core/bacmodel/issues) about your idea already exists. If an issue does not exist, create one so that others are aware you are working on it.
-- [ ] [Fork](https://help.github.com/en/github/getting-started-with-github/fork-a-repo) the [nf-core/bacmodel repository](https://github.com/nf-core/bacmodel) to your GitHub account.
-- [ ] Create a branch on your forked repository and make your changes following [pipeline conventions](#pipeline-contribution-conventions) (if applicable).
-- [ ] To fix major bugs, name your branch `patch` and follow the [patch release](#patch-release) process.
-- [ ] Update relevant documentation within the `docs/` folder, use nf-core/tools to update `nextflow_schema.json`, and update `CITATIONS.md`.
-- [ ] Run and/or update tests. See [Testing](#testing) for more information.
-- [ ] [Lint](#lint-tests) your code with nf-core/tools.
-- [ ] Submit a pull request (PR) against the `dev` branch and request a review.
+- The enhancement you'd like to see
+- Why it would be useful
+- How it might work
 
-If you are not used to this workflow with Git, see the [GitHub documentation](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests) or [Git resources](https://try.github.io/) for more information.
+### Pull requests
 
-## Use of AI and LLMs
+1. Fork the repository
+2. Create a new branch for your feature (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Run tests to ensure everything works
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to your branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
-The nf-core stance on the use of AI and LLMs is that humans are still ultimately responsible for their submitted code, regardless of the tools they use.
+### Code style
 
 If you’re using AI tools, try to stick by these guidelines:
 
@@ -173,10 +170,10 @@ If you use a new feature from core Nextflow, bump the minimum required Nextflow 
 nf-core pipelines bump-version --nextflow . <min_nf_version>
 ```
 
-#### Images and figures guidelines
+## Code of Conduct
 
-If you update images or graphics, follow the nf-core [style guidelines](https://nf-co.re/docs/community/brand/workflow-schematics).
+Please note that this project follows the nf-core [Code of Conduct](https://nf-co.re/code_of_conduct). By participating, you are expected to uphold this code.
 
-## Pipeline specific contribution guidelines
+## License
 
-<!-- TODO nf-core: Add any pipeline specific contribution guidelines here, such as coding styles, procedures, checklists etc. -->
+By contributing, you agree that your contributions will be licensed under the MIT License.

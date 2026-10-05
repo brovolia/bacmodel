@@ -13,21 +13,41 @@
                 "errorMessage": "Sample name must be provided and cannot contain spaces",
                 "meta": ["id"]
             },
-            "fastq_1": {
+            "fasta": {
                 "type": "string",
                 "format": "file-path",
-                "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 1 must be provided, cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^\\S+\\.(f(ast)?a|fna)(\\.gz)?$",
+                "errorMessage": "Assembly FASTA file must be provided, cannot contain spaces and must have extension '.fasta', '.fa', '.fna', with or without a '.gz' suffix."
             },
-            "fastq_2": {
+            "medium_gapseq": {
                 "type": "string",
-                "format": "file-path",
-                "exists": true,
-                "pattern": "^([\\S\\s]*\\/)?[^\\s\\/]+\\.f(ast)?q\\.gz$",
-                "errorMessage": "FastQ file for reads 2 cannot contain spaces and must have extension '.fq.gz' or '.fastq.gz'"
+                "pattern": "^[^\\s/]*$",
+                "description": "Built-in gapseq medium name (e.g. 'LB', 'M9'). Mutually exclusive with 'medium_gapseq_csv'. If both are empty, gapseq auto-predicts the medium. See docs/usage.md#metabolic-modeling-media",
+                "errorMessage": "Medium name for gapseq cannot contain spaces or slashes. Must be a built-in medium name (e.g., 'LB', 'M9'). To use a custom medium CSV file, use the 'medium_gapseq_csv' column instead. See docs/usage.md#metabolic-modeling-media",
+                "meta": ["medium_gapseq"]
+            },
+            "medium_gapseq_csv": {
+                "type": "string",
+                "pattern": "^(\\S+\\.csv)?$",
+                "description": "Path to a custom gapseq medium file - comma-separated (.csv), columns: compounds, name, maxFlux. See assets/medium_gapseq_example.csv and docs/usage.md#metabolic-modeling-media",
+                "errorMessage": "Custom gapseq medium file cannot contain spaces and must have extension '.csv'. See assets/medium_gapseq_example.csv for the expected format and docs/usage.md#metabolic-modeling-media",
+                "meta": ["medium_gapseq_csv"]
+            },
+            "medium_carveme": {
+                "type": "string",
+                "pattern": "^[^\\s/]*$",
+                "description": "Built-in CarveMe medium name (e.g. 'LB', 'M9'). If empty, no gap-filling is performed. See docs/usage.md#metabolic-modeling-media",
+                "errorMessage": "Medium name for CarveMe cannot contain spaces or slashes. Must correspond to a medium in the mediadb (e.g., 'LB', 'M9'). See docs/usage.md#metabolic-modeling-media",
+                "meta": ["medium_carveme"]
+            },
+            "medium_carveme_tsv": {
+                "type": "string",
+                "pattern": "^(\\S+\\.tsv)?$",
+                "description": "Path to a custom CarveMe media database - tab-separated (.tsv), columns: medium, description, compound, name. Overrides --carveme_mediadb for this sample only. See assets/medium_carveme_mediadb_example.tsv and docs/usage.md#metabolic-modeling-media",
+                "errorMessage": "Custom CarveMe media database cannot contain spaces and must have extension '.tsv' (tab-separated). Overrides --carveme_mediadb for this sample only. See assets/medium_carveme_mediadb_example.tsv for the expected format and docs/usage.md#metabolic-modeling-media",
+                "meta": ["medium_carveme_tsv"]
             }
         },
-        "required": ["sample", "fastq_1"]
+        "required": ["sample", "fasta"]
     }
 }

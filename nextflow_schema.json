@@ -18,9 +18,9 @@
                     "exists": true,
                     "schema": "assets/schema_input.json",
                     "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/bacmodel/usage#samplesheet-input).",
+                    "pattern": "^\\S+\\.(csv|tsv)$",
+                    "description": "Path to comma-separated or tab-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated or tab-separated file with 2 columns (sample and fasta), and a header row. See [usage docs](https://nf-co.re/bacmodel/usage#samplesheet-input).",
                     "fa_icon": "fas fa-file-csv"
                 },
                 "outdir": {
@@ -128,6 +128,13 @@
                     "fa_icon": "fas fa-palette",
                     "hidden": true
                 },
+                "hook_url": {
+                    "type": "string",
+                    "description": "Incoming hook URL for messaging service",
+                    "fa_icon": "fas fa-people-group",
+                    "help_text": "Incoming hook URL for messaging service. Currently, MS Teams and Slack are supported.",
+                    "hidden": true
+                },
                 "validate_params": {
                     "type": "boolean",
                     "description": "Boolean whether to validate parameters against the schema at runtime",
@@ -161,11 +168,181 @@
                     "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
                 }
             }
+        },
+        "annotation_options": {
+            "title": "Annotation options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Options for genome annotation",
+            "properties": {
+                "annotation_tool": {
+                    "type": "string",
+                    "default": "prokka",
+                    "description": "Tool to use for genome annotation",
+                    "enum": ["prokka", "bakta"],
+                    "fa_icon": "fas fa-tools"
+                },
+                "baktadb": {
+                    "type": "string",
+                    "default": "assets/bakta_db",
+                    "description": "Directory to cache the Bakta database in (only used when `annotation_tool`='bakta'). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs, so most users never need to set this.",
+                    "fa_icon": "fas fa-database"
+                },
+                "baktadb_type": {
+                    "type": "string",
+                    "default": "light",
+                    "enum": ["light", "full"],
+                    "description": "Bakta database type to download",
+                    "help_text": "'light' excludes some reference databases (smaller, faster download) while 'full' includes everything. See the [Bakta database docs](https://github.com/oschwengers/bakta#database-download) for details. For any other `bakta_db download` argument, set `ext.args` for the `BAKTA_BAKTADBDOWNLOAD` process in a custom config file instead.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "min_contig_length": {
+                    "type": "integer",
+                    "default": 200,
+                    "description": "Minimum contig length for annotation and analysis",
+                    "fa_icon": "fas fa-ruler"
+                }
+            }
+        },
+        "database_options": {
+            "title": "Database options",
+            "type": "object",
+            "fa_icon": "fas fa-database",
+            "description": "Options for required databases",
+            "properties": {
+                "pfamdb": {
+                    "type": "string",
+                    "default": "assets/pfam_db",
+                    "description": "Directory to cache the Pfam database in (only used when `skip_traitar`=false). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs, so most users never need to set this.",
+                    "fa_icon": "fas fa-folder"
+                }
+            }
+        },
+        "analysis_options": {
+            "title": "Analysis options",
+            "type": "object",
+            "fa_icon": "fas fa-microscope",
+            "description": "Options for functional annotation and metabolic modeling tools",
+            "properties": {
+                "skip_macsyfinder": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip MacSyFinder macromolecular systems detection",
+                    "fa_icon": "fas fa-search"
+                },
+                "macsyfinder_models": {
+                    "type": "string",
+                    "default": "TXSS",
+                    "description": "MacSyFinder models to use (TXSS for Type III/IV/VI secretion systems)",
+                    "fa_icon": "fas fa-cogs"
+                },
+                "macsyfinder_db_type": {
+                    "type": "string",
+                    "default": "unordered",
+                    "enum": ["unordered", "ordered_replicon", "gembase"],
+                    "description": "MacSyFinder --db-type: 'unordered' for MAGs/draft assemblies with unreliable gene order (default, most permissive), 'ordered_replicon' for a single complete/nearly-complete genome (enables synteny-aware detection), or 'gembase' for multiple complete replicons in one gembase-formatted database",
+                    "fa_icon": "fas fa-sitemap"
+                },
+                "macsyfinder_db": {
+                    "type": "string",
+                    "default": "assets/macsyfinder_db",
+                    "description": "Directory to cache downloaded MacSyFinder models in (one subdirectory per `macsyfinder_models` value). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs.",
+                    "fa_icon": "fas fa-database"
+                },
+                "skip_traitar": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip TRAITAR phenotype prediction",
+                    "fa_icon": "fas fa-flask"
+                },
+                "skip_carveme": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip CarveMe genome-scale metabolic reconstruction",
+                    "fa_icon": "fas fa-project-diagram"
+                },
+                "carveme_mediadb": {
+                    "type": "string",
+                    "description": "Path to CarveMe media database TSV file (columns: medium, description, compound, name). If not provided, uses CarveMe's default media database. See assets/medium_carveme_mediadb_example.tsv for an example.",
+                    "fa_icon": "fas fa-database",
+                    "format": "file-path"
+                },
+                "skip_gapseq": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Skip Gapseq pathway analysis and metabolic modeling",
+                    "fa_icon": "fas fa-share-alt"
+                },
+                "gapseq_doall_args": {
+                    "type": "string",
+                    "description": "Custom arguments for the simplified 'gapseq doall' search step (default: '-b 200 -A diamond'). Only used in the default doall workflow - ignored if any of the gapseq_find_args/gapseq_findtransport_args/gapseq_draft_args/gapseq_medium_args/gapseq_fill_args below are set, since that switches to the custom/stepwise workflow instead.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_find_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq find' (e.g., '-b 200 -A diamond')",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_findtransport_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq find-transport' (e.g., '-b 200')",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_draft_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq draft' (e.g., '-u 200')",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_medium_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq medium'",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_fill_args": {
+                    "type": "string",
+                    "description": "Custom arguments for 'gapseq fill' (e.g., '-b 100')",
+                    "fa_icon": "fas fa-cog"
+                },
+                "skip_memote": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Skip MEMOTE metabolic model quality evaluation (only runs when skip_gapseq=false or skip_carveme=false)",
+                    "fa_icon": "fas fa-check-circle"
+                }
+            },
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "skip_macsyfinder": {
+                                "const": false
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "macsyfinder_models": {
+                                "minLength": 1
+                            }
+                        },
+                        "required": ["macsyfinder_models"]
+                    }
+                }
+            ]
         }
     },
     "allOf": [
         {
             "$ref": "#/$defs/input_output_options"
+        },
+        {
+            "$ref": "#/$defs/annotation_options"
+        },
+        {
+            "$ref": "#/$defs/database_options"
+        },
+        {
+            "$ref": "#/$defs/analysis_options"
         },
         {
             "$ref": "#/$defs/institutional_config_options"

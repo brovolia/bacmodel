@@ -1,0 +1,98 @@
+nextflow_pipeline {
+
+    name "Test pipeline - Full analysis"
+    script "../main.nf"
+    tag "pipeline"
+    tag "full"
+    // nf-test 0.9.3 silently drops this suite-level `profile` for
+    // nextflow_pipeline tests (confirmed via meta/nextflow.log: the actual
+    // invocation only ever carries nf-test.config's global default `test`
+    // profile) - conf/test_full.config's overrides are set inline below
+    // instead, since that's unaffected by the bug. This one matters most:
+    // without it, this test silently ran against the tiny local
+    // assets/samplesheet.csv with every optional tool skipped, instead of
+    // the real full-size external dataset with every tool enabled.
+    profile "test_full"
+
+    test("Params: Full analysis with all tools") {
+
+        when {
+            params {
+                outdir           = "$outputDir"
+                // Can't reference params.pipelines_testdata_base_path here - this
+                // params{} block is evaluated by nf-test itself to build the
+                // overrides JSON, before Nextflow has resolved anything from
+                // nextflow.config, so it would silently be null (this literally
+                // produced the URL "nullbacmodel/samplesheet.tsv" until caught).
+                input            = 'https://raw.githubusercontent.com/nf-core/test-datasets/bacmodel/samplesheet.tsv'
+                skip_macsyfinder = false
+                skip_traitar     = false
+                skip_carveme     = false
+                skip_gapseq      = false
+                skip_memote      = false
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            // All the tool outputs below have unstable content (run timestamps,
+            // solver details, etc.) and are ignored above - check format/shape
+            // instead of exact content, mirroring the per-tool tests.
+            def prokka_faa = path("$outputDir/annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.faa")
+            def prokka_gff = path("$outputDir/annotation/prokka/faecalibacterium_taiwanense/faecalibacterium_taiwanense.gff")
+
+            def carveme_xml = path("$outputDir/metabolic_models/carveme/faecalibacterium_taiwanense.xml")
+            def gapseq_xmls = new File("$outputDir/metabolic_models/gapseq").listFiles({ f -> f.name.endsWith('.xml') } as FileFilter)
+
+            def majority_file = null
+            def single_file = null
+            new File("$outputDir/phenotype/traitar").eachFileRecurse { f ->
+                if (f.name == 'predictions_majority-vote_combined.txt') majority_file = f
+                if (f.name == 'predictions_single-votes_combined.txt') single_file = f
+            }
+
+            // Every enabled tool contributes a model to MEMOTE, tagged by tool
+            // name (conf/modules.config: ext.prefix = "${meta.id}_${meta.tool}").
+            def memote_carveme_report = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_carveme.html")
+            def memote_carveme_json   = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_carveme.json.gz")
+            def memote_gapseq_report  = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_gapseq.html")
+            def memote_gapseq_json    = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_gapseq.json.gz")
+
+            // summary/bacmodel_summary.tsv content is unstable and ignored above -
+            // every optional tool is enabled here, so every derived column is added.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+            def summary_row   = summary_lines[1].split('\t')
+
+            assertAll(
+                { assert workflow.success},
+                { assert gapseq_xmls.every { it.length() > 0 } : "Gapseq model files should not be empty" },
+                { assert majority_file != null && majority_file.length() > 0 : "TRAITAR majority-vote predictions should exist and be non-empty" },
+                { assert single_file != null && single_file.length() > 0 : "TRAITAR single-votes predictions should exist and be non-empty" },
+                { assert memote_carveme_report.size() > 0 && memote_carveme_json.size() > 0 : "MEMOTE reports for the CarveMe model should not be empty" },
+                { assert memote_gapseq_report.size() > 0 && memote_gapseq_json.size() > 0 : "MEMOTE reports for the Gapseq model should not be empty" },
+                { assert summary_lines.size() == 2 : "Summary should have a header line plus exactly one sample row" },
+                { assert summary_lines[0] == 'sample_id\tmacsyfinder_systems\tmacsyfinder_types\ttraitar_phenotypes_majority\ttraitar_phenotypes_single\tcarveme_model\tcarveme_reactions\tgapseq_model\tgapseq_reactions' },
+                { assert summary_row[0] == 'faecalibacterium_taiwanense' },
+                { assert summary_row[1] ==~ /\d+/ : "macsyfinder_systems should be a detected-system count" },
+                { assert summary_row[3] ==~ /\d+/ : "traitar_phenotypes_majority should be a phenotype count" },
+                { assert summary_row[4] ==~ /\d+/ : "traitar_phenotypes_single should be a phenotype count" },
+                { assert summary_row[5] == 'Yes' : "CarveMe always produces a model, so carveme_model should be 'Yes'" },
+                { assert summary_row[6] ==~ /\d+/ : "carveme_reactions should be a reaction count" },
+                { assert summary_row[7] == 'Yes' : "Gapseq always produces a model, so gapseq_model should be 'Yes'" },
+                { assert summary_row[8] ==~ /\d+/ : "gapseq_reactions should be a reaction count" },
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

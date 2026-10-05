@@ -21,9 +21,27 @@
             },
             "medium_gapseq": {
                 "type": "string",
-                "pattern": "^[^\\s/]*$",
-                "description": "Built-in gapseq medium name (e.g. 'LB', 'M9'). Mutually exclusive with 'medium_gapseq_csv'. If both are empty, gapseq auto-predicts the medium. See docs/usage.md#metabolic-modeling-media",
-                "errorMessage": "Medium name for gapseq cannot contain spaces or slashes. Must be a built-in medium name (e.g., 'LB', 'M9'). To use a custom medium CSV file, use the 'medium_gapseq_csv' column instead. See docs/usage.md#metabolic-modeling-media",
+                "enum": [
+                    "",
+                    "ALLmed",
+                    "FT",
+                    "LBmed",
+                    "LBmed_glucose_suppl",
+                    "M9_serine_galacturonate",
+                    "M9_vit_aa",
+                    "MM_anaerobic_Acetate",
+                    "MM_anaerobic_Acetate_H2",
+                    "MM_anaerobic_CO2_H2",
+                    "MM_glu-thm",
+                    "MM_glu",
+                    "TSBmed",
+                    "autotrophic",
+                    "dsmz_1611_YCFA",
+                    "gut",
+                    "meerwasser"
+                ],
+                "description": "Built-in gapseq medium name, resolved to its bundled CSV under gapseq's dat/media/ directory (e.g. 'LBmed', 'M9_vit_aa'). Mutually exclusive with 'medium_gapseq_csv'. If both are empty, gapseq auto-predicts the medium. See docs/usage.md#metabolic-modeling-media",
+                "errorMessage": "Medium name for gapseq must be one of gapseq's bundled media: ALLmed, FT, LBmed, LBmed_glucose_suppl, M9_serine_galacturonate, M9_vit_aa, MM_anaerobic_Acetate, MM_anaerobic_Acetate_H2, MM_anaerobic_CO2_H2, MM_glu-thm, MM_glu, TSBmed, autotrophic, dsmz_1611_YCFA, gut, meerwasser. To use a custom medium CSV file, use the 'medium_gapseq_csv' column instead. See docs/usage.md#metabolic-modeling-media",
                 "meta": ["medium_gapseq"]
             },
             "medium_gapseq_csv": {

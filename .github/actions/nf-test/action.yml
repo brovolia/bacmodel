@@ -62,7 +62,7 @@ runs:
       with:
         auto-update-conda: true
         conda-solver: libmamba
-        channels: conda-forge,bioconda
+        channels: conda-forge
         channel-priority: strict
         conda-remove-defaults: true
 

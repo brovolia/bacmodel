@@ -1,19 +1,20 @@
 repository_type: pipeline
 nf_core_version: 4.1.0
 lint:
-  # files_unchanged disabled due to nf-core/tools 4.0.2 bug:
-  # JSONDecodeError in try_generate_container_configs() when Nextflow 26.x
-  # outputs non-JSON lines (e.g. "[PIPELINE]") to stdout during `nextflow inspect`.
-  # Re-enable once nf-core/tools fixes the except clause (should catch JSONDecodeError).
-  files_unchanged: false
   multiqc_config: false
+  files_unchanged:
+    # Custom banner (mascot + wordmark) reused as the metro-map legend logo too -
+    # see docs/dev/metro_map.md. Must not be reverted to the template placeholder.
+    - docs/images/nf-core-bacmodel_logo_light.png
+    # Must keep the assets/adaptivecard.json and assets/slackreport.json entries -
+    # those files are Groovy-templated (<% %>), not valid JSON, so prettier errors
+    # on them without this exclusion.
+    - .prettierignore
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
     - assets/multiqc_config.yml
-    - .github/workflows/linting_comment.yml
   template_strings: false
-  container_configs: false
   nextflow_config:
     # These three default to "${projectDir}/assets/<tool>_db" in nextflow.config, so they
     # resolve to an absolute, checkout-specific path - can never literally string-match a

@@ -5,8 +5,8 @@
 */
 include { paramsSummaryMap       } from 'plugin/nf-schema'
 include { softwareVersionsToYAML } from '../subworkflows/nf-core/utils_nfcore_pipeline'
-include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_bacmodel_pipeline/main'
-include { BACMODEL_ANALYSIS      } from '../subworkflows/local/bacmodel_analysis/main'
+include { methodsDescriptionText } from '../subworkflows/local/utils_nfcore_bacmodel_pipeline'
+include { BACMODEL_ANALYSIS      } from '../subworkflows/local/bacmodel_analysis'
 
 /*
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

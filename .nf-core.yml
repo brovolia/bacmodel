@@ -1,5 +1,5 @@
 repository_type: pipeline
-nf_core_version: 4.0.2
+nf_core_version: 4.1.0
 lint:
   # files_unchanged disabled due to nf-core/tools 4.0.2 bug:
   # JSONDecodeError in try_generate_container_configs() when Nextflow 26.x

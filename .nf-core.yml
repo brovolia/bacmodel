@@ -6,6 +6,10 @@ lint:
     # Custom banner (mascot + wordmark) reused as the metro-map legend logo too -
     # see docs/dev/metro_map.md. Must not be reverted to the template placeholder.
     - docs/images/nf-core-bacmodel_logo_light.png
+    # Must keep the assets/adaptivecard.json and assets/slackreport.json entries -
+    # those files are Groovy-templated (<% %>), not valid JSON, so prettier errors
+    # on them without this exclusion.
+    - .prettierignore
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config

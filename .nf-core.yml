@@ -2,6 +2,10 @@ repository_type: pipeline
 nf_core_version: 4.0.2
 lint:
   multiqc_config: false
+  files_unchanged:
+    # Custom banner (mascot + wordmark) reused as the metro-map legend logo too -
+    # see docs/dev/metro_map.md. Must not be reverted to the template placeholder.
+    - docs/images/nf-core-bacmodel_logo_light.png
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config

@@ -7,7 +7,7 @@ testing/
 testing*
 *.pyc
 null/
-.lineage/
+.lineaccage/
 .nf-test*
 .venv/
 venv/

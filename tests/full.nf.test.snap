@@ -1567,12 +1567,10 @@
                 "Tad_tadG.hmm:md5,ee5e9b09db9bd8d366bdccd92d15cf24",
                 "Tad_tadV.hmm:md5,9435a6b57317c974e3c4371210fb2a9f",
                 "Tad_tadZ.hmm:md5,82a96b2f4eeb61be95b0982fe5a6690a",
-                "Pfam-A.hmm:md5,4bbbd0105827633e4933e344bfe0e92f",
-                "Pfam-A.hmm.gz:md5,4bbbd0105827633e4933e344bfe0e92f",
                 "versions.yml:md5,b16b3424da0a397a592ae0f1064763cd"
             ]
         ],
-        "timestamp": "2026-10-07T12:05:51.339247748",
+        "timestamp": "2026-10-07T17:05:21.77905259",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

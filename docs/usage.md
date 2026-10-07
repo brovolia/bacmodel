@@ -238,14 +238,14 @@ MacSyFinder's detection power depends on whether gene order (synteny) is known, 
 #### Database options
 
 The Pfam (Traitar), Bakta, and MacSyFinder databases are downloaded automatically the first time they're
-needed and cached in a directory (via Nextflow's `storeDir`), so most users don't need to set anything here.
-Later runs reuse the cached copy instead of re-downloading. Override the cache location if you want it
-somewhere other than the pipeline's `assets/` directory, or to share one copy across multiple runs/users:
+needed and published under `<outdir>/databases/`, so most users don't need to set anything here. To reuse
+that copy in a later run (instead of re-downloading), point the matching option at it explicitly - or at
+some other shared location if you'd rather keep one copy across multiple runs/users:
 
 ```bash
---pfamdb /path/to/pfam_cache            # Default: assets/pfam_db - used if skip_traitar=false
---baktadb /path/to/bakta_cache          # Default: assets/bakta_db - used if annotation_tool=bakta
---macsyfinder_db /path/to/macsyfinder_cache  # Default: assets/macsyfinder_db
+--pfamdb /path/to/pfam_cache                 # Default: <outdir>/databases/pfam - used if skip_traitar=false
+--baktadb /path/to/bakta_cache               # Default: <outdir>/databases/bakta - used if annotation_tool=bakta
+--macsyfinder_db /path/to/macsyfinder_cache  # Default: <outdir>/databases/macsyfinder
 ```
 
 Note that the pipeline will create the following files in your working directory:

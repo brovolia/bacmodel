@@ -184,8 +184,7 @@
                 },
                 "baktadb": {
                     "type": "string",
-                    "default": "assets/bakta_db",
-                    "description": "Directory to cache the Bakta database in (only used when `annotation_tool`='bakta'). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs, so most users never need to set this.",
+                    "description": "Directory containing a pre-downloaded Bakta database, or one published by a previous run of this pipeline (only used when `annotation_tool`='bakta'). If unset, the database is downloaded automatically into `<outdir>/databases/bakta` on first use and reused from there by later runs that point `--baktadb` at the same `<outdir>/databases/bakta`.",
                     "fa_icon": "fas fa-database"
                 },
                 "baktadb_type": {
@@ -212,8 +211,7 @@
             "properties": {
                 "pfamdb": {
                     "type": "string",
-                    "default": "assets/pfam_db",
-                    "description": "Directory to cache the Pfam database in (only used when `skip_traitar`=false). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs, so most users never need to set this.",
+                    "description": "Directory containing a pre-downloaded Pfam database, or one published by a previous run of this pipeline (only used when `skip_traitar`=false). If unset, the database is downloaded automatically into `<outdir>/databases/pfam` on first use and reused from there by later runs that point `--pfamdb` at the same `<outdir>/databases/pfam`.",
                     "fa_icon": "fas fa-folder"
                 }
             }
@@ -245,8 +243,7 @@
                 },
                 "macsyfinder_db": {
                     "type": "string",
-                    "default": "assets/macsyfinder_db",
-                    "description": "Directory to cache downloaded MacSyFinder models in (one subdirectory per `macsyfinder_models` value). Downloaded automatically on first use via Nextflow's storeDir and reused on subsequent runs.",
+                    "description": "Directory containing pre-downloaded MacSyFinder models, or ones published by a previous run of this pipeline (one subdirectory per `macsyfinder_models` value). If unset, models are downloaded automatically into `<outdir>/databases/macsyfinder` on first use and reused from there by later runs that point `--macsyfinder_db` at the same `<outdir>/databases/macsyfinder`.",
                     "fa_icon": "fas fa-database"
                 },
                 "skip_traitar": {
@@ -272,6 +269,11 @@
                     "default": true,
                     "description": "Skip Gapseq pathway analysis and metabolic modeling",
                     "fa_icon": "fas fa-share-alt"
+                },
+                "gapseq_db": {
+                    "type": "string",
+                    "description": "Directory containing a pre-downloaded gapseq reference sequence database (a 'Bacteria' subdirectory, as produced by `gapseq update-sequences -D <dir>`). If present, the live Zenodo download is skipped - set this to a pre-downloaded copy if your compute nodes lack outbound internet access to Zenodo. If unset, defaults to `<outdir>/databases/gapseq`.",
+                    "fa_icon": "fas fa-database"
                 },
                 "gapseq_doall_args": {
                     "type": "string",

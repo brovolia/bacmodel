@@ -41,11 +41,21 @@ workflow GAPSEQ_WORKFLOW {
                      options.gapseq_draft_args || options.gapseq_medium_args || options.gapseq_fill_args
 
     //
-    // Download gapseq reference sequence database once before parallel execution
-    // This prevents race conditions when hundreds of reconstructions start simultaneously
+    // Download gapseq reference sequence database once before parallel execution.
+    // This prevents race conditions when hundreds of reconstructions start simultaneously.
+    // Skip the download if already present at options.gapseq_db (e.g. pre-downloaded on a
+    // node with internet access, for compute nodes that can't reach Zenodo themselves).
+    // .first() turns this into a value channel (like a process output with a single
+    // path would already be) - without it, this plain queue channel has exactly one
+    // element and gets drained by the first sample, silently starving every other one.
     //
-    GAPSEQ_REQUESTDB('Bacteria')
-    ch_seqdb = GAPSEQ_REQUESTDB.out.db
+    def gapseq_db_cached = file("${options.gapseq_db}/Bacteria")
+    if (gapseq_db_cached.exists()) {
+        ch_seqdb = Channel.fromPath(options.gapseq_db, checkIfExists: true).first()
+    } else {
+        GAPSEQ_REQUESTDB('Bacteria')
+        ch_seqdb = GAPSEQ_REQUESTDB.out.db
+    }
 
     // Prepare input channel with medium information.
     // medium_gapseq_csv (a file path) and medium_gapseq (a built-in name like

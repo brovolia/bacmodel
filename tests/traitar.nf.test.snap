@@ -59,12 +59,10 @@
                 "summary/versions.yml"
             ],
             [
-                "Pfam-A.hmm:md5,4bbbd0105827633e4933e344bfe0e92f",
-                "Pfam-A.hmm.gz:md5,4bbbd0105827633e4933e344bfe0e92f",
                 "versions.yml:md5,b16b3424da0a397a592ae0f1064763cd"
             ]
         ],
-        "timestamp": "2026-10-07T14:13:58.593463851",
+        "timestamp": "2026-10-07T15:40:54.031872302",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

@@ -7,7 +7,7 @@
 [![GitHub Actions Linting Status](https://github.com/nf-core/bacmodel/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/bacmodel/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/bacmodel/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
-[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.04.0-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
+[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.0-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
 [![nf-core template version](https://img.shields.io/badge/nf--core_template-3.5.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.5.2)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
@@ -18,11 +18,9 @@
 
 ## Introduction
 
-**nf-core/bacmodel** is a bioinformatics pipeline for comprehensive functional annotation and metabolic modeling of bacterial genomes. The pipeline takes bacterial genome assemblies (FASTA format) and performs structural annotation using Prokka or Bakta, followed by functional characterization using specialized tools for macromolecular system detection (MacSyFinder), phenotype prediction (Traitar), and metabolic model reconstruction (CarveMe and gapseq). It produces a complete picture of genomic potential, functional capabilities, and predicted metabolic pathways.
+**nf-core/bacmodel** is a bioinformatics pipeline for comprehensive functional annotation and metabolic modeling of bacterial genomes. The pipeline takes bacterial genome assemblies (FASTA format) and performs the following steps:
 
 ![nf-core/bacmodel metro map](docs/images/nf-core-bacmodel_metro_map.svg)
-
-The pipeline is built using [Nextflow](https://www.nextflow.io), a workflow tool to run tasks across multiple compute infrastructures in a very portable manner. It uses Docker/Singularity containers making installation trivial and results highly reproducible. The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementation of this pipeline uses one container per process which makes it much easier to maintain and update software dependencies. Where possible, these processes have been submitted to and installed from [nf-core/modules](https://github.com/nf-core/modules) in order to make them available to all nf-core pipelines, and to everyone within the Nextflow community!
 
 1. Genome annotation with [Prokka](https://github.com/tseemann/prokka) or [Bakta](https://github.com/oschwengers/bakta)
 2. Macromolecular system detection with [MacSyFinder](https://github.com/gem-pasteur/macsyfinder) (optional)
@@ -39,18 +37,12 @@ First, prepare a samplesheet with your input data that looks as follows. It can 
 
 `samplesheet.csv`:
 
-```csv
+```csv title="samplesheet.csv"
 sample,fasta
 sample1,/path/to/genome1.fasta
 sample2,/path/to/genome2.fasta.gz
 sample3,https://example.com/genome3.fasta.gz
 ```
-
-Each row represents a bacterial genome assembly. The `fasta` column can contain:
-
-- Local file paths (absolute or relative)
-- URLs to remote FASTA files
-- the files can be in gzipped or in uncompressed FASTA format
 
 Now, you can run the pipeline using:
 

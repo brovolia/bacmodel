@@ -39,9 +39,9 @@ nextflow_pipeline {
                     // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
                     removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
                     // All stable path name, with a relative path
-                    stable_name,
+                    stable_path,
                     // All files with stable contents
-                    stable_path
+                    stable_content
                 ).match() }
             )
         }

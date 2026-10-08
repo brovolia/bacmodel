@@ -19,5 +19,5 @@ metabolic_models/gapseq/intermediate/findtransport/*.tbl
 metabolic_models/gapseq/intermediate/medium/*.csv
 metabolic_models/memote/*.{html,json.gz}
 summary/bacmodel_summary.tsv
-bakta/db/**
-traitar/pfam/**
+databases/bakta/db-light/**
+databases/pfam/pfam_data/**

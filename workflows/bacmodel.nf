@@ -32,7 +32,7 @@ workflow BACMODEL {
         // DB cache dirs default under this run's outdir (not the pipeline's own assets/
         // dir) when the user hasn't pointed at a pre-downloaded copy - see conf/modules.config,
         // which mirrors this same fallback for where the download gets published.
-        baktadb                   : params.baktadb ?: "${params.outdir}/databases/bakta",
+        bakta_db                  : params.bakta_db ?: "${params.outdir}/databases/bakta",
         skip_macsyfinder          : params.skip_macsyfinder,
         macsyfinder_models        : params.macsyfinder_models,
         macsyfinder_db            : params.macsyfinder_db ?: "${params.outdir}/databases/macsyfinder",

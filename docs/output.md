@@ -10,17 +10,17 @@ The directories listed below will be created in the results directory after the 
 
 The pipeline is built using [Nextflow](https://www.nextflow.io/) and performs functional annotation and metabolic modeling of bacterial genomes using the following steps:
 
-- [Annotation](#annotation) - Genome annotation with Prokka or Bakta
-- [MacSyFinder](#macsyfinder) - Detection of macromolecular systems (secretion systems)
-- [TRAITAR](#traitar) - Phenotype prediction from protein sequences
-- [CarveMe](#carveme) - Genome-scale metabolic model reconstruction
-- [Gapseq](#gapseq) - Pathway analysis and metabolic modeling
+- [Annotation](#annotation) - Genome annotation with [Prokka](https://github.com/tseemann/prokka) or [Bakta](https://github.com/oschwengers/bakta)
+- [MacSyFinder](#macsyfinder) - Detection of macromolecular systems (secretion systems) with [MacSyFinder](https://github.com/gem-pasteur/macsyfinder)
+- [TRAITAR](#traitar) - Phenotype prediction from protein sequences with [Traitar](https://github.com/hzi-bifo/traitar)
+- [CarveMe](#carveme) - Genome-scale metabolic model reconstruction with [CarveMe](https://github.com/cdanielmachado/carveme)
+- [Gapseq](#gapseq) - Pathway analysis and metabolic modeling with [gapseq](https://github.com/jotech/gapseq)
 - [Summary Table](#summary-table) - Aggregated results from all tools
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
 
 ### Annotation
 
-Genomes are annotated using either Prokka (default) or Bakta. The annotation provides gene predictions and functional assignments.
+Genomes are annotated using either [Prokka](https://github.com/tseemann/prokka) (default) or [Bakta](https://github.com/oschwengers/bakta). The annotation provides gene predictions and functional assignments.
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -34,7 +34,7 @@ Genomes are annotated using either Prokka (default) or Bakta. The annotation pro
 
 ### MacSyFinder
 
-MacSyFinder detects macromolecular systems such as Type III, IV, and VI secretion systems (TXSS).
+[MacSyFinder](https://github.com/gem-pasteur/macsyfinder) detects macromolecular systems such as Type III, IV, and VI secretion systems (TXSS).
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -46,7 +46,7 @@ MacSyFinder detects macromolecular systems such as Type III, IV, and VI secretio
 
 ### TRAITAR
 
-TRAITAR predicts phenotypic traits from protein sequences using machine learning models.
+[Traitar](https://github.com/hzi-bifo/traitar) predicts phenotypic traits from protein sequences using machine learning models.
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -58,7 +58,7 @@ TRAITAR predicts phenotypic traits from protein sequences using machine learning
 
 ### CarveMe
 
-CarveMe reconstructs genome-scale metabolic models that can be used for flux balance analysis.
+[CarveMe](https://github.com/cdanielmachado/carveme) reconstructs genome-scale metabolic models that can be used for flux balance analysis.
 
 <details markdown="1">
 <summary>Output files</summary>
@@ -70,7 +70,7 @@ CarveMe reconstructs genome-scale metabolic models that can be used for flux bal
 
 ### Gapseq
 
-Gapseq predicts metabolic pathways and creates gap-filled metabolic models.
+[gapseq](https://github.com/jotech/gapseq) predicts metabolic pathways and creates gap-filled metabolic models.
 
 <details markdown="1">
 <summary>Output files</summary>

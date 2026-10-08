@@ -37,7 +37,7 @@ This architecture means that if you choose Prokka (`--annotation_tool prokka`) o
 
 ## Samplesheet input
 
-You will need to create a samplesheet with information about the genome assemblies you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated or tab-separated file with 2 columns, and a header row as shown in the example below.
+You will need to create a samplesheet with information about the genome assemblies you would like to analyse before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated or tab-separated file with 6 columns, and a header row as shown in the example below.
 
 ```bash
 --input '[path to samplesheet file]'
@@ -57,7 +57,7 @@ SAMPLE3,/path/to/sample3_assembly.fasta,,/path/to/custom_medium.csv,M9,/path/to/
 | Column               | Description                                                                                                                                                                                                                                                                                             |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `sample`             | **Required.** Custom sample name. Cannot contain spaces - use underscores (`_`) instead, or the pipeline will fail with a validation error.                                                                                                                                                             |
-| `fasta`              | **Required.** Path (absolute or relative) or URL to genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`).                                                                                                             |
+| `fasta`              | **Required.** Path (absolute or relative) or URL to a genome assembly file in FASTA format. File can be gzipped (`.fasta.gz`, `.fa.gz`, `.fna.gz`) or uncompressed (`.fasta`, `.fa`, `.fna`).                                                                                                             |
 | `medium_gapseq`      | **Optional.** Name of one of gapseq's bundled media (e.g., `LBmed`, `M9_vit_aa`) - see the full list in [Metabolic modeling media](#metabolic-modeling-media). Mutually exclusive with `medium_gapseq_csv` - set at most one of the two. If both are empty, gapseq auto-predicts the medium.            |
 | `medium_gapseq_csv`  | **Optional.** Path to a custom gapseq medium CSV file. Mutually exclusive with `medium_gapseq` - the pipeline errors out if both are set for the same sample. See [Metabolic modeling media](#metabolic-modeling-media) for details.                                                                    |
 | `medium_carveme`     | **Optional.** Growth medium **name** for CarveMe gap-filling (e.g., `LB`, `M9`), selected from whichever media database applies (see `medium_carveme_tsv` and `--carveme_mediadb` below). If empty, no gap-filling is performed. See [Metabolic modeling media](#metabolic-modeling-media) for details. |
@@ -80,7 +80,7 @@ Gapseq automatically downloads reference sequence databases on first use. The pi
 
 **Default behavior (both columns empty):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
 
-**Built-in media names (`medium_gapseq`):** gapseq's own `-m` flag only accepts a file path (or `auto`) - it has no name-based lookup. The pipeline resolves the name you give here to the matching CSV bundled under gapseq's `dat/media/` directory, so only the following names are accepted: `ALLmed`, `FT`, `LBmed`, `LBmed_glucose_suppl`, `M9_serine_galacturonate`, `M9_vit_aa`, `MM_anaerobic_Acetate`, `MM_anaerobic_Acetate_H2`, `MM_anaerobic_CO2_H2`, `MM_glu-thm`, `MM_glu`, `TSBmed`, `autotrophic`, `dsmz_1611_YCFA`, `gut`, `meerwasser`. See the [gapseq media files](https://github.com/jotech/gapseq/tree/master/dat/media) for their contents.
+**Built-in media names (`medium_gapseq`):** gapseq's own `-m` flag only accepts a file path (or `auto`) - it has no name-based lookup. The pipeline resolves the name you give here to the matching CSV bundled under gapseq's `dat/media/` directory. The full, authoritative list of accepted names is the `medium_gapseq` column's `enum` in [`assets/schema_input.json`](../assets/schema_input.json) - kept there rather than duplicated here, since that's also what your samplesheet is validated against. See the [gapseq media files](https://github.com/jotech/gapseq/tree/master/dat/media) for their contents.
 
 **Custom media files (`medium_gapseq_csv`):** Provide a path to a CSV file with three columns:
 
@@ -123,15 +123,7 @@ nextflow run nf-core/bacmodel \
   -profile docker
 ```
 
-**Available parameters for customization:**
-
-- `--gapseq_find_args` - Pathway prediction (default: `-b 200 -A diamond`)
-- `--gapseq_findtransport_args` - Transporter prediction (default: `-b 200`)
-- `--gapseq_draft_args` - Draft model construction (default: none)
-- `--gapseq_medium_args` - Add/remove specific compounds on top of the predicted medium, e.g. `-c "cpd00007:0"` to remove oxygen (default: none; ignored for samples with their own `medium_gapseq_csv` file)
-- `--gapseq_fill_args` - Gap-filling (default: none)
-
-Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all available parameters for each command.
+See the [parameter documentation](https://nf-co.re/bacmodel/parameters) for `--gapseq_find_args`, `--gapseq_findtransport_args`, `--gapseq_draft_args`, `--gapseq_medium_args`, and `--gapseq_fill_args` - one per gapseq subworkflow step. Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all available parameters for each command.
 
 **Example - adjust bit scores:**
 
@@ -244,7 +236,7 @@ some other shared location if you'd rather keep one copy across multiple runs/us
 
 ```bash
 --pfamdb /path/to/pfam_cache                 # Default: <outdir>/databases/pfam - used if skip_traitar=false
---baktadb /path/to/bakta_cache               # Default: <outdir>/databases/bakta - used if annotation_tool=bakta
+--bakta_db /path/to/bakta_cache              # Default: <outdir>/databases/bakta - used if annotation_tool=bakta
 --macsyfinder_db /path/to/macsyfinder_cache  # Default: <outdir>/databases/macsyfinder
 ```
 

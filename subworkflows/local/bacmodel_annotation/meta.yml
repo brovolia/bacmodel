@@ -26,7 +26,7 @@ input:
       description: |
         Channel containing sample information and genome assembly files
         Structure: [ val(meta), path(fasta) ]
-  - ch_baktadb:
+  - ch_bakta_db:
       type: channel
       description: |
         Channel containing Bakta database path (optional)

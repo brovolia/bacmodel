@@ -20,7 +20,7 @@
                     "mimetype": "text/csv",
                     "pattern": "^\\S+\\.(csv|tsv)$",
                     "description": "Path to comma-separated or tab-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated or tab-separated file with 2 columns (sample and fasta), and a header row. See [usage docs](https://nf-co.re/bacmodel/usage#samplesheet-input).",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated or tab-separated file with at least 2 required columns (sample and fasta), and a header row. See [usage docs](https://nf-co.re/bacmodel/usage#samplesheet-input).",
                     "fa_icon": "fas fa-file-csv"
                 },
                 "outdir": {
@@ -128,13 +128,6 @@
                     "fa_icon": "fas fa-palette",
                     "hidden": true
                 },
-                "hook_url": {
-                    "type": "string",
-                    "description": "Incoming hook URL for messaging service",
-                    "fa_icon": "fas fa-people-group",
-                    "help_text": "Incoming hook URL for messaging service. Currently, MS Teams and Slack are supported.",
-                    "hidden": true
-                },
                 "validate_params": {
                     "type": "boolean",
                     "description": "Boolean whether to validate parameters against the schema at runtime",
@@ -182,12 +175,12 @@
                     "enum": ["prokka", "bakta"],
                     "fa_icon": "fas fa-tools"
                 },
-                "baktadb": {
+                "bakta_db": {
                     "type": "string",
-                    "description": "Directory containing a pre-downloaded Bakta database, or one published by a previous run of this pipeline (only used when `annotation_tool`='bakta'). If unset, the database is downloaded automatically into `<outdir>/databases/bakta` on first use and reused from there by later runs that point `--baktadb` at the same `<outdir>/databases/bakta`.",
+                    "description": "Directory containing a pre-downloaded Bakta database, or one published by a previous run of this pipeline (only used when `annotation_tool`='bakta'). If unset, the database is downloaded automatically into `<outdir>/databases/bakta` on first use and reused from there by later runs that point `--bakta_db` at the same `<outdir>/databases/bakta`.",
                     "fa_icon": "fas fa-database"
                 },
-                "baktadb_type": {
+                "bakta_db_type": {
                     "type": "string",
                     "default": "light",
                     "enum": ["light", "full"],
@@ -226,7 +219,7 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Skip MacSyFinder macromolecular systems detection",
-                    "fa_icon": "fas fa-search"
+                    "fa_icon": "fas fa-fast-forward"
                 },
                 "macsyfinder_models": {
                     "type": "string",
@@ -238,7 +231,7 @@
                     "type": "string",
                     "default": "unordered",
                     "enum": ["unordered", "ordered_replicon", "gembase"],
-                    "description": "MacSyFinder --db-type: 'unordered' for MAGs/draft assemblies with unreliable gene order (default, most permissive), 'ordered_replicon' for a single complete/nearly-complete genome (enables synteny-aware detection), or 'gembase' for multiple complete replicons in one gembase-formatted database",
+                    "description": "MacSyFinder --db-type: `unordered` for MAGs/draft assemblies with unreliable gene order (default, most permissive), `ordered_replicon` for a single complete/nearly-complete genome (enables synteny-aware detection), or `gembase` for multiple complete replicons in one gembase-formatted database",
                     "fa_icon": "fas fa-sitemap"
                 },
                 "macsyfinder_db": {
@@ -250,17 +243,17 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Skip TRAITAR phenotype prediction",
-                    "fa_icon": "fas fa-flask"
+                    "fa_icon": "fas fa-fast-forward"
                 },
                 "skip_carveme": {
                     "type": "boolean",
                     "default": false,
                     "description": "Skip CarveMe genome-scale metabolic reconstruction",
-                    "fa_icon": "fas fa-project-diagram"
+                    "fa_icon": "fas fa-fast-forward"
                 },
                 "carveme_mediadb": {
                     "type": "string",
-                    "description": "Path to CarveMe media database TSV file (columns: medium, description, compound, name). If not provided, uses CarveMe's default media database. See assets/medium_carveme_mediadb_example.tsv for an example.",
+                    "description": "Path to CarveMe media database TSV file (columns: `medium, description, compound, name`). If not provided, uses CarveMe's default media database. See [example file](../assets/medium_carveme_mediadb_example.tsv).",
                     "fa_icon": "fas fa-database",
                     "format": "file-path"
                 },
@@ -268,7 +261,7 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Skip Gapseq pathway analysis and metabolic modeling",
-                    "fa_icon": "fas fa-share-alt"
+                    "fa_icon": "fas fa-fast-forward"
                 },
                 "gapseq_db": {
                     "type": "string",
@@ -277,39 +270,40 @@
                 },
                 "gapseq_doall_args": {
                     "type": "string",
-                    "description": "Custom arguments for the simplified 'gapseq doall' search step (default: '-b 200 -A diamond'). Only used in the default doall workflow - ignored if any of the gapseq_find_args/gapseq_findtransport_args/gapseq_draft_args/gapseq_medium_args/gapseq_fill_args below are set, since that switches to the custom/stepwise workflow instead.",
+                    "default": "-b 200 -A diamond",
+                    "description": "Custom arguments for the simplified `gapseq doall` search step. Only used in the default doall workflow - ignored if any of the `gapseq_find_args`, `gapseq_findtransport_args`, `gapseq_draft_args`, `gapseq_medium_args`, or `gapseq_fill_args` below are set, since that switches to the custom/stepwise workflow instead.",
                     "fa_icon": "fas fa-cog"
                 },
                 "gapseq_find_args": {
                     "type": "string",
-                    "description": "Custom arguments for 'gapseq find' (e.g., '-b 200 -A diamond')",
+                    "description": "Custom arguments for 'gapseq find' - pathway prediction (default: '-b 200 -A diamond')",
                     "fa_icon": "fas fa-cog"
                 },
                 "gapseq_findtransport_args": {
                     "type": "string",
-                    "description": "Custom arguments for 'gapseq find-transport' (e.g., '-b 200')",
+                    "description": "Custom arguments for 'gapseq find-transport' - transporter prediction (default: '-b 200')",
                     "fa_icon": "fas fa-cog"
                 },
                 "gapseq_draft_args": {
                     "type": "string",
-                    "description": "Custom arguments for 'gapseq draft' (e.g., '-u 200')",
+                    "description": "Custom arguments for 'gapseq draft' - draft model construction (default: none)",
                     "fa_icon": "fas fa-cog"
                 },
                 "gapseq_medium_args": {
                     "type": "string",
-                    "description": "Custom arguments for 'gapseq medium'",
+                    "description": "Custom arguments for 'gapseq medium' - add/remove specific compounds on top of the predicted medium, e.g. '-c \"cpd00007:0\"' to remove oxygen (default: none; ignored for samples with their own medium_gapseq_csv file)",
                     "fa_icon": "fas fa-cog"
                 },
                 "gapseq_fill_args": {
                     "type": "string",
-                    "description": "Custom arguments for 'gapseq fill' (e.g., '-b 100')",
+                    "description": "Custom arguments for 'gapseq fill' - gap-filling (default: none)",
                     "fa_icon": "fas fa-cog"
                 },
                 "skip_memote": {
                     "type": "boolean",
                     "default": true,
                     "description": "Skip MEMOTE metabolic model quality evaluation (only runs when skip_gapseq=false or skip_carveme=false)",
-                    "fa_icon": "fas fa-check-circle"
+                    "fa_icon": "fas fa-fast-forward"
                 }
             },
             "allOf": [

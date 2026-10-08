@@ -48,19 +48,19 @@ workflow BACMODEL_FUNCTIONAL_ANNOTATION {
 
     // Option 2: Bakta for annotation (alternative)
     if (options.annotation_tool == 'bakta') {
-        // Skip the download if the DB is already cached at options.baktadb (published
+        // Skip the download if the DB is already cached at options.bakta_db (published
         // there by a previous run - see conf/modules.config). Can't use storeDir here:
         // BAKTA_BAKTADBDOWNLOAD also emits a tuple for versions-topic reporting, and
         // storeDir only supports processes whose outputs are all `val`/`path`.
-        def baktadb_cached = file("${options.baktadb}/db")
-        if (baktadb_cached.exists()) {
-            ch_baktadb = Channel.fromPath(baktadb_cached, checkIfExists: true)
+        def bakta_db_cached = file("${options.bakta_db}/db")
+        if (bakta_db_cached.exists()) {
+            ch_bakta_db = Channel.fromPath(bakta_db_cached, checkIfExists: true)
         } else {
             BAKTA_BAKTADBDOWNLOAD()
-            ch_baktadb = BAKTA_BAKTADBDOWNLOAD.out.db
+            ch_bakta_db = BAKTA_BAKTADBDOWNLOAD.out.db
         }
 
-        BAKTA_BAKTA(ch_genomes, ch_baktadb, [], [], [], [])
+        BAKTA_BAKTA(ch_genomes, ch_bakta_db, [], [], [], [])
         ch_annotated_proteins = BAKTA_BAKTA.out.faa
         ch_annotated_gff = BAKTA_BAKTA.out.gff
     }

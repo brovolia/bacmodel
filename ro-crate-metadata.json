@@ -134,7 +134,7 @@
             ],
             "author": [
                 {
-                    "@id": "https://orcid.org/0000-0002-0946-7331"
+                    "@id": "#6d329014-5db8-4daa-bdb8-a5c41a607852"
                 }
             ],
             "dateCreated": "",
@@ -340,7 +340,7 @@
             "url": "https://nf-co.re/"
         },
         {
-            "@id": "https://orcid.org/0000-0002-0946-7331",
+            "@id": "#6d329014-5db8-4daa-bdb8-a5c41a607852",
             "@type": "Person",
             "affiliation": "Institute of Clinical Molecular Biology, Kiel University",
             "email": "o.brovkina@ikmb.uni-kiel.de",

@@ -25,33 +25,32 @@ include { GAPSEQ_DRAFT          } from '../../../modules/nf-core/gapseq/draft/ma
 include { GAPSEQ_MEDIUM         } from '../../../modules/nf-core/gapseq/medium/main'
 include { GAPSEQ_FILL           } from '../../../modules/nf-core/gapseq/fill/main'
 
-workflow GAPSEQ_WORKFLOW {
+workflow GAPSEQ {
 
     take:
-    ch_genomes       // channel: [ val(meta), path(fasta) ]
-    options          // map: gapseq_find_args, gapseq_findtransport_args, gapseq_draft_args,
-                     //      gapseq_medium_args, gapseq_fill_args - see workflows/bacmodel.nf
+    ch_genomes                // channel: [ val(meta), path(fasta) ]
+    gapseq_db                 // string: pre-downloaded/cached reference sequence DB dir
+    gapseq_find_args          // string: custom args for 'gapseq find' (switches on custom/stepwise mode if any of these 5 are set)
+    gapseq_findtransport_args // string: custom args for 'gapseq find-transport'
+    gapseq_draft_args         // string: custom args for 'gapseq draft'
+    gapseq_medium_args        // string: custom args for 'gapseq medium'
+    gapseq_fill_args          // string: custom args for 'gapseq fill'
 
     main:
 
-    ch_versions = Channel.empty()
-
     // Automatically detect if custom workflow should be used based on parameters
-    def use_custom = options.gapseq_find_args || options.gapseq_findtransport_args ||
-                     options.gapseq_draft_args || options.gapseq_medium_args || options.gapseq_fill_args
+    def use_custom = gapseq_find_args || gapseq_findtransport_args ||
+                     gapseq_draft_args || gapseq_medium_args || gapseq_fill_args
 
     //
     // Download gapseq reference sequence database once before parallel execution.
     // This prevents race conditions when hundreds of reconstructions start simultaneously.
-    // Skip the download if already present at options.gapseq_db (e.g. pre-downloaded on a
+    // Skip the download if already present at gapseq_db (e.g. pre-downloaded on a
     // node with internet access, for compute nodes that can't reach Zenodo themselves).
-    // .first() turns this into a value channel (like a process output with a single
-    // path would already be) - without it, this plain queue channel has exactly one
-    // element and gets drained by the first sample, silently starving every other one.
     //
-    def gapseq_db_cached = file("${options.gapseq_db}/Bacteria")
+    def gapseq_db_cached = file("${gapseq_db}/Bacteria")
     if (gapseq_db_cached.exists()) {
-        ch_seqdb = Channel.fromPath(options.gapseq_db, checkIfExists: true).first()
+        ch_seqdb = Channel.fromPath(gapseq_db, checkIfExists: true).first()
     } else {
         GAPSEQ_REQUESTDB('Bacteria')
         ch_seqdb = GAPSEQ_REQUESTDB.out.db
@@ -61,11 +60,9 @@ workflow GAPSEQ_WORKFLOW {
     // medium_gapseq_csv (a file path) and medium_gapseq (a built-in name like
     // LB/M9) are mutually exclusive per sample: a custom CSV is passed as a
     // file input here, while a built-in name is handled separately via
-    // ext.args in doall mode (see conf/modules.config).
+    // ext.args in doall mode (see conf/modules.config). Mutual exclusivity itself
+    // is enforced by assets/schema_input.json's allOf/if/then, not re-checked here.
     ch_gapseq_input = ch_genomes.map { meta, fasta ->
-        if (meta.medium_gapseq && meta.medium_gapseq_csv) {
-            error "Sample '${meta.id}': provide either 'medium_gapseq' (a built-in medium name) or 'medium_gapseq_csv' (a custom medium CSV file) in the samplesheet, not both."
-        }
         def medium = meta.medium_gapseq_csv ? file(meta.medium_gapseq_csv) : []
         [ meta, fasta, medium ]
     }
@@ -157,5 +154,4 @@ workflow GAPSEQ_WORKFLOW {
     xml          = ch_xml          // channel: [ val(meta), path(xml) ]
     pathways     = ch_pathways     // channel: [ val(meta), path(tbl) ]
     transporters = ch_transporters // channel: [ val(meta), path(tbl) ]
-    versions     = ch_versions     // channel: [ path(versions.yml) ]
 }

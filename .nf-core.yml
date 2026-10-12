@@ -7,13 +7,18 @@ lint:
     # see .github/CONTRIBUTING.md ("Images and figures"). Must not be reverted to
     # the template placeholder.
     - docs/images/nf-core-bacmodel_logo_light.png
-    - .prettierignore
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
     - assets/multiqc_config.yml
   template_strings: false
   nextflow_config:
+  # The deprecated_options block in nextflow_schema.json (run_macsyfinder, run_traitar,
+  # run_carveme, run_gapseq, run_memote) intentionally has no nextflow.config counterpart -
+  # it exists purely so nf-schema can fail fast with a helpful redirect message if someone
+  # still passes the old flag names. Adding those names to validation.defaultIgnoreParams
+  # instead would also suppress that error message, defeating the point of the block.
+  schema_params: false
 template:
   org: nf-core
   name: bacmodel

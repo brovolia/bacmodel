@@ -22,6 +22,9 @@ input:
       type: file
       description: MacSyFinder all_systems.tsv files
       pattern: "*/all_systems.tsv"
+  - macsyfinder_ids:
+      type: list
+      description: Sample id for each entry in macsyfinder_results, same order
   - traitar_majority_results:
       type: file
       description: TRAITAR majority-vote prediction files
@@ -34,10 +37,16 @@ input:
       type: file
       description: CarveMe metabolic model XML files
       pattern: "*.xml"
+  - carveme_ids:
+      type: list
+      description: Sample id for each entry in carveme_models, same order
   - gapseq_models:
       type: file
-      description: Gapseq metabolic model RDS files
-      pattern: "*-all.RDS"
+      description: Gapseq final (non-draft) metabolic model XML files
+      pattern: "*.xml"
+  - gapseq_ids:
+      type: list
+      description: Sample id for each entry in gapseq_models, same order
   - gapseq_tbls:
       type: file
       description: Gapseq pathway and transporter table files

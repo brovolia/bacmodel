@@ -10,10 +10,13 @@ process BACMODEL_SUMMARY {
     input:
     path(sample_ids_file)
     path(macsyfinder_results)
+    val(macsyfinder_ids)
     path(traitar_majority_results)
     path(traitar_single_results)
     path(carveme_models)
+    val(carveme_ids)
     path(gapseq_models)
+    val(gapseq_ids)
     path(gapseq_tbls)
     path(memote_jsons)
     val(macsyfinder_enabled)
@@ -31,10 +34,13 @@ process BACMODEL_SUMMARY {
 
     script:
     macsyfinder_files = macsyfinder_results ? macsyfinder_results.collect { "'$it'" }.join(' ') : ''
+    macsyfinder_ids_str = macsyfinder_ids ? macsyfinder_ids.collect { "'$it'" }.join(' ') : ''
     traitar_majority_files = traitar_majority_results ? traitar_majority_results.collect { "'$it'" }.join(' ') : ''
     traitar_single_files = traitar_single_results ? traitar_single_results.collect { "'$it'" }.join(' ') : ''
     carveme_files = carveme_models ? carveme_models.collect { "'$it'" }.join(' ') : ''
+    carveme_ids_str = carveme_ids ? carveme_ids.collect { "'$it'" }.join(' ') : ''
     gapseq_files = gapseq_models ? gapseq_models.collect { "'$it'" }.join(' ') : ''
+    gapseq_ids_str = gapseq_ids ? gapseq_ids.collect { "'$it'" }.join(' ') : ''
     gapseq_tbl_files = gapseq_tbls ? gapseq_tbls.collect { "'$it'" }.join(' ') : ''
     memote_files = memote_jsons ? memote_jsons.collect { "'$it'" }.join(' ') : ''
     template 'bacmodel_summary.py'

@@ -80,7 +80,7 @@ Gapseq automatically downloads reference sequence databases on first use. The pi
 
 **Default behavior (both columns empty):** Gapseq uses its built-in **anaerobic complete medium** for gap-filling, which is a permissive rich medium allowing comprehensive metabolic reconstruction.
 
-**Built-in media names (`medium_gapseq`):** gapseq's own `-m` flag only accepts a file path (or `auto`) - it has no name-based lookup. The pipeline resolves the name you give here to the matching CSV bundled under gapseq's `dat/media/` directory. The full, authoritative list of accepted names is the `medium_gapseq` column's `enum` in [`assets/schema_input.json`](../assets/schema_input.json) - kept there rather than duplicated here, since that's also what your samplesheet is validated against. See the [gapseq media files](https://github.com/jotech/gapseq/tree/master/dat/media) for their contents.
+**Built-in media names (`medium_gapseq`):** gapseq's own `-m` flag only accepts a file path (or `auto`) - it has no name-based lookup. The pipeline resolves the name you give here to the matching CSV bundled under gapseq's `dat/media/` directory, so only the following names are accepted: `ALLmed`, `FT`, `LBmed`, `LBmed_glucose_suppl`, `M9_serine_galacturonate`, `M9_vit_aa`, `MM_anaerobic_Acetate`, `MM_anaerobic_Acetate_H2`, `MM_anaerobic_CO2_H2`, `MM_glu-thm`, `MM_glu`, `TSBmed`, `autotrophic`, `dsmz_1611_YCFA`, `gut`, `meerwasser`. See the [gapseq media files](https://github.com/jotech/gapseq/tree/master/dat/media) for their contents.
 
 **Custom media files (`medium_gapseq_csv`):** Provide a path to a CSV file with three columns:
 
@@ -123,7 +123,7 @@ nextflow run nf-core/bacmodel \
   -profile docker
 ```
 
-See the [parameter documentation](https://nf-co.re/bacmodel/parameters) for `--gapseq_find_args`, `--gapseq_findtransport_args`, `--gapseq_draft_args`, `--gapseq_medium_args`, and `--gapseq_fill_args` - one per gapseq subworkflow step. Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all available parameters for each command.
+See the [parameter documentation](../parameters) for `--gapseq_find_args`, `--gapseq_findtransport_args`, `--gapseq_draft_args`, `--gapseq_medium_args`, and `--gapseq_fill_args` - one per gapseq subworkflow step. Refer to the [gapseq documentation](https://gapseq.readthedocs.io/) for all available parameters for each command.
 
 **Example - adjust bit scores:**
 
@@ -139,7 +139,7 @@ See the [parameter documentation](https://nf-co.re/bacmodel/parameters) for `--g
 ```
 
 :::important
-**Database pre-download:** The pipeline automatically downloads the gapseq reference sequence database once before parallel reconstruction. This prevents race conditions and delays when processing hundreds of genomes simultaneously - a key improvement over running gapseq manually where each process would attempt to download the database independently.
+**Database pre-download:** The pipeline automatically downloads the gapseq reference sequence database once before parallel reconstruction. This prevents race conditions and delays when processing hundreds of genomes simultaneously.
 :::
 
 :::tip
@@ -235,7 +235,7 @@ that copy in a later run (instead of re-downloading), point the matching option 
 some other shared location if you'd rather keep one copy across multiple runs/users:
 
 ```bash
---pfamdb /path/to/pfam_cache                 # Default: <outdir>/databases/pfam - used if skip_traitar=false
+--pfam_db /path/to/pfam_cache                 # Default: <outdir>/databases/pfam - used if skip_traitar=false
 --bakta_db /path/to/bakta_cache              # Default: <outdir>/databases/bakta - used if annotation_tool=bakta
 --macsyfinder_db /path/to/macsyfinder_cache  # Default: <outdir>/databases/macsyfinder
 ```

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sys
 import pandas as pd
-from pathlib import Path
 
 # Read sample IDs from file (one per line)
 with open("${sample_ids_file}", 'r') as f:
@@ -36,37 +35,23 @@ if gapseq_enabled:
 
 # Process MacSyFinder results (only if enabled)
 if macsyfinder_enabled:
-    macsyfinder_files = [f for f in "${macsyfinder_files}".split() if f and f != "null"]
-    for mf_file in macsyfinder_files:
-        if mf_file.strip("'"):
-            # Extract sample name from path (file is usually sample/all_systems.tsv)
-            file_path = Path(mf_file.strip("'"))
-            sample = file_path.parent.name if file_path.parent.name else file_path.stem
-
-            if sample in sample_ids:
-                idx = sample_ids.index(sample)
-                try:
-                    # Read file and count non-comment lines (actual detected systems)
-                    with open(mf_file.strip("'"), 'r') as f:
-                        lines = f.readlines()
-
-                    # Filter out comment lines (starting with #)
-                    data_lines = [line for line in lines if line.strip() and not line.startswith('#')]
-                    systems_count = len(data_lines)
-
-                    # Extract system types if systems were found
-                    system_types = set()
-                    if systems_count > 0:
-                        # Parse TSV data - typically has columns like: replicon, hit_id, system, etc.
-                        for line in data_lines:
-                            parts = line.strip().split('\t')
-                            if len(parts) >= 3:  # Assuming system type is in 3rd column
-                                system_types.add(parts[2])
-
-                    summary_data['macsyfinder_systems'][idx] = systems_count
-                    summary_data['macsyfinder_types'][idx] = ', '.join(sorted(system_types)) if system_types else ''
-                except Exception as e:
-                    pass
+    macsyfinder_files = [f.strip("'") for f in "${macsyfinder_files}".split() if f and f != "null"]
+    macsyfinder_ids = [i.strip("'") for i in "${macsyfinder_ids_str}".split() if i and i != "null"]
+    for sample, mf_file in zip(macsyfinder_ids, macsyfinder_files):
+        if sample in sample_ids:
+            idx = sample_ids.index(sample)
+            try:
+                # '#'-prefixed metadata comments precede the header + one row per
+                # detected system; when none are found the file is comments only,
+                # which pandas reports as EmptyDataError (treated as zero below).
+                df = pd.read_csv(mf_file, sep='\t', comment='#')
+                summary_data['macsyfinder_systems'][idx] = len(df)
+                if len(df.columns) >= 3 and not df.empty:
+                    # Assuming system type is in the 3rd column, as before.
+                    types = sorted(df.iloc[:, 2].astype(str).unique())
+                    summary_data['macsyfinder_types'][idx] = ', '.join(types)
+            except Exception as e:
+                pass
 
 # Process TRAITAR results (only if enabled)
 if traitar_enabled:
@@ -108,40 +93,37 @@ if traitar_enabled:
 
 # Process CarveMe models (only if enabled)
 if carveme_enabled:
-    carveme_files = [f for f in "${carveme_files}".split() if f and f != "null"]
-    for cm_file in carveme_files:
-        if cm_file.strip("'"):
-            sample = Path(cm_file.strip("'")).stem
-            if sample in sample_ids:
-                idx = sample_ids.index(sample)
-                summary_data['carveme_model'][idx] = 'Yes'
-                # Count reactions in XML (rough estimate by counting <reaction> tags)
-                try:
-                    with open(cm_file.strip("'"), 'r') as f:
-                        content = f.read()
-                        reactions = content.count('<reaction ')
-                    summary_data['carveme_reactions'][idx] = reactions
-                except Exception:
-                    pass
+    carveme_files = [f.strip("'") for f in "${carveme_files}".split() if f and f != "null"]
+    carveme_ids = [i.strip("'") for i in "${carveme_ids_str}".split() if i and i != "null"]
+    for sample, cm_file in zip(carveme_ids, carveme_files):
+        if sample in sample_ids:
+            idx = sample_ids.index(sample)
+            summary_data['carveme_model'][idx] = 'Yes'
+            # Count reactions in XML (rough estimate by counting <reaction> tags)
+            try:
+                with open(cm_file, 'r') as f:
+                    content = f.read()
+                    reactions = content.count('<reaction ')
+                summary_data['carveme_reactions'][idx] = reactions
+            except Exception:
+                pass
 
 # Process Gapseq models (only if enabled)
 if gapseq_enabled:
-    gapseq_files = [f for f in "${gapseq_files}".split() if f and f != "null"]
-    for gs_file in gapseq_files:
-        if gs_file.strip("'"):
-            # Remove _gapseq suffix and -draft suffix to get sample name
-            sample = Path(gs_file.strip("'")).stem.replace("_gapseq", "").replace("-draft", "")
-            if sample in sample_ids:
-                idx = sample_ids.index(sample)
-                summary_data['gapseq_model'][idx] = 'Yes'
-                # Count reactions in XML (same approach as CarveMe)
-                try:
-                    with open(gs_file.strip("'"), 'r') as f:
-                        content = f.read()
-                        reactions = content.count('<reaction ')
-                    summary_data['gapseq_reactions'][idx] = reactions
-                except Exception:
-                    pass
+    gapseq_files = [f.strip("'") for f in "${gapseq_files}".split() if f and f != "null"]
+    gapseq_ids = [i.strip("'") for i in "${gapseq_ids_str}".split() if i and i != "null"]
+    for sample, gs_file in zip(gapseq_ids, gapseq_files):
+        if sample in sample_ids:
+            idx = sample_ids.index(sample)
+            summary_data['gapseq_model'][idx] = 'Yes'
+            # Count reactions in XML (same approach as CarveMe)
+            try:
+                with open(gs_file, 'r') as f:
+                    content = f.read()
+                    reactions = content.count('<reaction ')
+                summary_data['gapseq_reactions'][idx] = reactions
+            except Exception:
+                pass
 
 # Create and save dataframe (sorted by sample_id for deterministic output)
 df = pd.DataFrame(summary_data)

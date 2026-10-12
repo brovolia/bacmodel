@@ -1,5 +1,5 @@
 %%metro logo: docs/images/nf-core-bacmodel_logo_light.png
-%%metro style: light
+%%metro style: nf-core
 %%metro legend: br
 %%metro logo_scale: 0.55
 %%metro legend_min_height: 90
@@ -21,8 +21,12 @@
 %%metro file: gff_out | .gff
 %%metro file: summary_table | .tsv
 
-%% Lift output artefacts above the main track
-%%metro off_track: input_assemblies, proteins_out, gff_out, summary_table
+%% Lift output artefacts and side inputs off the main track
+%%metro off_track: proteins_out, gff_out, macsyfinder_models
+%%metro line_spread: centered | functional_analysis
+%% reduce empty space
+%%metro x_spacing: 45
+%%metro section_x_gap: 20
 
 graph LR
     %% Annotation section (shared by all lines)
@@ -57,11 +61,13 @@ graph LR
         macsyfinder[MacSyFinder]
 
         pfam_db[Pfam DB]
+        _traitar_in
         traitar[TRAITAR]
 
         carveme[CarveMe]
         gapseq_genome[Gapseq]
         memote[Memote]
+        _fa_merge
 
         macsyfinder_models -->|macsyfinder| macsyfinder
 
@@ -77,11 +83,13 @@ graph LR
 
     %% Inter-section connections
     proteins_out -->|macsyfinder| macsyfinder
-    proteins_out -->|phenotype| traitar
+    proteins_out -->|phenotype| _traitar_in
+    _traitar_in -->|phenotype| traitar
     proteins_out -->|metabolic| carveme
     _metabolic_branch -->|metabolic| gapseq_genome
-    macsyfinder -->|macsyfinder| summary_table
-    traitar -->|phenotype| summary_table
+    macsyfinder -->|macsyfinder| _fa_merge
+    traitar -->|phenotype| _fa_merge
     carveme -->|metabolic| memote
     gapseq_genome -->|metabolic| memote
-    memote -->|metabolic| summary_table
+    memote -->|metabolic| _fa_merge
+    _fa_merge -->|macsyfinder,metabolic,phenotype| summary_table

@@ -11,6 +11,7 @@
 include { UTILS_NFSCHEMA_PLUGIN     } from '../../nf-core/utils_nfschema_plugin'
 include { paramsSummaryMap          } from 'plugin/nf-schema'
 include { samplesheetToList         } from 'plugin/nf-schema'
+include { paramsHelp                } from 'plugin/nf-schema'
 include { completionEmail           } from '../../nf-core/utils_nfcore_pipeline'
 include { completionSummary         } from '../../nf-core/utils_nfcore_pipeline'
 include { UTILS_NFCORE_PIPELINE     } from '../../nf-core/utils_nfcore_pipeline'
@@ -38,12 +39,6 @@ workflow PIPELINE_INITIALISATION {
     main:
 
     ch_versions = channel.empty()
-
-    //
-    // Fail fast on removed/renamed parameters, since nf-schema accepts unknown
-    // params silently and they would otherwise just be ignored
-    //
-    checkDeprecatedParams()
 
     //
     // Print version and exit if required and dump pipeline parameters to JSON file
@@ -168,26 +163,6 @@ workflow PIPELINE_COMPLETION {
     FUNCTIONS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 */
-
-//
-// Error out on parameters that were renamed, so old job scripts fail loudly
-// instead of silently keeping the (inverted) default of the new parameter
-//
-def checkDeprecatedParams() {
-    def renamed_params = [
-        run_macsyfinder: 'skip_macsyfinder',
-        run_traitar     : 'skip_traitar',
-        run_carveme     : 'skip_carveme',
-        run_gapseq      : 'skip_gapseq',
-        run_memote      : 'skip_memote',
-    ]
-
-    def used = renamed_params.keySet().findAll { params.containsKey(it) }
-    if (used) {
-        def message = used.collect { old_name -> "  --${old_name} has been replaced by --${renamed_params[old_name]} (note: the meaning is inverted)" }.join('\n')
-        error("Removed parameter(s) detected:\n${message}\nPlease update your command/script and re-run.")
-    }
-}
 
 //
 // Validate channels from input samplesheet

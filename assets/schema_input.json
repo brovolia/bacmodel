@@ -66,6 +66,21 @@
                 "meta": ["medium_carveme_tsv"]
             }
         },
-        "required": ["sample", "fasta"]
+        "required": ["sample", "fasta"],
+        "allOf": [
+            {
+                "if": {
+                    "properties": {
+                        "medium_gapseq": { "minLength": 1 }
+                    },
+                    "required": ["medium_gapseq"]
+                },
+                "then": {
+                    "properties": {
+                        "medium_gapseq_csv": { "maxLength": 0 }
+                    }
+                }
+            }
+        ]
     }
 }

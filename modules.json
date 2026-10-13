@@ -17,7 +17,7 @@
                     },
                     "carveme/carve": {
                         "branch": "master",
-                        "git_sha": "42bde0556905de59833fb4ddaacc440ca5eff708",
+                        "git_sha": "74a0d090960b52c2d02bb76bc3cc67a899994a4e",
                         "installed_by": ["modules"]
                     },
                     "gapseq/doall": {

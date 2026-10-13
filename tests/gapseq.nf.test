@@ -1,0 +1,72 @@
+nextflow_pipeline {
+
+    name "Test pipeline - Gapseq"
+    script "../main.nf"
+    tag "pipeline"
+    tag "gapseq"
+    // nf-test 0.9.3 silently drops this suite-level `profile` for
+    // nextflow_pipeline tests (confirmed via meta/nextflow.log: the actual
+    // invocation only ever carries nf-test.config's global default `test`
+    // profile) - conf/test_gapseq.config's overrides are set inline below
+    // instead, since that's unaffected by the bug.
+    profile "test_gapseq"
+
+    test("Params: Prokka + Gapseq") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_gapseq = false
+                skip_memote = false
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            // metabolic_models/gapseq/*.{xml,tbl,...} content is unstable and
+            // ignored above. gapseq names these itself (not via a fixed prefix),
+            // so check by glob rather than an exact filename.
+            def gapseq_dir  = new File("$outputDir/metabolic_models/gapseq")
+            def gapseq_xmls = gapseq_dir.listFiles({ f -> f.name.endsWith('.xml') } as FileFilter)
+            def gapseq_tbls = gapseq_dir.listFiles({ f -> f.name.endsWith('.tbl') } as FileFilter)
+
+            // metabolic_models/memote/*.{html,json.gz} content is unstable and
+            // ignored above - check the files exist and are non-empty. Prefix is
+            // "<sample>_gapseq" (conf/modules.config tags the model meta.tool
+            // before MEMOTE_RUN/MEMOTE_REPORT: ext.prefix = "${meta.id}_${meta.tool}").
+            def memote_report = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_gapseq.html")
+            def memote_json   = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_gapseq.json.gz")
+
+            // summary/bacmodel_summary.tsv content is unstable and ignored above -
+            // check its shape: only Gapseq ran, so only its two columns are added.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+            def summary_row   = summary_lines[1].split('\t')
+
+            assertAll(
+                { assert workflow.success},
+                { assert gapseq_xmls.size() >= 1 : "Gapseq should produce at least one SBML model (.xml)" },
+                { assert gapseq_xmls.every { it.length() > 0 } : "Gapseq model files should not be empty" },
+                { assert gapseq_tbls.size() >= 2 : "Gapseq doall mode should produce pathway + transporter .tbl files" },
+                { assert memote_report.size() > 0 : "MEMOTE HTML report should not be empty" },
+                { assert memote_json.size() > 0 : "MEMOTE JSON report should not be empty" },
+                { assert summary_lines.size() == 2 : "Summary should have a header line plus exactly one sample row" },
+                { assert summary_lines[0] == 'sample_id\tgapseq_model\tgapseq_reactions' },
+                { assert summary_row[0] == 'faecalibacterium_taiwanense' },
+                { assert summary_row[1] == 'Yes' : "Gapseq always produces a model, so gapseq_model should be 'Yes'" },
+                { assert summary_row[2] ==~ /\d+/ : "gapseq_reactions should be a reaction count" },
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

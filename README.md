@@ -1,8 +1,5 @@
 <h1>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/nf-core-bacmodel_logo_dark.png">
-    <img alt="nf-core/bacmodel" src="docs/images/nf-core-bacmodel_logo_light.png">
-  </picture>
+  <img alt="nf-core/bacmodel" src="docs/images/nf-core-bacmodel_logo_light.png">
 </h1>
 
 [![Open in GitHub Codespaces](https://img.shields.io/badge/Open_In_GitHub_Codespaces-black?labelColor=grey&logo=github)](https://github.com/codespaces/new/nf-core/bacmodel)
@@ -10,8 +7,8 @@
 [![GitHub Actions Linting Status](https://github.com/nf-core/bacmodel/actions/workflows/linting.yml/badge.svg)](https://github.com/nf-core/bacmodel/actions/workflows/linting.yml)[![AWS CI](https://img.shields.io/badge/CI%20tests-full%20size-FF9900?labelColor=000000&logo=Amazon%20AWS)](https://nf-co.re/bacmodel/results)[![Cite with Zenodo](http://img.shields.io/badge/DOI-10.5281/zenodo.XXXXXXX-1073c8?labelColor=000000)](https://doi.org/10.5281/zenodo.XXXXXXX)
 [![nf-test](https://img.shields.io/badge/unit_tests-nf--test-337ab7.svg)](https://www.nf-test.com)
 
-[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.04.0-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
-[![nf-core template version](https://img.shields.io/badge/nf--core_template-3.5.2-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/3.5.2)
+[![Nextflow](https://img.shields.io/badge/version-%E2%89%A525.10.4-green?style=flat&logo=nextflow&logoColor=white&color=%230DC09D&link=https%3A%2F%2Fnextflow.io)](https://www.nextflow.io/)
+[![nf-core template version](https://img.shields.io/badge/nf--core_template-4.1.0-green?style=flat&logo=nfcore&logoColor=white&color=%2324B064&link=https%3A%2F%2Fnf-co.re)](https://github.com/nf-core/tools/releases/tag/4.1.0)
 [![run with conda](http://img.shields.io/badge/run%20with-conda-3EB049?labelColor=000000&logo=anaconda)](https://docs.conda.io/en/latest/)
 [![run with docker](https://img.shields.io/badge/run%20with-docker-0db7ed?labelColor=000000&logo=docker)](https://www.docker.com/)
 [![run with singularity](https://img.shields.io/badge/run%20with-singularity-1d355c.svg?labelColor=000000)](https://sylabs.io/docs/)
@@ -21,42 +18,33 @@
 
 ## Introduction
 
-**nf-core/bacmodel** is a bioinformatics pipeline that ...
+**nf-core/bacmodel** is a bioinformatics pipeline for comprehensive functional annotation and metabolic modeling of bacterial genomes. The pipeline takes bacterial genome assemblies (FASTA format) and performs the following steps:
 
-<!-- TODO nf-core:
-   Complete this sentence with a 2-3 sentence summary of what types of data the pipeline ingests, a brief overview of the
-   major pipeline sections and the types of output it produces. You're giving an overview to someone new
-   to nf-core here, in 15-20 seconds. For an example, see https://github.com/nf-core/rnaseq/blob/master/README.md#introduction
--->
+![nf-core/bacmodel metro map](docs/images/nf-core-bacmodel_metro_map.svg)
 
-<!-- TODO nf-core: Include a figure that guides the user through the major workflow steps. Many nf-core
-     workflows use the "tube map" design for that. See https://nf-co.re/docs/guidelines/graphic_design/workflow_diagrams#examples for examples.   -->
-<!-- TODO nf-core: Fill in short bullet-pointed list of the default steps in the pipeline -->
+1. Genome annotation with [Prokka](https://github.com/tseemann/prokka) or [Bakta](https://github.com/oschwengers/bakta)
+2. Macromolecular system detection with [MacSyFinder](https://github.com/gem-pasteur/macsyfinder) (optional)
+3. Phenotype prediction with [Traitar](https://github.com/hzi-bifo/traitar) (optional)
+4. Metabolic model reconstruction with [CarveMe](https://github.com/cdanielmachado/carveme) or [gapseq](https://github.com/jotech/gapseq) (optional)
+5. Model quality evaluation with [MEMOTE](https://github.com/opencobra/memote) (optional)
 
 ## Usage
 
 > [!NOTE]
-> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/usage/installation) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/usage/introduction#how-to-run-a-pipeline) with `-profile test` before running the workflow on actual data.
+> If you are new to Nextflow and nf-core, please refer to [this page](https://nf-co.re/docs/get_started/environment_setup/overview) on how to set-up Nextflow. Make sure to [test your setup](https://nf-co.re/docs/get_started/run-your-first-pipeline) with `-profile test` before running the workflow on actual data.
 
-<!-- TODO nf-core: Describe the minimum required steps to execute the pipeline, e.g. how to prepare samplesheets.
-     Explain what rows and columns represent. For instance (please edit as appropriate):
-
-First, prepare a samplesheet with your input data that looks as follows:
+First, prepare a samplesheet with your input data that looks as follows. It can be comma-separated (`.csv`) or tab-separated (`.tsv`):
 
 `samplesheet.csv`:
 
-```csv
-sample,fastq_1,fastq_2
-CONTROL_REP1,AEG588A1_S1_L002_R1_001.fastq.gz,AEG588A1_S1_L002_R2_001.fastq.gz
+```csv title="samplesheet.csv"
+sample,fasta
+sample1,/path/to/genome1.fasta
+sample2,/path/to/genome2.fasta.gz
+sample3,https://example.com/genome3.fasta.gz
 ```
 
-Each row represents a fastq file (single-end) or a pair of fastq files (paired end).
-
--->
-
 Now, you can run the pipeline using:
-
-<!-- TODO nf-core: update the following command to include all required parameters for a minimal example -->
 
 ```bash
 nextflow run nf-core/bacmodel \
@@ -65,8 +53,32 @@ nextflow run nf-core/bacmodel \
    --outdir <OUTDIR>
 ```
 
+By default, the pipeline runs Prokka annotation. To use Bakta instead:
+
+```bash
+nextflow run nf-core/bacmodel \
+   -profile <docker/singularity/.../institute> \
+   --input samplesheet.csv \
+   --annotation_tool bakta \
+   --outdir <OUTDIR>
+```
+
+To enable optional functional analysis tools:
+
+```bash
+nextflow run nf-core/bacmodel \
+   -profile <docker/singularity/.../institute> \
+   --input samplesheet.csv \
+   --skip_macsyfinder false \
+   --skip_traitar false \
+   --skip_carveme false \
+   --skip_gapseq false \
+   --skip_memote false \
+   --outdir <OUTDIR>
+```
+
 > [!WARNING]
-> Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/usage/getting_started/configuration#custom-configuration-files).
+> Please provide pipeline parameters via the CLI or Nextflow `-params-file` option. Custom config files including those provided by the `-c` Nextflow option can be used to provide any configuration _**except for parameters**_; see [docs](https://nf-co.re/docs/running/run-pipelines#using-parameter-files).
 
 For more details and further functionality, please refer to the [usage documentation](https://nf-co.re/bacmodel/usage) and the [parameter documentation](https://nf-co.re/bacmodel/parameters).
 
@@ -78,15 +90,16 @@ For more details about the output files and reports, please refer to the
 
 ## Credits
 
-nf-core/bacmodel was originally written by Olga Brovkina.
+nf-core/bacmodel was originally written by Olga Brovkina at the Institute of Clinical Molecular Biology (IKMB), Kiel University.
 
 We thank the following people for their extensive assistance in the development of this pipeline:
 
-<!-- TODO nf-core: If applicable, make list of people who have also contributed -->
+- The nf-core community for providing excellent tools and modules
+- The developers of Prokka, Bakta, MacSyFinder, Traitar, and CarveMe for their excellent software
 
 ## Contributions and Support
 
-If you would like to contribute to this pipeline, please see the [contributing guidelines](.github/CONTRIBUTING.md).
+If you would like to contribute to this pipeline, please see the [contributing guidelines](docs/CONTRIBUTING.md).
 
 For further information or help, don't hesitate to get in touch on the [Slack `#bacmodel` channel](https://nfcore.slack.com/channels/bacmodel) (you can join with [this invite](https://nf-co.re/join/slack)).
 
@@ -95,9 +108,7 @@ For further information or help, don't hesitate to get in touch on the [Slack `#
 <!-- TODO nf-core: Add citation for pipeline after first release. Uncomment lines below and update Zenodo doi and badge at the top of this file. -->
 <!-- If you use nf-core/bacmodel for your analysis, please cite it using the following doi: [10.5281/zenodo.XXXXXX](https://doi.org/10.5281/zenodo.XXXXXX) -->
 
-<!-- TODO nf-core: Add bibliography of tools and data used in your pipeline -->
-
-An extensive list of references for the tools used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
+If you use nf-core/bacmodel for your analysis, please cite the pipeline along with the tools it uses. A full list of references for the tools and data used by the pipeline can be found in the [`CITATIONS.md`](CITATIONS.md) file.
 
 You can cite the `nf-core` publication as follows:
 

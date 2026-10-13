@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "pipeline_initialisation"
+description: Subworkflow with functionality specific to the nf-core/bacmodel pipeline
+keywords:
+  - utility
+  - pipeline
+  - initialisation
+  - validation
+components:
+  - utils_nfschema_plugin
+  - utils_nfcore_pipeline
+  - utils_nextflow_pipeline
+  - completionemail
+  - completionsummary
+input:
+  - version:
+      type: boolean
+      description: Display version and exit
+  - validate_params:
+      type: boolean
+      description: Boolean whether to validate parameters against the schema at runtime
+  - monochrome_logs:
+      type: boolean
+      description: Do not use coloured log outputs
+  - nextflow_cli_args:
+      type: array
+      description: List of positional nextflow CLI args
+  - outdir:
+      type: string
+      description: The output directory where the results will be saved
+  - input:
+      type: string
+      description: Path to input samplesheet
+  - help:
+      type: boolean
+      description: Display help message and exit
+  - help_full:
+      type: boolean
+      description: Show the full help message
+  - show_hidden:
+      type: boolean
+      description: Show hidden parameters in the help message
+output:
+  - samplesheet:
+      type: channel
+      description: |
+        Channel containing validated samplesheet data
+        Structure: [ val(meta), path(fasta) ]
+  - versions:
+      type: channel
+      description: |
+        Channel containing software version information
+        Structure: [ path(versions.yml) ]
+authors:
+  - "@brovolia"
+maintainers:
+  - "@brovolia"

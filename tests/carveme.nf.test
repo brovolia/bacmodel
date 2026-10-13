@@ -1,0 +1,66 @@
+nextflow_pipeline {
+
+    name "Test pipeline - CarveMe"
+    script "../main.nf"
+    tag "pipeline"
+    tag "carveme"
+    // nf-test 0.9.3 silently drops this suite-level `profile` for
+    // nextflow_pipeline tests (confirmed via meta/nextflow.log: the actual
+    // invocation only ever carries nf-test.config's global default `test`
+    // profile, never `test_carveme`) - conf/test_carveme.config's overrides
+    // are set inline below instead, since that's unaffected by the bug.
+    profile "test_carveme"
+
+    test("Params: Prokka + CarveMe") {
+
+        when {
+            params {
+                outdir = "$outputDir"
+                skip_carveme = false
+                skip_memote = false
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            // metabolic_models/carveme/*.xml content is unstable (solver run
+            // details embedded) and ignored above - check it's a real SBML model.
+            def carveme_xml = path("$outputDir/metabolic_models/carveme/faecalibacterium_taiwanense.xml")
+
+            // metabolic_models/memote/*.{html,json.gz} content is unstable and
+            // ignored above - check the files exist and are non-empty. Prefix is
+            // "<sample>_carveme" (conf/modules.config tags the model meta.tool
+            // before MEMOTE_RUN/MEMOTE_REPORT: ext.prefix = "${meta.id}_${meta.tool}").
+            def memote_report = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_carveme.html")
+            def memote_json   = path("$outputDir/metabolic_models/memote/faecalibacterium_taiwanense_carveme.json.gz")
+
+            // summary/bacmodel_summary.tsv content is unstable and ignored above -
+            // check its shape: only CarveMe ran, so only its two columns are added.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+            def summary_row   = summary_lines[1].split('\t')
+
+            assertAll(
+                { assert workflow.success},
+                { assert memote_report.size() > 0 : "MEMOTE HTML report should not be empty" },
+                { assert memote_json.size() > 0 : "MEMOTE JSON report should not be empty" },
+                { assert summary_lines.size() == 2 : "Summary should have a header line plus exactly one sample row" },
+                { assert summary_lines[0] == 'sample_id\tcarveme_model\tcarveme_reactions' },
+                { assert summary_row[0] == 'faecalibacterium_taiwanense' },
+                { assert summary_row[1] == 'Yes' : "CarveMe always produces a model, so carveme_model should be 'Yes'" },
+                { assert summary_row[2] ==~ /\d+/ : "carveme_reactions should be a reaction count" },
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

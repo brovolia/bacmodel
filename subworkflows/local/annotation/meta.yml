@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "annotation"
+description: Genome annotation via Prokka (default) or Bakta
+keywords:
+  - bacteria
+  - annotation
+  - prokka
+  - bakta
+components:
+  - prokka
+  - bakta/bakta
+  - bakta/baktadbdownload
+input:
+  - ch_genomes:
+      type: channel
+      description: |
+        Channel containing genome assembly files
+        Structure: [ val(meta), path(fasta) ]
+  - annotation_tool:
+      type: string
+      description: Annotation tool to use, 'prokka' or 'bakta'
+  - bakta_db:
+      type: string
+      description: Pre-downloaded/cached Bakta database directory (only used when annotation_tool == 'bakta')
+output:
+  - proteins:
+      type: channel
+      description: |
+        Channel containing predicted protein sequences
+        Structure: [ val(meta), path(faa) ]
+  - gff:
+      type: channel
+      description: |
+        Channel containing genome annotation in GFF format
+        Structure: [ val(meta), path(gff) ]
+authors:
+  - "@brovolia"
+maintainers:
+  - "@brovolia"

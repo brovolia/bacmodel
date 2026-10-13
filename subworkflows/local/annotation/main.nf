@@ -38,12 +38,12 @@ workflow ANNOTATION {
         BAKTA_BAKTA(ch_genomes, ch_bakta_db, [], [], [], [])
         ch_proteins = BAKTA_BAKTA.out.faa
         ch_gff = BAKTA_BAKTA.out.gff
-    } else {
-        // Prokka is the default (preferred for speed) - also the fallback for any
-        // unrecognised value, matching nextflow_schema.json's enum + default.
+    } else if (annotation_tool == 'prokka') {
         PROKKA(ch_genomes, [], [])
         ch_proteins = PROKKA.out.faa
         ch_gff = PROKKA.out.gff
+    } else {
+        error("Invalid annotation_tool: '${annotation_tool}'. Must be 'prokka' or 'bakta'.")
     }
 
     emit:

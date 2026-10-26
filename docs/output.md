@@ -6,13 +6,93 @@ This document describes the output produced by the pipeline.
 
 The directories listed below will be created in the results directory after the pipeline has finished. All paths are relative to the top-level results directory.
 
-<!-- TODO nf-core: Write this documentation describing your workflow's output -->
-
 ## Pipeline overview
 
-The pipeline is built using [Nextflow](https://www.nextflow.io/) and processes data using the following steps:
+The pipeline is built using [Nextflow](https://www.nextflow.io/) and performs functional annotation and metabolic modeling of bacterial genomes using the following steps:
 
+- [Annotation](#annotation) - Genome annotation with [Prokka](https://github.com/tseemann/prokka) or [Bakta](https://github.com/oschwengers/bakta)
+- [MacSyFinder](#macsyfinder) - Detection of macromolecular systems (secretion systems) with [MacSyFinder](https://github.com/gem-pasteur/macsyfinder)
+- [TRAITAR](#traitar) - Phenotype prediction from protein sequences with [Traitar](https://github.com/hzi-bifo/traitar)
+- [CarveMe](#carveme) - Genome-scale metabolic model reconstruction with [CarveMe](https://github.com/cdanielmachado/carveme)
+- [Gapseq](#gapseq) - Pathway analysis and metabolic modeling with [gapseq](https://github.com/jotech/gapseq)
+- [Summary Table](#summary-table) - Aggregated results from all tools
 - [Pipeline information](#pipeline-information) - Report metrics generated during the workflow execution
+
+### Annotation
+
+Genomes are annotated using either [Prokka](https://github.com/tseemann/prokka) (default) or [Bakta](https://github.com/oschwengers/bakta). The annotation provides gene predictions and functional assignments.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `annotation/`
+  - `*.gff`: Genome annotation in GFF3 format
+  - `*.faa`: Predicted protein sequences
+  - `*.fna`: Nucleotide sequences of predicted genes
+
+</details>
+
+### MacSyFinder
+
+[MacSyFinder](https://github.com/gem-pasteur/macsyfinder) detects macromolecular systems such as Type III, IV, and VI secretion systems (TXSS).
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `macsyfinder/`
+  - `*_all_systems.tsv`: Detected macromolecular systems
+
+</details>
+
+### TRAITAR
+
+[Traitar](https://github.com/hzi-bifo/traitar) predicts phenotypic traits from protein sequences using machine learning models.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `traitar/`
+  - `*_phenotype_predictions.tsv`: Phenotype predictions with confidence scores
+
+</details>
+
+### CarveMe
+
+[CarveMe](https://github.com/cdanielmachado/carveme) reconstructs genome-scale metabolic models that can be used for flux balance analysis.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `carveme/`
+  - `*.xml`: Genome-scale metabolic models in SBML format
+
+</details>
+
+### Gapseq
+
+[gapseq](https://github.com/jotech/gapseq) predicts metabolic pathways and creates gap-filled metabolic models.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `gapseq/`
+  - `*-all-Pathways.tbl`: Pathway predictions
+  - `*-Transporter.tbl`: Transporter predictions
+  - `*.RDS`: R model objects for further analysis
+
+</details>
+
+### Summary Table
+
+The summary table provides a comprehensive overview of all analysis results in a single TSV file.
+
+<details markdown="1">
+<summary>Output files</summary>
+
+- `summary/`
+  - `bacmodel_summary.tsv`: Aggregated results from all enabled tools
+
+</details>
 
 ### Pipeline information
 

@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "traitar_workflow"
+description: Phenotype prediction from annotated proteins via TRAITAR
+keywords:
+  - bacteria
+  - phenotype prediction
+  - traitar
+components:
+  - traitar/pfamget
+  - traitar/run
+input:
+  - ch_proteins:
+      type: channel
+      description: |
+        Channel containing predicted protein sequences
+        Structure: [ val(meta), path(faa) ]
+  - pfam_db:
+      type: string
+      description: Pre-downloaded/cached Pfam database directory
+output:
+  - results:
+      type: channel
+      description: |
+        Channel containing majority-vote phenotype predictions
+        Structure: [ val(meta), path(txt) ]
+  - single_votes:
+      type: channel
+      description: |
+        Channel containing single-vote (permissive) phenotype predictions
+        Structure: [ val(meta), path(txt) ]
+authors:
+  - "@brovolia"
+maintainers:
+  - "@brovolia"

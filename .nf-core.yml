@@ -1,26 +1,34 @@
+repository_type: pipeline
+nf_core_version: 4.2.1
 lint:
   files_exist:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
     - assets/multiqc_config.yml
   files_unchanged:
+    # Custom banner (mascot + wordmark) reused as the metro-map legend logo too -
+    # see .github/CONTRIBUTING.md ("Images and figures"). Must not be reverted to
+    # the template placeholder.
     - docs/images/nf-core-bacmodel_logo_light.png
   multiqc_config: false
+  # The deprecated_options block in nextflow_schema.json (run_macsyfinder, run_traitar,
+  # run_carveme, run_gapseq, run_memote) intentionally has no nextflow.config counterpart -
+  # it exists purely so nf-schema can fail fast with a helpful redirect message if someone
+  # still passes the old flag names. Adding those names to validation.defaultIgnoreParams
+  # instead would also suppress that error message, defeating the point of the block.
   schema_params: false
   template_strings: false
-nf_core_version: 4.2.1
-repository_type: pipeline
 template:
-  author: Olga Brovkina
-  description: Systems-based bacterial functional modeling pipeline
-  force: false
-  is_nfcore: true
-  name: bacmodel
   org: nf-core
+  name: bacmodel
+  description: Systems-based bacterial functional modeling pipeline
+  author: Olga Brovkina
+  version: 1.0.0
+  force: true
   outdir: .
   skip_features:
     - igenomes
     - multiqc
     - fastqc
     - gpu
-  version: 1.0.0
+  is_nfcore: true

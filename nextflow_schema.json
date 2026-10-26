@@ -18,9 +18,9 @@
                     "exists": true,
                     "schema": "assets/schema_input.json",
                     "mimetype": "text/csv",
-                    "pattern": "^\\S+\\.csv$",
-                    "description": "Path to comma-separated file containing information about the samples in the experiment.",
-                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated file with 3 columns, and a header row. See [usage docs](https://nf-co.re/bacmodel/usage#samplesheet-input).",
+                    "pattern": "^\\S+\\.(csv|tsv)$",
+                    "description": "Path to comma-separated or tab-separated file containing information about the samples in the experiment.",
+                    "help_text": "You will need to create a design file with information about the samples in your experiment before running the pipeline. Use this parameter to specify its location. It has to be a comma-separated or tab-separated file with at least 2 required columns (sample and fasta), and a header row. See [usage docs](https://nf-co.re/bacmodel/usage#samplesheet-input).",
                     "fa_icon": "fas fa-file-csv"
                 },
                 "outdir": {
@@ -37,6 +37,170 @@
                     "pattern": "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$"
                 }
             }
+        },
+        "annotation_options": {
+            "title": "Annotation options",
+            "type": "object",
+            "fa_icon": "fas fa-dna",
+            "description": "Options for genome annotation",
+            "properties": {
+                "annotation_tool": {
+                    "type": "string",
+                    "default": "prokka",
+                    "description": "Tool to use for genome annotation",
+                    "enum": ["prokka", "bakta"],
+                    "fa_icon": "fas fa-tools"
+                },
+                "bakta_db": {
+                    "type": "string",
+                    "description": "Directory containing a pre-downloaded Bakta database, or one published by a previous run of this pipeline (only used when `annotation_tool=bakta`). If unset, the database is downloaded automatically into `<outdir>/databases/bakta` on first use and reused from there by later runs that point `--bakta_db` at the same `<outdir>/databases/bakta`.",
+                    "fa_icon": "fas fa-database"
+                },
+                "bakta_db_type": {
+                    "type": "string",
+                    "default": "light",
+                    "enum": ["light", "full"],
+                    "description": "Bakta database type to download",
+                    "help_text": "`light` excludes some reference databases (smaller, faster download) while `full` includes everything. See the [Bakta database docs](https://github.com/oschwengers/bakta#database-download) for details. For any other `bakta_db download` argument, set `ext.args` for the `BAKTA_BAKTADBDOWNLOAD` process in a custom config file instead.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "min_contig_length": {
+                    "type": "integer",
+                    "default": 200,
+                    "description": "Minimum contig length for annotation and analysis",
+                    "fa_icon": "fas fa-ruler"
+                }
+            }
+        },
+        "database_options": {
+            "title": "Database options",
+            "type": "object",
+            "fa_icon": "fas fa-database",
+            "description": "Options for required databases",
+            "properties": {
+                "pfam_db": {
+                    "type": "string",
+                    "description": "Directory containing a pre-downloaded Pfam database, or one published by a previous run of this pipeline (only used when `skip_traitar`=false). If unset, the database is downloaded automatically into `<outdir>/databases/pfam` on first use and reused from there by later runs that point `--pfam_db` at the same `<outdir>/databases/pfam`.",
+                    "fa_icon": "fas fa-folder"
+                }
+            }
+        },
+        "analysis_options": {
+            "title": "Analysis options",
+            "type": "object",
+            "fa_icon": "fas fa-microscope",
+            "description": "Options for functional annotation and metabolic modeling tools",
+            "properties": {
+                "skip_macsyfinder": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip MacSyFinder macromolecular systems detection",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "macsyfinder_models": {
+                    "type": "string",
+                    "default": "TXSS",
+                    "description": "MacSyFinder models to use (TXSS for Type III/IV/VI secretion systems)",
+                    "fa_icon": "fas fa-cogs"
+                },
+                "macsyfinder_db_type": {
+                    "type": "string",
+                    "default": "unordered",
+                    "enum": ["unordered", "ordered_replicon", "gembase"],
+                    "description": "MacSyFinder --db-type: `unordered` for MAGs/draft assemblies with unreliable gene order (default, most permissive), `ordered_replicon` for a single complete/nearly-complete genome (enables synteny-aware detection), or `gembase` for multiple complete replicons in one gembase-formatted database",
+                    "fa_icon": "fas fa-sitemap"
+                },
+                "macsyfinder_db": {
+                    "type": "string",
+                    "description": "Directory containing pre-downloaded MacSyFinder models, or ones published by a previous run of this pipeline (one subdirectory per `macsyfinder_models` value). If unset, models are downloaded automatically into `<outdir>/databases/macsyfinder` on first use and reused from there by later runs that point `--macsyfinder_db` at the same `<outdir>/databases/macsyfinder`.",
+                    "fa_icon": "fas fa-database"
+                },
+                "skip_traitar": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip TRAITAR phenotype prediction",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "skip_carveme": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Skip CarveMe genome-scale metabolic reconstruction",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "carveme_mediadb": {
+                    "type": "string",
+                    "description": "Path to CarveMe media database TSV file (columns: `medium, description, compound, name`). If not provided, uses CarveMe's default media database. See [example file](../assets/medium_carveme_mediadb_example.tsv).",
+                    "fa_icon": "fas fa-database",
+                    "format": "file-path"
+                },
+                "skip_gapseq": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Skip Gapseq pathway analysis and metabolic modeling",
+                    "fa_icon": "fas fa-fast-forward"
+                },
+                "gapseq_db": {
+                    "type": "string",
+                    "description": "Directory containing a pre-downloaded gapseq reference sequence database (a `Bacteria` subdirectory, as produced by `gapseq update-sequences -D <dir>`). If present, the live Zenodo download is skipped - set this to a pre-downloaded copy if your compute nodes lack outbound internet access to Zenodo. If unset, defaults to `<outdir>/databases/gapseq`.",
+                    "fa_icon": "fas fa-database"
+                },
+                "gapseq_doall_args": {
+                    "type": "string",
+                    "default": "-b 200 -A diamond",
+                    "description": "Custom arguments for the simplified `gapseq doall` search step. Only used in the default doall workflow - ignored if any of the `gapseq_find_args`, `gapseq_findtransport_args`, `gapseq_draft_args`, `gapseq_medium_args`, or `gapseq_fill_args` below are set, since that switches to the custom/stepwise workflow instead.",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_find_args": {
+                    "type": "string",
+                    "description": "Custom arguments for `gapseq find` - pathway prediction (default: `-b 200 -A diamond`)",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_findtransport_args": {
+                    "type": "string",
+                    "description": "Custom arguments for `gapseq find-transport` - transporter prediction (default: `-b 200`)",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_draft_args": {
+                    "type": "string",
+                    "description": "Custom arguments for `gapseq draft` - draft model construction (default: none)",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_medium_args": {
+                    "type": "string",
+                    "description": "Custom arguments for `gapseq medium` - add/remove specific compounds on top of the predicted medium, e.g. `-c \"cpd00007:0\"` to remove oxygen (default: none; ignored for samples with their own `medium_gapseq_csv` file)",
+                    "fa_icon": "fas fa-cog"
+                },
+                "gapseq_fill_args": {
+                    "type": "string",
+                    "description": "Custom arguments for `gapseq fill` - gap-filling (default: none)",
+                    "fa_icon": "fas fa-cog"
+                },
+                "skip_memote": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Skip MEMOTE metabolic model quality evaluation (only runs when `skip_gapseq=false` or `skip_carveme=false`)",
+                    "fa_icon": "fas fa-fast-forward"
+                }
+            },
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "skip_macsyfinder": {
+                                "const": false
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "macsyfinder_models": {
+                                "minLength": 1
+                            }
+                        },
+                        "required": ["macsyfinder_models"]
+                    }
+                }
+            ]
         },
         "institutional_config_options": {
             "title": "Institutional config options",
@@ -161,6 +325,44 @@
                     "description": "Display hidden parameters in the help message (only works when --help or --help_full are provided)."
                 }
             }
+        },
+        "deprecated_options": {
+            "title": "Deprecated options",
+            "type": "object",
+            "description": "Old parameter names kept only so nf-schema can fail fast with a helpful message - none of these do anything.",
+            "fa_icon": "fas fa-ban",
+            "properties": {
+                "run_macsyfinder": {
+                    "type": "boolean",
+                    "deprecated": true,
+                    "hidden": true,
+                    "errorMessage": "`--run_macsyfinder` has been replaced by `--skip_macsyfinder` - note the meaning is inverted (run_macsyfinder=false is skip_macsyfinder=true)."
+                },
+                "run_traitar": {
+                    "type": "boolean",
+                    "deprecated": true,
+                    "hidden": true,
+                    "errorMessage": "`--run_traitar` has been replaced by `--skip_traitar` - note the meaning is inverted (run_traitar=false is skip_traitar=true)."
+                },
+                "run_carveme": {
+                    "type": "boolean",
+                    "deprecated": true,
+                    "hidden": true,
+                    "errorMessage": "`--run_carveme` has been replaced by `--skip_carveme` - note the meaning is inverted (run_carveme=false is skip_carveme=true)."
+                },
+                "run_gapseq": {
+                    "type": "boolean",
+                    "deprecated": true,
+                    "hidden": true,
+                    "errorMessage": "`--run_gapseq` has been replaced by `--skip_gapseq` - note the meaning is inverted (run_gapseq=false is skip_gapseq=true)."
+                },
+                "run_memote": {
+                    "type": "boolean",
+                    "deprecated": true,
+                    "hidden": true,
+                    "errorMessage": "`--run_memote` has been replaced by `--skip_memote` - note the meaning is inverted (run_memote=false is skip_memote=true)."
+                }
+            }
         }
     },
     "allOf": [
@@ -168,10 +370,22 @@
             "$ref": "#/$defs/input_output_options"
         },
         {
+            "$ref": "#/$defs/annotation_options"
+        },
+        {
+            "$ref": "#/$defs/database_options"
+        },
+        {
+            "$ref": "#/$defs/analysis_options"
+        },
+        {
             "$ref": "#/$defs/institutional_config_options"
         },
         {
             "$ref": "#/$defs/generic_options"
+        },
+        {
+            "$ref": "#/$defs/deprecated_options"
         }
     ]
 }

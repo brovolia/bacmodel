@@ -1,0 +1,33 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/subworkflows/yaml-schema.json
+name: "macsyfinder"
+description: Macromolecular system detection (e.g. secretion systems) from annotated proteins
+keywords:
+  - bacteria
+  - macromolecular systems
+  - secretion systems
+  - macsyfinder
+components:
+  - macsyfinder/download
+  - macsyfinder/search
+input:
+  - ch_proteins:
+      type: channel
+      description: |
+        Channel containing predicted protein sequences
+        Structure: [ val(meta), path(faa) ]
+  - macsyfinder_models:
+      type: string
+      description: MacSyFinder model set to use, e.g. 'TXSS'
+  - macsyfinder_db:
+      type: string
+      description: Pre-downloaded/cached models directory (one subdirectory per macsyfinder_models value)
+output:
+  - results:
+      type: channel
+      description: |
+        Channel containing detected macromolecular systems
+        Structure: [ val(meta), path(tsv) ]
+authors:
+  - "@brovolia"
+maintainers:
+  - "@brovolia"

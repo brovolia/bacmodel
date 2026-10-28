@@ -336,30 +336,35 @@
                     "type": "boolean",
                     "deprecated": true,
                     "hidden": true,
+                    "description": "Deprecated. Use `--skip_macsyfinder` instead (meaning inverted).",
                     "errorMessage": "`--run_macsyfinder` has been replaced by `--skip_macsyfinder` - note the meaning is inverted (run_macsyfinder=false is skip_macsyfinder=true)."
                 },
                 "run_traitar": {
                     "type": "boolean",
                     "deprecated": true,
                     "hidden": true,
+                    "description": "Deprecated. Use `--skip_traitar` instead (meaning inverted).",
                     "errorMessage": "`--run_traitar` has been replaced by `--skip_traitar` - note the meaning is inverted (run_traitar=false is skip_traitar=true)."
                 },
                 "run_carveme": {
                     "type": "boolean",
                     "deprecated": true,
                     "hidden": true,
+                    "description": "Deprecated. Use `--skip_carveme` instead (meaning inverted).",
                     "errorMessage": "`--run_carveme` has been replaced by `--skip_carveme` - note the meaning is inverted (run_carveme=false is skip_carveme=true)."
                 },
                 "run_gapseq": {
                     "type": "boolean",
                     "deprecated": true,
                     "hidden": true,
+                    "description": "Deprecated. Use `--skip_gapseq` instead (meaning inverted).",
                     "errorMessage": "`--run_gapseq` has been replaced by `--skip_gapseq` - note the meaning is inverted (run_gapseq=false is skip_gapseq=true)."
                 },
                 "run_memote": {
                     "type": "boolean",
                     "deprecated": true,
                     "hidden": true,
+                    "description": "Deprecated. Use `--skip_memote` instead (meaning inverted).",
                     "errorMessage": "`--run_memote` has been replaced by `--skip_memote` - note the meaning is inverted (run_memote=false is skip_memote=true)."
                 }
             }

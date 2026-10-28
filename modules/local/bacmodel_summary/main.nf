@@ -9,10 +9,10 @@ process BACMODEL_SUMMARY {
 
     input:
     path(sample_ids_file)
-    path(macsyfinder_results)
+    path(macsyfinder_results, stageAs: 'macsyfinder_*/all_systems.tsv')
     val(macsyfinder_ids)
-    path(traitar_majority_results)
-    path(traitar_single_results)
+    path(traitar_majority_results, stageAs: 'traitar_majority_*/predictions_majority-vote_combined.txt')
+    path(traitar_single_results, stageAs: 'traitar_single_*/predictions_single-votes_combined.txt')
     path(carveme_models, stageAs: 'carveme/*')
     val(carveme_ids)
     path(gapseq_models, stageAs: 'gapseq/*')

@@ -1,0 +1,78 @@
+nextflow_pipeline {
+
+    name "Test pipeline - Multi-sample"
+    script "../main.nf"
+    tag "pipeline"
+    tag "multisample"
+    // nf-test 0.9.3 silently drops this suite-level `profile` for
+    // nextflow_pipeline tests (confirmed via meta/nextflow.log: the actual
+    // invocation only ever carries nf-test.config's global default `test`
+    // profile) - conf/test_multisample.config's overrides are set inline
+    // below instead, since that's unaffected by the bug.
+    profile "test_multisample"
+
+    test("Params: Multiple samples through BACMODEL_SUMMARY") {
+
+        when {
+            params {
+                outdir            = "$outputDir"
+                // Can't reference params.pipelines_testdata_base_path here - this
+                // params{} block is evaluated by nf-test itself to build the
+                // overrides JSON, before Nextflow has resolved anything from
+                // nextflow.config (see full.nf.test for the same issue).
+                input             = 'https://raw.githubusercontent.com/nf-core/test-datasets/bacmodel/samplesheet_multisample.tsv'
+                skip_macsyfinder  = false
+                skip_traitar      = false
+                skip_carveme      = false
+                skip_gapseq       = true
+                skip_memote       = true
+            }
+        }
+
+        then {
+            // stable_name: All files + folders in ${params.outdir}/ with a stable name
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            // stable_path: All files in ${params.outdir}/ with stable content
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+
+            def expected_samples = ['dorea_formicigenerans', 'faecalibacterium_duncaniae', 'prevotella_copri'] as Set
+
+            // This is the actual regression check for issue #38: before the
+            // fix, Nextflow refused to even start BACMODEL_SUMMARY once more
+            // than one sample's traitar/macsyfinder outputs - which share the
+            // same filename across samples - needed to be staged together.
+            def summary_lines = path("$outputDir/summary/bacmodel_summary.tsv").readLines()
+            def summary_rows  = summary_lines[1..-1].collect { it.split('\t') }
+
+            // TRAITAR nests its output under a directory it names itself (not a
+            // fixed sample-id prefix), so collect all per-sample combined files
+            // by filename rather than by a known path, mirroring traitar.nf.test.
+            def majority_files = []
+            def single_files = []
+            new File("$outputDir/phenotype/traitar").eachFileRecurse { f ->
+                if (f.name == 'predictions_majority-vote_combined.txt') majority_files << f
+                if (f.name == 'predictions_single-votes_combined.txt') single_files << f
+            }
+
+            assertAll(
+                { assert workflow.success },
+                { assert summary_rows.size() == 3 : "Summary should have one row per sample, with no collision-related failure" },
+                { assert summary_lines[0] == 'sample_id\tmacsyfinder_systems\tmacsyfinder_types\ttraitar_phenotypes_majority\ttraitar_phenotypes_single\tcarveme_model\tcarveme_reactions' },
+                { assert summary_rows.collect { it[0] } as Set == expected_samples : "Every sample should get its own row, matched to the right id" },
+                { assert summary_rows.every { it[1] ==~ /\d+/ } : "macsyfinder_systems should be a detected-system count for every sample" },
+                { assert summary_rows.every { it[3] ==~ /\d+/ && it[4] ==~ /\d+/ } : "traitar phenotype counts should be present for every sample" },
+                { assert summary_rows.every { it[5] == 'Yes' && it[6] ==~ /\d+/ } : "CarveMe always produces a model for every sample" },
+                { assert majority_files.size() == 3 && majority_files.every { it.length() > 0 } : "TRAITAR majority-vote predictions should exist and be non-empty for every sample" },
+                { assert single_files.size() == 3 && single_files.every { it.length() > 0 } : "TRAITAR single-votes predictions should exist and be non-empty for every sample" },
+                { assert snapshot(
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_bacmodel_software_versions.yml"),
+                    // All stable path name, with a relative path
+                    stable_name,
+                    // All files with stable contents
+                    stable_path
+                ).match() }
+            )
+        }
+    }
+}

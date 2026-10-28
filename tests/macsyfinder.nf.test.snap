@@ -3,8 +3,8 @@
         "content": [
             {
                 "BACMODEL_SUMMARY": {
-                    "python": "3.12",
-                    "pandas": "2.2.1"
+                    "pandas": "2.2.1",
+                    "python": "3.12"
                 },
                 "MACSYFINDER_DOWNLOAD": {
                     "macsyfinder": "2.1.6",
@@ -1212,7 +1212,7 @@
                 "versions.yml:md5,c94a78df96368229f2d7cf86a699391d"
             ]
         ],
-        "timestamp": "2026-10-12T11:49:23.598568196",
+        "timestamp": "2026-10-28T15:00:18.117806641",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

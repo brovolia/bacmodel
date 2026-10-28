@@ -3,8 +3,8 @@
         "content": [
             {
                 "BACMODEL_SUMMARY": {
-                    "python": "3.12",
-                    "pandas": "2.2.1"
+                    "pandas": "2.2.1",
+                    "python": "3.12"
                 },
                 "GAPSEQ_DRAFT": {
                     "gapseq": "2.1.0"
@@ -79,7 +79,7 @@
                 "versions.yml:md5,c94a78df96368229f2d7cf86a699391d"
             ]
         ],
-        "timestamp": "2026-10-08T17:34:26.198130426",
+        "timestamp": "2026-10-28T14:57:21.335675279",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

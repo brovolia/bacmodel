@@ -11,6 +11,10 @@ lint:
     - conf/igenomes.config
     - conf/igenomes_ignored.config
     - assets/multiqc_config.yml
+    # Deliberately removed upstream (nf-core/tools commit d464fec, "Remove vulnerable
+    # PR-comment artifact pattern") for a security issue in how it posted PR comments.
+    # The template's expected-files list hasn't caught up with that removal yet.
+    - .github/workflows/linting_comment.yml
   template_strings: false
   nextflow_config:
   # The deprecated_options block in nextflow_schema.json (run_macsyfinder, run_traitar,

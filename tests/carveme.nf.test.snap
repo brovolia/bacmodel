@@ -19,7 +19,7 @@
                     "prokka": "1.14.6"
                 },
                 "Workflow": {
-                    "nf-core/bacmodel": "v1.0.0"
+                    "nf-core/bacmodel": "v1.0.1"
                 }
             },
             [

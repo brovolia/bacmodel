@@ -24,7 +24,7 @@ template:
   name: bacmodel
   description: Systems-based bacterial functional modeling pipeline
   author: Olga Brovkina
-  version: 1.0.0
+  version: 1.0.1
   force: true
   outdir: .
   skip_features:

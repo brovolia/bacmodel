@@ -3,8 +3,8 @@
         "content": [
             {
                 "BACMODEL_SUMMARY": {
-                    "python": "3.12",
-                    "pandas": "2.2.1"
+                    "pandas": "2.2.1",
+                    "python": "3.12"
                 },
                 "CARVEME_CARVE": {
                     "carveme": "1.6.6"
@@ -2986,7 +2986,7 @@
                 "versions.yml:md5,c94a78df96368229f2d7cf86a699391d"
             ]
         ],
-        "timestamp": "2026-10-28T09:39:32.7308047",
+        "timestamp": "2026-10-29T17:02:33.523048683",
         "meta": {
             "nf-test": "0.9.5",
             "nextflow": "26.04.4"

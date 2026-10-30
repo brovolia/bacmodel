@@ -9,7 +9,7 @@ Initial release of nf-core/bacmodel, created with the [nf-core](https://nf-co.re
 
 ### `Added`
 
-- Updated pipeline workflow diagram
+- [#43](https://github.com/nf-core/bacmodel/pull/43) Updated pipeline workflow diagram
 
 ### `Fixed`
 
